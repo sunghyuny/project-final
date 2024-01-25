@@ -1,0 +1,1878 @@
+.frame-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .frame-frame {
+    width: 100%;
+    height: 2619px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text {
+    top: 701px;
+    left: 358px;
+    color: rgb(0, 0, 0);
+    height: auto;
+    position: absolute;
+    font-size: 28px;
+    font-style: Bold;
+    text-align: center;
+    font-family: "Inter";
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text001 {
+    top: 863px;
+    left: 365px;
+    color: rgb(0, 0, 0);
+    height: auto;
+    position: absolute;
+    font-size: 28px;
+    font-style: Bold;
+    text-align: center;
+    font-family: "Inter";
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text002 {
+    top: 1353px;
+    left: 365px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 28px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text004 {
+    top: 1852px;
+    left: 365px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 28px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button {
+    top: 756px;
+    left: 365px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text006 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button01 {
+    top: 756px;
+    left: 486.255859375px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text008 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button02 {
+    top: 756px;
+    left: 607.51171875px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text010 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button03 {
+    top: 756px;
+    left: 728.767578125px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text012 {
+    top: 8.749996185302734px;
+    left: 12.279296875px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button04 {
+    top: 756px;
+    left: 850.01953125px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text014 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button05 {
+    top: 756px;
+    left: 971.275390625px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text016 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button06 {
+    top: 756px;
+    left: 1092.52734375px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text018 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button07 {
+    top: 756px;
+    left: 1213.78515625px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text020 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button08 {
+    top: 756.4860229492188px;
+    left: 1455.61328125px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text022 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgb(0, 0, 0);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: "Inter";
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button09 {
+    top: 756px;
+    left: 1334px;
+    width: 101.38826751708984px;
+    height: 34.51387405395508px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-text023 {
+    top: 8.749996185302734px;
+    left: 10.9140625px;
+    color: rgba(0, 0, 0, 1);
+    width: 79px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-rectangle16 {
+    top: 2354px;
+    left: 0px;
+    width: 1920px;
+    height: 265px;
+    position: absolute;
+    border-color: rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-width: 1px;
+  }
+  .frame-group29 {
+    top: 2258px;
+    left: 1817px;
+    width: 83px;
+    height: 83px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(22, 67, 135, 1);
+  }
+  .frame-text025 {
+    top: 50px;
+    left: 28px;
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: SemiBold;
+    text-align: left;
+    font-family: Pretendard;
+    font-weight: 600;
+    line-height: 0px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group28 {
+    top: 28px;
+    left: 36px;
+    width: 11.999999046325684px;
+    height: 6.999999046325684px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-line14 {
+    top: 1px;
+    left: 5.999998569488525px;
+    width: 8px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-line19 {
+    top: 0px;
+    left: 5.999998569488525px;
+    width: 8px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-group16-button {
+    top: 908px;
+    left: 363px;
+    width: 277.797119140625px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-end;
+    flex-shrink: 1;
+    justify-content: center;
+  }
+  .frame-group3 {
+    top: -9.094947017729282e-13px;
+    left: 39.044921875px;
+    width: 238.752197265625px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line8 {
+    top: 226px;
+    left: 0px;
+    width: 239px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-image {
+    top: 229px;
+    left: 0px;
+    width: 30px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-rectangle17svg {
+    top: 1px;
+    left: 1.796875px;
+    width: 275px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-text027 {
+    top: 236px;
+    left: 39px;
+    color: rgba(34, 148, 255, 1);
+    width: 66px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text029 {
+    top: 327px;
+    left: 7.638671875px;
+    color: rgba(147, 147, 147, 1);
+    width: 113px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text031 {
+    top: 280px;
+    left: 7.638671875px;
+    color: rgb(0, 0, 0);
+    width: 225px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: "Inter";
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group14-button {
+    top: 909px;
+    left: 1281px;
+    width: 276px;
+    height: 365px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group6 {
+    top: 9px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line10 {
+    top: 225.5px;
+    left: 1.1047347784042358px;
+    width: 274px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-rectangle24svg {
+    top: 0px;
+    left: 1.103515625px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-image01 {
+    top: 228px;
+    left: 1.103515625px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text032 {
+    top: 235px;
+    left: 46.21484375px;
+    color: rgba(34, 148, 255, 1);
+    width: 188px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text034 {
+    top: 274px;
+    left: 7.726593494415283px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text036 {
+    top: 336px;
+    left: 9.936062812805176px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group13-button {
+    top: 909px;
+    left: 975px;
+    width: 276px;
+    height: 359px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group5 {
+    top: 3px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line9 {
+    top: 226px;
+    left: 0px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-rectangle19svg {
+    top: 0px;
+    left: 1.1007757186889648px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-image02 {
+    top: 228px;
+    left: 1.1015625px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text038 {
+    top: 235px;
+    left: 46.150390625px;
+    color: rgba(34, 148, 255, 1);
+    width: 160px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text040 {
+    top: 268px;
+    left: 7.7274017333984375px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text042 {
+    top: 330px;
+    left: 9.935544967651367px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group15-button {
+    top: 908px;
+    left: 668px;
+    width: 276.89453125px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group4 {
+    top: 0px;
+    left: 0.89453125px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line91 {
+    top: 226px;
+    left: 0px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-rectangle18svg {
+    top: 1px;
+    left: 2.000133514404297px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-image03 {
+    top: 229px;
+    left: 0px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text044 {
+    top: 236px;
+    left: 45.111328125px;
+    color: rgba(34, 148, 255, 1);
+    width: 120px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text046 {
+    top: 265px;
+    left: 6.625px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text048 {
+    top: 327px;
+    left: 8.83203125px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group18-button {
+    top: 1401px;
+    left: 668px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group8 {
+    top: 0px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line13 {
+    top: 226px;
+    left: 0px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-rectangle20 {
+    top: 1px;
+    left: 1.1024553775787354px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-text050 {
+    top: 320px;
+    left: 9.935068130493164px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-image04 {
+    top: 226px;
+    left: 1.1024553775787354px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text052 {
+    top: 232px;
+    left: 46.36797332763672px;
+    color: rgba(34, 148, 255, 1);
+    width: 188px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text054 {
+    top: 273px;
+    left: 9.935068130493164px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group17-button {
+    top: 1402px;
+    left: 363px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group7 {
+    top: 0px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line12 {
+    top: 226px;
+    left: 0px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-rectangle21svg {
+    top: 0px;
+    left: 1.1015625px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-text056 {
+    top: 320px;
+    left: 9.935546875px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-image05 {
+    top: 226px;
+    left: 1.1015625px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text058 {
+    top: 231px;
+    left: 46.3671875px;
+    color: rgba(34, 148, 255, 1);
+    width: 188px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text060 {
+    top: 265px;
+    left: 7.728515625px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group19-button {
+    top: 1401px;
+    left: 975px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group11 {
+    top: 0px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group9 {
+    top: 0px;
+    left: 0px;
+    width: 275.999755859375px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line11 {
+    top: 226px;
+    left: 0.00018058321438729763px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-rectangle23 {
+    top: 1px;
+    left: 1.105048418045044px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-text062 {
+    top: 320px;
+    left: 9.937653541564941px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-image06 {
+    top: 226px;
+    left: 1.105048418045044px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text064 {
+    top: 232px;
+    left: 46.36793518066406px;
+    color: rgba(34, 148, 255, 1);
+    width: 188px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text066 {
+    top: 268px;
+    left: 7.7301506996154785px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group20-button {
+    top: 1402px;
+    left: 1281px;
+    width: 276px;
+    height: 357px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group10 {
+    top: 1px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line141 {
+    top: 225.5px;
+    left: 1.1024553775787354px;
+    width: 274px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-rectangle22 {
+    top: 0px;
+    left: 1.1050493717193604px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-text068 {
+    top: 321px;
+    left: 9.935068130493164px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-image07 {
+    top: 227px;
+    left: 1.1050493717193604px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text070 {
+    top: 231px;
+    left: 46.36797332763672px;
+    color: rgba(34, 148, 255, 1);
+    width: 188px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text072 {
+    top: 266px;
+    left: 7.727563381195068px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group24-button {
+    top: 1902px;
+    left: 363px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group71 {
+    top: 0px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line121 {
+    top: 226px;
+    left: 0px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-image08 {
+    top: 226px;
+    left: 1.1015625px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text074 {
+    top: 232px;
+    left: 46.3671875px;
+    color: rgba(34, 148, 255, 1);
+    width: 167px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text076 {
+    top: 265px;
+    left: 7.728515625px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text078 {
+    top: 327px;
+    left: 9.935546875px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-rectangle25 {
+    top: 1px;
+    left: 1.1015625px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-group21-button {
+    top: 1902px;
+    left: 1283px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group101 {
+    top: 0px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line142 {
+    top: 225.5px;
+    left: 1.10546875px;
+    width: 274px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-image09 {
+    top: 226px;
+    left: 1.10546875px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text080 {
+    top: 232px;
+    left: 46.3671875px;
+    color: rgba(34, 148, 255, 1);
+    width: 189px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text082 {
+    top: 265px;
+    left: 7.728515625px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text084 {
+    top: 327px;
+    left: 9.935546875px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-rectangle28 {
+    top: 1px;
+    left: 1.10546875px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-group23-button {
+    top: 1902px;
+    left: 668px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group81 {
+    top: 0px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line131 {
+    top: 226px;
+    left: 0px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-image10 {
+    top: 226px;
+    left: 1.1015625px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text086 {
+    top: 232px;
+    left: 46.3671875px;
+    color: rgba(34, 148, 255, 1);
+    width: 171px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text088 {
+    left: 5px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    bottom: 37px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text090 {
+    top: 327px;
+    left: 9.935546875px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-rectangle26 {
+    top: 1px;
+    left: 1.1015625px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-group22-button {
+    top: 1902px;
+    left: 975px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group111 {
+    top: 0px;
+    left: 0px;
+    width: 276px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-group91 {
+    top: 9.094947017729282e-13px;
+    left: 0.0000136471790028736px;
+    width: 275.9999694824219px;
+    height: 356px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .frame-line111 {
+    top: 226px;
+    left: 0px;
+    width: 276px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-image11 {
+    top: 226px;
+    left: 1.103515625px;
+    width: 34px;
+    height: 31px;
+    position: absolute;
+  }
+  .frame-text092 {
+    top: 232px;
+    left: 46.367149353027344px;
+    color: rgba(34, 148, 255, 1);
+    width: 167px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text094 {
+    left: 11px;
+    color: rgba(0, 0, 0, 1);
+    width: 261px;
+    bottom: 40px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text096 {
+    top: 327px;
+    left: 9.935546875px;
+    color: rgba(136, 136, 136, 1);
+    width: 130px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-rectangle27 {
+    top: 1px;
+    left: 1.103515625px;
+    width: 274px;
+    height: 224px;
+    position: absolute;
+    border-radius: 21px;
+  }
+  .frame-group153svg {
+    top: 234px;
+    left: 365px;
+    width: 1192px;
+    height: 408px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-frame27 {
+    top: 0px;
+    left: 0px;
+    width: 1192px;
+    height: 408px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+  .frame-rectangle17 {
+    top: 0px;
+    left: 0px;
+    width: 1192px;
+    height: 403px;
+    position: absolute;
+    border-color: rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 21px;
+  }
+  .frame-rectangle18svg1 {
+    top: 0px;
+    left: 1px;
+    width: 738px;
+    height: 403px;
+    position: absolute;
+    border-radius: 22px 0 0 22px;
+  }
+  .frame-frame26-button {
+    gap: 30px;
+    top: 274px;
+    left: 827px;
+    width: 304px;
+    height: 50px;
+    display: flex;
+    padding: 25px 70px;
+    position: absolute;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 500px;
+    justify-content: center;
+    background-color: rgba(34, 148, 255, 1);
+  }
+  .frame-text100 {
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    font-size: 16px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text102 {
+    top: 65px;
+    left: 43px;
+    color: #000000;
+    width: 342px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text103 {
+    color: #000000;
+  }
+  .frame-text107 {
+    top: 15px;
+    left: 6px;
+    color: #000000;
+    width: 395px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text108 {
+    color: #000000;
+  }
+  .frame-line15 {
+    top: 812.5px;
+    left: 366px;
+    width: 1191px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-frame1 {
+    top: 1.8189894035458565e-12px;
+    left: -1.8189894035458565e-12px;
+    width: 1920px;
+    height: 193px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-shrink: 1;
+    justify-content: flex-end;
+    background-color: rgba(34, 148, 255, 1);
+  }
+  .frame-text114 {
+    top: 27px;
+    left: 332px;
+    color: rgba(255, 255, 255, 1);
+    width: 333px;
+    height: auto;
+    position: absolute;
+    font-size: 50px;
+    font-style: italic;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 900;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button10 {
+    top: 133px;
+    left: 1432px;
+    width: 121.26866149902344px;
+    height: 39.024383544921875px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(34, 148, 255, 1);
+  }
+  .frame-text116 {
+    top: 7px;
+    left: 33px;
+    color: rgba(255, 255, 255, 1);
+    width: 76px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-group64-button {
+    top: 139px;
+    left: 363px;
+    width: 1007px;
+    height: 29px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-text118 {
+    left: 152px;
+    color: rgba(255, 255, 255, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text120 {
+    color: rgba(255, 255, 255, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text122 {
+    left: 304px;
+    color: rgba(255, 255, 255, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text124 {
+    left: 456px;
+    color: rgba(255, 255, 255, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text126 {
+    left: 608px;
+    color: rgba(255, 255, 255, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text128 {
+    left: 760px;
+    color: rgba(255, 255, 255, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-text130 {
+    left: 912px;
+    color: rgba(255, 255, 255, 1);
+    width: 95px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame2 {
+    top: 49px;
+    left: 694px;
+    width: 598.999267578125px;
+    height: 42px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .frame-rectangle52input-button {
+    top: 0px;
+    left: 0px;
+    width: 556px;
+    height: 42px;
+    position: absolute;
+    border-radius: 35px;
+  }
+  .frame-text132 {
+    top: 9px;
+    left: 24.375px;
+    color: rgba(168, 168, 168, 1);
+    width: 287px;
+    height: auto;
+    position: absolute;
+    font-size: 21px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .frame-frame-button11 {
+    top: 7px;
+    left: 567px;
+    width: 31.999286651611328px;
+    height: 32px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-shrink: 1;
+    justify-content: flex-end;
+  }
+  .frame-line31 {
+    top: 22.736780166625977px;
+    left: 21.072265625px;
+    width: 14px;
+    height: 1px;
+    position: absolute;
+  }
+  .frame-icon {
+    fill: #ffffff;
+    width: 32;
+    height: 32;
+  }
+  .frame-icon2 {
+    fill: #ffffff;
+    width: 35px;
+    height: 35px;
+    align-self: flex-start;
+  }
+  .frame-icon4 {
+    fill: #ffffff;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+  }
+  .frame-icon6 {
+    width: 24px;
+    height: 24px;
+  }
+  
