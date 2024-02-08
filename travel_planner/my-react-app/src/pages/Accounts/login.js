@@ -24,15 +24,18 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Username:</label>
-                <input type="text" name="username" value={formData.username} onChange={handleChange} />
-                <label>Password:</label>
-                <input type="password" name="password" value={formData.password} onChange={handleChange} />
-                <button type="submit">Login</button>
-            </form>
+        <div className='Login_container'>
+            <div className='page_title'>
+                <h3>로그인</h3>
+                <hr></hr>
+            </div>
+            <div className='Login_contents'>
+                <input type='test' placeholder="아이디"></input><br></br>
+                <input type='password' placeholder="비밀번호"></input>
+                <button type='submit' className='login_button'>로그인</button>
+                <button>회원가입</button>
+                <button>아이디/비번찾기</button>
+            </div>
         </div>
     );
 };
