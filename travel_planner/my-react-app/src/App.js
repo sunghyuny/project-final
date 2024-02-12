@@ -2,10 +2,9 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './pages/Main/Home.js';
 import About from './components/About';
-import SignupForm from './components/signup';  // SignupForm 추가
-import SignupFormComponent from './components/signup';
+import SignupFormComponent from './pages/Accounts/signup';
 
 const App = () => {
   return (

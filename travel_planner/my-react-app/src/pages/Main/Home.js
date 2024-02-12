@@ -1,10 +1,10 @@
 // src/components/Home.js
 import React, { useState, useEffect } from 'react';
-import '../App.css';
-import Navbar from '../components/navber';
-import Footer from '../components/footer';
-import Review from '../components/review'
-import Recommend from '../components/recommend'
+import '../../App.css';
+import Navbar from '../../components/navber';
+import Footer from '../../components/footer';
+import Review from '../../components/review'
+import Recommend from '../../components/recommend'
 
 const Home = () => {
   const [data, setData] = useState([]);
