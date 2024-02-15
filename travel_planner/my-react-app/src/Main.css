@@ -1,0 +1,45 @@
+/*메인 사진부분*/
+.main_slide{
+  margin-left: 400px;
+  border: 1px solid;
+  border-radius: 21px;
+  width: 1192px;
+  height: 403px;
+}
+
+.slide_img{
+  border: 1px solid;
+  border-radius: 21px 0 0 21px;
+  display: inline-block;
+  height: 403px;
+  width: 738px;
+  margin-right: 50px;
+  margin-top:0;
+}
+
+.main_text{
+  display: inline-block;
+  margin: 0;
+  text-align: center;
+  place-items: center;
+  position: relative;
+  top: 150px;
+  left: 0px;
+}
+
+/*후기 및 추천여행 등*/
+.review{
+  display: inline-block;
+  border: 1px solid black;
+  width: 274px;
+  height: 356px;
+  margin-right: 5%;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+.review>img{
+  width: 274px;
+  height: 224px;
+}
+

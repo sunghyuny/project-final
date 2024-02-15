@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Menu(){
     return(
@@ -13,15 +14,7 @@ function Menu(){
             <ul>
                 <li className='menu_title'>여행계획</li>
                 <hr></hr>
-                <li>계획 작성하기</li>
-            </ul>
-
-            <ul>
-                <li className='menu_title'>매칭</li>
-                <hr></hr>
-                <li>실시간 매칭</li>
-                <li>동행 매칭</li>
-                <li>친구 채팅</li>
+                <li><Link to="/planner/schedule">계획 작성하기</Link></li>
             </ul>
 
             <ul>
@@ -48,7 +41,13 @@ function Menu(){
                 <li>공지사항</li>
             </ul>
 
-
+            <ul>
+                <li className='menu_title'>매칭</li>
+                <hr></hr>
+                <li>실시간 매칭</li>
+                <li>동행 매칭</li>
+                <li>친구 채팅</li>
+            </ul>
         </div>
     )
 }

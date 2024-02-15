@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+=======
+import React, {useState} from 'react';
+import Menu from './menu';
+import { Link } from 'react-router-dom';
+>>>>>>> e58833f4e11e4f16f70ca1dbf23e08a4f51cf9d3
 
 function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,6 +46,7 @@ function Navbar() {
                 <li>관광지</li>
                 <li>커뮤니티</li>
             </ul>
+<<<<<<< HEAD
             {isLoggedIn ? (
                 <div>
                     <p>{username}님</p>
@@ -48,6 +55,10 @@ function Navbar() {
             ) : (
                 <button onClick={handleLogin}>로그인</button>
             )}
+=======
+            <Link to="/Accounts/signup"><button>로그인</button></Link>
+            {showMenu && <Menu/>}
+>>>>>>> e58833f4e11e4f16f70ca1dbf23e08a4f51cf9d3
         </div>
     );
 }
