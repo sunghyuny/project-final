@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Menu from './menu';
+import { Link } from 'react-router-dom';
 
 function Navbar(){
     const [showMenu, setShowMenu] = useState(false);
@@ -20,7 +21,7 @@ function Navbar(){
                 <li>관광지</li>
                 <li>커뮤니티</li>
             </ul>
-            <button link to='Accounts/login'>로그인</button>
+            <Link to="/Accounts/signup"><button>로그인</button></Link>
             {showMenu && <Menu/>}
         </div>
     )

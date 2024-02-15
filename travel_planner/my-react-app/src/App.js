@@ -9,25 +9,6 @@ import SignupFormComponent from './pages/Accounts/signup';
 const App = () => {
   return (
     <Router>
-      <div>
-        {/* 네비게이션 링크 추가 */}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/Accounts/signup">회원가입</Link>
-            </li>
-            <li>
-              <Link to="Accounts/login">로그인</Link>
-            </li>
-          </ul>
-        </nav>
-
         {/* 라우트 설정 */}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -36,7 +17,6 @@ const App = () => {
           <Route path="/Accounts/login" element= {<login />} />
           {/* 다른 라우트들을 추가할 수 있습니다. */}
         </Routes>
-      </div>
     </Router>
   );
 };
