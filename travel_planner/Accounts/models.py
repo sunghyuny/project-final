@@ -8,8 +8,7 @@ class CustomUser(AbstractUser):
     mbti = models.CharField(max_length=4)
     gender_choices = [
         ('male', '남자'),
-        ('female', '여자'),
-        ('other', '상관없음'),
+        ('female', '여자')
     ]
     gender = models.CharField(max_length=10, choices=gender_choices)
 

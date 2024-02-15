@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     });
+    const [username, setUsername] = useState(''); // 사용자 이름 상태 추가
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,6 +21,8 @@ const Login = () => {
             const response = await axios.post('http://localhost:8000/Accounts/login/', formData);
             console.log(response.data);
             // Handle login success, e.g., redirect to dashboard
+            navigate('/');
+            setUsername(response.data.username); // 받은 사용자 이름을 상태에 저장
         } catch (error) {
             console.error('Login Failed:', error);
             // Handle login failure, e.g., show error message
@@ -24,18 +30,15 @@ const Login = () => {
     };
 
     return (
-        <div className='Login_container'>
-            <div className='page_title'>
-                <h3>로그인</h3>
-                <hr></hr>
-            </div>
-            <div className='Login_contents'>
-                <input type='test' placeholder="아이디"></input><br></br>
-                <input type='password' placeholder="비밀번호"></input>
-                <button type='submit' className='login_button'>로그인</button>
-                <button>회원가입</button>
-                <button>아이디/비번찾기</button>
-            </div>
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <label>Username:</label>
+                <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                <label>Password:</label>
+                <input type="password" name="password" value={formData.password} onChange={handleChange} />
+                <button type="submit">Login</button>
+            </form>
         </div>
     );
 };

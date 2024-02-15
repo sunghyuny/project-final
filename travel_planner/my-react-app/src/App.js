@@ -2,9 +2,11 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import './App.css'
 import Home from './pages/Main/Home.js';
 import About from './components/About';
 import SignupFormComponent from './pages/Accounts/signup';
+import Loginform from './pages/Accounts/login';
 
 const App = () => {
   return (
@@ -23,7 +25,7 @@ const App = () => {
               <Link to="/Accounts/signup">회원가입</Link>
             </li>
             <li>
-              <Link to="Accounts/login">로그인</Link>
+              <Link to="/Accounts/login">로그인</Link>
             </li>
           </ul>
         </nav>
@@ -33,7 +35,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/Accounts/signup" element={<SignupFormComponent  />} />
-          <Route path="/Accounts/login" element= {<login />} />
+          <Route path="/Accounts/login" element= {<Loginform />} />
           {/* 다른 라우트들을 추가할 수 있습니다. */}
         </Routes>
       </div>

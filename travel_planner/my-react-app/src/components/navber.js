@@ -1,18 +1,38 @@
-import React, {useState} from 'react';
-import Menu from './menu';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function Navbar(){
-    const [showMenu, setShowMenu] = useState(false);
+function Navbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [username, setUsername] = useState('');
+    const navigate = useNavigate();
 
-    const toggleMenu =() =>{
-        setShowMenu(!showMenu);
+    const handleLogin = async () => {
+        try {
+            // 로그인 처리 로직을 구현합니다.
+            // 로그인에 성공하면 사용자 정보를 받아와서 상태를 업데이트합니다.
+            const response = await axios.post('http://localhost:8000/Accounts/login/', { username });
+            setUsername(response.data.username);
+            setIsLoggedIn(true);
+            navigate('/');
+        } catch (error) {
+            console.error('Login Failed:', error);
+        }
     };
-    return(
+
+    const handleLogout = () => {
+        // 로그아웃 처리 로직을 구현합니다.
+        // 로그아웃에 성공하면 상태를 업데이트합니다.
+        setIsLoggedIn(false);
+        setUsername('');
+    };
+
+    return (
         <div className="navbar">
             <div className="logo">Travel Plan</div>
             <input type='text' placeholder='검색할 내용을 입력하세요'></input>
             <ul>
-                <li onClick={toggleMenu}>전체 메뉴</li>
+                <li>전체 메뉴</li>
                 <li>여행</li>
                 <li>여행 계획</li>
                 <li>매칭</li>
@@ -20,9 +40,16 @@ function Navbar(){
                 <li>관광지</li>
                 <li>커뮤니티</li>
             </ul>
-            <button link to='Accounts/login'>로그인</button>
-            {showMenu && <Menu/>}
+            {isLoggedIn ? (
+                <div>
+                    <p>{username}님</p>
+                    <button onClick={handleLogout}>로그아웃</button>
+                </div>
+            ) : (
+                <button onClick={handleLogin}>로그인</button>
+            )}
         </div>
-    )
+    );
 }
-export default Navbar
+
+export default Navbar;
