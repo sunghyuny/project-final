@@ -1,15 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import Menu from './menu.js';
+import UserContext from './UserContext';
 
-function Navbar(){
+function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
+    const userContext = useContext(UserContext); // UserContext 가져오기
 
-    const toggleMenu =() =>{
+    const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
-    return(
+
+    const handleLogout = () => {
+        // 로그아웃 로직 추가
+        userContext.setUser(null);
+    };
+
+    return (
         <div className="navbar">
             <Link to="/" className='Logo_link'><div className="logo">Travel Plan</div></Link>
             <input type='text' placeholder='검색할 내용을 입력하세요' className='seach_text'></input>
@@ -22,9 +30,17 @@ function Navbar(){
                 <li>커뮤니티</li>
                 <li>매칭</li>
             </ul>
-            <Link to="/page/Signup" className='nav_btn'><button className='login_btn'>로그인</button></Link>
+            {userContext.user ? (
+                <div>
+                    {userContext.user} 님
+                    <button onClick={handleLogout} className='logout_btn'>로그아웃</button>
+                </div>
+            ) : (
+                <Link to="/Accounts/login" className='nav_btn'><button className='login_btn'>로그인</button></Link>
+            )}
             {showMenu && <Menu/>}
         </div>
-    )
+    );
 }
-export default Navbar
+
+export default Navbar;

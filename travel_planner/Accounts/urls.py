@@ -16,12 +16,13 @@ Including another URLconf
 """# your_app_name/urls.py
 
 from django.urls import path
-from .views import SignupView,get_csrf_token,LoginView
+from .views import SignupView,get_csrf_token,LoginApi
 
 urlpatterns = [
     path('signup/', SignupView.as_view(), name='signup'),
     path('csrf/', get_csrf_token, name='get-csrf-token'),
-    path('login/', LoginView.as_view(), name='login')
+    path('login/', LoginApi.as_view(), name='login'),
+    path('loginstaus/', LoginApi.as_view(), name='staus'),
     # 다른 URL 패턴들을 추가할 수 있습니다.
 ]
 
