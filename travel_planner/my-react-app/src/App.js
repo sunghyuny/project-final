@@ -10,6 +10,8 @@ import Activity from './pages/Planner/Activity';
 import Summary from './pages/Planner/Summary';
 import Signup from './pages/Accounts/Signup';
 import LoginStaus from './components/loginstaus';
+import Sights from './pages/Sightseeing/sights';
+import Search from './pages/Sightseeing/search';
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/planner/activity" element={<Activity />} />
           <Route path="/planner/summary" element={<Summary />} />
           <Route path="/Accounts/loginstatus" element={<LoginStaus />} />
+          <Route path="/Sightseeing/Sights" element={<Sights/>}/>
+          <Route path="/Sightseeing/Sights/search" element={<Search/>}/>
         </Routes>
       </UserProvider> {/* UserProvider 닫는 태그 추가 */}
     </Router>

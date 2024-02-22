@@ -4,13 +4,13 @@ import '../../Main.css';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
 import Review from '../../components/review'
-import Recommend from '../../components/recommend'
+
 
 
 
 
 function Home(){
-    
+
     return(
         <main className='App'>
             <Navbar/>
@@ -23,11 +23,24 @@ function Home(){
                 </div>
             </div>
             <p className='content_title'>인기 여행지</p>
-            <Recommend/>
+            <div className='hotplace'>
+            <ul>
+                <li>강화도</li>
+                <li>부산</li>
+                <li>제주도</li>
+                <li>경주</li>
+                <li>철원</li>
+                <li>횡성</li>
+                <li>설악산</li>
+                <li>여주</li>
+                <li>부여</li>
+                <li>공주</li>
+            </ul>
+        </div>
             <hr></hr>
-            
+
             <p className='content_title'>지금 가면 좋은 여행 장소</p>
-            <Review imageUrl="../public/image/00501234_20171219.jpeg" locate="한라산 백록담" title="겨울 설경이 아름다운 곳" user="정보라님의 여행"/>
+            <Review imageUrl="/image/00501234_20171219.jpeg" locate="한라산 백록담" title="겨울 설경이 아름다운 곳" user="정보라님의 여행"/>
             <Review imageUrl="/image/266BE146585C7D782A.jpeg" locate="인제 자작나무 숲" title="모든게 하얗게 뒤덮힌 자작나무 숲" user="하인성님의 여행"/>
             <Review imageUrl="/image/11772BB7-D64A-4864-A05A-A93C060C3D6D.jpeg" locate="강릉 안반데기" title="밤하늘의 아름다운 은하수" user="안기준의 여행"/>
             <Review imageUrl="/image/ZkeHUfn8vIMkFLw3xvn9GvGV5tU4U5g0PxCvZzQ-eIaVhKA57AjIGEpwdYrbRSfh_pA9endPgdUeh3OLGGJzMw.webp" locate="청송 얼음골" title="멋진 겨울의 절경" user="홍장미님의 여행"/>

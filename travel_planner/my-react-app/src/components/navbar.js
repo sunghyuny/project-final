@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import '../sights.css'
+import '../search.css'
 import Menu from './menu.js';
 import UserContext from './UserContext';
 
@@ -26,12 +28,12 @@ function Navbar() {
                 <li>여행</li>
                 <li><Link to="/planner/schedule" className='nav_link'>여행 계획</Link></li>
                 <li>숙박</li>
-                <li>관광지</li>
+                <li><Link to="/sightseeing/Sights" className='nav_link'>관광지</Link></li>
                 <li>커뮤니티</li>
                 <li>매칭</li>
             </ul>
             {userContext.user ? (
-                <div>
+                <div className='logout'>
                     {userContext.user} 님
                     <button onClick={handleLogout} className='logout_btn'>로그아웃</button>
                 </div>
