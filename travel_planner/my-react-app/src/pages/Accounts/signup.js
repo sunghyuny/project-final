@@ -21,7 +21,7 @@ const SignUpForm = () => {
   useEffect(() => {
     const getCSRFToken = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/Accounts/csrf/');
+        const response = await axios.get('/Accounts/csrf/');
         setCsrfToken(response.data.csrfToken);
       } catch (error) {
         console.error('CSRF 토큰 가져오기 실패:', error);
@@ -39,7 +39,7 @@ const SignUpForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/Accounts/signup/', formData, {
+      const response = await axios.post('/Accounts/signup/', formData, {
         headers: {
           'X-CSRFToken': csrfToken,
         },
@@ -62,7 +62,7 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input type="text" id="username" name="username" onChange={handleChange} required /><br />
-
+        
         <label htmlFor="age">Age:</label>
         <input type="text" id="age" name="age" onChange={handleChange} required /><br />
 
