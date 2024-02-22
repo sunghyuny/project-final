@@ -13,7 +13,7 @@ function Search() {
   return (
     <div className="search_page">
         <Navbar/>
-        <div className="search_container">
+        <div className="search_word">
             <p className="result_query">{query}</p>
             <p className="search_result">검색결과</p>
         </div>
