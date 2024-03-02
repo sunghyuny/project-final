@@ -20,10 +20,11 @@
   background-color: #2295FF;
   height: 193px;
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   text-align: left;
   justify-content: center;
   align-items: center;
+  cursor: default;
 }
 
 .logo{
@@ -41,7 +42,7 @@
   height: 42px;
   display: inline;
   margin-left: 51px;
- 
+
 }
 
 .navbar>ul{
@@ -54,7 +55,7 @@
   display: inline-block;
   margin-right: 110px;
   color: white;
-  font-size: 15px;
+  font-size: 21px;
 }
 
 /*풋터*/

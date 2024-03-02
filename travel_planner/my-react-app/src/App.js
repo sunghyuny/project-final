@@ -10,7 +10,12 @@ import Activity from './pages/Planner/Activity';
 import Summary from './pages/Planner/Summary';
 import Signup from './pages/Accounts/Signup';
 import LoginStaus from './components/loginstaus';
+<<<<<<< HEAD
 import Touristspots from './pages/spot/spotCreate';
+=======
+import Sights from './pages/Sightseeing/sights';
+import Search from './pages/Sightseeing/search';
+>>>>>>> b91a0a976a55531ca6e3684013166747b4fa2f4e
 
 const App = () => {
   return (
@@ -28,7 +33,12 @@ const App = () => {
           <Route path="/planner/activity" element={<Activity />} />
           <Route path="/planner/summary" element={<Summary />} />
           <Route path="/Accounts/loginstatus" element={<LoginStaus />} />
+<<<<<<< HEAD
           <Route path="/thesights/touristspots" element={<Touristspots/>} />
+=======
+          <Route path="/Sightseeing/Sights" element={<Sights/>}/>
+          <Route path="/Sightseeing/Sights/search" element={<Search/>}/>
+>>>>>>> b91a0a976a55531ca6e3684013166747b4fa2f4e
         </Routes>
       </UserProvider> {/* UserProvider 닫는 태그 추가 */}
     </Router>
