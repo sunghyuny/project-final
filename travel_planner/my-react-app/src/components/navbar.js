@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; // axios import 추가
 import '../App.css';
 import Menu from './menu.js';
 import UserContext from './UserContext';
@@ -12,9 +13,14 @@ function Navbar() {
         setShowMenu(!showMenu);
     };
 
-    const handleLogout = () => {
-        // 로그아웃 로직 추가
-        userContext.setUser(null);
+    const handleLogout = async () => { // async 키워드 추가
+        try {
+            const response = await axios.post('/Accounts/logout/'); // 로그아웃 요청 보내기
+            console.log(response.data); // 로그아웃 성공 시 응답 확인
+            userContext.setUser(null); // 로그아웃 성공 시 UserContext 업데이트
+        } catch (error) {
+            console.error('Error logging out:', error); // 로그아웃 실패 시 에러 처리
+        }
     };
 
     return (
@@ -29,10 +35,11 @@ function Navbar() {
                 <li>관광지</li>
                 <li>커뮤니티</li>
                 <li>매칭</li>
+                <li><Link to="/thesights/touristspots">관광지 등록</Link></li>
             </ul>
             {userContext.user ? (
                 <div>
-                    {userContext.user} 님
+                    {userContext.user.username} 님 {/* 사용자 이름 표시 */}
                     <button onClick={handleLogout} className='logout_btn'>로그아웃</button>
                 </div>
             ) : (

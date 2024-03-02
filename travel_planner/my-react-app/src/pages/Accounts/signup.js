@@ -1,94 +1,69 @@
-// SignUp.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// SignupForm.js
 
-const SignUpForm = () => {
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const SignupForm = () => {
   const [formData, setFormData] = useState({
     username: '',
-    age: '',
     email: '',
-    mbti: '',
-    gender: '',
     password: '',
+    age: '',
+    mbti: '',
+    gender: ''
   });
 
-  const [csrfToken, setCsrfToken] = useState('');
-  const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const getCSRFToken = async () => {
-      try {
-        const response = await axios.get('/Accounts/csrf/');
-        setCsrfToken(response.data.csrfToken);
-      } catch (error) {
-        console.error('CSRF 토큰 가져오기 실패:', error);
-      }
-    };
-
-    getCSRFToken();
-  }, []);
-
   const handleChange = (e) => {
-    setFormData((prevData) => ({ ...prevData, [e.target.name]: e.target.value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('/Accounts/signup/', formData, {
-        headers: {
-          'X-CSRFToken': csrfToken,
-        },
-        withCredentials:(true),
-      });
-      console.log('회원가입 성공:', response.data);
-      setIsSignUpSuccess(true);
+      await axios.post('/Accounts/signup/', formData);
+      alert('회원가입이 완료되었습니다.');
+      // 회원가입 성공 후 리다이렉트 등의 작업 수행
     } catch (error) {
-      console.error('회원가입 실패:', error);
+      console.error('Error signing up:', error);
+      alert('회원가입에 실패했습니다.');
     }
-  };
-
-  const handleRedirectHome = () => {
-    navigate('/');
   };
 
   return (
     <div>
-      <h1>회원가입</h1>
+      <h2>회원가입</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" onChange={handleChange} required /><br />
-        
-        <label htmlFor="age">Age:</label>
-        <input type="text" id="age" name="age" onChange={handleChange} required /><br />
-
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" onChange={handleChange} required /><br />
-
-        <label htmlFor="mbti">MBTI:</label>
-        <input type="text" id="mbti" name="mbti" onChange={handleChange} required /><br />
-
-        <label htmlFor="gender">Gender:</label>
-        <input type="text" id="gender" name="gender" onChange={handleChange} required /><br />
-
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" onChange={handleChange} required /><br />
-
+        <div>
+          <label>아이디:</label>
+          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>이메일:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>비밀번호:</label>
+          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>나이:</label>
+          <input type="number" name="age" value={formData.age} onChange={handleChange} />
+        </div>
+        <div>
+          <label>MBTI:</label>
+          <input type="text" name="mbti" value={formData.mbti} onChange={handleChange} />
+        </div>
+        <div>
+          <label>성별:</label>
+          <select name="gender" value={formData.gender} onChange={handleChange}>
+            <option value="male">남자</option>
+            <option value="female">여자</option>
+          </select>
+        </div>
         <button type="submit">회원가입</button>
       </form>
-
-      {isSignUpSuccess && (
-        <div>
-          <p>회원가입이 성공적으로 완료되었습니다!</p>
-          <button onClick={handleRedirectHome}>홈으로 이동</button>
-        </div>
-      )}
     </div>
   );
 };
 
-export default SignUpForm;
+export default SignupForm;

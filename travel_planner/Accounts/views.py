@@ -1,57 +1,37 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status, generics
-from .serializers import CustomUserSerializer, LoginUserSerializer,UserSerializer
-from django.views.decorators.csrf import get_token
-from django.http import JsonResponse
-from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
 from .models import CustomUser
-from rest_framework.decorators import api_view
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
-class SignupView(APIView):
-    def post(self, request, *args, **kwargs):
-        serializer = CustomUserSerializer(data=request.data)
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        age = request.POST.get('age')
+        mbti = request.POST.get('mbti')
+        gender = request.POST.get('gender')
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'message': '회원가입이 완료되었습니다.'}, status=status.HTTP_201_CREATED)
+        # 유효성 검사는 간단한 예시로 하였습니다.
+        if username and password and email and age and mbti and gender:
+            # 사용자 생성
+            user = CustomUser.objects.create_user(username=username, password=password, email=email, age=age, mbti=mbti, gender=gender)
+            messages.success(request, '회원가입이 성공적으로 완료되었습니다.')
+            return redirect('/')  # 메인 페이지로 리디렉션
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            messages.error(request, '입력이 올바르지 않습니다. 모든 필드를 채워주세요.')
+    return render(request, 'Accounts/signup.html')
 
-@api_view(['GET'])
-def getRoutes(request):
-    routes = [
-        'signup/',
-        'login/'
-    ]
-    return Response(routes)
 
-def get_csrf_token(request):
-    csrf_token = get_token(request)
-    return JsonResponse({'csrfToken': csrf_token})
-
-class LoginApi(generics.GenericAPIView):
-    serializer_class = LoginUserSerializer
-
-    def get_serializer(self, *args, **kwargs):
-        return self.serializer_class(*args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        user = serializer.validated_data  # validated_data에서 사용자 객체 가져오기
-
-        if user:
-            token, _ = Token.objects.get_or_create(user=user)
-            return Response(
-                {
-                    "user": UserSerializer(
-                        user, context=self.get_serializer_context()
-                    ).data,
-                    "token": token.key,
-                }
-            )
+# accounts/views.py
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')  # 로그인 후 이동할 URL
         else:
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+            messages.error(request, 'Invalid email or password.')
+    return render(request, 'Accounts/login.html')

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!8n6&=t45j+ks45a$c$2=bsl@bmno373!lh!-%5xv*jb*ye29$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,10 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Accounts',
-    'rest_framework',
-    'corsheaders',
     'planner',
-    'rest_framework.authtoken',
+    'thesights',
 ]
 
 MIDDLEWARE = [
@@ -52,19 +50,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'travel_planner.urls'
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR,'my-react-app','build'),
-            os.path.join(BASE_DIR, 'templates')
-
+            os.path.join(BASE_DIR,'templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -83,12 +79,16 @@ WSGI_APPLICATION = 'travel_planner.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db.mysql',
-  }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'final_project',
+        'USER' : 'user',
+        'PASSWORD' : 'ranger@#23',
+        'HOST': 'localhost',
+        'PORT' : '3306',
+
+    }
 }
 
 
@@ -138,22 +138,13 @@ USE_I18N = True
 USE_TZ = True
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # 리액트 앱의 주소에 맞게 수정
-]
-
-CORS_ALLOW_CREDENTIALS = True
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 # 정적 파일을 서비스하는 URL
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'my-react-app','build','static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -162,5 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'Accounts.CustomUser'
 
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_SAMESITE = None
+LOGIN_Redirect_Url= '/'
+Logout_Redirect_Url='/'
+
+Media_Url = '/media'
+Media_Root = os.path.join(BASE_DIR, 'media')

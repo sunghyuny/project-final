@@ -2,38 +2,55 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from .models import CustomUser
 
+from rest_framework import serializers
+from .models import CustomUser
+
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('id', 'username', 'age', 'email', 'mbti', 'gender', 'password')
+        fields = ['id', 'username', 'password', 'email', 'age', 'mbti', 'gender']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = CustomUser.objects.create_user(**validated_data)
+        user = CustomUser.objects.create_user(
+            username=validated_data['username'],
+            password=validated_data['password'],
+            email=validated_data['email'],
+            age=validated_data.get('age'),
+            mbti=validated_data.get('mbti'),
+            gender=validated_data.get('gender')
+        )
         return user
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser  # 이 부분에서 등호(=)를 사용하여 model을 할당해야 합니다.
-        fields = ("id", "username")
+        model = CustomUser
+        fields = ('id', 'username', 'email', 'age', 'mbti', 'gender')
 
-class LoginUserSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=150)
-    password = serializers.CharField(max_length=128, write_only=True)
+
+User = CustomUser
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type': 'password'})
 
     def validate(self, data):
-        username = data.get('username')
+        email = data.get('email')
         password = data.get('password')
 
-        if not username or not password:
-            raise serializers.ValidationError("Username and password are required")
+        if email and password:
+            user = User.objects.filter(email=email).first()
 
-        user = authenticate(username=username, password=password)
-
-        if not user:
-            raise serializers.ValidationError("Invalid username or password")
-
-        if not user.is_active:
-            raise serializers.ValidationError("User is inactive")
-
-        return user
+            if user:
+                if user.check_password(password):
+                    if user.is_active:
+                        data['user'] = user
+                        return data
+                    else:
+                        raise serializers.ValidationError("계정이 비활성화되었습니다.")
+                else:
+                    raise serializers.ValidationError("이메일 또는 비밀번호가 올바르지 않습니다.")
+            else:
+                raise serializers.ValidationError("이메일 또는 비밀번호가 올바르지 않습니다.")
+        else:
+            raise serializers.ValidationError("이메일과 비밀번호를 입력해주세요.")

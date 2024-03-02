@@ -10,6 +10,7 @@ import Activity from './pages/Planner/Activity';
 import Summary from './pages/Planner/Summary';
 import Signup from './pages/Accounts/Signup';
 import LoginStaus from './components/loginstaus';
+import Touristspots from './pages/spot/spotCreate';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/planner/activity" element={<Activity />} />
           <Route path="/planner/summary" element={<Summary />} />
           <Route path="/Accounts/loginstatus" element={<LoginStaus />} />
+          <Route path="/thesights/touristspots" element={<Touristspots/>} />
         </Routes>
       </UserProvider> {/* UserProvider 닫는 태그 추가 */}
     </Router>
