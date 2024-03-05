@@ -1,7 +1,7 @@
 from django.urls import path
 
-from . import views
+from .views import *
 
-urlpattterns = [
-    path('', views.mainpage)
+urlpatterns = [
+    path('', mainpage, name='mainpage')
 ]

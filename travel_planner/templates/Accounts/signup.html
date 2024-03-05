@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>회원가입</h2>
-    <form method="post" action="{% url 'signup' %}">
+    <form method="post" action="{% url 'Accounts:signup' %}">
         {% csrf_token %}
         <label for="username">사용자 이름:</label><br>
         <input type="text" id="username" name="username"><br>

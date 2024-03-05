@@ -1,50 +1,24 @@
-from django.middleware.csrf import get_token
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from django.shortcuts import render, redirect
 from .models import TouristSpot, RegionCategory
-from .serializers import TouristSpotSerializer, RegionCategorySerializer
-from django.views.decorators.csrf import csrf_exempt
 
+def add_tourist_spot(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        location = request.POST.get('location')
+        region_category_name = request.POST.get('region_category')  # 이름을 가져옴
+        # 요청된 지역 카테고리가 이미 존재하는지 확인
+        try:
+            region_category = RegionCategory.objects.get(name=region_category_name)  # 이름으로 가져옴
+        except RegionCategory.DoesNotExist:
+            # 존재하지 않으면 새로운 카테고리 생성
+            region_category = RegionCategory.objects.create(name=region_category_name)
 
-@api_view(['GET'])
-def get_csrf_token(request):
-    if request.method == 'GET':
-        csrf_token = get_token(request)
-        return Response({'csrf_token': csrf_token})
+        image = request.FILES.get('image')
+        tourist_spot = TouristSpot.objects.create(name=name, description=description, location=location,
+                                                  region_category=region_category, image=image)
+        return redirect('/')  # 적절한 리다이렉트 URL로 변경하세요
 
-@api_view(['POST', 'GET'])
-def create_tourist_spot(request):
-    # 요청 데이터에서 필드들을 가져옵니다.
-    name = request.data.get('name')
-    description = request.data.get('description')
-    location = request.data.get('location')
-    category_name = request.data.get('region_category')
-
-    # 필수 필드들이 모두 존재하는지 확인합니다.
-    if not all([name, description, location, category_name]):
-        return Response({'error': 'All fields are required.'}, status=status.HTTP_400_BAD_REQUEST)
-
-    # 'region_category'를 가져오거나 새로 생성합니다.
-    category, created = RegionCategory.objects.get_or_create(name=category_name)
-
-    # 시리얼라이저에 전달할 데이터를 생성합니다.
-    serializer_data = {
-        'name': name,
-        'description': description,
-        'location': location,
-        'region_category': category.id
-    }
-
-    # 시리얼라이저를 생성합니다.
-    serializer = TouristSpotSerializer(data=serializer_data)
-
-    # 시리얼라이저의 유효성을 검사합니다.
-    if serializer.is_valid():
-        # 유효한 경우 시리얼라이저를 저장합니다.
-        serializer.save()
-        # 성공 응답을 반환합니다.
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    else:
-        # 유효하지 않은 경우 에러 응답을 반환합니다.
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # GET 요청인 경우 모든 카테고리를 가져와서 템플릿에 전달
+    region_categories = RegionCategory.objects.all()
+    return render(request, 'spots/create.html', {'region_categories': region_categories})

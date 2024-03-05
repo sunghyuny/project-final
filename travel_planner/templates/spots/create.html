@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Tourist Spot</title>
+</head>
+<body>
+    <h2>Add Tourist Spot</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location"><br><br>
+        
+        <label for="region_category">Region Category:</label>
+        <input type="text" id="region_category" name="region_category">
+        <datalist id="region_category_list">
+            {% for category in region_categories %}
+                <option value="{{ category.name }}">
+            {% endfor %}
+        </datalist><br><br>
+        
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image"><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

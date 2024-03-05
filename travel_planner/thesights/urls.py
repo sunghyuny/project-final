@@ -1,9 +1,9 @@
 # urls.py
 
 from django.urls import path
-from .views import create_tourist_spot,get_csrf_token
+from .views import *
 urlpatterns = [
-    path('tourist/', create_tourist_spot, name='tourist'),
-    path('csrf/', get_csrf_token, name='csrf')
+    path('spotsadd/', add_tourist_spot, name='create'),
+
 ]
 

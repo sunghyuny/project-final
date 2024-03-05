@@ -2,7 +2,8 @@ from .models import CustomUser
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth import logout  # 추가
+from django.contrib.auth.forms import AuthenticationForm
 def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -22,16 +23,18 @@ def signup(request):
             messages.error(request, '입력이 올바르지 않습니다. 모든 필드를 채워주세요.')
     return render(request, 'Accounts/signup.html')
 
-
-# accounts/views.py
-def login_view(request):
+def user_login(request):
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
+        email = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/')  # 로그인 후 이동할 URL
+            return redirect('/')
         else:
-            messages.error(request, 'Invalid email or password.')
+            messages.error(request, 'Invalid username or password.')
     return render(request, 'Accounts/login.html')
+
+def logout_view(request):
+    logout(request)  # 로그아웃
+    return redirect('/')  # 로그아웃 후 리다이렉트할 URL

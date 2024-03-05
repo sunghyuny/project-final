@@ -1,7 +1,9 @@
+
+
 from django.shortcuts import render
 # Create your views here.
 
 
-def mainpage(requet):
+def mainpage(request):
 
     return render(request, 'pages/home.html')
