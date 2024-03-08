@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import TouristSpot, RegionCategory
 
+def detail(request, TouristSpot_id):
+ TouristSpot_list = TouristSpot.objects.order_by(id=TouristSpot_id)
+ context = {'TouristSpot_list':TouristSpot_list}
+ return render(request, 'spots/detail.html', context)
+
 def add_tourist_spot(request):
     if request.method == 'POST':
         name = request.POST.get('name')

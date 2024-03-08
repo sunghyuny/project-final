@@ -1,5 +1,6 @@
 <!-- templates/home.html -->
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        <p>Hello, {{ user.email }}!</p>
+        <p>Hello, {{ user.username }}!</p>
         <form action="{% url 'Accounts:logout' %}" method="post">
             {% csrf_token %}
             <button type="submit">Logout</button>
@@ -18,5 +19,12 @@
         <p>Welcome, guest!</p>
         <a href="{% url 'Accounts:login' %}">Login</a>
     {% endif %}
+    <div class="spots" #관광지띄우는곳>
+    {% for spot in tourist_spots %}
+        <h2>{{ spot.name }}</h2>
+        <p>Location: {{ spot.location }}</p>
+        <img src="{{ spot.image.url }}" alt="{{ spot.name }}">
+    {% endfor %}
+    </div>
 </body>
 </html>
