@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장소선택</title>
+    <style>
+        .progress{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .Fill_Circle{
+            width: 5rem;
+            height: 5rem;
+            background: #2295FF;
+            border: 2px solid #2295FF;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            margin: 60px;
+            display: inline-block ;
+        }
+
+        .Circle{
+            width: 5rem;
+            height: 5rem;
+            background-color: white;
+            color:#2295FF;
+            border: 3px solid #2295FF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 20px;
+            display: inline-block;
+            margin: 60px;
+        }
+
+        .page_title{
+            text-align: center;
+            color: #2295FF;
+            font-size: 2rem;
+        }
+        
+        hr{
+            width: 69.9rem;
+            margin: 0;
+            margin-left: 12rem;
+            color: #2295FF;
+            border: 2px solid;
+        }
+
+        .locate_list{
+            width: 70rem;
+            border: 1px solid;
+            display: flex;
+            margin-left: 12rem;
+        }
+
+        .locate_list>ul>li{
+            list-style: none;
+            display: inline-block;
+            font-size: 1.5rem;
+            margin-right: 2.1rem;
+            margin-left: 2rem;
+        }
+
+        .city_list{
+            border: 1px solid;
+            height: 29.5rem;
+            float: left;
+            margin-left: 12rem;
+            margin-top: 3rem;
+            width: 18rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .local_map>img{
+            margin-top: 3rem;
+            margin-left: 2rem;
+            width: 50rem;
+        }
+
+        .local_info{
+            border: 1px solid;
+            width: 68rem;
+            margin-top: 2rem;
+            margin-left: 12rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="progress">
+            <div class='Fill_Circle'>
+                <p>기간/<br>인원</p>
+            </div>
+            <div class='Fill_Circle'>
+                <p>여행지</p>
+            </div>
+            <div class='Circle'>
+                <p>숙소</p>
+            </div>
+            <div class='Circle'>
+                <p>활동</p>
+            </div>
+            <div class='Circle'>
+                <p>요약</p>
+            </div>
+        </div>
+        <div class='contents'>
+            <p class='page_title'>여행지 선택</p>
+            <hr></hr>
+             <div class='locate_list'>
+                <ul>
+                    <li>서울</li>
+                    <li>경기</li>
+                    <li>인천</li>
+                    <li>전라도</li>
+                    <li>경상도</li>
+                    <li>충청도</li>
+                    <li>강원도</li>
+                    <li>제주도</li>
+                </ul>
+             </div>
+             <div class='city_list'>
+                <p>제주시, 제주도</p>
+                <p>서귀포시, 제주도</p>
+             </div>
+
+             <div class='local_map'>
+                <img src='/image/스크린샷 2024-01-17 232154.png' alt='지도'></img>
+             </div>
+
+             <div class='local_info'>
+                <p>한국의 섬 중에서 가장 크고 인구가 많은 한라산체로 이루어진 섬이다. 화산에 의해 형성된 섬으로 해안선이 비교적으로 단순하고 화산 활동의 영향으로 일부 모래사장을 제외하면 모두 바위 해안으로 이루어져있다.</p>
+             </div>
+        </div>
+        <button class='next_btn'>다음</button>
+    </div>
+</body>
+</html>

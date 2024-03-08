@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관광지 상세</title>
+  <style>    
+    .sightdetail {
+      justify-content: center;
+      width: 90rem;
+      margin-left: 2rem;
+    }
+      
+    .detail_info>h2 {
+      font-weight: bold;
+    }
+
+    .main_image {
+      width: 37rem;
+      height: 25rem;
+      margin-top: 10px;
+      margin-right: 10px;
+      display: flex;
+      float: left;
+    }
+
+    .sub_image{
+      width: 25.03rem;
+      height: 12.2rem;
+      margin: 5px;
+    }
+          
+    .detail_content {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+        
+    .map_image {
+      position: absolute;
+      width: 1474px;
+      height: 462px;
+      left: 214px;
+      top: 1651px;
+    }
+        
+    .sights_ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 5rem;
+    }
+          
+    .sights_ul>li {
+      list-style: disc;
+      padding: 10px;
+      width: calc(50% - 2px); /* 전체 너비의 절반으로 설정하고 테두리 두께를 고려하여 조정합니다 */
+      box-sizing: border-box;
+    } /*지도 밑에 상세 정보*/
+
+    .sights_category {
+      list-style: none;
+      margin-left: 11rem;
+    }
+      
+    .sights_category>li {
+      display: inline-block;
+      margin-right: 84px;
+      border: 1px solid;
+      border-radius: 40px;
+      padding: 10px;
+      font-size: 1rem;
+    } /*관광지 태그*/
+  </style>
+</head>
+<body>
+    <div>
+        <div class="sightdetail">
+          <h2>설악산 국립공원</h2>
+          <div class="image_layout">
+            <img class="main_image" src="/image/설악산.jpg" alt="관광 이미지1" />
+            <img class="sub_image" src="/image/20171210044338122.jpg" alt="관광 이미지2" />
+            <img class="sub_image" src="/image/다운로드 (19).jpeg" alt="관광 이미지3" />
+            <img class="sub_image" src="/image/538474_large_1600151108.jpg" alt="관광 이미지4" />
+            <img class="sub_image" src="/image/다운로드 (20).jpeg" alt="관광 이미지5" />
+          </div>
+          <div class="detail_info">
+            <h2>상세 정보</h2>
+            <hr></hr>
+            <p class="detail_content">산중미인 설악산. 한반도의 중추인 태백산맥 중에 가장 높은(대청봉 1,708m) 설악산은 남한에서 가장 아름다운 산으로 봄에는 철쭉 등의 온갖 꽃과 여름의 맑고 깨끗한 계곡물, 설악제 기간을 전후한 가을 단풍, 눈 덮인 설경 등 사시사철 어느 때나 찾는 이의 감탄을 불러 일으킨다. 한계령과 미시령을 경계선으로 동해쪽은 외설악, 서쪽은 내설악이라 부르며, 한계령 이남 오색지구를 남설악으로 구분하기도 한다.
+            <br></br>
+            남설악 지역은 옛날부터 오색약수와 온천이 유명하고 주전골 일대의 용소폭포, 십이폭포, 여신폭포 등이 대표적인 경관을 이루며 산세가 아름답다. 점봉산(1,424.2m)도 남설악구역에 속한다.남설악 지역에서는 오색-대청 코스, 한계령-끝청-대청 코스 등이 대표적 등산 코스이다. 오색 코스 길목은 그린야드호텔 위편, 국도변의 국립공원 매표소이고 한계령 코스 길목은 한계령휴게소 옆 설악루 계단이다.</p>
+            <!--{/*  
+            <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "400px", width: "100%" }}>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[51.505, -0.09]}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Marker>
+            </MapContainer>*/}-->
+          </div>
+          <img class="map_image" src="/image/설악산.jpg" alt="관광 지도 이미지" />
+          <ul class="sights_ul">
+            <li>문의 및 안내 <p>033-801-0900</p></li>
+            <li>홈페이지 <p>http://seorak.knps.or.kr설악케이블카 http://www.sorakcablecar.co.kr</p></li>
+            <li>주소 <p>강원특별자치도 양양군 서면 설악로 801</p></li>
+            <li>주차 <p>있음(오색주차장, 용소폭포주차장, 오색영업소주차장, 오색정류장주차장)</p></li>
+            <li>접근로 <p>탐방안내소 주출입구나 전시실 간에 턱이 없어 이용이 편리함</p></li>
+            <li>화장실 <p>장애인전용화장실 있음_무장애 편의시설</p></li>
+          </ul>
+          <ul class="sights_category">
+            <li>#가족여행</li>
+            <li>#힐링</li>
+            <li>#나들이</li>
+            <li>#오색코스</li>
+            <li>#등산</li>
+            <li>#등산코스</li>
+          </ul>
+      </div>
+    </div>
+</body>
+</html>
