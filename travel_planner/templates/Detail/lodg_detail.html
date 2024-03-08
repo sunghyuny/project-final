@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙소 상세</title>
+    <style>
+        .lodg_detail_page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center
+        }
+
+        .lodg_detail_content{
+            width: 85rem;
+        }
+
+        .title_name{
+            font-size: 3rem;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info_name{
+            font-size: 3rem;
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .main_img{
+            width: 32.7rem;
+            height: 25rem;
+            margin-top: 10px;
+            margin-right: 10px;
+            display: flex;
+            float: left;
+        }
+
+        .sub_img{
+            width: 25.03rem;
+            height: 12.2rem;
+            margin: 5px;
+        }
+            
+        .content_nav{
+            border: 1px solid;
+            width: 85rem;
+        }
+
+        .content_nav>ul{
+            display: inline-block;
+            margin-left: 2rem;
+        }
+        .content_nav>ul>li{
+            list-style: none;
+            display: inline-block;
+            margin-right: 5.5rem;
+            font-size: 24px;
+        }
+
+        .start_price{
+            display: inline-block;
+            color: #858585;
+            margin-right: 1rem;
+            margin-left: 5rem;
+        }
+
+        .lodg_price{
+            display: inline-block;
+            font-size: 26px;    
+            color: #FF0000;
+            margin-right: 30px;
+        }
+
+        .look_btn{
+            background-color: #2295ff;
+            color: white;
+            border-radius: 30px;
+            border: none;
+            font-size: 24px;
+            height: 50px;
+            width: 200px;
+            display: inline-block;
+        }
+
+        .lodg_info{
+            border: 1px solid;
+            margin-top: 10px;
+            width: 56rem;
+            padding-left: 10px;
+        }
+
+        .lodg_service{
+            border: 1px solid;
+            margin-top: 10px;
+            width: 56.6rem;
+        }
+
+        .lodg_service>ul{
+            margin-left: 1rem;
+        }
+
+        .lodg_service>ul>li{
+            list-style: none;
+            display: inline-block;
+            margin-right: 3rem;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .lodg_review{
+            border: 1px solid;
+            display: flex;
+            float: right;
+            width: 27rem;
+            margin-top: 10px;
+            height: 28.6rem;
+        }
+
+        .review_point{
+            margin-left: 20px;
+        }
+
+        .total{
+            font-size: 30px;
+            margin: 0;
+            margin-top: 12px;
+        }
+
+        .review_cont{
+            color: #2295ff;
+            font-size: 20px;
+            margin: 0;
+            margin-top: 12px;
+        }
+
+        .sub_detail{
+            display: inline-block;
+            font-size: 20px;
+            margin-right: 20px;
+        }
+
+        .review_text{
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .review_text>p{
+            border: 1px solid;
+            border-radius: 20px;
+            padding: 9px;
+            font-size: 20px;
+        }
+
+
+        .select_category{
+            border: 1px solid;
+        }
+
+        .select_return{
+            display: inline-block;
+            margin-left: 10rem;
+            font-size: 1.5rem;
+            color: #2295ff;
+        }
+
+        .category{
+            display: inline-block;
+            border: 1px solid;
+            border-radius: 35px;
+            padding: 20px;
+            margin-left: 5rem;
+            margin-right: 2rem;
+            font-size: 30px;
+        }
+
+        .room_list{
+            border: 1px solid;
+            margin-top: 3rem;
+        }
+
+        .room_info{
+            background-color: #D9D9D9;
+            height: 25rem;
+        }
+
+        .room_name{
+            font-size: 2.3rem;
+            margin-left: 2rem;
+            font-weight: bolder;
+        }
+
+        .room_info_list{
+            margin-left: -2rem;
+        }
+
+        .room_info_list>li{
+            list-style: none;
+            display: inline-block;
+            margin-left: 10.2rem;
+            margin-top: 1rem;
+        }
+
+        .room_img{
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+        .room_explanation{
+            background-color: white;
+            margin-top: 0;
+            float: right;
+            height: 18rem;
+        }
+
+        .room_explanation>div{
+            display: inline-block;
+            margin-right: 3rem;
+        }
+
+        .room_main{
+            width:17.5rem;
+            height: 10rem;
+
+        }
+
+        .room_sub{
+            width: 8.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="lodg_detail_page">
+        <div class="lodg_detail_content">
+            <p class="title_name">강릉 탑스텐 호텔</p>
+            <div class="lodg_img">
+                <img src="/image/revato-3559126-38124946-073106.jpg" alt="" class="main_img"></img>
+                <img src="/image/4ed4a279ba3b0041fad714c38bca36d0.webp" alt="" class="sub_img"></img>
+                <img src="/image/224955405.jpg" alt="" class="sub_img"></img>
+                <img src="/image/ea0fea6799cc8d466be90663eb5b267e.webp" alt="" class="sub_img"></img>
+                <img src="/image/340282403.jpg" alt="" class="sub_img"></img>
+            </div>
+
+            <div class="content_nav">
+                <ul>
+                    <li>개요</li>
+                    <li>편의시설/서비스</li>
+                    <li>이용 후기</li>
+                    <li>정책</li>
+                </ul>
+                <p class="start_price">시작가</p>
+                <p class="lodg_price">110,450원</p>
+                <button class="look_btn">객실 보기</button>
+            </div>
+
+            <div class="lodg_review">
+                <div class="review_point">
+                    <p class="total">8.0우수</p>
+                    <p class="review_cont">후기 1572개</p>
+                    <p class="sub_detail">청결 상태 8.2</p>
+                    <p class="sub_detail">서비스 8.5</p>
+                    <p class="sub_detail">부대시설 8.1</p>
+                    <p class="sub_detail">위치 7.5</p>
+                </div>
+                <div class="review_text">
+                    <p>저렴한 가격에 만족스러운 숙소입니다</p>
+                    <p>강릉 앞바다를 보면서 잘 쉬다 갑니다.</p>
+                    <p>가격대비 좋은 시설과 서비스가 최고 입니다.</p>
+                </div>
+            </div>
+
+            <div class="lodg_info">
+                <div class="info_text">
+                    <p class="info_name">탑스텐 호텔</p>
+                    <p class="lodg_address">옥계면 현화로 455-34, 동해 이스트사이드 씨, 강릉, 대한민국, 25633</p>
+                    <p class="lodg_explanation">주차 및 Wi-Fi가 항상 무료로 제공되므로 언제든지 차량을 입출차할 수 있으며 연락을 취하실 수 있습니다. 강릉의 동해 이스트사이드 씨에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다. 떠나기 전 유명한 경포대을/를 방문해 보세요. 별 5개를 받은 본 고급 숙소는 투숙객에게 숙소 내 레스토랑, 온천탕 및 실내 수영장을/를 제공합니다.</p>
+                </div>
+                
+            </div>
+
+            <div class="lodg_service">
+                <p class="info_name">편의시설/서비스</p>
+                <ul>
+                    <li>√24시간 프론트 데스크</li>
+                    <li>√주차장</li>
+                    <li>√셔틀 버스</li>
+                    <li>√무료 Wi-Fi(모든객실)</li>
+                    <li>√피트니스 센터</li>
+                    <li>√실내 수영장</li>
+                    <li>√익스프레스 체크인/체크아웃</li>
+                    <li>√여행 가방 보관 서비스</li>
+                </ul>
+            </div>
+
+            
+
+            <div class="select_room">
+                <p class="title_name">객실을 선택하세요</p>
+                <div class="select_category">
+                    <p class="category">금연</p>
+                    <p class="category">오션뷰</p>
+                    <p class="category">조식</p>
+                    <p class="category">퀸배드</p>
+                    <p class="select_return">전체 선택 해제</p>
+                </div>
+            </div>
+
+            <div class="room_list">
+                <p class="room_name">한국식 온돌룸-전망 없음</p>
+                <div class="room_info">
+                    <ul class="room_info_list">
+                        <li class="img_area">객실/투숙 공간</li>
+                        <li>상품 안내</li>
+                        <li>최대 인원</li>
+                        <li>상세 정보</li>
+                        <li>요금 | 1박기준</li>
+                    </ul>
+                    
+                    <div class="room_explanation">
+                        <div>
+                            <ul>
+                                <li>주차, 무료 Wi-Fi, 피트니스 센터</li>
+                                <li>조식 포함</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>성인 2명</p>
+                            <p>아동 1명(3세미만) 무료 투숙 가능</p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>금연</li>
+                                <li>객실크기 : 44㎡(13평)</li>
+                                <li>전망 : 없음</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="lodg_price">110,450원</p>
+                            <p>1박당 요금 시작가</p>
+                            <button class="lodg_btn">예약하기</button>
+                        </div>
+                    </div>
+
+                    <div class="room_img">
+                        <img src="/image/340282403.jpg" alt="" class="room_main"></img><br></br>
+                        <img src="/image/340282399.jpg" alt="" class="room_sub"></img>
+                        <img src="/image/335670071.jpg" alt="" class="room_sub"></img>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</body>
+</html>
