@@ -70,7 +70,14 @@
             <li>커뮤니티</li>
             <li>매칭</li>
         </ul>
-        <button class='login_btn'>로그인</button>
-    </div>
+        {% if user.is_authenticated %}
+        <p>{{ user.username }}!</p>
+        <form action="{% url 'Accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+        {% else %}
+        <a href="{% url 'Accounts:login' %}">Login</a>
+    {% endif %}
 </body>
 </html>

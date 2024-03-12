@@ -7,7 +7,7 @@ from travel_planner import settings
 
 urlpatterns = [
     path('spotsadd/', add_tourist_spot, name='create'),
-    path('<int:touristspots_id/',detail , name='detail')
+    path('<int:spot_id>/',detail, name='detail')
 
 ]
 
