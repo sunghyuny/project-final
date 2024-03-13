@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>숙소 선택</title>
     <style>
+        *{
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
         .progress{
             display: flex;
             align-items: center;
@@ -37,6 +41,197 @@
             display: inline-block;
             margin: 60px;
         }
+
+        .search_main {
+            width: 1550px;
+            overflow-x: hidden;
+            margin: 0 auto;
+        }
+
+        .drop_btn {
+            width: 150px;
+            height: 30px;
+            font-size: 17px;
+            text-align: center;
+            background-color: white;
+            overflow-y: hidden;
+        }
+
+        .search_filter {
+            border: 1px solid #d7d7db;
+            padding: 16px;
+            border-radius: 4px;
+            float: left;
+            margin-left: 200px;
+            top: 20px; /* 위쪽 여백을 설정합니다. */
+            left: 20px; /* 왼쪽 여백을 설정합니다. */
+        }
+
+        .search_filter2 {
+            border: 1px solid #d7d7db;
+            padding: 16px;
+            border-radius: 4px;
+            float: left;
+            width: 185px;
+            height: 353px;
+            clear: both;
+            margin-top: 20px;
+            margin-left: 200px;
+            padding-top: -20px;
+        }
+
+        /*
+        .lodging_list {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 10px;
+            justify-content: center;
+        } */
+
+        .array {
+            color: #8F8F8F;
+            margin-top: -3px;
+            margin-left: 435px;
+            margin-right: 100px;
+        }
+
+        #filter_title {
+            font-size: 17px;
+            margin-top: -5px;
+            font-weight: bold;
+        }
+
+        .filter_butitle {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /*.lodg {
+            border: 1px solid #d7d7db;
+            padding: 16px;
+            border-radius: 4px;
+            margin-right: 60px;
+            margin-left: 50px;
+            width: 450px;
+            height: 300px;
+        } */
+
+        .lodg {
+            display: inline-block; /* 각 div를 인라인 요소처럼 배치합니다. */
+            width: 770px; /* 각 div의 너비를 설정합니다. */
+            height: 270px; /* 각 div의 높이를 설정합니다. */
+            margin-right: 10px; /* 각 div 사이의 간격을 설정합니다. */
+            border: 1px solid #d7d7db;
+            padding: 16px;
+            margin-left: 50px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        #dropdown_content {
+            background-color: white;
+            border: 1px solid;
+            margin-top: 0;
+            width: 150px;
+            height: 30px;
+            font-size: 17px;
+            text-align: center;
+            background-color: white;
+            overflow-y: hidden;
+        }
+
+        #star {
+            display: inline-block;
+            width: 17px;
+            height: 17px;
+            border: 2px solid #8F8F8F;
+        }
+
+        #star :checked {
+            background-color: #2295FF;
+            border-color: #2295FF;
+        }
+
+        /* #lodg2 {
+            margin-left: -60px;
+        } */
+
+        #next_btn {
+            background-color: #2295FF;
+            border: 0;
+            padding: 10px;
+            padding-left: 60px;
+            padding-right: 60px;
+            border-radius: 4px;
+            color: white;
+            width: 160px;
+            height: 45px;
+            text-align: center;
+            margin-left: 350px;
+            margin-top: 40px;
+        }
+
+  /* 클릭된 버튼 스타일 */
+         .clicked {
+            background-color: rgb(93, 93, 93); /* 클릭된 후의 버튼 색상 */
+        }
+
+        .price_text {
+            width: 120px;
+
+        }
+
+        .price_wave {
+            margin-top: -3px;
+            margin-bottom: -3px;
+        }
+
+        #lodg_check {
+            width: 50px;
+            height: 50px;
+        }
+
+        .hotel_img {
+            width: 200px;
+            height: 200px;
+            float: left;
+            margin: 15px;
+            border-radius: 4px;
+        }
+
+        .lodg_title {
+            font-size: 21px;
+            font-weight: bold;
+            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
+            margin: 0 ; /* 좌우 여백을 설정합니다. */
+            margin-top: 10px;
+         }
+
+        .lodg_locate {
+            margin-top: -20px;
+            font-size: 13px;
+            color: #8F8F8F;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+
+        .lodg_star {
+            color: #2295FF;
+            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
+            margin: 5px 5px
+            ; /* 좌우 여백을 설정합니다. */
+        }
+
+        .lodg_price {
+            font-size: 21px;
+            font-weight: bold;
+            color: #2295FF;
+        }
+
+        #lodg_check {
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -59,8 +254,137 @@
             </div>
         </div>
 
-        <div>
-            
+        <div class="search_main">
+            <div class="search_filter">
+                <p id="filter_title">검색 필터</p>
+                <div class="filter_menu">
+                    <button class="drop_btn">-------종류-------</button>
+                    <div id="dropdown_content">
+                        <div class="dropdown_item">호텔</div>
+                        <div class="dropdown_item">모텔</div>
+                        <div class="dropdown_item">여관</div>
+                        <div class="dropdown_item">민박</div>
+                    </div>
+                </div>
+                <p class="filter_butitle">등급</p>
+                <div class="filter_star">
+                    <input type="checkbox" id="star" ><span class="star_span">★★★★★</span>
+                    <br>
+                    <input type="checkbox" id="star"><span class="star_span">★★★★☆</span>
+                    <br>
+                    <input type="checkbox" id="star"><span class="star_span">★★★☆☆</span>
+                    <br>
+                    <input type="checkbox" id="star"><span class="star_span">★★☆☆☆</span>
+                    <br>
+                    <input type="checkbox" id="star"><span class="star_span">★☆☆☆☆</span>
+                </div>
+                <p class="filter_butitle">가격</p>
+                <div class="filter_price">
+                    <input type="text" class="price_text">
+                    <p class="price_wave">~</p>
+                    <input type="text" class="price_text">
+
+                </div>
+            </div>
+
+            <br>
+            <div class="search_filter2">
+                <div class="search_bufilter2">
+                    <p class="filter_butitle">기간/인원</p>
+                    <br>
+                    <p class="filter_butitle">여행지</p>
+                    <br>
+                    <p class="filter_butitle">숙소</p>
+                    <br>
+                    <p class="filter_butitle">활동</p>
+                </div>
+            </div>
+
+            <p class="array">정렬 | 별점 평점 인기 가격 후기 거리</p>
+
+            <div class="lodging_list">
+                <div class="lodg">
+
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지1" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">220,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+
+                </div>
+                <div class="lodg" id="lodg2">
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지2" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">230,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+                </div>
+
+                <div class="lodg">
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지3" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">230,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+                </div>
+                <div class="lodg" id="lodg2" >
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지4" class="hotel_img">
+                    <span class="lodg_title">서귀포 호텔</span>
+                    <span class="lodg_star">★★★★☆</span>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">230,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+                </div>
+
+                <div class="lodg">
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지5" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">220,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+
+                </div>
+                <div class="lodg" id="lodg2" >
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지6" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">230,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+                </div>
+
+                <div class="lodg">
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지7" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">220,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+
+                </div>
+                <div class="lodg" id="lodg2">
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지8" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">230,000원 /1박</p>
+                    <input type="checkbox" id="lodg_check">
+                </div>
+
+                <button onclick="changeButtonColor(this)" id="next_btn">다음</button>
+
+                <script>
+                    function changeButtonColor(button) {
+                        if (button.id === 'next_btn') {
+                        button.classList.toggle('clicked'); // 특정 버튼의 색상을 변경합니다.
+                        }
+                    }
+                </script>
+            </div>
         </div>
     </div>
 </body>
