@@ -1,0 +1,33 @@
+<!-- activity_create.html -->
+
+{% block content %}
+  <h2>Create Activity</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </p>
+    <p>
+      <label for="price">Price:</label>
+      <input type="text" id="price" name="price" required>
+    </p>
+    <p>
+      <label for="photo">Photo:</label>
+      <input type="file" id="photo" name="photo" required>
+    </p>
+    <p>
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required>
+    </p>
+    <p>
+      <label for="telephone">Telephone:</label>
+      <input type="text" id="telephone" name="telephone" required>
+    </p>
+    <p>
+      <label for="time">Time:</label>
+      <input type="text" id="time" name="time" required>
+    </p>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

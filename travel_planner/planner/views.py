@@ -1,20 +1,26 @@
 # views.py
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .models import TravelPlan
-from .serializers import TravelPlanSerializer
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from .models import *
 
-class TravelPlanAPIView(APIView):
-    def get(self, request):
-        data = TravelPlan.objects.all()
-        serializer = TravelPlanSerializer(data, many=True)
-        return Response(serializer.data)
+def create_activity(request):
+    if request.method == 'POST':
+        new_activity = activity()
+        new_activity.name = request.POST.get('name')
+        new_activity.price = request.POST.get('price')
+        new_activity.photo = request.FILES.get('photo')
+        new_activity.location = request.POST.get('location')
+        new_activity.telephone = request.POST.get('telephone')
+        new_activity.time = request.POST.get('time')
 
-    def post(self, request):
-        serializer = TravelPlanSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # 카테고리 처리
+        category_name = request.POST.get('category')
+        category, created = activity_category.objects.get_or_create(name=category_name)
+        new_activity.category = category
+
+        new_activity.save()
+        return redirect('/')  # 성공 시 리디렉트될 URL을 설정하세요.
+
+    return render(request, 'pages/activity_create.html')
+

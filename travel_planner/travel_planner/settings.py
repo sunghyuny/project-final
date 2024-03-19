@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Accounts',
     'planner',
     'thesights',
+    'hotel',
 ]
 
 MIDDLEWARE = [

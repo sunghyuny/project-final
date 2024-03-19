@@ -13,3 +13,15 @@ class TravelPlan(models.Model):
 
     def __str__(self):
         return f"{self.date} - {self.destination}"
+
+class activity_category(models.Model):
+    name= models.TextField()
+
+class activity(models.Model):
+    name = models.TextField()
+    price = models.TextField()
+    photo = models.ImageField(upload_to='activity_photo/')
+    location = models.TextField()
+    telephone = models.TextField()
+    time = models.TextField()
+    category = models.ForeignKey(activity_category, on_delete=models.CASCADE)

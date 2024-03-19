@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import TouristSpot, RegionCategory
 
+
+def spotmain(request):
+    return render(request,'Sightseeing/sight.html')
 def detail(request, spot_id):
  TouristSpot_list = TouristSpot.objects.order_by(id=spot_id)
  context = {'TouristSpot_list':TouristSpot_list}
