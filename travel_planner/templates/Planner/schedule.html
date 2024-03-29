@@ -82,6 +82,213 @@
             position : absolute;
             z-index: 1;
         }
+
+        .page_title{
+            text-align: center;
+            color: #2295FF;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .contents_Line{
+            width: 69.9rem;
+            margin: 0;
+            margin-left: 12rem;
+            color: #2295FF;
+            border: 2px solid;
+            margin-bottom: 20px;
+        }
+
+        .contents {
+            width: 1550px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            margin: 0 auto;
+        }
+
+        .select {
+            width: 1080px;
+            height: 100px;
+            margin-top: -20px;
+            border: 1px solid #d7d7db;
+            display: flex;
+            margin-left: 12rem;
+            padding: 20px;
+            box-shadow: 2px 2px 2px #d7d7db;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .select2 {
+            width: 1080px;
+            height: 400px;
+            margin-top: -20px;
+            border: 1px solid #d7d7db;
+            display: flex;
+            margin-left: 12rem;
+            padding: 20px;
+            box-shadow: 2px 2px 2px #d7d7db;
+            font-size: 16px;
+            margin-bottom: 20px;
+            display: none; /* 기본적으로 숨겨진 상태 */
+        }
+
+        .select3 {
+            width: 1080px;
+            height: 230px;
+            margin-top: -20px;
+            border: 1px solid #d7d7db;
+            display: flex;
+            margin-left: 12rem;
+            padding: 20px;
+            box-shadow: 2px 2px 2px #d7d7db;
+            font-size: 16px;
+            margin-bottom: 20px;
+            /*display: none; /* 기본적으로 숨겨진 상태 */
+        }
+
+        .select_text {
+            color: #949494;
+            margin-right: 100px;
+            margin-left: 100px;
+
+        }
+
+        .select_text1 {
+            color: #949494;
+            margin-right: 200px;
+            margin-left: 100px;
+        }
+
+        .select_text2 {
+            color: #949494;
+            margin-right: 80px;
+        }
+        
+        .start_date {
+            margin-top: -20px; /* start_date의 위쪽 여백을 음수로 설정하여 위쪽으로 이동 */
+            text-align: center;
+        }
+
+
+
+        .finish_date {
+            margin-top: -20px;
+            text-align: center;
+            margin-right: 95px;
+        }
+
+        .adult {
+            margin-top: -20px;
+            margin-left: 12px;
+        }
+
+        .teen {
+            margin-top: -20px;
+            margin-left: 20px;
+        }
+
+        .child {
+            margin-top: -20px;
+            margin-left: 20px;
+        }
+
+        .next_btn {
+            background-color: #2295FF;
+            border: 0;
+            padding: 10px;
+            border-radius: 4px;
+            color: white;
+            width: 100px;
+            height: 55px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+
+        .calendar_container {
+            display: flex;
+            /* justify-content:space-evenly; */
+            background-color: white;
+            margin-left: 80px;
+        }
+
+        .hide {
+            display:none;
+        }
+
+        .calendar_container > button {
+            margin-top: 4%;
+            font-weight: bold;
+        }
+
+        .left_button {
+            margin-left: 20px;
+            border: transparent;
+            width: 30px;
+            height: 30px;
+        }
+
+        .right_button {
+            margin-right:17%;
+            border: transparent;
+            width: 30px;
+            height: 30px;
+        }
+
+        .calendar {
+            display:flex;
+            flex-direction: column;
+            /* justify-content:center; */
+            align-items: center;
+            margin-top: 15px;
+            margin-right:2.5%;
+        }
+
+
+        .calendar_days > button  {
+            width: 38px;
+            height: 37px;
+            border-radius: 100%;
+            background-color: transparent;
+            border: transparent;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .day {
+            text-align: center;
+            font-size:12px;
+            font-weight: bold;
+            color:rgb(189, 189, 189);
+        }
+
+
+        .day_hover {
+            border: 1px solid black !important;
+        }
+
+        .day_selected {
+            background-color: black !important;
+            color: #ffff;
+        }
+
+        .gray {
+            background-color: rgb(241, 241, 241) !important;
+        }
+
+        .updown {
+            margin: 20px;
+            margin-left: 100px;
+            margin-right: 100px;
+            border: 0.5px solid #d7d7db;
+            width: 0.05px;
+            height: 300px;
+        }
+
     </style>
 </head>
 <body>
@@ -107,21 +314,143 @@
 
         <div class="contents">
             <p class="page_title">기간/인원 선택</p>
-            <div class="">
-                <div class="start_day">
-                    <p>가는 날</p>
-                    <p class="start_date"></p>
+            <hr class="contents_Line"></hr>
+                <div class='select'>
+                    <div class="start_day">
+                        <p class="select_text">가는 날</p>
+                        <br>
+                        <p id="displayText" class="start_date">2024. 12. 23 (월)</p>
+
+                        <script>
+                            // 텍스트 요소를 가져옵니다.
+                            var textElement = document.getElementById('displayText');
+                        
+                            // 클릭 이벤트를 추가합니다.
+                            textElement.addEventListener('click', function() {
+                                // 숨겨진 div 요소를 가져옵니다.
+                                var hiddenDiv = document.getElementById('hiddenDiv');
+                                
+                                // 현재 상태를 확인하여 보이거나 숨깁니다.
+                                if (hiddenDiv.style.display === 'none') {
+                                    hiddenDiv.style.display = 'block'; // 보이게 설정
+                                } else {
+                                    hiddenDiv.style.display = 'none'; // 숨기게 설정
+                                }
+                            });
+                        </script>
+                        
+                    </div>
+    
+                    <div class="finish_day">
+                        <p class="select_text1">오는날</p>
+                        <br>
+                        <p class="finish_date">2024. 12. 25 (수)</p>
+                    </div>
+
+                    <div class="person1">
+                        <p id="displayText1" class="select_text2">성인</p>
+                        <br>
+                        <p class="adult">3</p>
+                    </div>
+
+                    <div class="person2">
+                        <p id="displayText2" class="select_text2">청소년</p>
+                        <br>
+                        <p class="teen">0</p>
+                    </div>
+
+                    <div class="person3">
+                        <p id="displayText3" class="select_text2">어린이</p>
+                        <br>
+                        <p class="child">0</p>
+                    </div>
+                    <button class="next_btn">다음</button>
+                </div>
+            <div class="schedule_main">
+                <div id="hiddenDiv" class='select2'>
+
+                    <div class = "calendar_container"> 
+        
+                        <button class = "left_button"> &lt </button>
+                        
+                        <table class = "calendar">
+                            <th class = "title">2월</th>
+                            <tbody>
+                                <tr class = "week">
+                                    <td class = "day">일</td>
+                                    <td class = "day">월</td>
+                                    <td class = "day">화</td>
+                                    <td class = "day">수</td>
+                                    <td class = "day">목</td>
+                                    <td class = "day">금</td>
+                                    <td class = "day">토</td>
+                                </tr>
+                                <tr>    <!-- 달력 첫 번째 줄-->
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                </tr>
+                                <tr>    <!-- 달력 두 번째 줄-->
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                </tr>
+                                <tr>    <!-- 달력 세 번째 줄-->
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                </tr>
+                                <tr>    <!-- 달력 네 번째 줄-->
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                </tr>
+                                <tr>    <!-- 달력 다섯 번째 줄-->
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                </tr>
+                                <tr>    <!-- 달력 여섯 번째 줄-->
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                    <td class = "calendar_days" roll = "button"> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                        <button class = "right_button"> > </button>
+                    </div>
+
+                    <script src = "schedule.js"></script>
+
+                    <div class="updown"></div>
                 </div>
 
-                <div class="finish_day">
-                    <p>오는날</p>
-                    <p class="finish_date"></p>
-                </div>
-
-                <div class="personnel">
-
-                </div>
-                <button class="next_btn">다음</button>
+                <div id="hiddenDiv" class="select3"></div>
             </div>
         </div>
     </div>
