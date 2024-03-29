@@ -10,32 +10,83 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 1550px;
+            overflow-x: hidden;
+            margin: 0 auto;
         }
 
-        .Fill_Circle{
-            width: 5rem;
-            height: 5rem;
+        .Fill_Circle1 {
+            width: 100px;
+            height: 100px;
             background: #2295FF;
             border: 2px solid #2295FF;
             border-radius: 50%;
             color: white;
             text-align: center;
-            font-size: 20px;
-            margin: 60px;
+            font-size: 21px;
+            font-weight: bold;
             display: inline-block ;
+            margin: 30px;
+            z-index: 2;
+            
+        }
+
+        .Fill_Circle1>p {
+            margin-top: 20px;
+        }
+
+        .Fill_Circle{
+            width: 100px;
+            height: 100px;
+            background: #2295FF;
+            border: 2px solid #2295FF;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            display: inline-block ;
+            margin: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .Fill_Circle>p {
+            margin-top: 35px;
         }
 
         .Circle{
-            width: 5rem;
-            height: 5rem;
+            width: 100px;
+            height: 100px;
             background-color: white;
             color:#2295FF;
             border: 3px solid #2295FF;
             border-radius: 50%;
             text-align: center;
-            font-size: 20px;
+            font-size: 21px;
+            font-weight: bold;
             display: inline-block;
-            margin: 60px;
+            position: relative;
+            margin: 30px;
+            z-index: 2;
+        }
+
+        .Circle>p {
+            margin-top: 35px;
+        }
+
+        #Circle_Line {
+            width: 700px;
+            color: #2295FF;
+            border: 2px solid;
+            position : absolute;
+            z-index: 1;
+        }
+
+        .contents {
+            width: 1550px;
+            overflow-x: hidden;
+            margin: 0 auto;
         }
 
         .select_filter2 {
@@ -56,12 +107,135 @@
             font-size: 16px;
             font-weight: bold;
         } /*선택 필터*/
+
+        .locate_list{
+            width: 1080px;
+            border: 1px solid #d7d7db;
+            display: flex;
+            margin-left: 12rem;
+            padding: 20px;
+            box-shadow: 2px 2px 2px #d7d7db;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .locate_list>ul>li{
+            list-style: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 2.1rem;
+            margin-left: 2rem;
+        }
+
+        .page_title{
+            text-align: center;
+            color: #2295FF;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #contents_Line{
+            width: 69.9rem;
+            margin: 0;
+            margin-left: 12rem;
+            color: #2295FF;
+            border: 2px solid;
+        }
+
+        .select_location {
+            margin-top: 20px;
+            margin-left: 50px;
+            margin-bottom: 20px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .activity_menu {
+            margin-top: -50px;
+            margin-left: 470px;
+        }
+
+        .menu_list>li{
+            list-style: none;
+            display: inline-block;
+            border: 1px solid;
+            border-radius: 30px;
+            font-size: 16px;
+            padding: 5px;
+            padding-left: 35px;
+            padding-right: 35px;
+            margin-right: 2rem;
+            margin-top:3rem;
+            margin-bottom:10px;
+        }
+
+        .activity {
+            display: inline-block; /* 각 div를 인라인 요소처럼 배치합니다. */
+            width: 770px; /* 각 div의 너비를 설정합니다. */
+            height: 250px; /* 각 div의 높이를 설정합니다. */
+            margin-right: 10px; /* 각 div 사이의 간격을 설정합니다. */
+            border: 1px solid #d7d7db;
+            padding: 16px;
+            margin-left: 90px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .act_title {
+            font-size: 21px;
+            font-weight: bold;
+            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
+            margin: 0 ; /* 좌우 여백을 설정합니다. */
+            margin-top: 10px;
+         }
+
+         .act_locate, .act_time, .act_num {
+            margin-top: -20px;
+            font-size: 16px;
+            color: #8F8F8F;
+            margin-top: 10px;
+        }
+
+        .act_img {
+            width: 400px;
+            height: 200px;
+            float: left;
+            margin: 15px;
+            border-radius: 4px;
+        }
+
+        .act_mainmenu {
+            font-weight: bold;
+        }
+
+        #act_check {
+            width: 50px;
+            height: 50px;
+            float: right;
+            margin-right: 20px;
+            margin-bottom: 200px;
+        }
+
+        .next_btn {
+            background-color: #2295FF;
+            border: 0;
+            padding: 10px;
+            padding-left: 60px;
+            padding-right: 60px;
+            border-radius: 4px;
+            color: white;
+            width: 160px;
+            height: 45px;
+            text-align: center;
+            margin-left: 350px;
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
     <div>
         <div class="progress">
-            <div class='Fill_Circle'>
+            <div class='Fill_Circle1'>
                 <p>기간/<br>인원</p>
             </div>
             <div class='Fill_Circle'>
@@ -76,25 +250,72 @@
             <div class='Circle'>
                 <p>요약</p>
             </div>
+            <hr id="Circle_Line"></hr>
         </div>
-        <div class="content">
-            <div class="select_filter2">
-                <div class="search_bufilter2">
-                    <p class="filter_butitle">기간/인원</p>
-                    <br>
-                    <p class="filter_butitle">여행지</p>
-                    <br>
-                    <p class="filter_butitle">숙소</p>
-                    <br>
-                    <p class="filter_butitle">활동</p>
+        
+
+        <div class='contents'>
+            <p class='page_title'>활동 선택</p>
+            <hr id="contents_Line"></hr>
+                <input type="text" class='locate_list' placeholder="식당, 경관, 체험, 전시 등 가고 싶은 곳을 검색해 보세요">
+             
+            <div class="content">
+                <div class="select_filter2">
+                    <div class="search_bufilter2">
+                        <p class="filter_butitle">기간/인원</p>
+                        <br>
+                        <p class="filter_butitle">여행지</p>
+                        <br>
+                        <p class="filter_butitle">숙소</p>
+                        <br>
+                        <p class="filter_butitle">활동</p>
+                    </div>
+                </div>
+                <span class="select_location">제주도 > 서귀포시</span>
+                <div class='activity_menu'>
+                    <ul class='menu_list'>
+                        <li>식당</li>
+                        <li>경관</li>
+                        <li>체험</li>
+                        <li>전시</li>
+                    </ul>
+                </div>
+                <div class="activity_list">
+                    <div class="activity">
+                        <img class="act_img" src="C:\Users\이서진\Desktop\image\다운로드 (10).jpeg" alt="활동 이미지1">
+                        <p class="act_title">춘심이네 본점</p>
+                        <p class="act_locate">제주 서귀포시 인덕면 창천중앙로 24번길 16</p>
+                        <p class="act_time">운영시간 11:00 ~ 20:20</p>
+                        <p class="act_mainmenu">대표 왕갈치구이 가격 : 190,000원</p>
+                        <p class="act_num">0507-1420-4018</p>
+                        <input type="checkbox" id="act_check">
+                    </div>
+
+                    <div class="activity">
+                        <img class="act_img" src="C:\Users\이서진\Desktop\image\다운로드 (10).jpeg" alt="활동 이미지1">
+                        <p class="act_title">춘심이네 본점</p>
+                        <p class="act_locate">제주 서귀포시 인덕면 창천중앙로 24번길 16</p>
+                        <p class="act_time">운영시간 11:00 ~ 20:20</p>
+                        <p class="act_mainmenu">대표 왕갈치구이 가격 : 190,000원</p>
+                        <p class="act_num">0507-1420-4018</p>
+                        <input type="checkbox" id="act_check">
+                    </div>
+
+                    <div class="activity">
+                        <img class="act_img" src="C:\Users\이서진\Desktop\image\다운로드 (10).jpeg" alt="활동 이미지1">
+                        <p class="act_title">춘심이네 본점</p>
+                        <p class="act_locate">제주 서귀포시 인덕면 창천중앙로 24번길 16</p>
+                        <p class="act_time">운영시간 11:00 ~ 20:20</p>
+                        <p class="act_mainmenu">대표 왕갈치구이 가격 : 190,000원</p>
+                        <p class="act_num">0507-1420-4018</p>
+                        <input type="checkbox" id="act_check">
+                    </div>
                 </div>
             </div>
-
+            <button class='next_btn'>다음</button>
             
-
         </div>
-            
-        <button class='next_btn'>다음</button>
+        
     </div>
 </body>
 </html>
