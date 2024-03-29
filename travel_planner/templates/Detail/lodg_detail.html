@@ -286,9 +286,9 @@
 <body>
     <div class="lodg_detail_page">
         <div class="lodg_detail_content">
-            <p class="title_name">강릉 탑스텐 호텔</p>
+            <p class="title_name">{{ hotel.name }}</p>
             <div class="lodg_img">
-                <img src="/image/revato-3559126-38124946-073106.jpg" alt="" class="main_img"></img>
+                <img src="{{ hotel.photo.url}}" alt="" class="main_img"></img>
                 <img src="/image/4ed4a279ba3b0041fad714c38bca36d0.webp" alt="" class="sub_img"></img>
                 <img src="/image/224955405.jpg" alt="" class="sub_img"></img>
                 <img src="/image/ea0fea6799cc8d466be90663eb5b267e.webp" alt="" class="sub_img"></img>
@@ -303,7 +303,7 @@
                     <li>정책</li>
                 </ul>
                 <p class="start_price">시작가</p>
-                <p class="lodg_price">110,450원</p>
+                <p class="lodg_price">{{ hotel.price }}원</p>
                 <button class="look_btn">객실 보기</button>
             </div>
 
@@ -314,7 +314,7 @@
                     <p class="sub_detail">청결 상태 8.2</p>
                     <p class="sub_detail">서비스 8.5</p>
                     <p class="sub_detail">부대시설 8.1</p>
-                    <p class="sub_detail">위치 7.5</p>
+                    <p class="sub_detail">위치 7.5</p>  
                 </div>
                 <div class="review_text">
                     <p>저렴한 가격에 만족스러운 숙소입니다</p>
@@ -325,7 +325,7 @@
 
             <div class="lodg_info">
                 <div class="info_text">
-                    <p class="info_name">탑스텐 호텔</p>
+                    <p class="info_name">{{ hotel.name }}</p>
                     <p class="lodg_address">옥계면 현화로 455-34, 동해 이스트사이드 씨, 강릉, 대한민국, 25633</p>
                     <p class="lodg_explanation">주차 및 Wi-Fi가 항상 무료로 제공되므로 언제든지 차량을 입출차할 수 있으며 연락을 취하실 수 있습니다. 강릉의 동해 이스트사이드 씨에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다. 떠나기 전 유명한 경포대을/를 방문해 보세요. 별 5개를 받은 본 고급 숙소는 투숙객에게 숙소 내 레스토랑, 온천탕 및 실내 수영장을/를 제공합니다.</p>
                 </div>

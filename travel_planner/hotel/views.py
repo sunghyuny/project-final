@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Accommodation
 
@@ -22,3 +22,8 @@ def accommodation_create_direct(request):
 
         return redirect('/')  # 숙소 등록 후 리다이렉트 될 페이지 예: 홈
     return render(request, 'hotel/create.html')
+
+def detail(request, hotel_id): 
+    hotel = get_object_or_404(Accommodation, id= hotel_id)
+    context = {'hotel': hotel}
+    return render(request, 'detail/lodg_detail.html', context)
