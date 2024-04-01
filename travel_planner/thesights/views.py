@@ -1,14 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .models import TouristSpot, RegionCategory
 
-
-def spotmain(request):
-    tourist_spots = TouristSpot.objects.all()
-    return render(request,'Sightseeing/sight.html',{'tourist_spots': tourist_spots})
-def detail(request, spot_id):
-    spot = get_object_or_404(TouristSpot, id=spot_id)
-    context = {'spot': spot}
-    return render(request, 'detail/sight_detail.html', context)
 def add_tourist_spot(request):
     if request.method == 'POST':
         name = request.POST.get('name')

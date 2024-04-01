@@ -121,13 +121,33 @@
 
         <p class='content_title'>지금 가면 좋은 여행 장소</p>
         <div class="content_list">
-            {% for spot in tourist_spots %}
-            <div class="review" #관광지띄우는곳>
-                <img src="{{ spot.image.url }}" alt="{{ spot.name }}">
-                <h2 class="place_title">{{ spot.name }}</h2>
-                <p class="review_title">{{ spot.location }}</p>
+            <div class="review">
+                <img src="/image/00501234_20171219.jpeg" alt="로컬 이미지"/>
+                <p class="place_title">한라산 백록담</p>
+                <p class="review_title">겨울 설경이 아름다운 곳</p>
+                <p class="user_name">정보라님의 여행</p>
             </div>
-            {% endfor %}
+            <div class="review">
+                <img src="/image/266BE146585C7D782A.jpeg" alt="로컬 이미지" />
+                <p class="place_title">인제 자작나무 숲</p>
+                <p class="review_title">모든게 하얗게 뒤덮힌 자작나무 숲</p>
+                <p class="user_name">하인성님의 여행</p>
+
+            </div>
+            <div class="review">
+                <img src="/image/11772BB7-D64A-4864-A05A-A93C060C3D6D.jpeg" alt="로컬 이미지" />
+                <p class="place_title">강릉 안반데기</p>
+                <p class="review_title">밤하늘의 아름다운 은하수</p>
+                <p class="user_name">안기준님의 여행</p>
+
+            </div>
+            <div class="review">
+                <img src="/image/ZkeHUfn8vIMkFLw3xvn9GvGV5tU4U5g0PxCvZzQ-eIaVhKA57AjIGEpwdYrbRSfh_pA9endPgdUeh3OLGGJzMw.webp" alt="로컬 이미지" />
+                <p class="place_title">청송 얼음골</p>
+                <p class="review_title">멋진 겨울의 절경</p>
+                <p class="user_name">홍장미님의 여행</p>
+
+            </div>
         </div>
 
 
@@ -195,7 +215,6 @@
             </div>
         </div>
 
->>>>>>> 19462ddb2c0a0767e0f4ce6a784ecb7a708b2716
     </div>
 </body>
 </html>

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'Accounts',
     'planner',
     'thesights',
-    'hotel',
 ]
 
 MIDDLEWARE = [
@@ -88,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'final_project',
-        'USER': 'user',
-        'PASSWORD':'ranger@#23',
+        'USER': 'root',
+        'PASSWORD':'2519778400a!',
         'HOST':'localhost',
         'PORT': '3306'
   }
@@ -162,5 +161,5 @@ ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_Redirect_Url= '/'
 Logout_Redirect_Url='/'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+Media_Url = '/media'
+Media_Root = os.path.join(BASE_DIR, 'media')

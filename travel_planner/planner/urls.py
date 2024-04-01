@@ -1,7 +1,9 @@
 # urls.py
 
 from django.urls import path
-from .views import *
+from .views import TravelPlanAPIView
+
 urlpatterns = [
-path('activity/create/', create_activity, name='create_activity'),
+    path('api/TravelPlan/', TravelPlanAPIView.as_view(), name='Travel-Plan-api'),
+    # ...
 ]
