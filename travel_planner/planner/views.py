@@ -1,9 +1,12 @@
 # views.py
 
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-from .models import *
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import TravelPlan
+from .serializers import TravelPlanSerializer
 
+<<<<<<< HEAD
 
 
 
@@ -57,3 +60,17 @@ def plan3(request):
 
 def plan4(request):
     return render(request, 'Planner/summary.html')
+=======
+class TravelPlanAPIView(APIView):
+    def get(self, request):
+        data = TravelPlan.objects.all()
+        serializer = TravelPlanSerializer(data, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = TravelPlanSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+>>>>>>> ec977d2970c67426f268debd3dc5fb437ded3e24
