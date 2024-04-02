@@ -4,6 +4,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import *
 
+
+
+
+def planner(request):
+    return render(request, 'Planner/schedule.html')
 def create_activity(request):
     if request.method == 'POST':
         new_activity = activity()
@@ -24,3 +29,31 @@ def create_activity(request):
 
     return render(request, 'pages/activity_create.html')
 
+
+def trip_plan_form(request):
+    if request.method == 'POST':
+        arrival_date = request.POST.get('arrival_date')
+        adults = int(request.POST.get('adults'))
+        teens = int(request.POST.get('teens'))
+        children = int(request.POST.get('children'))
+
+        total_people = adults + teens + children
+
+        trip_plan = TripPlan.objects.create(arrival_date=arrival_date, total_people=total_people)
+        trip_plan.save()
+
+        return redirect('다음_페이지_뷰_이름')
+
+    return render(request, 'Planner/schedule.html')
+
+def plan1(request):
+    return render(request, 'Planner/location.html')
+
+def plan2(reqeust):
+    return render(reqeust, 'Planner/lodging.html')
+
+def plan3(request):
+    return render(request, 'Planner/activity.html')
+
+def plan4(request):
+    return render(request, 'Planner/summary.html')

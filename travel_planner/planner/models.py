@@ -1,19 +1,5 @@
 from django.db import models
 
-# Create your models here.
-class TravelPlan(models.Model):
-    date = models.DateField()
-    destination = models.CharField(max_length=20)
-    participants = models.PositiveIntegerField()
-    accommodation = models.CharField(max_length=20)
-    attractions = models.CharField(max_length=20)
-    restaurants = models.CharField(max_length=20)
-    experience = models.CharField(max_length=20)
-    exhibition = models.CharField(max_length=20)
-
-    def __str__(self):
-        return f"{self.date} - {self.destination}"
-
 class activity_category(models.Model):
     name = models.TextField()
     quantity = models.IntegerField()
@@ -38,3 +24,7 @@ class activity(models.Model):
             self.activity_category.quantity -= 1  # 카테고리 수량 감소
             self.activity_category.save()
         super().delete(*args, **kwargs)
+
+class TripPlan(models.Model):
+    arrival_date = models.DateField()
+    total_people = models.IntegerField(default=0)  # 성인, 학생, 어린이 인원 수를 합친 총 인원 수

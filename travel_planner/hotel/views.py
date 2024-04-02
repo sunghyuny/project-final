@@ -5,7 +5,7 @@ from .models import Accommodation
 
 
 def mainhotel(request):
-    return render(request, '')
+    return render(request, 'Lodging/hotel.html')
 def accommodation_create_direct(request):
     if request.method == 'POST':
         name = request.POST.get('name')

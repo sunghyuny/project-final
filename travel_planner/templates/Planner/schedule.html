@@ -288,6 +288,17 @@
             width: 0.05px;
             height: 300px;
         }
+        .form-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .form-container .input-container {
+            flex: 1;
+            margin-right: 10px;
+        }
+
 
     </style>
 </head>
@@ -316,11 +327,6 @@
             <p class="page_title">기간/인원 선택</p>
             <hr class="contents_Line"></hr>
                 <div class='select'>
-                    <div class="start_day">
-                        <p class="select_text">가는 날</p>
-                        <br>
-                        <p id="displayText" class="start_date">2024. 12. 23 (월)</p>
-
                         <script>
                             // 텍스트 요소를 가져옵니다.
                             var textElement = document.getElementById('displayText');
@@ -338,33 +344,40 @@
                                 }
                             });
                         </script>
-                        
-                    </div>
-    
-                    <div class="finish_day">
-                        <p class="select_text1">오는날</p>
-                        <br>
-                        <p class="finish_date">2024. 12. 25 (수)</p>
-                    </div>
-
-                    <div class="person1">
-                        <p id="displayText1" class="select_text2">성인</p>
-                        <br>
-                        <p class="adult">3</p>
-                    </div>
-
-                    <div class="person2">
-                        <p id="displayText2" class="select_text2">청소년</p>
-                        <br>
-                        <p class="teen">0</p>
-                    </div>
-
-                    <div class="person3">
-                        <p id="displayText3" class="select_text2">어린이</p>
-                        <br>
-                        <p class="child">0</p>
-                    </div>
-                    <button class="next_btn">다음</button>
+                    <form method="post" class="form-container">
+                        {% csrf_token %}
+                        <div class="date-container">
+                            <div class="input-container start_day">
+                                <p class="select_text1">가는 날</p>
+                                <br>
+                                <input type="date" name="departure_date">
+                            </div>
+                
+                            <div class="input-container finish_day">
+                                <p class="select_text1">오는 날</p>
+                                <br>
+                                <input type="date" name="arrival_date">
+                            </div>
+                        </div>
+                
+                        <div class="input-container person1">
+                            <p id="displayText1" class="select_text2">성인</p>
+                            <input type="number" name="adults" value="0">
+                        </div>
+                
+                        <div class="input-container person2">
+                            <p id="displayText2" class="select_text2">청소년</p>
+                            <input type="number" name="teens" value="0">
+                        </div>
+                
+                        <div class="input-container person3">
+                            <p id="displayText3" class="select_text2">어린이</p>
+                            <input type="number" name="children" value="0">
+                        </div>
+                
+                        <a href="plan1/"><button type="submit" class="next_btn">다음</button></a>
+                    </form>
+                
                 </div>
             <div class="schedule_main">
                 <div id="hiddenDiv" class='select2'>
