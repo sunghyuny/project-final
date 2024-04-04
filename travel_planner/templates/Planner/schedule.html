@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기간 선택</title>
     <style>
+
+        * {
+            overflow-x: hidden;
+        }
         .progress{
             display: flex;
             align-items: center;
@@ -131,14 +135,15 @@
             font-size: 16px;
             margin-bottom: 20px;
             display: none; /* 기본적으로 숨겨진 상태 */
+            overflow-y: hidden;
         }
 
         .select3 {
             width: 1080px;
-            height: 230px;
+            height: 150px;
             margin-top: -20px;
             border: 1px solid #d7d7db;
-            display: flex;
+            /*display: flex;*/
             margin-left: 12rem;
             padding: 20px;
             box-shadow: 2px 2px 2px #d7d7db;
@@ -163,6 +168,7 @@
         .select_text2 {
             color: #949494;
             margin-right: 80px;
+            margin-bottom: -4px
         }
         
         .start_date {
@@ -203,6 +209,20 @@
             height: 55px;
             text-align: center;
             margin-top: 20px;
+        }
+
+        .check_btn {
+            background-color: #949494;
+            border: 0;
+            padding: 10px;
+            border-radius: 4px;
+            color: white;
+            width: 150px;
+            text-align: center;
+            position: relative;
+            align-items: center;
+            overflow-x: auto;
+            height: 50px;
         }
         
 
@@ -268,11 +288,11 @@
 
 
         .day_hover {
-            border: 1px solid black !important;
+            border: 1px solid #2295FF !important;
         }
 
         .day_selected {
-            background-color: black !important;
+            background-color: #2295FF !important;
             color: #ffff;
         }
 
@@ -289,6 +309,97 @@
             height: 300px;
         }
 
+        #number_field {
+            border: none;
+            outline: none;
+            width: 35px;
+            text-align: center;
+            padding-left: 10px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+            margin-top: -20px;
+        }
+
+        #number_field2 {
+            border: none;
+            outline: none;
+            width: 30px;
+            text-align: center;
+            padding-left: 10px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+        }
+
+        #number_field3 {
+            border: none;
+            outline: none;
+            width: 35px;
+            text-align: center;
+            padding-left: 10px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+            margin-top: -20px;
+        }
+
+        #number_field4 {
+            border: none;
+            outline: none;
+            width: 30px;
+            text-align: center;
+            padding-left: 20px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+        }
+
+        #number_field5 {
+            border: none;
+            outline: none;
+            width: 35px;
+            text-align: center;
+            padding-left: 20px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+            margin-top: -20px;
+        }
+
+        #number_field6 {
+            border: none;
+            outline: none;
+            width: 30px;
+            text-align: center;
+            padding-left: 20px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+        }
+
+        .person1 {
+            overflow-x:visible;
+        }
+
+        .num_box {
+            margin-top: 12px;
+            margin-right: 80px;
+        }
+
+        .num_magin {
+            margin-right: 40px;
+            margin-left: 60px;
+        }
+
+        .select3_container {
+            display: flex;
+            flex-direction: row;
+            height: 80px;
+            width: 1080px;
+            text-align: center;
+            padding-left: 50px;
+        }
+
+        .select3_btn {
+            text-align: center;
+            flex-direction: row;
+            margin-top: -40px;
+        }
     </style>
 </head>
 <body>
@@ -350,19 +461,19 @@
                     <div class="person1">
                         <p id="displayText1" class="select_text2">성인</p>
                         <br>
-                        <p class="adult">3</p>
+                        <input type="number" id="number_field" value="0" readonly>
                     </div>
 
                     <div class="person2">
                         <p id="displayText2" class="select_text2">청소년</p>
                         <br>
-                        <p class="teen">0</p>
+                        <input type="number" id="number_field3" value="0" readonly>
                     </div>
 
                     <div class="person3">
                         <p id="displayText3" class="select_text2">어린이</p>
                         <br>
-                        <p class="child">0</p>
+                        <input type="number" id="number_field5" value="0" readonly>
                     </div>
                     <button class="next_btn">다음</button>
                 </div>
@@ -450,7 +561,113 @@
                     <div class="updown"></div>
                 </div>
 
-                <div id="hiddenDiv" class="select3"></div>
+                <div id="hiddenDiv" class="select3">
+                    <div class="select3_container">
+                        <p class="num_magin">성인</p>
+                        <form class="num_box">
+                        <input type="button" value="-" onclick="decreaseNumber()">
+                        <input type="number" id="number_field2" value="0" readonly>
+                        <input type="button" value="+" onclick="increaseNumber()">
+                        </form>
+                        <p class="num_magin">청소년</p>
+                        <form class="num_box">
+                        <input type="button" value="-" onclick="decreaseNumber2()">
+                        <input type="number" id="number_field4" value="0" readonly>
+                        <input type="button" value="+" onclick="increaseNumber2()">
+                        </form>
+                        <p class="num_magin">어린이</p>
+                        <form class="num_box">
+                        <input type="button" value="-" onclick="decreaseNumber3()">
+                        <input type="number" id="number_field6" value="0" readonly>
+                        <input type="button" value="+" onclick="increaseNumber3()">
+                        </form>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="select3_btn">
+                        <button class="check_btn">확인</button>
+                    </div>
+                </div>
+
+                <script>
+                    // 숫자 증가/감소를 처리하는 JavaScript 함수
+                    function increaseNumber() {
+                      var numberField = document.getElementById("number_field");
+                      var currentValue = parseInt(numberField.value);
+                      numberField.value = currentValue + 1;
+
+                      var numberField2 = document.getElementById("number_field2");
+                      var currentValue2 = parseInt(numberField2.value);
+                      numberField2.value = currentValue2 + 1;
+                    }
+                  
+                    function decreaseNumber() {
+                      var numberField = document.getElementById("number_field");
+                      var currentValue = parseInt(numberField.value);
+                      if (currentValue > 0) {
+                        numberField.value = currentValue - 1;
+                      }
+
+                      var numberField2 = document.getElementById("number_field2");
+                      var currentValue2 = parseInt(numberField2.value);
+                      numberField2.value = currentValue2 + 1;
+                      if (currentValue2 > 0) {
+                        numberField2.value = currentValue2 - 1;
+                      }
+                    }
+
+
+                    function increaseNumber2() {
+                      var numberField3 = document.getElementById("number_field3");
+                      var currentValue3 = parseInt(numberField3.value);
+                      numberField3.value = currentValue3 + 1;
+
+                      var numberField4 = document.getElementById("number_field4");
+                      var currentValue4 = parseInt(numberField4.value);
+                      numberField4.value = currentValue4 + 1;
+                    }
+
+                    function decreaseNumber2() {
+                      var numberField3 = document.getElementById("number_field3");
+                      var currentValue3 = parseInt(numberField3.value);
+                      if (currentValue3 > 0) {
+                        numberField3.value = currentValue3 - 1;
+                      }
+
+                      var numberField4 = document.getElementById("number_field4");
+                      var currentValue4 = parseInt(numberField4.value);
+                      numberField4.value = currentValue4 + 1;
+                      if (currentValue4 > 0) {
+                        numberField4.value = currentValue4 - 1;
+                      }
+                    }
+
+
+                    function increaseNumber3() {
+                      var numberField5 = document.getElementById("number_field5");
+                      var currentValue5 = parseInt(numberField5.value);
+                      numberField5.value = currentValue5 + 1;
+
+                      var numberField6 = document.getElementById("number_field6");
+                      var currentValue6 = parseInt(numberField6.value);
+                      numberField6.value = currentValue6 + 1;
+                    }
+                  
+                    function decreaseNumber3() {
+                      var numberField5 = document.getElementById("number_field5");
+                      var currentValue5 = parseInt(numberField5.value);
+                      if (currentValue5 > 0) {
+                        numberField5.value = currentValue5 - 1;
+                      }
+
+                      var numberField6 = document.getElementById("number_field6");
+                      var currentValue6 = parseInt(numberField6.value);
+                      numberField6.value = currentValue6 + 1;
+                      if (currentValue6 > 0) {
+                        numberField6.value = currentValue6 - 1;
+                      }
+                    }
+                  </script>
             </div>
         </div>
     </div>
