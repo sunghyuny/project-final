@@ -38,7 +38,7 @@ def trip_plan_form(request):
         trip_plan = TripPlan.objects.create(arrival_date=arrival_date, total_people=total_people)
         trip_plan.save()
 
-        return redirect('다음_페이지_뷰_이름')
+        return redirect('/planner/plan1')
 
     return render(request, 'Planner/schedule.html')
 
