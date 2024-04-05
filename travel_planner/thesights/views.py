@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import TouristSpot, RegionCategory
 
+
+def main_sight(request):
+    return render(request, 'Sightseeing/sight.html')
 def add_tourist_spot(request):
     if request.method == 'POST':
         name = request.POST.get('name')
