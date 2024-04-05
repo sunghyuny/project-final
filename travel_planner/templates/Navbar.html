@@ -63,24 +63,29 @@
 </head>
 <body>
 <div class="navbar">
-        <div class="logo">Travel Plan</div>
+        <a href="/"><div class="logo">Travel Plan</div></a>
         <input type='text' placeholder='검색할 내용을 입력하세요' class='search_text'></input><br></br>
         <ul>
             <li>전체 메뉴</li>
             <li>여행</li>
-<<<<<<< HEAD
             <li><a href="/planner/">여행 계획</a></li>
             <li><a href="/hotel/">숙박</a></li>
             <li><a href="/thesights/">관광지</a></li>
-=======
-            <li>여행 계획</li>
-            <li>숙박</li>
-            <li>관광지</li>
->>>>>>> ec977d2970c67426f268debd3dc5fb437ded3e24
             <li>커뮤니티</li>
             <li>매칭</li>
         </ul>
-        <button class='login_btn'>로그인</button>
+        {% if user.is_authenticated %}
+        <div class="logout">
+          <p class="name">{{ user.username }}!</p>
+          <a href="{% url 'Accounts:logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="logout_btn">Logout</button>
+            </a>
+        </div>
+        
+        {% else %}
+        <a href="{% url 'Accounts:login' %}"><button class="login_btn">Login</button></a>
+    {% endif %}
     </div>
 </body>
 </html>

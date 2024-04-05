@@ -82,6 +82,47 @@
             position : absolute;
             z-index: 1;
         }
+        .content {
+            width: 1550px;
+            overflow-x: hidden;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page_title{
+            text-align: center;
+            color: #2295FF;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        hr{
+            width: 69.9rem;
+            margin: 0;
+            margin-left: 12rem;
+            color: #2295FF;
+            border: 2px solid;
+        }
+
+        .button_group{
+            display: flex;
+            justify-content: center;
+        }
+        .button{
+            background-color: #2295FF;
+            color: white;
+            width: 150px;
+            height: 40px;
+            font-size: 16px;
+            border: none;
+            margin: 20px;
+        }
+        .plan{
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
@@ -104,9 +145,40 @@
             </div>
             <hr id="Circle_Line"></hr>
         </div>
-        <button className='save_btn'>저장</button>
-        <button className='share_btn'>공유</button>
-        <button className='print_btn'>출력</button>
+
+        <div class="content">
+            <p class='page_title'>여행 계획 요약</p>
+            <hr>
+            <div class="plan">
+                <div class="member">
+                    asdf
+                </div>
+
+                <div class="location">
+                    asdf
+                </div>
+
+                <div class="lodg">
+                    asdf
+                </div>
+
+                <div class="activity">
+                    asdf
+                </div>
+
+                <div class="price">
+                    asdfasdfad
+                </div>
+            </div>
+            <div class="button_group">
+                <button class="button" id='save_btn'>저장</button>
+                <button class="button" id='share_btn'>공유</button>
+                <button class="button" id='print_btn'>출력</button>
+            </div>
+        </div>
+
+
+
     </div> 
 </body>
 </html>

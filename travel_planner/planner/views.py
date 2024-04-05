@@ -1,14 +1,7 @@
 # views.py
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .models import TravelPlan
-from .serializers import TravelPlanSerializer
-
-<<<<<<< HEAD
-
-
+from django.contrib.sites import requests
+from django.shortcuts import render, redirect
+from .models import *
 
 def planner(request):
     return render(request, 'Planner/schedule.html')
@@ -49,8 +42,31 @@ def trip_plan_form(request):
 
     return render(request, 'Planner/schedule.html')
 
-def plan1(request):
-    return render(request, 'Planner/location.html')
+
+def location(request):
+    if request.method == 'POST':
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+
+        # 네이버 지도 API 호출하여 좌표를 지역 이름으로 변환
+        naver_api_url = f"https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords={longitude},{latitude}&orders=addr&output=json"
+        headers = {
+            "X-NCP-APIGW-API-KEY-ID": "YOUR_NAVER_API_KEY_ID",
+            "X-NCP-APIGW-API-KEY": "YOUR_NAVER_API_KEY"
+        }
+        response = requests.get(naver_api_url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            # API에서 얻은 지역 이름을 저장하거나 처리할 수 있음
+            region_name = data['results'][0]['region']['area1']['name']
+            # 이후 데이터베이스에 저장하거나 다음 작업을 수행할 수 있음
+            return render(request, 'Planner/lodging.html', {'region_name': region_name})
+        else:
+            # API 호출 실패 시 처리할 내용
+            pass
+    else:
+        return render(request, 'Planner/location.html')
+
 
 def plan2(reqeust):
     return render(reqeust, 'Planner/lodging.html')
@@ -60,17 +76,3 @@ def plan3(request):
 
 def plan4(request):
     return render(request, 'Planner/summary.html')
-=======
-class TravelPlanAPIView(APIView):
-    def get(self, request):
-        data = TravelPlan.objects.all()
-        serializer = TravelPlanSerializer(data, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = TravelPlanSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
->>>>>>> ec977d2970c67426f268debd3dc5fb437ded3e24

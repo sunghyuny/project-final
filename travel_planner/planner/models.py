@@ -1,6 +1,5 @@
 from django.db import models
 
-<<<<<<< HEAD
 class activity_category(models.Model):
     name = models.TextField()
     quantity = models.IntegerField()
@@ -29,7 +28,7 @@ class activity(models.Model):
 class TripPlan(models.Model):
     arrival_date = models.DateField()
     total_people = models.IntegerField(default=0)  # 성인, 학생, 어린이 인원 수를 합친 총 인원 수
-=======
+
 # Create your models here.
 class TravelPlan(models.Model):
     date = models.DateField()
@@ -43,4 +42,4 @@ class TravelPlan(models.Model):
 
     def __str__(self):
         return f"{self.date} - {self.destination}"
->>>>>>> ec977d2970c67426f268debd3dc5fb437ded3e24
+

@@ -432,19 +432,19 @@ hi<body>
     <div>
         <div class="progress">
             <div class='Fill_Circle1'>
-                <p>기간/<br>인원</p>
+                <a href="/planner/"><p>기간/<br>인원</p></a>
             </div>
             <div class='Circle'>
-                <p>여행지</p>
+                <a href="/planner/plan1/"><p>여행지</p></a>
             </div>
             <div class='Circle'>
-                <p>숙소</p>
+                <a href="/planner/plan2/"><p>숙소</p></a>
             </div>
             <div class='Circle'>
-                <p>활동</p>
+                <a href="/planner/plan3/"><p>활동</p></a>
             </div>
             <div class='Circle'>
-                <p>요약</p>
+                <a href="/planner/plan4/"><p>요약</p></a>
             </div>
             <hr id="Circle_Line"></hr>
         </div>
@@ -575,49 +575,39 @@ hi<body>
                         <br>
                         <input type="number" id="number_field5" value="0" readonly>
                     </div>
-
-                    <script>
-                        // 텍스트 요소를 가져옵니다.
-                        var textElement = document.getElementById('number_field4');
-                    
-                        // 클릭 이벤트를 추가합니다.
-                        textElement.addEventListener('click', function() {
-                            // 숨겨진 div 요소를 가져옵니다.
-                            var hiddenDiv2 = document.getElementById('hiddenDiv2');
-                            
-                            // 현재 상태를 확인하여 보이거나 숨깁니다.
-                            if (hiddenDiv2.style.display === 'none') {
-                                hiddenDiv2.style.display = 'block'; // 보이게 설정
-                            } else {
-                                hiddenDiv2.style.display = 'none'; // 숨기게 설정
-                            }
-
-                            if (hiddenDiv.style.display === 'block') {
-                                hiddenDiv.style.display = 'none';
-                                hiddenDiv2.style.display = 'block';
-                            } 
-                        });
-                    </script>
-
-                    <button class="next_btn" id="nextBtn">다음</button>
-
-                    <script>
-                        document.getElementById("nextBtn").addEventListener("click", function() {
-                        const numberField = document.getElementById("number_field" && "number_field2" && "number_field3");
-                        const inputValue = parseFloat(numberField.value);
-                        
-                        // 입력된 값이 0인지 확인
-                        if (inputValue === 0) {
-                            // 오류 메시지 표시
-                            alert("인원 수를 선택해 주세요.");
-                            // 페이지 이동 막기
-                            return false;
-                        } else {
-                            // 다음 페이지로 이동
-                            window.location.href = "location.html";
-                        }
-                    });
-                    </script>
+                    <button class="next_btn">다음</button>
+                    <form method="post" class="form-container">
+                        <div class="date-container">
+                            <div class="input-container start_day">
+                                <p class="select_text1">가는 날</p>
+                                <br>
+                                <input type="date" name="departure_date">
+                            </div>
+                
+                            <div class="input-container finish_day">
+                                <p class="select_text1">오는 날</p>
+                                <br>
+                                <input type="date" name="arrival_date">
+                            </div>
+                        </div>
+                
+                        <div class="input-container person1">
+                            <p id="displayText1" class="select_text2">성인</p>
+                            <input type="number" name="adults" value="0">
+                        </div>
+                
+                        <div class="input-container person2">
+                            <p id="displayText2" class="select_text2">청소년</p>
+                            <input type="number" name="teens" value="0">
+                        </div>
+                
+                        <div class="input-container person3">
+                            <p id="displayText3" class="select_text2">어린이</p>
+                            <input type="number" name="children" value="0">
+                        </div>
+                
+                        <a href="/planner/plan1/"><button type="submit" class="next_btn">다음</button></a>
+                    </form>
                 </div>
             <div class="schedule_main">
                 <div id="hiddenDiv" class='select2'>

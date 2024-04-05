@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>숙소 직접 등록</title>
+</head>
+<body>
+    <h2>숙소 등록</h2>
+    <form action="{% url 'hotel:hotelcreate' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">숙소 이름:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="photo">사진:</label><br>
+        <input type="file" id="photo" name="photo" required><br>
+        <label for="details">상세정보:</label><br>
+        <textarea id="details" name="details"></textarea><br>
+        <label for="price">가격</label>
+        <input type="number" id="price" name="price"></textarea><br>
+        <label for="amenities">편의시설/서비스:</label><br>
+        <textarea id="amenities" name="amenities"></textarea><br>
+        <label for="quantity">수량:</label><br>
+        <input type="number" id="quantity" name="quantity" required><br>
+        <button type="submit">등록</button>
+    </form>
+</body>
+</html>
