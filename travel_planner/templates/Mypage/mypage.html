@@ -36,14 +36,14 @@
             border: 1px solid;
             width: 200px;
             text-align: left;
-            font-size: 20px;
+            font-size: 16px;
             list-style: none;
             margin-left: 50px;
             margin-top: 20px;
         }
 
         .content_list>li{
-            margin: 25px 0px 25px 60px;
+            margin: 25px 0px 25px 70px;
         }
 
         .content_list>hr{
@@ -59,14 +59,23 @@
 
         .detail_page{
             display: inline-block;
-            border: 1px solid orange;
-            width: 600px;
+            /*border: 1px solid orange;*/
+            width: 900px;
+            height: 500px;
         }
 
         table,th,td    {
             text-align: left;
-            /*border-spacing: 0px;
-            border: 1px solid purple;*/
+            width: 600px;
+            height: 60px;
+            font-size: 16px;
+            border-spacing: 0px;
+            border: 1px solid grey;
+        }
+
+        th{
+            width: 300px;
+            padding-left: 20px;
         }
 
         /*좋아요 부분*/
@@ -156,6 +165,18 @@
             color: #2295FF;
         }
 
+        .fav_icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc; /* 기본색 */
+            display: flex;
+            float: right;
+        }
+
+        .fav_icon.fav {
+            color: red; /* 선택됐을 때의 색 */
+        }
+
     </style>
 </head>
 <body>
@@ -213,6 +234,7 @@
                     <div class="like">
                         <div class="activity">
                             <img class="act_img" src="/image/다운로드 (10).jpeg" alt="활동 이미지1">
+                            <span class="fav_icon" onclick="toggleFav(this)">♥</span>
                             <p class="act_title">춘심이네 본점</p>
                             <p class="act_locate">제주 서귀포시 인덕면 창천중앙로 24번길 16</p>
                             <p class="act_time">운영시간 11:00 ~ 20:20</p>
@@ -290,5 +312,9 @@
     document.addEventListener('DOMContentLoaded', function() {
         showSection('.myinfo'); // 초기에 myinfo 섹션만 보이게 설정
     });
-    </script>-->
+
+    function toggleFav(element) {
+        element.classList.toggle("fav");
+    }
+    </script>
 </html>
