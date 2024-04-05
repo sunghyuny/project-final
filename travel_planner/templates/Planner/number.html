@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숫자 증가/감소</title>
+<style>
+    #number_field {
+        border: none;
+        outline: none;
+    }
+</style>
+<script>
+  // 숫자 증가/감소를 처리하는 JavaScript 함수
+  function increaseNumber() {
+    var numberField = document.getElementById("number_field");
+    var currentValue = parseInt(numberField.value);
+    numberField.value = currentValue + 1;
+  }
+
+  function decreaseNumber() {
+    var numberField = document.getElementById("number_field");
+    var currentValue = parseInt(numberField.value);
+    if (currentValue > 0) {
+      numberField.value = currentValue - 1;
+    }
+  }
+</script>
+</head>
+<body>
+
+<form>
+  <input type="number" id="number_field" value="0" readonly><br><br>
+  
+  <!-- + 버튼 -->
+  <input type="button" value="+" onclick="increaseNumber()">
+  
+  <!-- - 버튼 -->
+  <input type="button" value="-" onclick="decreaseNumber()">
+</form>
+
+</body>
+</html>
