@@ -515,7 +515,7 @@ hi<body>
                     <div class="person1">
                         <p id="displayText1" class="select_text2">성인</p>
                         <br>
-                        <input type="number" id="number_field" value="0" readonly>
+                        <input type="number" id="number_field" value="2" readonly>
                     </div>
 
                     <script>
@@ -603,8 +603,19 @@ hi<body>
 
                     <script>
                         document.getElementById("nextBtn").addEventListener("click", function() {
-                        // window.location.href를 사용하여 다른 페이지의 URL로 이동합니다.
-                        window.location.href = "location.html";
+                        const numberField = document.getElementById("number_field" && "number_field2" && "number_field3");
+                        const inputValue = parseFloat(numberField.value);
+                        
+                        // 입력된 값이 0인지 확인
+                        if (inputValue === 0) {
+                            // 오류 메시지 표시
+                            alert("인원 수를 선택해 주세요.");
+                            // 페이지 이동 막기
+                            return false;
+                        } else {
+                            // 다음 페이지로 이동
+                            window.location.href = "location.html";
+                        }
                     });
                     </script>
                 </div>
@@ -708,7 +719,7 @@ hi<body>
                         <p class="num_magin">성인</p>
                         <form class="num_box">
                         <input type="button" value="-" onclick="decreaseNumber()">
-                        <input type="number" id="number_field2" value="0" readonly>
+                        <input type="number" id="number_field2" value="2" readonly>
                         <input type="button" value="+" onclick="increaseNumber()">
                         </form>
                         <p class="num_magin">청소년</p>
@@ -739,7 +750,7 @@ hi<body>
                 </script>
 
                 <script>
-                    // 숫자 증가/감소를 처리하는 JavaScript 함수
+                    // 숫자 증가/감소를 처리하는 JavaScript 함수 (성인)
                     function increaseNumber() {
                       var numberField = document.getElementById("number_field");
                       var currentValue = parseInt(numberField.value);
@@ -753,19 +764,24 @@ hi<body>
                     function decreaseNumber() {
                       var numberField = document.getElementById("number_field");
                       var currentValue = parseInt(numberField.value);
-                      if (currentValue > 0) {
+                      if (currentValue > 1) {
                         numberField.value = currentValue - 1;
                       }
+                      else { // currentValue가 1 이하이면
+                            numberField.value = 1; // 값을 1로 설정합니다.
+                        }
 
                       var numberField2 = document.getElementById("number_field2");
                       var currentValue2 = parseInt(numberField2.value);
-                      numberField2.value = currentValue2 + 1;
-                      if (currentValue2 > 0) {
+                      if (currentValue2 > 1) {
                         numberField2.value = currentValue2 - 1;
                       }
+                      else { // currentValue가 1 이하이면
+                            numberField.value = 1; // 값을 1로 설정합니다.
+                        }
                     }
 
-
+                    // 숫자 증가.감소 (청소년)
                     function increaseNumber2() {
                       var numberField3 = document.getElementById("number_field3");
                       var currentValue3 = parseInt(numberField3.value);
@@ -791,7 +807,7 @@ hi<body>
                       }
                     }
 
-
+                    //숫자 증가.감소 (어린이)
                     function increaseNumber3() {
                       var numberField5 = document.getElementById("number_field5");
                       var currentValue5 = parseInt(numberField5.value);
