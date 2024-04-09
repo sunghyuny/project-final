@@ -38,7 +38,7 @@
         .search_container {
             position: absolute; /* 상대적인 위치 지정을 위해 절대 위치로 설정합니다. */
             display: flex;
-            align-items: center; 
+            align-items: center;
         }
 
         .searchtext {
@@ -86,7 +86,7 @@
             color: #6d6d6d;
             background-color: #e2e2e2;
         }
-        
+
         /* 선택된 부분의 스타일 */
         .island_selected, .inland_selected {
             background-color: #2295ff;
@@ -95,18 +95,21 @@
 
         .destination_list{
             list-style: none;
-            margin-left: 5rem;
+            margin-left: 1rem;
             margin-bottom: 5rem;
             margin-top: 4rem;
+
         }
 
         .destination_list>li{
             display: inline-block;
-            margin-right: 84px;
+            margin-right: 70px;
             border: 1px solid;
             border-radius: 40px;
             padding: 10px;
             font-size: 40px;
+            width: 140px;
+            text-align: center;
         }
 
         /*관광지*/
@@ -156,7 +159,7 @@
             width: 70rem;
             height: 5rem;
             text-align: center;
-            font-size: 4rem;    
+            font-size: 4rem;
             top: 15rem;
         }
 
@@ -177,6 +180,11 @@
             font-size: 30px;
             margin-bottom: 0;
         }
+
+        .content_selection>p:not(.island_selected):not(.inland_selected) {
+            background-color: #E2E2E2; /* 배경색을 회색으로 설정합니다. */
+            color: #6D6D6D; /* 글자색을 검은색으로 설정합니다. */
+        }
     </style>
 </head>
 <body>
@@ -190,7 +198,7 @@
                     <button class="search_btn">검색</button>
                 </div>
             </div>
-    
+
             <div class="content_selection">
                 <p>제주/섬 여행</p>
                 <p>내륙여행</p>
@@ -207,7 +215,7 @@
                         <li>마라도</li>
                         </ul>
                     </div>
-  
+
                 <div class="popular_sights">
                     <p class="list_title">인기 추천</p>
                     <div class="recommend_place">
@@ -215,7 +223,7 @@
                         <p class="recommend_name">제주 대포해안 주상절리</p>
                     </div>
                 </div>
-  
+
                 <div class="visit_sights">
                     <p class="list_title">가볼만한 곳</p>
                     <div class="recommend_place">
@@ -223,7 +231,7 @@
                         <p class="recommend_name">제주 감귤농장</p>
                     </div>
                 </div>
-  
+
                 <div class="sights_list">
                     <p class="list_title">관광지</p>
                     <div class="sight_island_list">
@@ -231,27 +239,27 @@
                             <img src="/image/마라도7_대한민국_최남단_마라도DJI_0045.jpg" alt="관광지 이미지" class="place_picture"></img>
                             <p class="sights_name">마라도</p>
                         </div>
-    
+
                         <div class="sights_island">
                             <img src="/image/74225b48-2e5e-478c-9f3f-57b5d4dffb61.jpg" alt="관광지 이미지" class="place_picture"></img>
                             <p class="sights_name">백령도</p>
                         </div>
-    
+
                         <div class="sights_island">
                             <img src="/image/110.jpg" alt="관광지 이미지" class="place_picture"></img>
                             <p class="sights_name">홍도</p>
                         </div>
-    
+
                         <div class="sights_island">
                             <img src="/image/22417_82284_3619.jpg" alt="관광지 이미지" class="place_picture"></img>
                             <p class="sights_name">흑산도</p>
                         </div>
-    
+
                         <div class="sights_island">
                             <img src="/image/visual03.jpg" alt="관광지 이미지" class="place_picture"></img>
                             <p class="sights_name">울릉도</p>
                         </div>
-    
+
                         <div class="sights_island">
                             <img src="/image/6500_22519_2612.jpg" alt="관광지 이미지" class="place_picture"></img>
                             <p class="sights_name">제주도</p>
@@ -271,7 +279,7 @@
                     <li>경주</li>
                     </ul>
                 </div>
-  
+
                 <div class="popular_sights">
                     <p class="list_title">인기 추천</p>
                     <div class="recommend_place">
@@ -279,7 +287,7 @@
                         <p class="recommend_name">도깨비 촬영지 주문진</p>
                     </div>
                 </div>
-  
+
                 <div class="visit_sights">
                     <p class="list_title">가볼만한 곳</p>
                     <div class="recommend_place">
@@ -287,35 +295,35 @@
                         <p class="recommend_name">해돋이 명소 호지곶</p>
                     </div>
                 </div>
-  
+
                 <div class="sights_list">
                     <p class="list_title">관광지</p>
-  
+
                     <div class="sights_island">
                         <img src="/image/설악산.jpg" alt="관광지 이미지" class="place_picture"></img>
                         <p class="sights_name">설악산 국립공원</p>
                     </div>
-  
+
                     <div class="sights_island">
                         <img src="/image/29O6N859LQ_1.jpg" alt="관광지 이미지" class="place_picture"></img>
                         <p class="sights_name">행주산성</p>
                     </div>
-  
+
                     <div class="sights_island">
                         <img src="/image/shutterstock_692827960_12008800-1024x683.jpg" alt="관광지 이미지" class="place_picture"></img>
                         <p class="sights_name">경복궁</p>
                     </div>
-  
+
                     <div class="sights_island">
                         <img src="/image/자수정동굴.jpg" alt="관광지 이미지" class="place_picture"></img>
                         <p class="sights_name">울산 자수정동굴</p>
                     </div>
-  
+
                     <div class="sights_island">
                         <img src="/image/20221227091306_ilcqltrt.jpg" alt="관광지 이미지" class="place_picture"></img>
                         <p class="sights_name">태백 상장동 벽화마을</p>
                     </div>
-  
+
                     <div class="sights_island">
                         <img src="/image/061A4221.jpg" alt="관광지 이미지" class="place_picture"></img>
                         <p class="sights_name">용인 한국민속촌</p>
@@ -325,4 +333,42 @@
          </div>
     </div>
 </body>
+<script>
+    // JavaScript로 탭 기능 구현
+    document.addEventListener("DOMContentLoaded", function() {
+            const tabs = document.querySelectorAll('.content_selection>p');
+            const islandContent = document.querySelector('.island_content');
+            const inlandContent = document.querySelector('.inland_content');
+
+            // 초기에 섬 여행(content)만 보이도록 설정하고 해당 탭을 클릭된 상태로 변경
+            showIslandContent();
+            tabs[0].classList.add('island_selected');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 클릭된 탭의 텍스트를 확인하여 섬 여행 또는 내륙 여행을 선택
+                    if (this.textContent === "제주/섬 여행") {
+                        showIslandContent();
+                    } else {
+                        showInlandContent();
+                    }
+
+                    // 클릭된 탭에 스타일 적용
+                    tabs.forEach(tab => tab.classList.remove('island_selected', 'inland_selected'));
+                    this.classList.add('island_selected');
+                });
+            });
+
+            function showIslandContent() {
+                islandContent.style.display = "block";
+                inlandContent.style.display = "none";
+            }
+
+            function showInlandContent() {
+                islandContent.style.display = "none";
+                inlandContent.style.display = "block";
+            }
+        });
+</script>
+
 </html>
