@@ -14,9 +14,15 @@
 
         .sights_page{
             margin: 0;
+            overflow-x: hidden;
         }
         .sights_content{
+            align-items: center;
             justify-content: center;
+            width: 1193px;
+            overflow-x: hidden;
+            margin: 0 auto;
+            overflow-x: hidden;
         }
 
         .top_img{
@@ -66,10 +72,14 @@
         .content_selection>p{
             border: 1px solid;
             display: inline-block;
-            font-size: 2.5rem;
-            width: 30rem;
+            font-size: 21px;
+            width: 200px;
             margin: 0;
-            height: 4rem;
+            height: 40px;
+            padding-top: 5px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
         }
 
         .show_island, .show_inland {
@@ -96,20 +106,19 @@
         .destination_list{
             list-style: none;
             margin-left: 1rem;
-            margin-bottom: 5rem;
-            margin-top: 4rem;
-
+            text-align: center;
         }
 
         .destination_list>li{
+            list-style: none;
             display: inline-block;
-            margin-right: 70px;
             border: 1px solid;
-            border-radius: 40px;
-            padding: 10px;
-            font-size: 40px;
-            width: 140px;
-            text-align: center;
+            border-radius: 30px;
+            font-size: 16px;
+            padding: 10px 20px;
+            width: 50px;
+            margin-top: 10px;
+            margin-right: 26px;
         }
 
         /*관광지*/
@@ -123,15 +132,17 @@
         }
 
         .list_title{
+            font-weight: bold;
+            font-size: 21px;
+            margin-top: 4rem;
             text-align: left;
-            font-size: 2.3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 5px;
         }
 
         .sights_island {
             position: relative;
-            width: 25rem;
-            height: 21rem;
+            width: 300px;
+            height: 250px;
             display: inline-block;
             margin-right: 1.4rem;
             margin-left: 1.5rem;
@@ -156,11 +167,12 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 70rem;
-            height: 5rem;
+            width: 1153px;
+            height: 50px;
             text-align: center;
-            font-size: 4rem;
+            font-size: 21px;
             top: 15rem;
+            padding-top: 15px;
         }
 
         .place_picture{
@@ -184,6 +196,11 @@
         .content_selection>p:not(.island_selected):not(.inland_selected) {
             background-color: #E2E2E2; /* 배경색을 회색으로 설정합니다. */
             color: #6D6D6D; /* 글자색을 검은색으로 설정합니다. */
+        }
+
+        .sight_island_list {
+            width: 1193px;
+            text-align: center;
         }
     </style>
 </head>
