@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>장소선택</title>
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ni4v3wc3lm"></script>
 
     <title>Step2 여행지 선택 | Travel Plan</title>
@@ -21,6 +19,22 @@
         }
 
         .Fill_Circle{
+            width: 100px;
+            height: 100px;
+            background: #2295FF;
+            border: 2px solid #2295FF;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            display: inline-block ;
+            margin: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .Fill_Circle2{
             width: 100px;
             height: 100px;
             background: #2295FF;
@@ -70,7 +84,19 @@
             color: #2295ff;
         }
 
-        #Circle_Line {
+        .Fill_Circle> a> p {
+            margin-top: 20px;
+        }
+
+        .Fill_Circle2> a> p {
+            margin-top: 30px;
+        }
+
+        .Circle> a> p {
+            margin-top: 30px;
+        }
+
+        .Circle_Line {
             width: 700px;
             color: #2295FF;
             border: 2px solid;
@@ -175,7 +201,7 @@
             <div class='Fill_Circle'>
                 <a href="/planner/"><p>기간/<br>인원</p></a>
             </div>
-            <div class='Fill_Circle'>
+            <div class='Fill_Circle2'>
                 <a href="/planner/plan1/"><p>여행지</p></a>
             </div>
             <div class='Circle'>
@@ -187,7 +213,7 @@
             <div class='Circle'>
                 <a href="/planner/plan4/"><p>요약</p></a>
             </div>
-            <hr id="Circle_Line"></hr>
+            <hr class="Circle_Line"></hr>
         </div>
         <div class='contents'>
             <p class='page_title'>여행지 선택</p>
