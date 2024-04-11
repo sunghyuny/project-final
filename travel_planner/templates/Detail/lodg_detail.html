@@ -286,9 +286,9 @@
 <body>
     <div class="lodg_detail_page">
         <div class="lodg_detail_content">
-            <p class="title_name">강릉 탑스텐 호텔</p>
+            <p class="title_name">{{ hotel.name }}</p>
             <div class="lodg_img">
-                <img src="/image/revato-3559126-38124946-073106.jpg" alt="" class="main_img"></img>
+                <img src="{{ hotel.photo }}" alt="" class="main_img"></img>
                 <img src="/image/4ed4a279ba3b0041fad714c38bca36d0.webp" alt="" class="sub_img"></img>
                 <img src="/image/224955405.jpg" alt="" class="sub_img"></img>
                 <img src="/image/ea0fea6799cc8d466be90663eb5b267e.webp" alt="" class="sub_img"></img>
@@ -303,7 +303,7 @@
                     <li>정책</li>
                 </ul>
                 <p class="start_price">시작가</p>
-                <p class="lodg_price">110,450원</p>
+                <p class="lodg_price">{{ hotel.price }}</p>
                 <button class="look_btn">객실 보기</button>
             </div>
 
