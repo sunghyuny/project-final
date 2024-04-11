@@ -1,44 +1,11 @@
 <!DOCTYPE html>
+{% include 'Navbar.html'%}
 <html lang="en">
 <head>
-    {% include 'Navbar.html'%}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>숙소 선택</title>
+    <title>Step3 숙소 선택 | Travel Plan</title>
     <style>
-        .progress{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .Fill_Circle{
-            width: 5rem;
-            height: 5rem;
-            background: #2295FF;
-            border: 2px solid #2295FF;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            font-size: 20px;
-            margin: 60px;
-            display: inline-block;
-        }
-
-        .Circle{
-            width: 5rem;
-            height: 5rem;
-            background-color: white;
-            color:#2295FF;
-            border: 3px solid #2295FF;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 20px;
-            display: inline-block;
-            margin: 60px;
-            overflow-y: hidden;
-        }
-
         .search_main {
             width: 1550px;
             overflow-x: hidden;
@@ -64,33 +31,26 @@
             left: 20px; /* 왼쪽 여백을 설정합니다. */
         }
 
-        .search_filter2 {
+        .select_filter2 {
             border: 1px solid #d7d7db;
             padding: 16px;
             border-radius: 4px;
             float: left;
-            width: 185px;
+            width: 150px;
             height: 353px;
             clear: both;
             margin-top: 20px;
             margin-left: 200px;
             padding-top: -20px;
+            margin-bottom: 2000px;
         }
 
-        /*
-        .lodging_list {
-
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 10px;
-            justify-content: center;
-        } */
-
         .array {
-            color: #8F8F8F;
+            color: #949494;
             margin-top: -3px;
-            margin-left: 435px;
+            margin-left: 475px;
             margin-right: 100px;
+            margin-bottom: 20px;
         }
 
         #filter_title {
@@ -104,6 +64,12 @@
             font-weight: bold;
         }
 
+        lodging_list{
+            width: 400px;
+            display:flex;
+            float: right;
+        }
+
         /*.lodg {
             border: 1px solid #d7d7db;
             padding: 16px;
@@ -114,17 +80,34 @@
             height: 300px;
         } */
 
+        .page_title{
+            text-align: center;
+            color: #2295FF;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .contents_Line{
+            width: 69.9rem;
+            margin: 0;
+            margin-left: 12rem;
+            color: #2295FF;
+            border: 2px solid;
+            margin-bottom: 20px;
+        }
+
         .lodg {
             display: inline-block; /* 각 div를 인라인 요소처럼 배치합니다. */
             width: 770px; /* 각 div의 너비를 설정합니다. */
-            height: 270px; /* 각 div의 높이를 설정합니다. */
+            /*height: 270px; /* 각 div의 높이를 설정합니다. */
             margin-right: 10px; /* 각 div 사이의 간격을 설정합니다. */
             border: 1px solid #d7d7db;
             padding: 16px;
-            margin-left: 50px;
+            margin-left: 90px;
             margin-bottom: 20px;
             border-radius: 4px;
         }
+
         #dropdown_content {
             display: none;
         }
@@ -150,7 +133,7 @@
             display: inline-block;
             width: 17px;
             height: 17px;
-            border: 2px solid #8F8F8F;
+            border: 2px solid #949494;
         }
 
         #star :checked {
@@ -158,11 +141,7 @@
             border-color: #2295FF;
         }
 
-        /* #lodg2 {
-            margin-left: -60px;
-        } */
-
-        #next_btn {
+        .next_btn {
             background-color: #2295FF;
             border: 0;
             padding: 10px;
@@ -175,6 +154,8 @@
             text-align: center;
             margin-left: 350px;
             margin-top: 40px;
+            display:flex;
+            float:right;
         }
 
   /* 클릭된 버튼 스타일 */
@@ -192,7 +173,7 @@
             margin-bottom: -3px;
         }
 
-        #lodg_check {
+        .lodg_check {
             width: 50px;
             height: 50px;
         }
@@ -234,7 +215,7 @@
             color: #2295FF;
         }
 
-        #lodg_check {
+        .lodg_check {
             float: right;
         }
     </style>
@@ -242,6 +223,8 @@
 <body>
     <div>
         <div class="search_main">
+            <p class='page_title'>숙소 선택</p>
+            <hr class="contents_Line">
             <div class="search_filter">
                 <p id="filter_title">검색 필터</p>
                 <div class="filter_menu">
@@ -273,40 +256,26 @@
 
                 </div>
             </div>
-
-            <br>
-            <div class="search_filter2">
-                <div class="search_bufilter2">
-                    <p class="filter_butitle">기간/인원</p>
-                    <br>
-                    <p class="filter_butitle">여행지</p>
-                    <br>
-                    <p class="filter_butitle">숙소</p>
-                    <br>
-                    <p class="filter_butitle">활동</p>
-                </div>
-            </div>
-
             <p class="array">정렬 | 별점 평점 인기 가격 후기 거리</p>
 
             <div class="lodging_list">
                 <div class="lodg">
-
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지1" class="hotel_img">
                     <p class="lodg_title">서귀포 호텔</p>
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">220,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
+
 
                 </div>
-                <div class="lodg" id="lodg2">
+                <div class="lodg">
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지2" class="hotel_img">
                     <p class="lodg_title">서귀포 호텔</p>
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
                 <div class="lodg">
@@ -315,15 +284,15 @@
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
-                <div class="lodg" id="lodg2" >
+                <div class="lodg"  >
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지4" class="hotel_img">
                     <span class="lodg_title">서귀포 호텔</span>
                     <span class="lodg_star">★★★★☆</span>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
                 <div class="lodg">
@@ -332,16 +301,16 @@
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">220,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
 
                 </div>
-                <div class="lodg" id="lodg2" >
+                <div class="lodg">
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지6" class="hotel_img">
                     <p class="lodg_title">서귀포 호텔</p>
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
                 <div class="lodg">
@@ -350,19 +319,19 @@
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">220,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
 
                 </div>
-                <div class="lodg" id="lodg2">
+                <div class="lodg">
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지8" class="hotel_img">
                     <p class="lodg_title">서귀포 호텔</p>
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
-                <button onclick="changeButtonColor(this)" id="next_btn">다음</button>
+            <a href="/planner/plan3/"><button onclick="changeButtonColor(this)" class="next_btn">다음</button></a>
             </div>
         </div>
     </div>
@@ -397,5 +366,6 @@
             });
         });
     </script>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 
 <html>
+
 {% csrf_token %}
 <form method="post" action="{% url 'Accounts:login' %}">
     <p>로그인</p><hr>
@@ -12,5 +13,37 @@
         </div>
         <a href="/Accounts/signup/">회원가입</a>
     </div>
+
+</body>
+
+
+<script>
+    function showSection(sectionToShow) {
+        // 모든 세부 정보 섹션을 숨깁니다.
+        var details = document.querySelectorAll('.detail > div');
+        details.forEach(function(detail) {
+            detail.style.display = 'none';
+        });
+
+        // 지정된 섹션만 보이도록 합니다.
+        document.querySelector(sectionToShow).style.display = 'block';
+    }
+
+    // 각 항목에 대한 클릭 이벤트 리스너를 설정합니다.
+    document.getElementById('showMyInfo').addEventListener('click', function() { showSection('.myinfo'); });
+    document.getElementById('showLikes').addEventListener('click', function() { showSection('.like'); });
+    document.getElementById('showPlans').addEventListener('click', function() { showSection('.plan'); });
+    document.getElementById('showReservations').addEventListener('click', function() { showSection('.reservation'); });
+    document.getElementById('showChats').addEventListener('click', function() { showSection('.chat'); });
+    document.getElementById('showFriends').addEventListener('click', function() { showSection('.friend'); });
+    document.getElementById('showPosts').addEventListener('click', function() { showSection('.post'); });
+
+    // 페이지 로드 시 myinfo 섹션만 보이도록 설정
+    document.addEventListener('DOMContentLoaded', function() {
+        showSection('.myinfo'); // 초기에 myinfo 섹션만 보이게 설정
+    });
+    </script>
+
 </form>
+
 </html>

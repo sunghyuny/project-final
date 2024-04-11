@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>장소선택</title>
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ni4v3wc3lm"></script>
+
+    <title>Step2 여행지 선택 | Travel Plan</title>
+
     <style>
         .progress{
             display: flex;
@@ -13,26 +18,6 @@
             width: 1550px;
             overflow-x: hidden;
             margin: 0 auto;
-        }
-
-        .Fill_Circle1 {
-            width: 100px;
-            height: 100px;
-            background: #2295FF;
-            border: 2px solid #2295FF;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            font-size: 21px;
-            font-weight: bold;
-            display: inline-block ;
-            margin: 30px;
-            z-index: 2;
-            
-        }
-
-        .Fill_Circle1>p {
-            margin-top: 20px;
         }
 
         .Fill_Circle{
@@ -55,6 +40,11 @@
             margin-top: 35px;
         }
 
+        .Fill_Circle>a{
+            text-decoration: none;
+            color: white;
+        }
+
         .Circle{
             width: 100px;
             height: 100px;
@@ -73,6 +63,11 @@
 
         .Circle>p {
             margin-top: 35px;
+        }
+
+        .Circle>a{
+            text-decoration: none;
+            color: #2295ff;
         }
 
         #Circle_Line {
@@ -96,7 +91,7 @@
             font-size: 24px;
             font-weight: bold;
         }
-        
+
         hr{
             width: 69.9rem;
             margin: 0;
@@ -107,9 +102,14 @@
 
         .locate_list{
             width: 70rem;
+            height: 5rem;
             border: 1px solid;
             display: flex;
             margin-left: 12rem;
+        }
+
+        .locate_list>ul{
+            margin-left: 5.5rem;
         }
 
         .locate_list>ul>li{
@@ -126,7 +126,8 @@
             float: left;
             margin-left: 12rem;
             margin-top: 3rem;
-            width: 18rem;
+            margin-right: 30px;
+            width: 14rem;
             text-align: center;
             font-size: 1.2rem;
         }
@@ -139,11 +140,12 @@
 
         .local_info{
             border: 1px solid;
-            width: 900px;
+            width: 68.3rem;
             margin-top: 2rem;
             margin-left: 12rem;
             padding: 1rem;
         }
+<<<<<<< HEAD
         #map{
             width: 100%;
             height: 400px;
@@ -152,11 +154,36 @@
         <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8rmgkdfw2q"></script>
 
 
+=======
+
+        #map{
+            width:870px;
+            height: 29.5rem;
+            margin-top: 3rem;
+        }
+
+        .next_btn {
+            background-color: #2295FF;
+            border: 0;
+            padding: 10px;
+            padding-left: 60px;
+            padding-right: 60px;
+            border-radius: 4px;
+            color: white;
+            width: 160px;
+            height: 45px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 40px;
+            display: block;
+        }
+    </style>
+>>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
 </head>
 <body>
     <div>
         <div class="progress">
-            <div class='Fill_Circle1'>
+            <div class='Fill_Circle'>
                 <a href="/planner/"><p>기간/<br>인원</p></a>
             </div>
             <div class='Fill_Circle'>
@@ -178,20 +205,23 @@
             <hr></hr>
              <div class='locate_list'>
                 <ul>
-                    <li>서울</li>
-                    <li>경기</li>
-                    <li>인천</li>
-                    <li>전라도</li>
-                    <li>경상도</li>
-                    <li>충청도</li>
-                    <li>강원도</li>
-                    <li>제주도</li>
+                    <li id="Seoul">서울</li>
+                    <li id="Gyeonggi">경기</li>
+                    <li id="Incheon">인천</li>
+                    <li id="Jeolla">전라도</li>
+                    <li id="Gyeongsang">경상도</li>
+                    <li id="Chungcheong">충청도</li>
+                    <li id="Gangwon">강원도</li>
+                    <li id="Jeju">제주도</li>
                 </ul>
              </div>
              <div class='city_list'>
-                <p>제주시, 제주도</p>
-                <p>서귀포시, 제주도</p>
+                 <div class="JEJU">
+                     <p id="jejusi">제주시, 제주도</p>
+                    <p>서귀포시, 제주도</p>
+                 </div>
              </div>
+<<<<<<< HEAD
              <div id="map">
              <form ID="map"  method="post">
                 {% csrf_token %}
@@ -199,14 +229,21 @@
                 <input type="hidden" name="longitude" id="longitude">
              </form>
             </div>
+=======
+
+             <div class='local_map'>
+                <div id="map"></div>
+             </div>
+>>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
 
              <div class='local_info'>
-                <p>한국의 섬 중에서 가장 크고 인구가 많은 한라산체로 이루어진 섬이다. 화산에 의해 형성된 섬으로 해안선이 비교적으로 단순하고 화산 활동의 영향으로 일부 모래사장을 제외하면 모두 바위 해안으로 이루어져있다.</p>
+                <p class="jeju_info">한국의 섬 중에서 가장 크고 인구가 많은 한라산체로 이루어진 섬이다. 화산에 의해 형성된 섬으로 해안선이 비교적으로 단순하고 화산 활동의 영향으로 일부 모래사장을 제외하면 모두 바위 해안으로 이루어져있다.</p>
              </div>
         </div>
-        <a href="/planner/plan2/"><button class='next_btn'>다음</button></a>
+        <button class='next_btn'>다음</button>
     </div>
 </body>
+<<<<<<< HEAD
 
 <script>
     var map = new naver.maps.Map('map', {
@@ -220,4 +257,43 @@
         document.getElementById('mapForm').submit();
     });
 </script>
+=======
+<script>
+    var mapOptions = {
+        center: new naver.maps.LatLng(37.497952, 127.027619),
+        zoom: 10.4
+    };
+
+    var map = new naver.maps.Map('map', mapOptions);
+
+    document.querySelector('.jeju_info').style.display = 'none';
+
+    document.getElementById('Jeju').addEventListener('click', function() {
+        var jejuLatLng = new naver.maps.LatLng(33.3846216, 126.5534925);
+        map.setCenter(jejuLatLng);
+
+        document.querySelector('.jeju_info').style.display = 'block';
+    });
+
+     document.getElementById('jejusi').addEventListener('click', function() {
+        var jejusiLatLng = new naver.maps.LatLng(33.4996213, 126.5311884);
+        map.setCenter(jejusiLatLng);
+        map.setZoom(11);
+     });
+
+     document.addEventListener("DOMContentLoaded", function() {
+        var cityList = document.querySelector('.city_list');
+        var cityListContents = document.querySelector('.JEJU');
+        cityListContents.style.display = 'none'; // 페이지 로딩 시에 city_list의 내용 숨기기
+
+        document.getElementById('Jeju').addEventListener('click', function() {
+            var jejuCityList = document.querySelector('.JEJU');
+            cityListContents.style.display = 'none'; // 모든 city_list의 내용 숨기기
+            jejuCityList.style.display = 'block'; // 클릭한 지역에 해당하는 city_list의 내용 보이기
+        });
+    });
+
+</script>
+
+>>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기간 선택</title>
+    <title>Step1 기간 선택 | Travel Plan</title>
     <style>
 
         * {
@@ -17,26 +17,6 @@
             width: 1550px;
             overflow-x: hidden;
             margin: 0 auto;
-        }
-
-        .Fill_Circle1 {
-            width: 100px;
-            height: 100px;
-            background: #2295FF;
-            border: 2px solid #2295FF;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            font-size: 21px;
-            font-weight: bold;
-            display: inline-block ;
-            margin: 30px;
-            z-index: 2;
-            
-        }
-
-        .Fill_Circle1>p {
-            margin-top: 20px;
         }
 
         .Fill_Circle{
@@ -59,6 +39,11 @@
             margin-top: 35px;
         }
 
+        .Fill_Circle>a{
+            text-decoration: none;
+            color: white;
+        }
+
         .Circle{
             width: 100px;
             height: 100px;
@@ -77,6 +62,11 @@
 
         .Circle>p {
             margin-top: 35px;
+        }
+
+        .Circle>a{
+            text-decoration: none;
+            color: #2295ff;
         }
 
         #Circle_Line {
@@ -149,7 +139,7 @@
             box-shadow: 2px 2px 2px #d7d7db;
             font-size: 16px;
             margin-bottom: 20px;
-            /*display: none; /* 기본적으로 숨겨진 상태 */
+            display: none /* 기본적으로 숨겨진 상태 */
         }
 
         .select_text {
@@ -222,7 +212,23 @@
             position: relative;
             align-items: center;
             overflow-x: auto;
-            height: 50px;
+            height: 40px;
+            margin-top: 20px;
+        }
+
+        .check_btn2 {
+            background-color: #949494;
+            border: 0;
+            padding: 10px;
+            border-radius: 4px;
+            color: white;
+            width: 150px;
+            text-align: center;
+            position: relative;
+            align-items: center;
+            overflow-x: auto;
+            height: 40px;
+            margin-top: 20px;
         }
         
 
@@ -298,6 +304,16 @@
 
         .gray {
             background-color: rgb(241, 241, 241) !important;
+        }
+
+        .gray2 {
+            background-color: rgb(241, 241, 241) !important;
+            border-radius: 20px 0 0 20px;
+        }
+
+        .gray3 {
+            background-color: rgb(241, 241, 241) !important;
+            border-radius: 0 20px 20px 0;
         }
 
         .updown {
@@ -414,10 +430,10 @@
         }
     </style>
 </head>
-<body>
+hi<body>
     <div>
         <div class="progress">
-            <div class='Fill_Circle1'>
+            <div class='Fill_Circle'>
                 <a href="/planner/"><p>기간/<br>인원</p></a>
             </div>
             <div class='Circle'>
@@ -439,6 +455,7 @@
             <p class="page_title">기간/인원 선택</p>
             <hr class="contents_Line"></hr>
                 <div class='select'>
+                    <div class="start_day">
                         <script>
                             // 텍스트 요소를 가져옵니다.
                             var textElement = document.getElementById('displayText');
@@ -454,11 +471,15 @@
                                 } else {
                                     hiddenDiv.style.display = 'none'; // 숨기게 설정
                                 }
+
+                                if (hiddenDiv2.style.display === 'block') {
+                                    hiddenDiv2.style.display = 'none';
+                                    hiddenDiv.style.display = 'block';
+                                } 
                             });
                         </script>
 
                     <form method="post" class="form-container">
-                        {% csrf_token %}
                         <div class="date-container">
                             <div class="input-container start_day">
                                 <p class="select_text1">가는 날</p>
@@ -490,7 +511,6 @@
                 
                         <a href="/planner/plan1/"><button type="submit" class="next_btn">다음</button></a>
                     </form>
-
                 </div>
             <div class="schedule_main">
                 <div id="hiddenDiv" class='select2'>
@@ -573,12 +593,29 @@
 
                     <script src = "schedule.js"></script>
 
-                    <div class="updown"></div>
+                    
+
+                    <div class="select3_btn">
+                        <button class="check_btn2" id="checkBtn2">확인</button>
+                    </div>
+
+                    <script>
+                        document.getElementById("checkBtn2").addEventListener("click", function() {
+                        var hiddenDiv = document.getElementById("hiddenDiv");
+                        hiddenDiv.style.display = "none";
+                        });
+                    </script>
                 </div>
 
+                <script>
+                    document.getElementById("checkBtn").addEventListener("click", function() {
+                    var hiddenDiv2 = document.getElementById("hiddenDiv2");
+                    hiddenDiv2.style.display = "none";
+                    });
+                </script>
 
                 <script>
-                    // 숫자 증가/감소를 처리하는 JavaScript 함수
+                    // 숫자 증가/감소를 처리하는 JavaScript 함수 (성인)
                     function increaseNumber() {
                       var numberField = document.getElementById("number_field");
                       var currentValue = parseInt(numberField.value);
@@ -592,19 +629,24 @@
                     function decreaseNumber() {
                       var numberField = document.getElementById("number_field");
                       var currentValue = parseInt(numberField.value);
-                      if (currentValue > 0) {
+                      if (currentValue > 1) {
                         numberField.value = currentValue - 1;
                       }
+                      else { // currentValue가 1 이하이면
+                            numberField.value = 1; // 값을 1로 설정합니다.
+                        }
 
                       var numberField2 = document.getElementById("number_field2");
                       var currentValue2 = parseInt(numberField2.value);
-                      numberField2.value = currentValue2 + 1;
-                      if (currentValue2 > 0) {
+                      if (currentValue2 > 1) {
                         numberField2.value = currentValue2 - 1;
                       }
+                      else { // currentValue가 1 이하이면
+                            numberField.value = 1; // 값을 1로 설정합니다.
+                        }
                     }
 
-
+                    // 숫자 증가.감소 (청소년)
                     function increaseNumber2() {
                       var numberField3 = document.getElementById("number_field3");
                       var currentValue3 = parseInt(numberField3.value);
@@ -630,7 +672,7 @@
                       }
                     }
 
-
+                    //숫자 증가.감소 (어린이)
                     function increaseNumber3() {
                       var numberField5 = document.getElementById("number_field5");
                       var currentValue5 = parseInt(numberField5.value);

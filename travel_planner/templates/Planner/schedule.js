@@ -108,6 +108,8 @@ class Calendar {
                 if (clickCount > 2) {
                     dayButtons.forEach((e) => {
                         e.parentNode.classList.remove("gray");
+                        e.parentNode.classList.remove("gray2");
+                        e.parentNode.classList.remove("gray3");
                         e.classList.remove("day_selected");
                         clickCount = 0;
                         firstSelectedDay = 0;
@@ -119,11 +121,31 @@ class Calendar {
                 if (firstSelectedDay !== 0 && lastSelectedDay !== 0) {
                     dayButtons.forEach((e) => {
                         const day = Number(e.innerText);
-                        if (day >= firstSelectedDay && day <= lastSelectedDay) {
+                        if (day > firstSelectedDay && day < lastSelectedDay) {
                             e.parentNode.classList.toggle("gray");
                         }
                     });
                 }
+
+                if (firstSelectedDay !== 0 && lastSelectedDay !== 0) {
+                    dayButtons.forEach((e) => {
+                        const day = Number(e.innerText);
+                        if (day == firstSelectedDay) {
+                            e.parentNode.classList.toggle("gray2");
+                        }
+                    });
+                }
+
+                if (firstSelectedDay !== 0 && lastSelectedDay !== 0) {
+                    dayButtons.forEach((e) => {
+                        const day = Number(e.innerText);
+                        if (day == lastSelectedDay) {
+                            e.parentNode.classList.toggle("gray3");
+                        }
+                    });
+                }
+
+                
 
                 // 선택 일자 중 왼쪽값이 오른쪽 값보다 크면 회색 배경 삭제 
                 if (firstSelectedDay > lastSelectedDay) {
@@ -131,6 +153,8 @@ class Calendar {
                         e.parentNode.classList.remove("gray");
                     });
                 }
+
+                
             });
         });
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>숙소 선택</title>
+    <title>Step3 숙소 선택 | Travel Plan</title>
     <style>
         .progress{
             display: flex;
@@ -13,26 +13,6 @@
             width: 1550px;
             overflow-x: hidden;
             margin: 0 auto;
-        }
-
-        .Fill_Circle1 {
-            width: 100px;
-            height: 100px;
-            background: #2295FF;
-            border: 2px solid #2295FF;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            font-size: 21px;
-            font-weight: bold;
-            display: inline-block ;
-            margin: 30px;
-            z-index: 2;
-            
-        }
-
-        .Fill_Circle1>p {
-            margin-top: 20px;
         }
 
         .Fill_Circle{
@@ -55,6 +35,11 @@
             margin-top: 35px;
         }
 
+        .Fill_Circle>a{
+            text-decoration: none;
+            color: white;
+        }
+
         .Circle{
             width: 100px;
             height: 100px;
@@ -73,6 +58,11 @@
 
         .Circle>p {
             margin-top: 35px;
+        }
+
+        .Circle>a{
+            text-decoration: none;
+            color: #2295ff;
         }
 
         .Circle_Line {
@@ -220,10 +210,6 @@
             border-color: #2295FF;
         }
 
-        /* #lodg2 {
-            margin-left: -60px;
-        } */
-
         .next_btn {
             background-color: #2295FF;
             border: 0;
@@ -254,7 +240,7 @@
             margin-bottom: -3px;
         }
 
-        #lodg_check {
+        .lodg_check {
             width: 50px;
             height: 50px;
         }
@@ -296,7 +282,7 @@
             color: #2295FF;
         }
 
-        #lodg_check {
+        .lodg_check {
             float: right;
         }
     </style>
@@ -304,7 +290,7 @@
 <body>
     <div>
         <div class="progress">
-            <div class='Fill_Circle1'>
+            <div class='Fill_Circle'>
                 <a href="/planner/"><p>기간/<br>인원</p></a>
             </div>
             <div class='Fill_Circle'>
@@ -376,6 +362,17 @@
             <p class="array">정렬 | 별점 평점 인기 가격 후기 거리</p>
 
             <div class="lodging_list">
+<<<<<<< HEAD
+=======
+                <div class="lodg">
+                    <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지1" class="hotel_img">
+                    <p class="lodg_title">서귀포 호텔</p>
+                    <p class="lodg_star">★★★★☆</p>
+                    <p class="lodg_locate">서귀포</p>
+                    <p class="lodg_price">220,000원 /1박</p>
+                    <input type="checkbox" class="lodg_check">
+
+>>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
 
                     {% for accommodation in accommodations %}
                     <div class="lodg">
@@ -391,16 +388,20 @@
      
                     </form>
                 </div>
+<<<<<<< HEAD
                     {% endfor %}
 
 
                 <div class="lodg" id="lodg2">
+=======
+                <div class="lodg">
+>>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지2" class="hotel_img">
                     <p class="lodg_title">서귀포 호텔</p>
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
                 <div class="lodg">
@@ -409,15 +410,15 @@
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
-                <div class="lodg" id="lodg2" >
+                <div class="lodg"  >
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지4" class="hotel_img">
                     <span class="lodg_title">서귀포 호텔</span>
                     <span class="lodg_star">★★★★☆</span>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
                 <div class="lodg">
@@ -426,16 +427,16 @@
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">220,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
 
                 </div>
-                <div class="lodg" id="lodg2" >
+                <div class="lodg">
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지6" class="hotel_img">
                     <p class="lodg_title">서귀포 호텔</p>
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
                 <div class="lodg">
@@ -444,16 +445,16 @@
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">220,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
 
                 </div>
-                <div class="lodg" id="lodg2">
+                <div class="lodg">
                     <img src="C:/Users/이서진/Desktop/image/6b62ec3b444f2bb8715239afa0a0c350.webP" alt="호텔 이미지8" class="hotel_img">
                     <p class="lodg_title">서귀포 호텔</p>
                     <p class="lodg_star">★★★★☆</p>
                     <p class="lodg_locate">서귀포</p>
                     <p class="lodg_price">230,000원 /1박</p>
-                    <input type="checkbox" id="lodg_check">
+                    <input type="checkbox" class="lodg_check">
                 </div>
 
                 <a href="/planner/plan3/"><button onclick="changeButtonColor(this)" class="next_btn">다음</button></a>
