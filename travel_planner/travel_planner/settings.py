@@ -87,9 +87,15 @@ WSGI_APPLICATION = 'travel_planner.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
        'NAME': 'final_project',
         'USER': 'root',
         'PASSWORD':'2519778400a!',
+=======
+        'NAME': 'fianl_project',
+        'USER': 'root',
+        'PASSWORD':'root',
+>>>>>>> 8ebc911 (패키지 여행 만드는 중)
         'HOST':'localhost',
         'PORT': '3306'
   }
