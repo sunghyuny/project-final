@@ -145,16 +145,6 @@
             margin-left: 12rem;
             padding: 1rem;
         }
-<<<<<<< HEAD
-        #map{
-            width: 100%;
-            height: 400px;
-        }
-        </style>
-        <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8rmgkdfw2q"></script>
-
-
-=======
 
         #map{
             width:870px;
@@ -178,7 +168,7 @@
             display: block;
         }
     </style>
->>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
+
 </head>
 <body>
     <div>
@@ -221,21 +211,11 @@
                     <p>서귀포시, 제주도</p>
                  </div>
              </div>
-<<<<<<< HEAD
-             <div id="map">
-             <form ID="map"  method="post">
-                {% csrf_token %}
-                <input type="hidden" name="latitude" id="latitude">
-                <input type="hidden" name="longitude" id="longitude">
-             </form>
-            </div>
-=======
+
 
              <div class='local_map'>
                 <div id="map"></div>
              </div>
->>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
-
              <div class='local_info'>
                 <p class="jeju_info">한국의 섬 중에서 가장 크고 인구가 많은 한라산체로 이루어진 섬이다. 화산에 의해 형성된 섬으로 해안선이 비교적으로 단순하고 화산 활동의 영향으로 일부 모래사장을 제외하면 모두 바위 해안으로 이루어져있다.</p>
              </div>
@@ -243,21 +223,6 @@
         <button class='next_btn'>다음</button>
     </div>
 </body>
-<<<<<<< HEAD
-
-<script>
-    var map = new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(37.5665, 126.9784), // 초기 지도 중앙 위치 (서울)
-        zoom: 10 // 초기 줌 레벨
-    });
-
-    naver.maps.Event.addListener(map, 'click', function(e) {
-        document.getElementById('latitude').value = e.latlng.lat();
-        document.getElementById('longitude').value = e.latlng.lng();
-        document.getElementById('mapForm').submit();
-    });
-</script>
-=======
 <script>
     var mapOptions = {
         center: new naver.maps.LatLng(37.497952, 127.027619),
@@ -294,6 +259,4 @@
     });
 
 </script>
-
->>>>>>> c783c40fa679b78d3cf003cfcffe6e42bd62b0ce
 </html>

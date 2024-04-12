@@ -5,18 +5,21 @@ from .models import Accommodation
 
 
 def mainhotel(request):
-    return render(request, 'Lodging/hotel.html')
+    accommodations = Accommodation.objects.all()
+    return render(request, 'Lodging/hotel.html', {'accommodations': accommodations})
+
 def accommodation_create_direct(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         photo = request.FILES.get('photo')
+        price = request.POST.get('price')
         details = request.POST.get('details', '')
         amenities = request.POST.get('amenities', '')
         quantity = request.POST.get('quantity')
         likes = 0  # 초기값 설정
 
         Accommodation.objects.create(
-            name=name, photo=photo, details=details,
+            name=name, photo=photo, details=details, price=price,
             amenities=amenities, quantity=quantity, likes=likes
         )
 

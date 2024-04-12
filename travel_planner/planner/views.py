@@ -74,6 +74,7 @@ def location(request):
 
 def plan2(request):
     if request.method == 'POST':
+
         selected_accommodation_id = request.POST.get('accommodation_id')
 
         # 쿠키에 선택한 숙소의 고유 식별자(ID)를 저장합니다.
