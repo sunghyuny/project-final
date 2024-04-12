@@ -10,6 +10,7 @@ def add_tourist_spot(request):
         description = request.POST.get('description')
         location = request.POST.get('location')
         region_category_name = request.POST.get('region_category')  # 이름을 가져옴
+
         # 요청된 지역 카테고리가 이미 존재하는지 확인
         try:
             region_category = RegionCategory.objects.get(name=region_category_name)  # 이름으로 가져옴
@@ -18,8 +19,17 @@ def add_tourist_spot(request):
             region_category = RegionCategory.objects.create(name=region_category_name)
 
         image = request.FILES.get('image')
-        tourist_spot = TouristSpot.objects.create(name=name, description=description, location=location,
-                                                  region_category=region_category, image=image)
+
+        # 관광지 생성 및 지역 카테고리의 수량 증가
+        tourist_spot = TouristSpot.objects.create(
+            name=name, description=description, location=location,
+            region_category=region_category, image=image
+        )
+
+        # 해당 지역 카테고리의 관광지 수량 증가
+        region_category.quantity_tourist_spot += 1
+        region_category.save()
+
         return redirect('/')  # 적절한 리다이렉트 URL로 변경하세요
 
     # GET 요청인 경우 모든 카테고리를 가져와서 템플릿에 전달

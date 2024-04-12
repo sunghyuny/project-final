@@ -1,8 +1,9 @@
 
 <html>
 
-{% csrf_token %}
+
 <form method="post" action="{% url 'Accounts:login' %}">
+    {% csrf_token %}
     <p>로그인</p><hr>
     <div class="login_input">
         <input type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>

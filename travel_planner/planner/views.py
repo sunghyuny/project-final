@@ -4,13 +4,14 @@ from django.http import HttpResponse,HttpRequest
 from django.shortcuts import render, redirect
 from .models import *
 from hotel.models import *
+from thesights.models import *
 
 
 def planner(request):
     return render(request, 'Planner/schedule.html')
 def create_activity(request):
     if request.method == 'POST':
-        new_activity = activity()
+        new_activity = Activity()
         new_activity.name = request.POST.get('name')
         new_activity.price = request.POST.get('price')
         new_activity.photo = request.FILES.get('photo')
@@ -20,7 +21,7 @@ def create_activity(request):
 
         # 카테고리 처리
         category_name = request.POST.get('category')
-        category, created = activity_category.objects.get_or_create(name=category_name)
+        category, created = ActivityCategory.objects.get_or_create(name=category_name)
         new_activity.category = category
 
         new_activity.save()
@@ -28,23 +29,17 @@ def create_activity(request):
 
     return render(request, 'pages/activity_create.html')
 
-
 def trip_plan_form(request):
     if request.method == 'POST':
         arrival_date = request.POST.get('arrival_date')
         adults = int(request.POST.get('adults'))
         teens = int(request.POST.get('teens'))
         children = int(request.POST.get('children'))
-
         total_people = adults + teens + children
-
         trip_plan = TripPlan.objects.create(arrival_date=arrival_date, total_people=total_people)
         trip_plan.save()
         return redirect('/planner/plan1/')
-
-
     return render(request, 'Planner/schedule.html')
-
 
 def location(request):
     if request.method == 'POST':
@@ -71,25 +66,48 @@ def location(request):
         return render(request, 'Planner/location.html')
 
 
-
 def plan2(request):
     if request.method == 'POST':
-
         selected_accommodation_id = request.POST.get('accommodation_id')
-
-        # 쿠키에 선택한 숙소의 고유 식별자(ID)를 저장합니다.
-        response = HttpResponse()
-        response.set_cookie('selected_accommodation_id', selected_accommodation_id)
-
-        # 사용자에게 알림을 표시하거나 다음 단계로 이동할 수 있습니다.
+        selected_accommodation = Accommodation.objects.get(pk=selected_accommodation_id)
+        planner_accommodation = Accommodation.objects.create(
+            name=selected_accommodation.name,
+            photo=selected_accommodation.photo,
+            price=selected_accommodation.price,
+            details=selected_accommodation.details,
+            amenities=selected_accommodation.amenities,
+            quantity=selected_accommodation.quantity,
+            likes=selected_accommodation.likes
+        )
         return HttpResponse("숙소가 선택되었습니다. ID: " + selected_accommodation_id)
-        # 다음 단계로 이동하는 코드를 여기에 추가할 수 있습니다.
 
-    # 숙소 목록을 가져와서 템플릿에 전달합니다.
     accommodations = Accommodation.objects.all()
     return render(request, 'Planner/lodging.html', {'accommodations': accommodations})
+
 def plan3(request):
-    return render(request, 'Planner/activity.html')
+    if request.method == 'POST':
+        selected_activity_id = request.POST.get('activity_id')
+        selected_activity = Activity.objects.get(pk=selected_activity_id)
+        planner_activity = Activity.objects.create(
+            name=selected_activity.name,
+            price=selected_activity.price,
+            photo=selected_activity.photo,
+            location=selected_activity.location,
+            telephone=selected_activity.telephone,
+            time=selected_activity.time,
+            category=selected_activity.category
+        )
+        return HttpResponse("활동이 선택되었습니다. ID: " + selected_activity_id)
+
+    activities = Activity.objects.all()
+    return render(request, 'Planner/activity.html', {'activities': activities})
 
 def plan4(request):
-    return render(request, 'Planner/summary.html')
+    selected_accommodation_id = request.session.get('selected_accommodation_id')
+    selected_activity_id = request.session.get('selected_activity_id')
+
+    selected_accommodation = Accommodation.objects.get(pk=selected_accommodation_id)
+    selected_activity = Activity.objects.get(pk=selected_activity_id)
+
+    return render(request, 'Planner/summary.html',
+                  {'selected_accommodation': selected_accommodation, 'selected_activity': selected_activity})

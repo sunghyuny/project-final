@@ -2,13 +2,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Accommodation
+from thesights.models import RegionCategory
 
 
 def mainhotel(request):
     accommodations = Accommodation.objects.all()
     return render(request, 'Lodging/hotel.html', {'accommodations': accommodations})
 
-def accommodation_create_direct(request):
+def accommodation_create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         photo = request.FILES.get('photo')
@@ -16,16 +17,24 @@ def accommodation_create_direct(request):
         details = request.POST.get('details', '')
         amenities = request.POST.get('amenities', '')
         quantity = request.POST.get('quantity')
-        likes = 0  # 초기값 설정
+        region_name = request.POST.get('region_name')
 
-        Accommodation.objects.create(
+        # 지역 이름으로 해당 지역을 찾습니다.
+        try:
+            region = RegionCategory.objects.get(name=region_name)
+        except RegionCategory.DoesNotExist:
+            # 지역이 존재하지 않는 경우 처리할 코드를 여기에 추가합니다.
+            pass
+
+        # 숙소를 생성합니다.
+        accommodation = Accommodation.objects.create(
             name=name, photo=photo, details=details, price=price,
-            amenities=amenities, quantity=quantity, likes=likes
+            amenities=amenities, quantity=quantity, region_category=region
         )
 
-        return redirect('/')  # 숙소 등록 후 리다이렉트 될 페이지 예: 홈
-    return render(request, 'hotel/create.html')
-
+        return redirect('/')  # 숙소 등록 후 리다이렉트될 페이지를 지정합니다. (예: 홈)
+    # GET 요청인 경우 숙소 등록 폼을 표시합니다.
+    return render(request, 'hotel/create.html', {'regions': RegionCategory.objects.all()})
 def detail(request, hotel_id): 
     hotel = get_object_or_404(Accommodation, id= hotel_id)
     context = {'hotel': hotel}
