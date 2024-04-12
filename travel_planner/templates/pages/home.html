@@ -7,14 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Plan | 나만의 여행 일정 만들기</title>
     <style>
+        * {
+            overflow-x: hidden;
+        }
+
+        .home_container {
+            align-items: center;
+            justify-content: center;
+            width: 1193px;
+            overflow-x: hidden;
+            margin: 0 auto;
+        }
+
+        .main_slide2 {
+            width: 1193px;
+            text-align: center;
+        }
+
         /*메인 사진부분*/
         .main_slide{
-            margin-left: 20%;
             border: 1px solid;
             border-radius: 21px;
-            width: 57rem;
             height: 20rem;
             margin-top: 40px;
+            overflow-y: hidden;
         }
 
         .slide_img{
@@ -22,8 +38,8 @@
             border-radius: 21px 0 0 21px;
             display: inline-block;
             height: 20rem;
-            width: 30rem;
-            margin-right: 50px;
+            width: 738px;
+            margin-right: 800px;
         }
 
         .main_text{
@@ -32,30 +48,34 @@
             text-align: center;
             place-items: center;
             position: relative;
-            top: -13rem;
-            left: 31rem;
+            top: -230px;
+            left: 370px;
         }
 
         .create_btn{
             color: white;
-            background-color:#2295ff;
-            border:none;
-            border-radius:30px;
-            font-size: 1.5rem;
-            width:20rem;
-            margin-top:3rem;
-
+            background-color: #2295ff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            width: 304px;
+            height: 40px;
+            margin-top: 3rem;
         }
 
         .content_title{
-            margin-left: 16%;
             font-weight: bold;
-            font-size: 2rem;
+            font-size: 21px;
             margin-top: 4rem;
+            text-align: left;
+            margin-bottom: 5px;
         }
 
-        .hotplace{
-            margin-left: 15%;
+        .destination_list {
+            display: flex;
+            margin-top: 10px;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
         .destination_list>li{
@@ -63,27 +83,32 @@
             display: inline-block;
             border: 1px solid;
             border-radius: 30px;
-            font-size: 1.5rem;
-            padding: 1rem;
-            margin-right: 2rem;
-            margin-top:3rem;
-            margin-bottom:3rem;
-        }
+            font-size: 16px;
+            padding: 10px 20px;
+            width: 50px;
+            margin-top: 10px;
+            margin-right: 26px;
+            color: #2295ff;
+            font-weight: bold;
+        } 
 
         /*후기 및 추천여행 등*/
         .content_list{
-            margin-left: 17%;
+            display: flex;
             margin-bottom: 6rem;
-            margin-top: 3rem;
+            margin-top: 10px;
+            text-align: center;
+            height: 365px;
+            overflow-y: hidden;
         }
 
         .review{
+            width: 278px;
             display: inline-block;
             border: 1px solid black;
-            width: 15.6rem;
-            height: 20rem;
-            margin-right: 3rem;
-
+            height: 356px;
+            margin-right: 20px;
+            border-radius: 21px;
         }
 
         .review>img{
@@ -93,13 +118,15 @@
     </style>
 </head>
 <body>
-    <div>
-        <div class='main_slide'>
-            <img src='/image/다운로드 (1).jpeg' alt='슬라이드 이미지' class='slide_img'></img>
-            <div class='main_text'>
-                <p class='main_title'>Travel Plan에서 자신만의 여행 일정을 작성해 보세요.</p>
-                <p class='sub_title'>일정을 만들고, 친구와 공유할 수 있습니다.</p>
-                <button class='create_btn'>일정 작성하기</button>
+    <div class="home_container">
+        <div class="main_slide2">
+            <div class='main_slide'>
+                <img src='/image/다운로드 (1).jpeg' alt='슬라이드 이미지' class='slide_img'></img>
+                <div class='main_text'>
+                    <p class='main_title'>Travel Plan에서 자신만의 여행 일정을 작성해 보세요.</p>
+                    <p class='sub_title'>일정을 만들고, 친구와 공유할 수 있습니다.</p>
+                    <button class='create_btn'>일정 작성하기</button>
+                </div>
             </div>
         </div>
         <p class='content_title'>인기 여행지</p>
@@ -114,7 +141,7 @@
                 <li>설악산</li>
                 <li>여주</li>
                 <li>부여</li>
-                <li>공주</li>
+                <li class="li2">공주</li>
             </ul>
         </div>
         <hr></hr>
