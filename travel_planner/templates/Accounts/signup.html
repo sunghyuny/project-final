@@ -1,31 +1,90 @@
 <!DOCTYPE html>
-{% include 'Navbar.html'%}
+{% include 'AccountNavbar.html'%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .signup_page {
+            display: flex;
+            justify-content: center;
+        }
+
+         .page_title{
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 36px;
+        }
+        .signup_input{
+            width:300px;
+        }
+
+        .input_name{
+            font-size: 20px;
+        }
+
+        .input_text{
+            width:300px;
+            height:30px;
+            font-size: 20px;
+        }
+
+        .select_gender{
+            width: 300px;
+            height: 40px;
+            font-size: 19px;
+        }
+
+        .select_gender>option{
+            font-size: 18px;
+        }
+
+        .submit_btn{
+            border: none;
+            background-color: #2295ff;
+            color: white;
+            font-size:19px;
+            width: 300px;
+            height: 45px;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h2>회원가입</h2>
-    <form method="post" action="{% url 'Accounts:signup' %}">
+    <form class="signup_page" method="post" action="{% url 'Accounts:signup' %}">
         {% csrf_token %}
-        <label for="username">사용자 이름:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">비밀번호:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <label for="email">이메일:</label><br>
-        <input type="email" id="email" name="email"><br>
-        <label for="age">나이:</label><br>
-        <input type="number" id="age" name="age"><br>
-        <label for="mbti">MBTI:</label><br>
-        <input type="text" id="mbti" name="mbti"><br>
-        <label for="gender">성별:</label><br>
-        <select id="gender" name="gender">
-            <option value="male">남자</option>
-            <option value="female">여자</option>
-        </select><br>
-        <button type="submit">가입하기</button>
+        <div class="signup_content">
+            <h2 class="page_title">회원가입</h2><hr>
+
+            <div class="signup_input">
+                <label class="input_name" for="username">사용자 이름:</label><br>
+                <input class="input_text" type="text" id="username" name="username"><br>
+                <label class="input_name" for="password">비밀번호:</label><br>
+                <input class="input_text" type="password" id="password" name="password"><br>
+                <label class="input_name" for="email">이메일:</label><br>
+                <input class="input_text" type="email" id="email" name="email"><br>
+                <label class="input_name" for="age">나이:</label><br>
+                <input class="input_text" type="number" id="age" name="age"><br>
+                <label class="input_name" for="mbti">MBTI:</label><br>
+                <input class="input_text" type="text" id="mbti" name="mbti"><br>
+                <label class="input_name" for="gender">성별:</label><br>
+                <select id="gender" name="gender" class="select_gender">
+                    <option value="male">남자</option>
+                    <option value="female">여자</option>
+                </select><br>
+                <button class="submit_btn" type="submit">가입하기</button>
+            </div>
+        </div>
+
     </form>
 </body>
 </html>

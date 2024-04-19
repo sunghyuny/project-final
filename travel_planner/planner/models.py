@@ -21,7 +21,7 @@ class TripPlan(models.Model):
     selected_activity = models.ForeignKey(Activity, on_delete=models.CASCADE, null=True, blank=True)
 
     # 기타 필드들
-    departure_date = models.DateField()
+    departure_date = models.DateField(null=True)
     destination = models.CharField(max_length=100)
     transportation_method = models.CharField(max_length=100)
 
@@ -47,9 +47,4 @@ class TripPlan(models.Model):
 class Accommodation(models.Model):
     name = models.CharField(max_length=100)
     # 다른 필드들 추가
-
-
-class TripPlan(models.Model):
-    arrival_date = models.DateField()
-    total_people = models.IntegerField()
 

@@ -274,7 +274,7 @@
         }
 
         .hotel_img {
-            width: 200px;
+            width: 300px;
             height: 200px;
             float: left;
             margin: 15px;
@@ -333,7 +333,7 @@
             <div class='Circle'>
                 <a href="/planner/plan4/"><p>요약</p></a>
             </div>
-            <hr class="Circle_Line"></hr>
+            <hr class="Circle_Line">
         </div>
 
         
@@ -395,7 +395,7 @@
                     <div class="lodg">
                     <form id="" method="post">
                         {% csrf_token %}
-                        <img src="{{ accommodation.photo.url }}" alt="{{ accommodation.name }}"/>
+                        <img class="hotel_img" src="{{ accommodation.photo.url }}" alt="{{ accommodation.name }}"/>
                         <input type="hidden" name="accommodation_id" value="{{ accommodation.id }}">
                         <!-- 숙소 선택을 위한 폼 요소들을 추가합니다. -->
                             <p class="lodg_title">{{ accommodation.name }}</p>

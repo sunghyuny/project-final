@@ -1,50 +1,58 @@
-
+{% include 'AccountNavbar.html'%}
 <html>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
+        .login_page {
+            display: flex;
+            justify-content: center;
+        }
 
-<form method="post" action="{% url 'Accounts:login' %}">
+        .page_title{
+            text-align: center;
+            font-weight: bold;
+            font-size: 36px;
+        }
+
+        .login_input{
+            text-align: center;
+            margin-top: 2cap;
+        }
+
+        .input_text{
+            width: 300px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .black_btn, .signup_btn{
+            border: none;
+            background-color: #2295ff;
+            color: white;
+            width: 300px;
+            height: 40px;
+            margin: 10px;
+        }
+    </style>
+
+<form method="post"  class="login_page" action="{% url 'Accounts:login' %}">
     {% csrf_token %}
-    <p>로그인</p><hr>
-    <div class="login_input">
-        <input type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>
-        <input type="password" name="password" title="비밀번호" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
+    <div class="login_content">
+        <p class="page_title">로그인</p><hr>
+        <div class="login_input">
+            <input class="input_text" type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>
+            <input class="input_text" type="password" name="password" title="비밀번호" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
 
-        <div class="login_btn">
-            <button class="black_btn"> 로그인</button>
+            <div class="login_btn">
+                <button class="black_btn"> 로그인</button>
+            </div>
+            <button class="signup_btn"><a href="/Accounts/signup/">회원가입</a></button>
         </div>
-        <a href="/Accounts/signup/">회원가입</a>
     </div>
-
 </body>
-
-
-<script>
-    function showSection(sectionToShow) {
-        // 모든 세부 정보 섹션을 숨깁니다.
-        var details = document.querySelectorAll('.detail > div');
-        details.forEach(function(detail) {
-            detail.style.display = 'none';
-        });
-
-        // 지정된 섹션만 보이도록 합니다.
-        document.querySelector(sectionToShow).style.display = 'block';
-    }
-
-    // 각 항목에 대한 클릭 이벤트 리스너를 설정합니다.
-    document.getElementById('showMyInfo').addEventListener('click', function() { showSection('.myinfo'); });
-    document.getElementById('showLikes').addEventListener('click', function() { showSection('.like'); });
-    document.getElementById('showPlans').addEventListener('click', function() { showSection('.plan'); });
-    document.getElementById('showReservations').addEventListener('click', function() { showSection('.reservation'); });
-    document.getElementById('showChats').addEventListener('click', function() { showSection('.chat'); });
-    document.getElementById('showFriends').addEventListener('click', function() { showSection('.friend'); });
-    document.getElementById('showPosts').addEventListener('click', function() { showSection('.post'); });
-
-    // 페이지 로드 시 myinfo 섹션만 보이도록 설정
-    document.addEventListener('DOMContentLoaded', function() {
-        showSection('.myinfo'); // 초기에 myinfo 섹션만 보이게 설정
-    });
-    </script>
-
 </form>
 
 </html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물</title>
+    <style>
+        /* 기본 여백 및 패딩 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .mypage{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mypage_content{
+            border: 1px solid;
+            justify-content: center;
+            width: 86rem;
+            height: 680px;
+            margin-top: 50px;
+        }
+
+        .page_content{
+            float: left;
+            margin-right: 60px;
+            width: 300px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .content_list{
+            border: 1px solid;
+            width: 200px;
+            text-align: left;
+            font-size: 16px;
+            list-style: none;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+
+        .content_list>li{
+            margin: 25px 0px 25px 70px;
+        }
+
+        .content_list>hr{
+            margin: 0;
+            padding: 0;
+        }
+
+        .content_name{
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .detail_page{
+            display: inline-block;
+            width: 900px;
+            height: 500px;
+        }
+
+        #showPosts{
+            font-weight: bold;
+        }
+
+        .myreview, .mypost{
+            border: 1px solid;
+            display: inline-block;
+            text-align: center;
+            width: 100px;
+            height: 40px;
+            margin: 0px 40px 30px 0px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: #2295ff;
+            color: white;
+        }
+
+        .review {
+            display: none;
+        }
+
+        .my_review {
+            display: block;
+        }
+
+        .review {
+            display: inline-block;
+            border: 1px solid black;
+            width: 15em;
+            height: 15rem;
+            margin-right: 4rem;
+        }
+
+        .review>img {
+            width: 15rem;
+            height: 10rem;
+        }
+
+        .my_post{
+            border: 1px solid;
+            width: 600px;
+        }
+        
+        .post_time{
+            text-align: right;
+            margin: 0px 10px 10px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mypage">
+        <div class="mypage_content">
+            <div class="page_content">
+                <p>항목</p>
+                <ul class="content_list">
+                    <li id="showMyInfo">내 정보v</li><hr>
+                    <li id="showLikes">좋아요v</li><hr>
+                    <li id="showPlans">계획</li><hr>
+                    <li id="showReservations">예약v</li><hr>
+                    <li id="showChats">채팅방</li><hr>
+                    <li id="showFriends">친구</li><hr>
+                    <li id="showPosts">게시물</li>
+                </ul>
+            </div>
+
+            <div class="content_name">
+                <p>마이페이지</p>
+            </div>
+
+            <div class="detail_page">
+                <div class="detail">
+                    <div class="post">
+                        <div class="post_content">
+                            <p id="myreview" class="myreview selected" onclick="selectTab(this)">후기</p>
+                            <p id="mypost" class="mypost" onclick="selectTab(this)">게시글</p>
+                        </div>
+
+                        <div id="my_review" class="my_review">
+                            <div class="review">
+                                <img src="/image/2671612_image2_1.jpg" alt="로컬 이미지" />
+                                <p class="place_title">제주도</p>
+                                <p class="review_title">화산으로 만들어진 아름다운 섬</p>                
+                            </div>
+                        </div>
+
+                        <div id="my_post" class="my_post" style="display:none;">
+                            <p class="post_title">제주도 다녀오려는데 어디가 좋을까요?</p>
+                            <p class="post_time">2024-04-31</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function selectTab(element) {
+        var tabs = document.querySelectorAll('.myreview, .mypost');
+        tabs.forEach(function(tab) {
+            tab.classList.remove('selected');
+        });
+        element.classList.add('selected');
+
+        var id = element.id;
+        if (id === 'myreview') {
+            document.getElementById('my_review').style.display = 'block';
+            document.getElementById('my_post').style.display = 'none';
+        } else if (id === 'mypost') {
+            document.getElementById('my_review').style.display = 'none';
+            document.getElementById('my_post').style.display = 'block';
+        }
+    }
+</script>
+</html>

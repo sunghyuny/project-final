@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>친구</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .mypage{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mypage_content{
+            border: 1px solid;
+            justify-content: center;
+            width: 86rem;
+            height: 680px;
+            margin-top: 50px;
+        }
+
+        .page_content{
+            float: left;
+            margin-right: 60px;
+            width: 300px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .content_list{
+            border: 1px solid;
+            width: 200px;
+            text-align: left;
+            font-size: 16px;
+            list-style: none;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+
+        .content_list>li{
+            margin: 25px 0px 25px 70px;
+        }
+
+        .content_list>hr{
+            margin: 0;
+            padding: 0;
+        }
+
+        .content_name{
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        .detail_page{
+            display: inline-block;
+            width: 900px;
+            height: 500px;
+        }
+
+        #showFriends{
+            font-weight: bold;
+        }
+
+        .content{
+            display: flex;
+            float: left;
+            margin-left: 20px;
+        }
+
+        .friend_list{
+            width: 350px;
+            margin-right: 30px;
+            border-right: 1px solid;
+            
+        }
+
+        .content_title{
+            font-weight: bold;
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .friend_name{
+            list-style-type: num;
+        }
+
+        .add_email{
+            margin-top: 5px;
+            width: 300px;
+            height: 30px;
+        }
+
+        .add_btn{
+            border: none;
+            background-color: #2295ff;
+            color: white;
+            width: 100px;
+            height: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="mypage">
+        <div class="mypage_content">
+            <div class="page_content">
+                <p>항목</p>
+                <ul class="content_list">
+                    <li id="showMyInfo">내 정보</li><hr>
+                    <li id="showLikes">좋아요</li><hr>
+                    <li id="showPlans">계획</li><hr>
+                    <li id="showReservations">예약</li><hr>
+                    <li id="showFriends">친구</li><hr>
+                    <li id="showPosts">게시물</li>
+                </ul>
+            </div>
+
+            <div class="content_name">
+                <p>마이페이지</p>
+            </div>
+
+            <div class="detail_page">
+                <div class="detail">
+                    <div class="friend">
+                        <div class="content">
+                            <div class="friend_list">
+                                <p class="content_title">친구 목록(6명)</p>
+                                <ul class="friend_name_list">
+                                    <li class="friend_name">윤성현</li>
+                                    <li class="friend_name">이서진</li>
+                                    <li class="friend_name">남도일</li>
+                                    <li class="friend_name">하인성</li>
+                                    <li class="friend_name">백준수</li>
+                                    <li class="friend_name">안기준</li>
+                                </ul>
+                            </div>
+
+                            <div class="add_friend">
+                                <p class="content_title">친구 관리</p>
+                                <div class="add_content">
+                                    <p>친구 아이디 입력</p>
+                                    <input type="email"class="add_email" placeholder="친구 e-mail를 입력하세요"><br>
+                                    <button class="add_btn">추가</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
