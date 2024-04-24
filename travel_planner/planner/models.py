@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from thesights.models import *
 from hotel.models import *
@@ -13,7 +15,6 @@ class Activity(models.Model):
     telephone = models.TextField()
     time = models.TextField()
     category = models.ForeignKey(ActivityCategory, on_delete=models.CASCADE)
-
 class TripPlan(models.Model):
     arrival_date = models.DateField()
     total_people = models.IntegerField()
@@ -21,7 +22,7 @@ class TripPlan(models.Model):
     selected_activity = models.ForeignKey(Activity, on_delete=models.CASCADE, null=True, blank=True)
 
     # 기타 필드들
-    departure_date = models.DateField()
+    departure_date = models.DateField(default=datetime.date.today)
     destination = models.CharField(max_length=100)
     transportation_method = models.CharField(max_length=100)
 
@@ -43,13 +44,3 @@ class TripPlan(models.Model):
         if self.selected_activity:
             total_cost += self.selected_activity.price
         return total_cost
-# Create your models here.
-class Accommodation(models.Model):
-    name = models.CharField(max_length=100)
-    # 다른 필드들 추가
-
-
-class TripPlan(models.Model):
-    arrival_date = models.DateField()
-    total_people = models.IntegerField()
-

@@ -164,51 +164,42 @@
             </div>
             <hr class="Circle_Line"></hr>
         </div>
-        <div class="content">
-            <p class='page_title'>여행 계획 요약</p>
-            <hr class="contents_line">
-            <div class="plan">
-                <div class="member">
-                    <h2>여행 인원</h2>
-                    <!-- 여행 인원에 대한 정보 표시 -->
-                    <p>성인: {{ adults }}</p>
-                    <p>청소년: {{ teens }}</p>
-                    <p>어린이: {{ children }}</p>
-                </div>
-        
-                <div class="location">
-                    <h2>여행 지역</h2>
-                    <!-- 여행 지역에 대한 정보 표시 -->
-                    <p>{{ region_name }}</p>
-                </div>
-        
-                <div class="lodg">
-                    <h2>숙소</h2>
-                    <!-- 선택한 숙소에 대한 정보 표시 -->
-                    <p>{{ selected_accommodation_name }}</p>
-                    <!-- 선택한 숙소의 사진 표시 -->
-                    <img src="{{ selected_accommodation_photo.url }}" alt="{{ selected_accommodation_name }}">
-                </div>
-        
-                <div class="activity">
-                    <h2>활동</h2>
-                    <!-- 선택한 활동에 대한 정보 표시 -->
-                    <p>{{ selected_activity_name }}</p>
-                    <!-- 선택한 활동의 사진 표시 -->
-                    <img src="{{ selected_activity_photo.url }}" alt="{{ selected_activity_name }}">
-                </div>
-        
-                <div class="price">
-                    <h2>가격</h2>
-                    <!-- 여행 예상 가격에 대한 정보 표시 -->
-                    <p>예상 가격: {{ total_price }} 원</p>
-                </div>
-            </div>
-            <div class="button_group">
-                <button class="button" id='save_btn'>저장</button>
-                <button class="button" id='share_btn'>공유</button>
-                <button class="button" id='print_btn'>출력</button>
-            </div>
+<div class="content">
+    <p class='page_title'>여행 계획 요약</p>
+    <hr class="contents_line">
+    <div class="plan">
+        <div class="people">
+            <h2>인원</h2>
+            <p>{{ trip_plan.total_people }}</p>
+        </div>
+        <div class="date">
+            <h2>출발/도착일</h2>
+            <p>{{ trip_plan.departure_date }} ~ {{ trip_plan.arrival_date }}</p>
+        </div>
+        <div class="location">
+            <h2>여행 지역</h2>
+            <p>{{ trip_plan.destination }}</p>
+        </div>
+
+        <div class="lodg">
+            <h2>숙소</h2>
+            <p>{{ trip_plan.selected_accommodation.name }}</p>
+            <img src="{{ trip_plan.selected_accommodation.photo.url }}" alt="{{ trip_plan.selected_accommodation.name }}">
+        </div>
+
+        <div class="activity">
+            <h2>활동</h2>
+            <p>{{ trip_plan.selected_activity.name }}</p>
+            <img src="{{ trip_plan.selected_activity.photo.url }}" alt="{{ trip_plan.selected_activity.name }}">
+        </div>
+
+    </div>
+    <div class="button_group">
+        <button class="button" id='save_btn'>저장</button>
+        <button class="button" id='share_btn'>공유</button>
+        <button class="button" id='print_btn'>출력</button>
+    </div>
+</div>
         </div>
         </div>
 
