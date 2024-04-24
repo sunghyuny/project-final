@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Plan | 패키지 여행</title>
+    <title>제주도 검색 결과 | Travel Plan</title>
     <style>
         /* 기본 여백 및 패딩 초기화 */
         * {
@@ -159,17 +159,7 @@
             margin-top: 4rem;
             text-align: left;
             margin-bottom: 5px;
-            margin-left: 15px;
-        }
 
-        .recommend_papckage {
-            position: relative;
-            width: 282px;
-            height: 280px;
-            display: inline-block;
-            margin-right: 20px;
-            margin-left: 20px;
-            margin-bottom: 20px;
         }
 
         .recommend_place{
@@ -205,20 +195,6 @@
             margin-bottom: 2rem;
         }
 
-        .sights_name{
-            color: rgb(0, 0, 0);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: 16px;
-            text-align: left;
-            margin-bottom: 0;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
         .content_selection>p:not(.island_selected):not(.inland_selected) {
             background-color: #E2E2E2; /* 배경색을 회색으로 설정합니다. */
             color: #6D6D6D; /* 글자색을 검은색으로 설정합니다. */
@@ -235,18 +211,6 @@
 
         .visit_sights {
             width: 1193px;
-        }
-
-        .recommend_package_img {
-            width: 282px;
-            height: 210px;
-        }
-
-        .package_text {
-            color: #6d6d6d;
-            font-size: 13px;
-            text-align: left;
-            margin-bottom: 20px;
         }
 
         .st_container {
@@ -306,6 +270,61 @@
             background-color: #2295ff;
             color: #fff;
         } /*캘린더 css*/
+
+        .package_ {
+            display: inline-block; /* 각 div를 인라인 요소처럼 배치합니다. */
+            width: 1013px; /* 각 div의 너비를 설정합니다. */
+            margin-right: 10px; /* 각 div 사이의 간격을 설정합니다. */
+            border: 1px solid #d7d7db;
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            overflow-y: hidden;
+        }
+
+        .pak_title {
+            font-size: 21px;
+            font-weight: bold;
+            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
+            margin: 0 ; /* 좌우 여백을 설정합니다. */
+            margin-top: 10px;
+         }
+
+         .pak_locate, .pak_time, .pak_num {
+            margin-top: -20px;
+            font-size: 16px;
+            color: #8F8F8F;
+            margin-top: 10px;
+        }
+
+        .pak_img {
+            width: 250px;
+            height: 200px;
+            float: left;
+            margin: 15px;
+            border-radius: 4px;
+        }
+
+        .pak_price, .pak_won {
+            font-size: 21px;
+        }
+
+        .pak_price {
+            font-weight: bold;
+        }
+
+        .pak_price_div {
+            text-align: right;
+            margin-top: 100px;
+        }
+
+        .fav_icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc;
+            display: flex;
+            float: right;
+        } /*패키지 여행 검색 결과*/
     </style>
 </head>
 <body>
@@ -328,19 +347,6 @@
                 <div id="text7" class="st_item" onclick="setText('text7')">강원도</div>
                 <div id="text8" class="st_item" onclick="setText('text8')">제주도</div>
             </div> <!--지역 선택 띄우기-->
-
-            <script>
-                function setText(selectedText) {
-                    // 선택한 텍스트 가져오기
-                    var selectedValue = document.getElementById(selectedText).innerText;
-
-                    // URL에 파라미터로 선택한 텍스트 추가
-                    var url = "next_page.html?selectedText=" + encodeURIComponent(selectedValue);
-
-                    // 다음 페이지로 이동
-                    window.location.href = url;
-                }
-            </script>
 
             <table id="pk_calendar" class="pk_table">
                 <thead>
@@ -471,94 +477,43 @@
             <div class="inland_content">
                 <div class="sights_list">
                     <p class="list_title">추천 패키지 여행</p>
-                    <div class="recommend_papckage">
-                        <div class="recommend_package_img">
-                            <img src="/image/설악산.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
+
+                    <div class="activity_list">
+                        <div class="package_">
+                            <img class="pak_img" src="C:\Users\이서진\Desktop\image\다운로드 (10).jpeg" alt="활동 이미지1">
+                            <span class="fav_icon" onclick="toggleFav(this)">♥</span>
+                            <p class="pak_title">[김포출발] 노팁노옵션 제주도/마라도/우도 삼도투어 2박3일</p>
+                            <p class="pak_locate">2박3일 | 김포 출발 | 대한항공</p>
+                            <div class="pak_price_div">
+                                <span class="pak_price">368,503</span><span class="pak_won">원~</span>
+                            </div>
                         </div>
-                        <p class="package_text">패키지</p>
-                        <p class="sights_name">[섬섬투어] 제주 3일 #우도관광 #마라도/가파도 #식사ALL포함</p>
+
+                        <div class="package_">
+                            <img class="pak_img" src="C:\Users\이서진\Desktop\image\다운로드 (10).jpeg" alt="활동 이미지1">
+                            <span class="fav_icon" onclick="toggleFav(this)">♥</span>
+                            <p class="pak_title">★청주출발★ 청보리의 섬 가파도+럭셔리 요트투어 3박4일</p>
+                            <p class="pak_locate">3박 4일 | 청주 출발</p>
+                            <div class="pak_price_div">
+                                <span class="pak_price">504,303</span><span class="pak_won">원~</span>
+                            </div>
+                        </div>
+
+                        <div class="package_">
+                            <img class="pak_img" src="C:\Users\이서진\Desktop\image\다운로드 (10).jpeg" alt="활동 이미지1">
+                            <span class="fav_icon" onclick="toggleFav(this)">♥</span>
+                            <p class="pak_title">[김포출발][특가] 제주 속의 섬 우도+제주도/송악산/곶자왈 3박4일</p>
+                            <p class="pak_locate">3박4일 | 김포 출발</p>
+                            <div class="pak_price_div">
+                                <span class="pak_price">189,405</span><span class="pak_won">원~</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="recommend_papckage">
-                        <div class="recommend_package_img">
-                            <img src="/image/29O6N859LQ_1.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
-                        </div>
-                        <p class="package_text">패키지</p>
-                        <p class="sights_name">[다드림] 제주2일 #BEST추천여행 #제주현지인추천 #노쇼핑,노팁,노옵션</p>
-                    </div>
-
-                    <div class="recommend_papckage">
-                        <div class="recommend_package_img">
-                            <img src="/image/shutterstock_692827960_12008800-1024x683.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
-                        </div>
-                        <p class="package_text">패키지</p>
-                        <p class="sights_name">[KTX포함][강릉항] 울릉도 3일 #대아리조트</p>
-                    </div>
-
-                    <div class="recommend_papckage">
-                        <div class="recommend_package_img">
-                            <img src="/image/자수정동굴.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
-                        </div>
-                        <p class="package_text">패키지</p>
-                        <p class="sights_name">[내나라여행] 서부권일주 4일 #전주/광주/목포/여수 #전주한옥마을</p>
-                    </div>
-
-                    <div class="recommend_papckage">
-                        <div class="recommend_package_img">
-                            <img src="/image/20221227091306_ilcqltrt.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
-                        </div>
-                        <p class="package_text">패키지</p>
-                        <p class="sights_name">[서울출발] 태백 상장동 벽화마을 #목포해상케이블카 #강진다원</p>
-                    </div>
-
-                    <div class="recommend_papckage">
-                        <div class="recommend_package_img">
-                            <img src="/image/061A4221.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
-                        </div>
-                        <p class="package_text">패키지</p>
-                        <p class="sights_name">[KTX] 부산 2일 #바다별미 #해운대해변열차 #호텔숙박</p>
-                    </div>
                 </div>
             </div>
          </div>
     </div>
 </body>
-<script>
-    // JavaScript로 탭 기능 구현
-    document.addEventListener("DOMContentLoaded", function() {
-            const tabs = document.querySelectorAll('.content_selection>p');
-            const islandContent = document.querySelector('.island_content');
-            const inlandContent = document.querySelector('.inland_content');
-
-            // 초기에 섬 여행(content)만 보이도록 설정하고 해당 탭을 클릭된 상태로 변경
-            showIslandContent();
-            tabs[0].classList.add('island_selected');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // 클릭된 탭의 텍스트를 확인하여 섬 여행 또는 내륙 여행을 선택
-                    if (this.textContent === "제주/섬 여행") {
-                        showIslandContent();
-                    } else {
-                        showInlandContent();
-                    }
-
-                    // 클릭된 탭에 스타일 적용
-                    tabs.forEach(tab => tab.classList.remove('island_selected', 'inland_selected'));
-                    this.classList.add('island_selected');
-                });
-            });
-
-            function showIslandContent() {
-                islandContent.style.display = "block";
-                inlandContent.style.display = "none";
-            }
-
-            function showInlandContent() {
-                islandContent.style.display = "none";
-                inlandContent.style.display = "block";
-            }
-        });
-</script>
 
 </html>

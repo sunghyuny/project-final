@@ -20,9 +20,8 @@ class TripPlan(models.Model):
     total_people = models.IntegerField()
     selected_accommodation = models.ForeignKey(Accommodation, on_delete=models.CASCADE, null=True, blank=True)
     selected_activity = models.ForeignKey(Activity, on_delete=models.CASCADE, null=True, blank=True)
+    departure_date = models.DateField(null=True)
 
-    # 기타 필드들
-    departure_date = models.DateField(default=datetime.date.today)
     destination = models.CharField(max_length=100)
     transportation_method = models.CharField(max_length=100)
 
@@ -44,3 +43,11 @@ class TripPlan(models.Model):
         if self.selected_activity:
             total_cost += self.selected_activity.price
         return total_cost
+<<<<<<< HEAD
+=======
+# Create your models here.
+class Accommodation(models.Model):
+    name = models.CharField(max_length=100)
+    # 다른 필드들 추가
+
+>>>>>>> 118caa811f27f27ca0c66e2fd3edfc6ff0823cce

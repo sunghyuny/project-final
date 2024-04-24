@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계획</title>
+    <style>
+        /* 기본 여백 및 패딩 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .mypage{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mypage_content{
+            border: 1px solid;
+            justify-content: center;
+            width: 86rem;
+            height: 680px;
+            margin-top: 50px;
+        }
+
+        .page_content{
+            float: left;
+            margin-right: 60px;
+            width: 300px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .content_list{
+            border: 1px solid;
+            width: 200px;
+            text-align: left;
+            font-size: 16px;
+            list-style: none;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+
+        .content_list>li{
+            margin: 25px 0px 25px 70px;
+        }
+
+        .content_list>hr{
+            margin: 0;
+            padding: 0;
+        }
+
+        .content_name{
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .detail_page{
+            display: inline-block;
+            width: 900px;
+            height: 500px;
+        }
+
+        #showPlans{
+            font-weight: bold;
+        }
+
+        .plan{
+            border: 1px solid;
+            width: 500px;
+        }
+
+        .plan_title{
+            font-weight: bolder;
+        }
+
+        .save_date{
+            text-align: right;
+            margin: 0px 10px 10px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mypage">
+        <div class="mypage_content">
+            <div class="page_content">
+                <p>항목</p>
+                <ul class="content_list">
+                    <li id="showMyInfo">내 정보</li><hr>
+                    <li id="showLikes">좋아요</li><hr>
+                    <li id="showPlans">계획</li><hr>
+                    <li id="showReservations">예약</li><hr>
+                    <li id="showFriends">친구</li><hr>
+                    <li id="showPosts">게시물</li>
+                </ul>
+            </div>
+
+            <div class="content_name">
+                <p>마이페이지</p>
+            </div>
+
+            <div class="detail_page">
+                <div class="detail">
+                    <div class="plan">
+                        <div class="plan_list" >
+                            <p class="plan_title">제주도 우정여행</p>
+                            <p class="period">기간 : 2024.05.20~2024.05.25</p>
+                            <p class="member">인원수 3명</p>
+                            <p class="save_date">저장날짜 : 2024.04.31</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계획변경</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .mypage{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mypage_content{
+            border: 1px solid;
+            justify-content: center;
+            width: 86rem;
+            height: 680px;
+            margin-top: 50px;
+        }
+
+        .page_content{
+            float: left;
+            margin-right: 60px;
+            width: 300px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .content_list{
+            border: 1px solid;
+            width: 200px;
+            text-align: left;
+            font-size: 16px;
+            list-style: none;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+
+        .content_list>li{
+            margin: 25px 0px 25px 70px;
+        }
+
+        .content_list>hr{
+            margin: 0;
+            padding: 0;
+        }
+
+        .content_name{
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .detail_page{
+            display: inline-block;
+            width: 900px;
+            height: 500px;
+        }
+
+        .plan_detail{
+            display: flex;
+            float: right;
+            border: 1px solid;
+            float: right;
+        }
+
+        .active{
+            border: 1px solid;
+            width: 520px;
+        }
+        .active_list{
+            border: 1px solid;
+            width: 500px;
+            height: 140px;
+            align-items: center;
+            margin-right: 10px;
+            border: 1px solid #d7d7db;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .place_img{
+            width: 200px;
+            height: 130px;
+            float: left;
+            margin: 10px 15px 10px 15px;
+            border-radius: 4px;
+        }
+        .detail{
+            display: flex;
+        }
+
+        .place_detail{
+            flex-grow: 1;
+            margin-right: 30px;
+        }
+
+        .place_name{
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .place_tag{
+            color: #848484;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .place_info{
+            color: #5e5e5e;
+            font-size: 13px;
+        }
+
+        .acitve_check {
+            width: 40px;
+            height: 40px;
+            float: right;
+        }
+        
+        .add_btn, .del_btn {
+            border: none;
+            background-color: #2295ff;
+            color: white;
+            width: 160px;
+            height: 45px;
+            text-align: center;
+            display: block; 
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mypage">
+        <div class="mypage_content">
+            <div class="page_content">
+                <p>항목</p>
+                <ul class="content_list">
+                    <li id="showMyInfo">내 정보</li><hr>
+                    <li id="showLikes">좋아요</li><hr>
+                    <li id="showPlans">계획</li><hr>
+                    <li id="showReservations">예약</li><hr>
+                    <li id="showFriends">친구</li><hr>
+                    <li id="showPosts">게시물</li>
+                </ul>
+            </div>
+
+            <div class="content_name">
+                <p>마이페이지>활동 수정</p>
+            </div>
+
+            <div class="detail_page">
+                <div class="detail"> 
+                    <div class="active">
+                        <div class="active_list">
+                            <img src="/image/96a5e9d7-4d49-4c4b-9bd8-87d66e18d205.jpg" alt="장소 이미지" class="place_img"></img>
+                            <div class="place_detail">
+                                <p class="place_name">속초시립박물관</p>
+                                <p class="place_price">입장료 무료</p>
+                                <input type="checkbox" class="acitve_check">
+                            </div>
+                        </div> 
+                        <button class="add_btn">추가</button>
+                    </div>
+                    
+                      
+
+                    <div class="plan_detail">
+                        <div class="plan_list">
+                            <div class="member">
+                                <h2>여행 인원</h2>
+                                <!-- 여행 인원에 대한 정보 표시 -->
+                                <p>성인: {{ adults }}</p>
+                                <p>청소년: {{ teens }}</p>
+                                <p>어린이: {{ children }}</p>
+                            </div>
+                    
+                            <div class="location">
+                                <h2>여행 지역</h2>
+                                <!-- 여행 지역에 대한 정보 표시 -->
+                                <p>{{ region_name }}</p>
+                            </div>
+                    
+                            <div class="lodg">
+                                <h2>숙소</h2>
+                                <!-- 선택한 숙소에 대한 정보 표시 -->
+                                <p>{{ selected_accommodation_name }}</p>
+                                <!-- 선택한 숙소의 사진 표시 -->
+                                <img src="{{ selected_accommodation_photo.url }}" alt="{{ selected_accommodation_name }}">
+                            </div>
+                    
+                            <div class="activity">
+                                <h2>활동</h2>
+                                <!-- 선택한 활동에 대한 정보 표시 -->
+                                <p>{{ selected_activity_name }}</p>
+                                <!-- 선택한 활동의 사진 표시 -->
+                                <img src="{{ selected_activity_photo.url }}" alt="{{ selected_activity_name }}">
+                            </div>
+                    
+                            <div class="price">
+                                <h2>가격</h2>
+                                <!-- 여행 예상 가격에 대한 정보 표시 -->
+                                <p>예상 가격: {{ total_price }} 원</p>
+                            </div>
+                            <button class="del_btn">삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
