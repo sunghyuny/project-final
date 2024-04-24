@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'travel_planner.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',   
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'final_project',
         'USER': 'user',
         'PASSWORD':'ranger@#23',
