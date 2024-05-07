@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .lodg_res_page{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lodg_res_content{
+            width: 1000px;
+        }
+
+        .page_title{
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title{
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .content_title{
+            font-size: 24px;    
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .table, .product_table, .res_table, .guest_table {
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid grey;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            height: 40px;
+            border: 1px solid grey;
+            padding-left: 20px;
+        }
+
+        .room_name, .gender{
+            margin: 0;
+            padding: 0;
+            width: 150px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .eng_name{
+            text-align: center;
+        }
+
+        th{
+            height: 40px;
+            width: 150px;
+            border: 1px solid grey;
+            font-size: 21px;
+            background-color: #D9D9D9;
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        td{
+            height: 40px;
+            width: 500px; 
+            border: 1px solid grey;
+            padding-left: 20px;
+            font-size: 21px;
+        }
+
+        .product, .reservation, .guest_info{
+            margin-bottom: 50px;
+        }
+
+        .cancel_date{
+            color: red;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .essential{
+            color: red;
+            margin: 5px 0px 5px 0;
+        }
+
+        .input_email{
+            width: 300px;
+            height: 20px;
+            font-size: 21px;
+        }
+
+        .input_require{
+            width: 300px;
+            height: 100px;
+            font-size: 21px;
+        }
+
+        .first_name, .last_name{
+            font-size: 21px;
+            height: 20px;
+            width: 200px;
+            margin-right: 5px;
+        }
+
+        .btn{
+            display: flex;
+            justify-content: center;
+        }
+
+        .res_btn, .cancel_btn{
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            width: 180px;
+            height: 40px;
+            font-size: 22px;
+            margin: 50px 10px 0px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lodg_res_page">
+        <div class="lodg_res_content">
+            <div class="page_title">
+                <p class="title">숙소 예약하기</p>
+                <p class="caution">예약자 정보를 정확히 입력해주시고, 약관 및 주의사항 확인해주시기 바랍니다.</p>
+            </div>
+
+            <div class="page_content">
+                <div class="product">
+                    <p class="content_title">상품 정보</p>
+                    <table class="product_table">
+                        <tr>
+                            <th>숙소명</th>
+                            <td>제주도 호텔</td>
+                        </tr>
+
+                        <tr>
+                            <th>객실 정보</th>
+                            <td>디럭스 더블 오션뷰</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>숙박 기간</th>
+                            <td>2024.05.20~2024.05.25</td>
+                        </tr>
+
+                        <tr>
+                            <th>상품 가격</th>
+                            <td>1,000,000원(총 2명)</td>
+                        </tr>
+
+                        <tr>
+                            <th>취소 가능일</th>
+                            <td class="cancel_date">2024.05.13 16:00 이후 변경/취소 불가</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="reservation">
+                    <p class="content_title">예약자 정보</p>
+                    <table class="res_table">
+                        <tr>
+                            <th>이름</th>
+                            <td>이승혁</td>
+                        </tr>
+
+                        <tr>
+                            <th>생년월일/성별</th>
+                            <td>2003.11.09/남</td>
+                        </tr>
+
+                        <tr>
+                            <th>전화번호</th>
+                            <td>010-1234-5678</td>
+                        </tr>
+
+                        <tr>
+                            <th>이메일</th>
+                            <td><input type="email" class="input_email"></td>
+                        </tr>
+
+                        <tr>
+                            <th>요청사항</th>
+                            <td><input type="text" class="input_require" placeholder="요청사항을 적어주세요"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="guest_info">
+                    <p class="content_title">투숙객 정보</p>
+                    <hr>
+                    <p class="essential">대표 투숙객명을 입력해주세요.</p>
+                    <table class="guest_table">
+                        <tr>
+                            <th class="room_name">룸 타입</th>
+                            <th class="eng_name">영문 성명</th>
+                            <th class="gender">성별</th>
+                        </tr>
+                        <tr>
+                            <td class="room_name">디럭스 더블 오션뷰</td>
+                            <td class="eng_name">성 : <input type="text" class="first_name"> 이름: <input type="text" class="last_name"></td>
+                            <td class="gender"><input type="radio" name="gender" id="gender">남 &nbsp &nbsp <input type="radio" name="gender" id="gender">여</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="btn">
+                    <button class="res_btn" onclick="confirmReservation()">예약하기</button>
+                    <button class="cancel_btn" onclick="confirmCancel()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function confirmReservation() {
+        var emailInput = document.querySelector('.input_email').value;
+        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        var firstNameInput = document.querySelector('.first_name').value;
+        var lastNameInput = document.querySelector('.last_name').value;
+    
+        if (emailInput === '') {
+            alert('이메일을 입력해주세요.');
+        } else if (!emailRegex.test(emailInput)) {
+            alert('올바른 이메일 형식을 입력해주세요.');
+        } else if(firstNameInput === '' || lastNameInput === ''){
+            alert('이름을 입력해주세요')
+        }else{
+             alert('예약이 완료되었습니다');
+            return true;
+        }
+    }
+
+    function confirmCancel() {
+        if (confirm('예약을 취소하시겠습니까?')) {
+           
+            window.location.href = '';//숙소 상세 페이지로 이동
+        } else {
+            return;
+        }
+    }
+
+</script>
+    
+</html>

@@ -46,3 +46,4 @@ class TripPlan(models.Model):
         if self.selected_activity:
             total_cost += self.selected_activity.price
         return total_cost
+# Create your models here.

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .lodg_res_page{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lodg_res_content{
+            width: 1000px;
+        }
+
+        .page_title{
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title{
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .content_title{
+            font-size: 24px;    
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .table, .product_table, .res_table, .guest_table {
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid grey;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            height: 40px;
+            border: 1px solid grey;
+            padding-left: 20px;
+        }
+
+        .room_name, .gender{
+            margin: 0;
+            padding: 0;
+            width: 150px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .eng_name{
+            text-align: center;
+        }
+
+        th{
+            height: 40px;
+            width: 150px;
+            border: 1px solid grey;
+            font-size: 21px;
+            background-color: #D9D9D9;
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        td{
+            height: 40px;
+            width: 500px; 
+            border: 1px solid grey;
+            padding-left: 20px;
+            font-size: 21px;
+        }
+
+        .product, .reservation{
+            margin-bottom: 50px;
+        }
+
+        .price{
+            color: red;
+            font-weight: bold;
+            font-size: 22px;
+            margin-left: 100px;
+        }
+
+        .input_email{
+            width: 300px;
+            height: 20px;
+            font-size: 21px;
+        }
+
+        .input_require{
+            width: 300px;
+            height: 100px;
+            font-size: 21px;
+        }
+
+        .traveler_add{
+            border: none;
+            float: right;
+            background-color: #2295ff;
+            text-align: center;
+            color: white;
+            width: 120px;
+            height: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .traveler_info_in{
+            border: 1px solid gray;
+            background-color: #D9D9D9;
+            display: flex;
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
+
+        .dropdown_menu{
+            background-color: white;
+            border: 1px solid black;
+            width: 60px;
+            text-align: center;
+            font-size: 19px;
+            margin: 5px;
+        }
+
+        .input_text{
+            width: 250px;
+            height: 20px;
+            font-size: 18px;
+        }
+
+        .price_content{
+            border: 1px solid black;
+            display: flex;
+            font-size: 20px;
+            height: 150px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn{
+            display: flex;
+            justify-content: center;
+        }
+
+        .res_btn, .cancel_btn{
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            width: 180px;
+            height: 40px;
+            font-size: 22px;
+            margin: 50px 10px 0px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lodg_res_page">
+        <div class="lodg_res_content">
+            <div class="page_title">
+                <p class="title">패키지 예약하기</p>
+                <p class="caution">예약자 정보를 정확히 입력해주시고, 약관 및 주의사항 확인해주시기 바랍니다.</p>
+            </div>
+
+            <div class="page_content">
+                <div class="product">
+                    <p class="content_title">상품 정보</p>
+                    <table class="product_table">
+                        <tr>
+                            <th>상품명</th>
+                            <td>제주도 경관투어</td>
+                        </tr>
+
+                        <tr>
+                            <th>상품 코드</th>
+                            <td>Jeju123-1234</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>여행 기간</th>
+                            <td><p>시작 : 김포 공항 2024.05.20(월)</p><p>마무리 : 김포 공항 2024.05.25(토)</p></td>
+                        </tr>
+
+                        <tr>
+                            <th>상품 가격</th>
+                            <td>1,000,000원(총 2명)</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="reservation">
+                    <p class="content_title">예약자 정보</p>
+                    <table class="res_table">
+                        <tr>
+                            <th>이름</th>
+                            <td>이승혁</td>
+                        </tr>
+
+                        <tr>
+                            <th>생년월일/성별</th>
+                            <td>2003.11.09/남</td>
+                        </tr>
+
+                        <tr>
+                            <th>전화번호</th>
+                            <td>010-1234-5678</td>
+                        </tr>
+
+                        <tr>
+                            <th>이메일</th>
+                            <td><input type="email" class="input_email"></td>
+                        </tr>
+
+                        <tr>
+                            <th>요청사항</th>
+                            <td><input type="text" class="input_require" placeholder="요청사항을 적어주세요"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="traveler_info">
+        <p class="content_title">여행자 정보</p>
+        <hr>
+        <button class="traveler_add">여행자 추가</button><br><br>
+        <div class="traveler_info_in" id="copy0">
+            <div class="dropdown_menu">
+                <p class="dropdown_item">성인</p><hr>
+                <p class="dropdown_item">학생</p><hr>
+                <p class="dropdown_item">아동</p>
+            </div>
+            <p>이름 : <input type="text" class="input_text"></p>&nbsp &nbsp
+            <p>성별 : <input type="radio" name="gender" class="gender_male">남 <input type="radio" name="gender" class="gender_female"> 여</p>&nbsp &nbsp
+            <p>전화번호 : <input type="tel" name="phone_num" class="input_text"></p>&nbsp &nbsp &nbsp &nbsp
+            <p class="icon"c>X</p>
+        </div>
+    </div>
+
+                <div class="totla_price">
+                    <p class="content_title">총 결제 예상금액</p>
+                    <div class="price_content">
+                        <div class="traceler_cnt">
+                            <p>성인 : 500,000 X 2명</p>
+                            <p>학생 : 0 X 0명</p>
+                            <p>아동 : 0 X 0명</p>
+                        </div>
+                        <p class="price">1,000,000원</p>
+                    </div>
+                </div>
+                <div class="btn">
+                    <button class="res_btn">예약하기</button>
+                    <button class="cancel_btn">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let copyNum = 1; // 시작 번호 설정
+
+    document.querySelector('.traveler_add').addEventListener('click', function() {
+        var original = document.getElementById('copy0'); // 초기 요소 선택
+        var clone = original.cloneNode(true); // 깊은 복사 실행
+        clone.id = 'copy' + copyNum++; // 새로운 아이디 할당
+        original.parentNode.appendChild(clone); // 클론 추가
+
+        // 클론의 삭제 버튼(아이콘)에 이벤트 리스너 추가
+        addDeleteListener(clone);
+    });
+
+    function addDeleteListener(clone) {
+        // clone 내부에서 클래스가 'icon'인 요소를 찾아 리스너를 추가
+        clone.querySelector('.icon').addEventListener('click', function() {
+            // 이벤트가 발생한 요소의 부모 노드(여기서는 div.traveler_info_in)를 삭제
+            clone.parentNode.removeChild(clone);
+        });
+    }
+</script>
+
+    
+</html>
