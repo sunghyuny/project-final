@@ -235,40 +235,62 @@
                     <p>서귀포시, 제주도</p>
                  </div>
              </div>
-
-             <div class='local_map'>
-                <div id="map"></div>
-             </div>
+             <div class='local_map'id="map"></div>
+             <form id="locationForm" method="post" action="{% url 'location' %}">
+                {% csrf_token %}
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+                <input type="submit" value="이 위치 저장" style="display:none;" id="submitLocation">
+            </form>
+             
 
              <div class='local_info'>
                 <p class="jeju_info">한국의 섬 중에서 가장 크고 인구가 많은 한라산체로 이루어진 섬이다. 화산에 의해 형성된 섬으로 해안선이 비교적으로 단순하고 화산 활동의 영향으로 일부 모래사장을 제외하면 모두 바위 해안으로 이루어져있다.</p>
              </div>
         </div>
+        
         <a href="/planner/plan2/"><button class='next_btn'>다음</button></a>
     </div>
 </body>
 <script>
-    var mapOptions = {
-        center: new naver.maps.LatLng(37.497952, 127.027619),
-        zoom: 10.4
-    };
+    var map = new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(35.17944, 129.07556),
+        zoom: 10
+    });
 
-    var map = new naver.maps.Map('map', mapOptions);
+    naver.maps.Event.addListener(map, 'click', function(e) {
+        document.getElementById('latitude').value = e.coord.y;
+        document.getElementById('longitude').value = e.coord.x;
+    });
 
     document.querySelector('.jeju_info').style.display = 'none';
 
     document.getElementById('Jeju').addEventListener('click', function() {
-        var jejuLatLng = new naver.maps.LatLng(33.3846216, 126.5534925);
-        map.setCenter(jejuLatLng);
+    var jejuLatLng = new naver.maps.LatLng(33.3846216, 126.5534925);
+    map.setCenter(jejuLatLng);
+    document.querySelector('.jeju_info').style.display = 'block';
 
-        document.querySelector('.jeju_info').style.display = 'block';
-    });
+    // 폼에 위도와 경도 설정
+    document.getElementById('latitude').value = jejuLatLng.lat();
+    document.getElementById('longitude').value = jejuLatLng.lng();
 
-     document.getElementById('jejusi').addEventListener('click', function() {
-        var jejusiLatLng = new naver.maps.LatLng(33.4996213, 126.5311884);
-        map.setCenter(jejusiLatLng);
-        map.setZoom(11);
-     });
+    // 폼 제출
+    document.getElementById('submitLocation').click();
+});
+
+document.getElementById('jejusi').addEventListener('click', function() {
+    var jejusiLatLng = new naver.maps.LatLng(33.4996213, 126.5311884);
+    map.setCenter(jejusiLatLng);
+    map.setZoom(11);
+
+    // 폼에 위도와 경도 설정
+    document.getElementById('latitude').value = jejusiLatLng.lat();
+    document.getElementById('longitude').value = jejusiLatLng.lng();
+
+    // 폼 제출
+    document.getElementById('submitLocation').click();
+});
+
 
      document.addEventListener("DOMContentLoaded", function() {
         var cityList = document.querySelector('.city_list');

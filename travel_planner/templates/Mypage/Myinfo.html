@@ -118,6 +118,9 @@
             width: 100%;
             margin: 5px 0;
         }
+        #showPlans{
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -128,7 +131,7 @@
                 <ul class="content_list">
                     <li id="showMyInfo">내 정보</li><hr>
                     <li id="showLikes">좋아요</li><hr>
-                    <li id="showPlans">계획</li><hr>
+                    <li id="showPlans"><a href="/Accounts/userplan/">계획</a></li><hr>
                     <li id="showReservations">예약</li><hr>
                     <li id="showFriends">친구</li><hr>
                     <li id="showPosts">게시물</li>
@@ -145,7 +148,7 @@
                         <table class="infomation">
                             <tr>
                                 <th>아이디</th>
-                                <td>maxlsjsj@naver.com</td>
+                                <td>{{ user.email }}</td>
                             </tr>
 
                             <tr>
@@ -155,17 +158,17 @@
 
                             <tr>
                                 <th>이름</th>
-                                <td>이승혁</td>
+                                <td>{{ user.username }}</td>
                             </tr>
 
                             <tr>
                                 <th>생년월일/성별</th>
-                                <td>03.11.09/남</td>
+                                <td>03.11.09/{{ user.gender }}</td>
                             </tr>
 
                             <tr>
                                 <th>MBTI</th>
-                                <td><input type="text" placeholder="ESTP"><button>변경</button></td>
+                                <td><input type="text" placeholder="{{ user.mbti }}"><button>변경</button></td>
                             </tr>
                         </table>
 

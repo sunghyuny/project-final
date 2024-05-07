@@ -1,5 +1,7 @@
 # views.py
+from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse,HttpRequest
 from django.shortcuts import render, redirect
 from .models import *
@@ -28,47 +30,64 @@ def create_activity(request):
     return render(request, 'pages/activity_create.html')
 
 
+@login_required
 def trip_plan_form(request):
     if request.method == 'POST':
+        # 사용자가 제출한 폼 데이터 가져오기
         arrival_date = request.POST.get('arrival_date')
         adults = int(request.POST.get('adults'))
         teens = int(request.POST.get('teens'))
         children = int(request.POST.get('children'))
         total_people = adults + teens + children
 
+        # 현재 로그인한 사용자를 가져와서 TripPlan을 생성할 때 user 필드에 할당
         trip_plan = TripPlan.objects.create(
             arrival_date=arrival_date,
-            total_people=total_people
+            total_people=total_people,
+            user=request.user  # 현재 로그인한 사용자를 할당
         )
         request.session['trip_plan_id'] = trip_plan.id  # 세션에 TripPlan ID 저장
         return redirect('/planner/plan1/')
     return render(request, 'Planner/schedule.html')
 
-
 def location(request):
     trip_plan_id = request.session.get('trip_plan_id')
-    trip_plan = TripPlan.objects.get(id=trip_plan_id)
+
+    if not trip_plan_id:
+        return HttpResponse("Error: Session does not contain trip plan information")
+
+    try:
+        trip_plan = TripPlan.objects.get(id=trip_plan_id)
+    except ObjectDoesNotExist:
+        return HttpResponse("Error: Trip plan does not exist")
 
     if request.method == 'POST':
         latitude = request.POST.get('latitude')
         longitude = request.POST.get('longitude')
 
+        if not latitude or not longitude:
+            return HttpResponse("Error: Missing coordinates")
+
         naver_api_url = f"https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords={longitude},{latitude}&orders=addr&output=json"
         headers = {
-            "X-NCP-APIGW-API-KEY-ID": "your_api_key_id",
-            "X-NCP-APIGW-API-KEY": "your_api_key"
+            "X-NCP-APIGW-API-KEY-ID": "8rmgkdfw2q",
+            "X-NCP-APIGW-API-KEY": "7C5A0ZwU9zwbjb9vn5vRnB3fgBmv1rvOhuXi8F5L"
         }
         response = requests.get(naver_api_url, headers=headers)
+
         if response.status_code == 200:
             data = response.json()
-            region_name = data['results'][0]['region']['area1']['name']
-            trip_plan.destination = region_name
-            trip_plan.save()
-            return render(request, 'Planner/lodging.html', {'region_name': region_name})
+            results = data.get('results')
+            if results and len(results) > 0:
+                region_name = results[0]['region']['area1']['name']
+                trip_plan.destination = region_name
+                trip_plan.save()
+                return render(request, 'Planner/lodging.html', {'region_name': region_name})
+            else:
+                return HttpResponse("Error: Location data is incomplete or incorrect")
         else:
-            return HttpResponse("Error: Unable to fetch location data")
+            return HttpResponse(f"Error: Unable to fetch location data, status code {response.status_code}")
     return render(request, 'Planner/location.html')
-
 
 def plan2(request):
     trip_plan_id = request.session.get('trip_plan_id')

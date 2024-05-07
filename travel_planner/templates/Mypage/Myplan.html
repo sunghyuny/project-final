@@ -103,14 +103,16 @@
 
             <div class="detail_page">
                 <div class="detail">
+                    {% for plan_info in trip_plan_info %}
                     <div class="plan">
-                        <div class="plan_list" >
-                            <p class="plan_title">제주도 우정여행</p>
-                            <p class="period">기간 : 2024.05.20~2024.05.25</p>
-                            <p class="member">인원수 3명</p>
-                            <p class="save_date">저장날짜 : 2024.04.31</p>
+                        <div class="plan_list">
+                            <p class="plan_title">{{ plan_info.destination }}</p>
+                            <p class="period">{{ plan_info.period }}</p>
+                            <p class="member">{{ plan_info.member }}</p>
+                           
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

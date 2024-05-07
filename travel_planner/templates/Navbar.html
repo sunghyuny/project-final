@@ -144,7 +144,7 @@
             </div>
             {% if user.is_authenticated %}
             <div class="logout">
-              <p class="name">{{ user.username }}!</p>
+                <a href="/Accounts/mypage/"><p class="name">{{ user.username }}!</p></a>
               <a href="{% url 'Accounts:logout' %}">
                   {% csrf_token %}
                   <button type="submit" class="logout_btn">Logout</button>

@@ -389,7 +389,6 @@
 
             <p class="array">정렬 | 별점 평점 인기 가격 후기 거리</p>
 
-<<<<<<< HEAD
 <!-- Planner/lodging.html -->
 <form action="" method="post">
     {% csrf_token %}
@@ -405,30 +404,6 @@
                     <p class="lodg_price">{{ accommodation.price }}</p>
                     <input type="checkbox" name="accommodation_id"  class="lodg_check" value="{{ accommodation.id }}">
                 </label>
-=======
-            <div class="lodging_list">
-                {% if accommodations %}
-                    {% for accommodation in accommodations %}
-                    <div class="lodg">
-                    <form id="" method="post">
-                        {% csrf_token %}
-                        <img class="hotel_img" src="{{ accommodation.photo.url }}" alt="{{ accommodation.name }}"/>
-                        <input type="hidden" name="accommodation_id" value="{{ accommodation.id }}">
-                        <!-- 숙소 선택을 위한 폼 요소들을 추가합니다. -->
-                            <p class="lodg_title">{{ accommodation.name }}</p>
-                            <p class="lodg_locate">{{ accommodation.amenities }}</p>
-                            <p class="lodg_price">{{ accommodation.price }}</p>
-                            <input type="checkbox" name="region_name" class="lodg_check" value="{{ accommodation.name }}">
-     
-                    </form>
-                </div>
-                    {% endfor %}
-                    {% else %}
-                    <p>상품이 없습니다</p>
-                    {% endif %}
-
-                <a href="/planner/plan3/"><button onclick="changeButtonColor(this)" class="next_btn">다음</button></a>
->>>>>>> 118caa811f27f27ca0c66e2fd3edfc6ff0823cce
             </div>
             {% endfor %}
         {% else %}
