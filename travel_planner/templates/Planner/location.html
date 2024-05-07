@@ -213,45 +213,40 @@
             </div>
             <hr class="Circle_Line">
         </div>
-
-        <div class='contents'>
-            <p class='page_title'>여행지 선택</p>
-            <hr class="title_line">
-             <div class='locate_list'>
-                <ul>
-                    <li id="Seoul">서울</li>
-                    <li id="Gyeonggi">경기</li>
-                    <li id="Incheon">인천</li>
-                    <li id="Jeolla">전라도</li>
-                    <li id="Gyeongsang">경상도</li>
-                    <li id="Chungcheong">충청도</li>
-                    <li id="Gangwon">강원도</li>
-                    <li id="Jeju">제주도</li>
-                </ul>
-             </div>
-             <div class='city_list'>
-                 <div class="JEJU">
-                     <p id="jejusi">제주시, 제주도</p>
-                    <p>서귀포시, 제주도</p>
-                 </div>
-             </div>
-             <div class='local_map'id="map"></div>
-             <form id="locationForm" method="post" action="{% url 'location' %}">
-                {% csrf_token %}
-                <input type="hidden" name="latitude" id="latitude">
-                <input type="hidden" name="longitude" id="longitude">
-                <input type="submit" value="이 위치 저장" style="display:none;" id="submitLocation">
-            </form>
-             
-
-             <div class='local_info'>
-                <p class="jeju_info">한국의 섬 중에서 가장 크고 인구가 많은 한라산체로 이루어진 섬이다. 화산에 의해 형성된 섬으로 해안선이 비교적으로 단순하고 화산 활동의 영향으로 일부 모래사장을 제외하면 모두 바위 해안으로 이루어져있다.</p>
-             </div>
-        </div>
-        
-        <a href="/planner/plan2/"><button class='next_btn'>다음</button></a>
+<div class='contents'>
+    <p class='page_title'>여행지 선택</p>
+    <hr class="title_line">
+    <div class='locate_list'>
+        <ul>
+            <li id="Seoul">서울</li>
+            <li id="Gyeonggi">경기</li>
+            <li id="Incheon">인천</li>
+            <li id="Jeolla">전라도</li>
+            <li id="Gyeongsang">경상도</li>
+            <li id="Chungcheong">충청도</li>
+            <li id="Gangwon">강원도</li>
+            <li id="Jeju">제주도</li>
+        </ul>
     </div>
-</body>
+    <div class='city_list'>
+        <div class="JEJU">
+            <p id="jejusi">제주시, 제주도</p>
+            <p>서귀포시, 제주도</p>
+        </div>
+    </div>
+    <div class='local_map' id="map"></div>
+    <form id="locationForm" method="post" action="{% url 'location' %}">
+        {% csrf_token %}
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+        <input type="text" name="destination" id="destination" placeholder="목적지를 입력하세요" style="display:none;">
+        <input type="submit" value="이 위치 저장" style="display:none;" id="submitLocation">
+    </form>
+    <div class='local_info'>
+        <p class="jeju_info">한국의 섬 중에서 가장 크고 인구가 많은 한라산체로 이루어진 섬이다. 화산에 의해 형성된 섬으로 해안선이 비교적으로 단순하고 화산 활동의 영향으로 일부 모래사장을 제외하면 모두 바위 해안으로 이루어져있다.</p>
+    </div>
+</div>
+<a href="/planner/plan2/"><button class='next_btn'>다음</button></a>
 <script>
     var map = new naver.maps.Map('map', {
         center: new naver.maps.LatLng(35.17944, 129.07556),
@@ -266,33 +261,32 @@
     document.querySelector('.jeju_info').style.display = 'none';
 
     document.getElementById('Jeju').addEventListener('click', function() {
-    var jejuLatLng = new naver.maps.LatLng(33.3846216, 126.5534925);
-    map.setCenter(jejuLatLng);
-    document.querySelector('.jeju_info').style.display = 'block';
+        var jejuLatLng = new naver.maps.LatLng(33.3846216, 126.5534925);
+        map.setCenter(jejuLatLng);
+        document.querySelector('.jeju_info').style.display = 'block';
 
-    // 폼에 위도와 경도 설정
-    document.getElementById('latitude').value = jejuLatLng.lat();
-    document.getElementById('longitude').value = jejuLatLng.lng();
+        // 폼에 위도와 경도 설정
+        document.getElementById('latitude').value = jejuLatLng.lat();
+        document.getElementById('longitude').value = jejuLatLng.lng();
 
-    // 폼 제출
-    document.getElementById('submitLocation').click();
-});
+        // 목적지 입력 필드 표시
+        document.getElementById('destination').style.display = 'inline';
+    });
 
-document.getElementById('jejusi').addEventListener('click', function() {
-    var jejusiLatLng = new naver.maps.LatLng(33.4996213, 126.5311884);
-    map.setCenter(jejusiLatLng);
-    map.setZoom(11);
+    document.getElementById('jejusi').addEventListener('click', function() {
+        var jejusiLatLng = new naver.maps.LatLng(33.4996213, 126.5311884);
+        map.setCenter(jejusiLatLng);
+        map.setZoom(11);
 
-    // 폼에 위도와 경도 설정
-    document.getElementById('latitude').value = jejusiLatLng.lat();
-    document.getElementById('longitude').value = jejusiLatLng.lng();
+        // 폼에 위도와 경도 설정
+        document.getElementById('latitude').value = jejusiLatLng.lat();
+        document.getElementById('longitude').value = jejusiLatLng.lng();
 
-    // 폼 제출
-    document.getElementById('submitLocation').click();
-});
+        // 목적지 입력 필드 표시
+        document.getElementById('destination').style.display = 'inline';
+    });
 
-
-     document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
         var cityList = document.querySelector('.city_list');
         var cityListContents = document.querySelector('.JEJU');
         cityListContents.style.display = 'none'; // 페이지 로딩 시에 city_list의 내용 숨기기
@@ -302,7 +296,82 @@ document.getElementById('jejusi').addEventListener('click', function() {
             cityListContents.style.display = 'none'; // 모든 city_list의 내용 숨기기
             jejuCityList.style.display = 'block'; // 클릭한 지역에 해당하는 city_list의 내용 보이기
         });
-    });
 
+        // locate_list의 각 항목 클릭 시 지도 이동 및 텍스트 필드에 추가
+        var locateItems = document.querySelectorAll('.locate_list li');
+        locateItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var location = item.textContent;
+                var destinationInput = document.getElementById('destination');
+                var latitudeInput = document.getElementById('latitude');
+                var longitudeInput = document.getElementById('longitude');
+                var submitButton = document.getElementById('submitLocation');
+
+                // 목적지 입력
+                destinationInput.value = location;
+
+                // 항목에 따라 위도와 경도 설정
+                switch(location) {
+                    case '서울':
+                        var seoulLatLng = new naver.maps.LatLng(37.5665, 126.9780);
+                        map.setCenter(seoulLatLng);
+                        latitudeInput.value = seoulLatLng.lat();
+                        longitudeInput.value = seoulLatLng.lng();
+                        break;
+                    case '경기':
+                        var gyeonggiLatLng = new naver.maps.LatLng(37.4138, 127.5183);
+                        map.setCenter(gyeonggiLatLng);
+                        latitudeInput.value = gyeonggiLatLng.lat();
+                        longitudeInput.value = gyeonggiLatLng.lng();
+                        break;
+                    case '인천':
+                        var incheonLatLng = new naver.maps.LatLng(37.4563, 126.7052);
+                        map.setCenter(incheonLatLng);
+                        latitudeInput.value = incheonLatLng.lat();
+                        longitudeInput.value = incheonLatLng.lng();
+                        break;
+                    case '전라도':
+                        var jeollaLatLng = new naver.maps.LatLng(35.7167, 127.1442);
+                        map.setCenter(jeollaLatLng);
+                        latitudeInput.value = jeollaLatLng.lat();
+                        longitudeInput.value = jeollaLatLng.lng();
+                        break;
+                    case '경상도':
+                        var gyeongsangLatLng = new naver.maps.LatLng(36.3504, 127.3845);
+                        map.setCenter(gyeongsangLatLng);
+                        latitudeInput.value = gyeongsangLatLng.lat();
+                        longitudeInput.value = gyeongsangLatLng.lng();
+                        break;
+                    case '충청도':
+                        var chungcheongLatLng = new naver.maps.LatLng(36.8000, 127.7000);
+                        map.setCenter(chungcheongLatLng);
+                        latitudeInput.value = chungcheongLatLng.lat();
+                        longitudeInput.value = chungcheongLatLng.lng();
+                        break;
+                    case '강원도':
+                        var gangwonLatLng = new naver.maps.LatLng(37.8228, 128.1555);
+                        map.setCenter(gangwonLatLng);
+                        latitudeInput.value = gangwonLatLng.lat();
+                        longitudeInput.value = gangwonLatLng.lng();
+                        break;
+                    case '제주도':
+                        var jejuLatLng = new naver.maps.LatLng(33.3617, 126.5292);
+                        map.setCenter(jejuLatLng);
+                        latitudeInput.value = jejuLatLng.lat();
+                        longitudeInput.value = jejuLatLng.lng();
+                        break;
+                    default:
+                        break;
+                }
+document.querySelector('.next_btn').addEventListener('click', function(event) {
+    event.preventDefault(); // 기본 제출 동작 막기
+    document.getElementById('submitLocation').click(); // 폼 제출
+});
+            });
+        });
+    });
 </script>
+
+    </div>
+</body>
 </html>

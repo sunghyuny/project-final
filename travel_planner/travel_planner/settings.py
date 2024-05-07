@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'planner',
     'thesights',
     'hotel',
+    'travel'
 
 ]
 

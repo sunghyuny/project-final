@@ -50,45 +50,32 @@ def trip_plan_form(request):
         return redirect('/planner/plan1/')
     return render(request, 'Planner/schedule.html')
 
+
 def location(request):
+    # 세션에서 여행 계획 ID 가져오기
     trip_plan_id = request.session.get('trip_plan_id')
 
     if not trip_plan_id:
         return HttpResponse("Error: Session does not contain trip plan information")
 
     try:
+        # 세션에 저장된 여행 계획 ID를 사용하여 해당 여행 계획 가져오기
         trip_plan = TripPlan.objects.get(id=trip_plan_id)
-    except ObjectDoesNotExist:
+    except TripPlan.DoesNotExist:
         return HttpResponse("Error: Trip plan does not exist")
 
     if request.method == 'POST':
-        latitude = request.POST.get('latitude')
-        longitude = request.POST.get('longitude')
+        destination = request.POST.get('destination')
+        if not destination:
+            return HttpResponse("Error: Missing destination")
 
-        if not latitude or not longitude:
-            return HttpResponse("Error: Missing coordinates")
+        # 여행 계획의 목적지 필드에 입력된 목적지 저장
+        trip_plan.destination = destination
+        trip_plan.save()
 
-        naver_api_url = f"https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords={longitude},{latitude}&orders=addr&output=json"
-        headers = {
-            "X-NCP-APIGW-API-KEY-ID": "8rmgkdfw2q",
-            "X-NCP-APIGW-API-KEY": "7C5A0ZwU9zwbjb9vn5vRnB3fgBmv1rvOhuXi8F5L"
-        }
-        response = requests.get(naver_api_url, headers=headers)
+        return redirect('/planner/plan2/')  # 다음 페이지 URL로 변경하세요.
 
-        if response.status_code == 200:
-            data = response.json()
-            results = data.get('results')
-            if results and len(results) > 0:
-                region_name = results[0]['region']['area1']['name']
-                trip_plan.destination = region_name
-                trip_plan.save()
-                return render(request, 'Planner/lodging.html', {'region_name': region_name})
-            else:
-                return HttpResponse("Error: Location data is incomplete or incorrect")
-        else:
-            return HttpResponse(f"Error: Unable to fetch location data, status code {response.status_code}")
     return render(request, 'Planner/location.html')
-
 def plan2(request):
     trip_plan_id = request.session.get('trip_plan_id')
     trip_plan = TripPlan.objects.get(id=trip_plan_id)
