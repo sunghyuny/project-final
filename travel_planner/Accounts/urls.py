@@ -23,7 +23,8 @@ urlpatterns =[
     path('login/', user_login, name='login'),
     path('logout/', logout_view, name='logout'),
     path('mypage/', my_page, name='mypage'),
-    path('userplan/', user_plan, name='plan')
+    path('userplan/', user_plan, name='plan'),
+    path('userplan/<int:user_plan_id>/', userplan_detail, name='plan_detail'),
 ]
 
 

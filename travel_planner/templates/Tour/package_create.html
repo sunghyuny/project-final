@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Package</title>
+</head>
+<body>
+    <h1>Create a new travel package</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="destination" placeholder="Destination" required><br>
+        <input type="date" name="start_date" required><br>
+        <input type="date" name="end_date" required><br>
+        <input type="text" name="price" placeholder="Price" required><br>
+        <input type="file" name="image" accept="image/*" required><br>  <!-- 이미지 업로드 필드 추가 -->
+        <button type="submit">Create Package</button>
+    </form>
+</body>
+</html>

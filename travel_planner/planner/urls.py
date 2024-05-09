@@ -9,6 +9,6 @@ path('', trip_plan_form, name='planer_create'),
     path('plan1/',location, name='location'),
     path('plan2/',plan2, name='lodging'),
     path('plan3/', plan3, name='Activity'),
-    path('plan4/', plan4, name='summary')
+    path('plan4/', plan4, name='summary'),
 
 ]

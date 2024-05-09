@@ -471,13 +471,15 @@
             <div class="inland_content">
                 <div class="sights_list">
                     <p class="list_title">추천 패키지 여행</p>
-                    <div class="recommend_papckage">
-                        <div class="recommend_package_img">
-                            <img src="/image/설악산.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
-                        </div>
-                        <p class="package_text">패키지</p>
-                        <p class="sights_name">[섬섬투어] 제주 3일 #우도관광 #마라도/가파도 #식사ALL포함</p>
-                    </div>
+{% for Package in packages %}
+    <div class="recommend_papckage">
+        <div class="recommend_package_img">
+            <img src="{{ Package.image.url }}" alt="{{ Package.destination }}" class="package_picture"></img>
+        </div>
+        <p class="package_text">패키지</p>
+        <p class="sights_name">[섬섬투어] {{ Package.destination }} #여행지 #추천</p>
+    </div>
+{% endfor %}
 
                     <div class="recommend_papckage">
                         <div class="recommend_package_img">

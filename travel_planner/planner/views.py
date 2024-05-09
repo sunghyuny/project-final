@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse,HttpRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from hotel.models import *
 from thesights.models import *
@@ -118,3 +118,4 @@ def plan4(request):
         'selected_accommodation': selected_accommodation,
         'selected_activity': selected_activity
     })
+
