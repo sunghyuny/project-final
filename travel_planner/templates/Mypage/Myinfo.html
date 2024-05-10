@@ -131,7 +131,7 @@
             <div class="page_content">
                 <p>항목</p>
                 <ul class="content_list">
-                    <li id="showMyInfo">내 정보</li><hr>
+                    <li id="showMyInfo"><a href="/Accounts/mypage/" class="plan_link">내 정보</a></li><hr>
                     <li id="showLikes">좋아요</li><hr>
                     <li id="showPlans"><a href="/Accounts/userplan/" class="plan_link">계획</a></li><hr>
                     <li id="showReservations">예약</li><hr>
@@ -165,7 +165,7 @@
 
                             <tr>
                                 <th>생년월일/성별</th>
-                                <td>03.11.09/{{ user.gender }}</td>
+                                <td>{{user.age }}/{{ user.gender }}</td>
                             </tr>
 
                             <tr>

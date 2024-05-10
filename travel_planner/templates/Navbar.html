@@ -48,11 +48,7 @@
             justify-content: center;
             overflow-x: hidden;
             margin: 0 auto;
-<<<<<<< HEAD
-            width: 1090px;
-=======
             width: 1200px;
->>>>>>> main
         }
 
         .nav_container2 {
@@ -63,11 +59,7 @@
         .logout {
             width: auto;
             text-align: right;
-<<<<<<< HEAD
-            display: inline-block;
-=======
             display: flex;
->>>>>>> main
             justify-content: flex-end;
             margin-right: 30px;
         }
@@ -109,10 +101,7 @@
             list-style-type: none;
             padding: 0;
             display: inline-block;
-<<<<<<< HEAD
-            margin: 0px 0px 0px 40px;
-=======
->>>>>>> main
+
         }
 
         .nav_li {
@@ -132,34 +121,8 @@
         }
 
         .user_name {
-<<<<<<< HEAD
-            margin: 0px 10px 0px 30px;
-            color: white;
-            display: inline-block;
-        }
-
-        ul.nav_ul li {
-          display: inline-block;
-          margin-left: 10px;
-          margin-right: 10px;
-          padding: 5px 10px;
-        }
-
-        ul.nav_ul li:first-child {
-          margin-left: 0;
-        }
-
-        ul.nav_ul li:last-child {
-          margin-right: 0;
-        }
-
-        .menu_list{
-            display: flex;
-            flex-direction: column;
-=======
             margin-right: 10px; /* 이름과 로그아웃 버튼 사이 간격 */
             color: white; /* 텍스트 색상 */
->>>>>>> main
         }
     </style>
 </head>
@@ -173,7 +136,7 @@
             <div class="nav_container2">
                 <ul class="nav_ul">
                     <li class="nav_li" id="whole_menu">전체 메뉴</li>
-                    <li class="nav_li">여행</li>
+                    <li class="nav_li"><a href="/travel/" class="menu_link">여행</a></li>
                     <li class="nav_li"><a href="/planner/" class="menu_link">여행 계획</a></li>
                     <li class="nav_li"><a href="/hotel/" class="menu_link">숙박</a></li>
                     <li class="nav_li"><a href="/thesights/" class="menu_link">관광지</a></li>
@@ -182,11 +145,7 @@
                 </ul>
                 {% if user.is_authenticated %}
             <div class="logout">
-<<<<<<< HEAD
                <a href="/Accounts/mypage/"><p class="user_name">{{ user.username }}!</p></a>
-=======
-              <p class="user_name">{{ user.username }}!</p>
->>>>>>> main
               <a class="logout_click" href="{% url 'Accounts:logout' %}">
                   {% csrf_token %}
                   <button type="submit" class="logout_btn">Logout</button>

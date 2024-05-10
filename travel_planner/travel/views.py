@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from travel.models import Package
+from travel.models import *
 
 
 # Create your views here.
