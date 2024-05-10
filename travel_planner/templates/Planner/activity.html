@@ -47,11 +47,11 @@
             z-index: 2;
         }
 
-        .Fill_Circle>p {
+        .Fill_Circle2>p {
             margin-top: 35px;
         }
 
-        .Fill_Circle>a{
+        .Fill_Circle2>a{
             text-decoration: none;
             color: white;
         }
@@ -86,7 +86,7 @@
         }
 
         .Fill_Circle2> a> p {
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .Circle> a> p {
@@ -124,7 +124,7 @@
         .filter_butitle {
             font-size: 16px;
             font-weight: bold;
-        } /*선택 필터*/
+        }
 
         .locate_list{
             width: 1080px;
@@ -163,7 +163,7 @@
         .select_location {
             margin-top: 20px;
             margin-left: 50px;
-            margin-bottom: 20px;
+            margin-bottom: 100px;
             font-size: 21px;
             font-weight: bold;
         }
@@ -171,6 +171,10 @@
         .activity_menu {
             margin-top: -50px;
             margin-left: 470px;
+        }
+
+        .menu_list{
+            display:inline-block;
         }
 
         .menu_list>li{
@@ -183,15 +187,16 @@
             padding-left: 35px;
             padding-right: 35px;
             margin-right: 2rem;
-            margin-top:3rem;
-            margin-bottom:10px;
+            margin-top:60px;
+            margin-bottom:20px;
+            width:35px;
         }
 
         .activity {
-            display: inline-block; /* 각 div를 인라인 요소처럼 배치합니다. */
-            width: 770px; /* 각 div의 너비를 설정합니다. */
-            height: 250px; /* 각 div의 높이를 설정합니다. */
-            margin-right: 10px; /* 각 div 사이의 간격을 설정합니다. */
+            display: inline-block;
+            width: 770px;
+            height: 200px;
+            margin-right: 10px;
             border: 1px solid #d7d7db;
             padding: 16px;
             margin-left: 90px;
@@ -202,8 +207,8 @@
         .act_title {
             font-size: 21px;
             font-weight: bold;
-            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
-            margin: 0 ; /* 좌우 여백을 설정합니다. */
+            display: inline-block;
+            margin: 0 ;
             margin-top: 10px;
          }
 
@@ -218,8 +223,9 @@
             width: 400px;
             height: 200px;
             float: left;
-            margin: 15px;
+            margin: 0px 10px 15px 0px;
             border-radius: 4px;
+            display: flex;
         }
 
         .act_mainmenu {
@@ -265,7 +271,7 @@
 <body>
     <div>
         <div class="progress">
-            <div class='Fill_Circle'>
+            <div class='Fill_Circle2'>
                 <a href="/planner/"><p>기간/<br>인원</p></a>
             </div>
             <div class='Fill_Circle2'>
@@ -318,7 +324,7 @@
         {% if activities %}
             {% for activity in activities %}
             <div class="activity">
-                <img src="{{ activity.photo.url }}" alt="{{ activity.name }}"/>
+                <img class="act_img" src="{{ activity.photo.url }}" alt="{{ activity.name }}"/>
                 <input type="hidden" id="activity_{{ activity.id }}" name="selected_activity_id" value="{{ activity.id }}">
                 <label for="activity_{{ activity.id }}" class="activity_label">
                     <p class="activity_title">{{ activity.name }}</p>

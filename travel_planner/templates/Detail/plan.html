@@ -1,122 +1,311 @@
 <!DOCTYPE html>
-{% include 'Navbar.html'%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>계획상세</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        .mypage{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .mypage_content{
-            border: 1px solid;
-            justify-content: center;
-            width: 86rem;
-            height: 680px;
-            margin-top: 50px;
-        }
-
-        .page_content{
-            float: left;
-            margin-right: 60px;
-            width: 300px;
-            text-align: center;
-            font-size: 16px;
-        }
-        .content_list{
-            border: 1px solid;
-            width: 200px;
-            text-align: left;
-            font-size: 16px;
-            list-style: none;
-            margin-left: 50px;
-            margin-top: 20px;
-        }
-
-        .content_list>li{
-            margin: 25px 0px 25px 70px;
-        }
-
-        .content_list>hr{
-            margin: 0;
-            padding: 0;
-        }
-
-        .content_name{
-            font-size: 26px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .detail_page{
-            display: inline-block;
-            width: 900px;
-            height: 500px;
-        }
-    </style>
+    <title>Document</title>
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .package_re {
+        align-items: center;
+            justify-content: center;
+            width: 1193px;
+            overflow-x: hidden;
+            margin: 0 auto;
+    }
+
+    .package_re_cont {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    .package_re .main {
+        display: flex;
+        position: relative;
+        padding: 0;
+        margin-bottom: 30px;
+
+    }
+
+    .main_img {
+        width: 730px;
+        height: 300px;
+        border-radius: 4px;
+    }
+
+    .package_re .main_info {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        width: 410px;
+        margin-left: 20px;
+    }
+
+    .main_info .info_tag {
+        font-size: 16px;
+        color: #8F8F8F;
+        margin-top: 10px;
+    }
+
+    .main_info .info_star {
+        font-size: 16px;
+        color: #2295FF;
+    }
+
+    .pak_price, .pak_won {
+        font-size: 24px;
+    }
+
+    .pak_price {
+        font-weight: bold;
+    }
+
+    h3 {
+        margin-top: 30px;
+    }
+
+    .trip_info {
+        width: 620px;
+        background-color: #f6f6f6;
+        margin-top: 10px;
+        padding: 40px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        overflow-y: hidden;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .info_div {
+        margin-bottom: 10px;
+    }
+
+    .trip_info_gray {
+        color: #8F8F8F;
+        margin-right: 10px;
+        font-weight: 500;
+    }
+
+    .trip_info_bla {
+        font-weight: 500;
+    }
+
+    table{
+        border-collapse : collapse;
+        width: 700px;
+        float: left;
+        border-radius: 4px;
+    }  /*이중선 제거*/
+    th,td{
+      height: 50px;
+      text-align: center;
+      border: 1px solid #000;
+
+      vertical-align: top;   /* 위 */
+      vertical-align: bottom;   /* 아래 */
+      vertical-align: middle;   /* 가운데 */
+    }
+
+    .trip_left {
+        float: left;
+    }
+
+    .trip_right {
+        float: right;
+        margin-left: 40px;
+    }
+
+    .trip_person {
+        margin-top: 10px;
+        border: 1px solid #d7d7db;
+        padding: 30px;
+        width: 320px;
+        overflow-y: hidden;
+    }
+
+    h4 {
+        margin-bottom: 20px;
+    }
+
+    .person_div {
+        margin-bottom: 30px;
+    }
+
+    .value {
+        font-size: 16px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .value2 {
+        font-size: 21px;
+        font-weight: bolder;
+        margin-left: 210px;
+        margin-bottom: -23px;
+    }
+
+    .value3 {
+        float: right;
+    }
+
+    .per_button {
+        background-color: white;
+        border-color: #d7d7db;
+        font-size: 16px;
+        padding: 3px 8px;
+        cursor: pointer;
+    }
+
+    .per_button2 {
+        background-color: white;
+        border-color: #d7d7db;
+        font-size: 16px;
+        padding: 3px 8px;
+        cursor: pointer;
+        margin-left: 15px;
+    }
+
+    .person_select {
+        margin-right: 180px;
+    }
+
+    .pack_buy {
+        background-color: #2295FF;
+        width: 360px;
+        height: 46px;
+        font-size: 16px;
+        border: none;
+        align-content: center;
+        color: white;
+        border-radius: 4px;
+        margin-top: 10px;
+        padding: 5px 10px;
+        text-align: center;
+    }
+</style>
 <body>
-    <div class="mypage">
-        <div class="mypage_content">
-            <div class="page_content">
-                <p>항목</p>
-                <ul class="content_list">
-                    <li id="showMyInfo">내 정보</li><hr>
-                    <li id="showLikes">좋아요</li><hr>
-                    <li id="showPlans">계획</li><hr>
-                    <li id="showReservations">예약</li><hr>
-                    <li id="showFriends">친구</li><hr>
-                    <li id="showPosts">게시물</li>
-                </ul>
-            </div>
-
-            <div class="content_name">
-                <p>마이페이지>계획상세</p>
-            </div>
-
-            <div class="detail_page">
-                <div class="detail">    
-                    <div class="plan_detail">
-                        <div class="plan_list">
-<div class="member">
-    <h2>여행 인원</h2>
-    <p>인원: {{ user_plan.total_people }}</p>
-</div>
-
-<div class="location">
-    <h2>여행 지역</h2>
-    <p>{{ user_plan.destination }}</p>
-</div>
-
-<div class="lodg">
-    <h2>숙소</h2>
-    <p>{{ user_plan.selected_accommodation }}</p>
-    <img src="{{ user_plan.selected_accommodation.photo.url }}" alt="{{ user_plan.selected_accommodation_name }}">
-</div>
-
-<div class="activity">
-    <h2>활동</h2>
-    <p>{{ user_plan.selected_activity }}</p>
-    <img src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
-</div>
-
-<div class="price">
-    <h2>가격</h2>
-
-</div>
+    <section class="package_re">
+        <div class="package_re_cont">
+            <article class="main">
+                <img src="" class="main_img" alt="패키지 메인 이미지">
+                <div class="main_info">
+                    <h2>[김포출발] 노팁노옵션 제주도/마라도/우도 삼도투어 2박3일</h2>
+                    <p class="info_tag">#관광 #2박3일 #가족여행</p>
+                    <p class="info_star">★★★★☆</p>
+                    <div class="pak_price_div">
+                        <span class="pak_price">368,503</span><span class="pak_won">원~</span>
+                    </div>
+                </div>
+            </article>
+            <hr>
+            <h3>여행 정보</h3>
+            <div class="trip_main">
+                <div class="trip_left">
+                    <div class="trip_info">
+                        <div class="info_div">
+                            <span class="trip_info_gray">일정</span><span class="trip_info_bla">2박3일</span><br>
                         </div>
+                        <div class="info_div">
+                            <span class="trip_info_gray">출발</span><span class="trip_info_bla">2024. 05. 20(월) 17:30</span><br>
+                        </div>
+                        <div class="info_div">
+                            <span class="trip_info_gray">도착</span><span class="trip_info_bla">2024. 05. 24(목) 06:00</span>
+                        </div>
+                    </div>
+                    <table>
+                        <tr>
+                          <th scope="col">구분</td>
+                          <th scope="col">성인</td>
+                          <th scope="col">청소년</td>
+                            <th scope="col">어린이</td>
+                        </tr>
+                        <tr>
+                          <td>가격</td>
+                          <td>500,000원</td>
+                          <td>300,000원</td>
+                          <td>100,000원</td>
+                        </tr>
+                      </table>
+                </div>
+                <div class="trip_right">
+                    <div class="trip_person">
+                        <h4>인원 선택</h4>
+                        <div class="person_div">
+                            <span class="person_select">성인 </span>
+                            <button class="per_button2" onclick="decreaseValue(1)">-</button>
+                            <span class="value" id="person1">0</span>
+                            <button class="per_button" onclick="increaseValue(1)">+</button>
+                        </div>
+
+                        <div class="person_div">
+                            <span class="person_select">청소년</span>
+                            <button class="per_button" onclick="decreaseValue(2)">-</button>
+                            <span class="value" id="person2">0</span>
+                            <button class="per_button" onclick="increaseValue(2)">+</button>
+                        </div>
+
+                        <div class="person_div">
+                            <span class="person_select">어린이</span>
+                            <button class="per_button" onclick="decreaseValue(3)">-</button>
+                            <span class="value" id="person3">0</span>
+                            <button class="per_button" onclick="increaseValue(3)">+</button>
+                        </div>
+                        <div class="value2" id="per_total">0</div><span class="value3">원</span>
+                    </div>
+
+                    <script>
+                        // 초기 값 설정
+                        let values = [0, 0, 0]; // 세 개의 값이 담긴 배열
+
+                        // 숫자 갱신 함수
+                        function updateDisplay() {
+                            document.getElementById("person1").textContent = values[0];
+                            document.getElementById("person2").textContent = values[1];
+                            document.getElementById("person3").textContent = values[2];
+
+                            // 각 display 값에 해당하는 보너스 값 계산
+                            let bonus1 = values[0] * 500000 ;
+                            let bonus2 = values[1] * 300000;
+                            let bonus3 = values[2] * 100000;
+
+                            // total 계산
+                            let total = bonus1 + bonus2 + bonus3;
+                            document.getElementById("per_total").textContent = total;
+                        }
+
+                        // + 버튼 클릭 시 호출되는 함수
+                        function increaseValue(index) {
+                            values[index - 1]++; // 해당 인덱스의 값이 1 증가
+                            updateDisplay(); // 표시 갱신
+                        }
+
+                        // - 버튼 클릭 시 호출되는 함수
+                        function decreaseValue(index) {
+                            if (values[index - 1] > 0) {
+                                values[index - 1]--; // 해당 인덱스의 값이 1 감소
+                                updateDisplay(); // 표시 갱신
+                            }
+                        }
+
+                        // 초기화
+                        updateDisplay();
+                    </script>
+
+                    <div class="pack_buy">
+                        <p>결제하기</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>

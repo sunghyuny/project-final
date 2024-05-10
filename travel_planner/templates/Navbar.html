@@ -9,33 +9,38 @@
             padding: 0;
 
         }
-        .menu{
+        .menu_container{
             display: none;
             border-bottom: 1px solid black;
             background-color: white;
-            position: absolute; /* 메뉴를 절대 위치로 설정 */
-            top: 100%; /* 네비게이션 바 아래에 표시 */
+            position: absolute;
+            top: 100%;
             left: 0;
             width: 100%;
             z-index: 9999;
         }
 
+        .menu{
+            margin-left: 550px;
+        }
 
         .menu>ul{
             display: inline-block;
+             vertical-align: top;
+             margin-right:40px;
         }
 
         .menu>ul>li{
               list-style: none;
               color: black;
+              margin:10px 0px 5px 0px;
+
         }
 
         .navbar{
             background-color: #2295FF;
-            height: 193px; /* 초기 높이 설정 */
-            position: relative; /* .menu에 대한 상대 위치 설정 */
-
-
+            height: 193px;
+            position: relative;
         }
 
         .nav_container {
@@ -43,7 +48,11 @@
             justify-content: center;
             overflow-x: hidden;
             margin: 0 auto;
-            width: 1400px;
+<<<<<<< HEAD
+            width: 1090px;
+=======
+            width: 1200px;
+>>>>>>> main
         }
 
         .nav_container2 {
@@ -52,19 +61,28 @@
         }
 
         .logout {
-            display: inline-block;
-            width: 118px;
+            width: auto;
             text-align: right;
-            margin-right: 363px;
+<<<<<<< HEAD
+            display: inline-block;
+=======
+            display: flex;
+>>>>>>> main
+            justify-content: flex-end;
+            margin-right: 30px;
         }
 
         .logo{
             color: white;
             font-size: 50px;
-            margin-left: 19%;
+            margin-left: 9%;
             margin-right: 2rem;
             margin-top: 3rem;
             display: inline;
+        }
+
+        .Logo_link{
+            text-decoration-line: none;
         }
 
         .search_text{
@@ -76,7 +94,7 @@
             padding: 1rem;
         }
 
-        .login_btn{
+        .login_btn, .logout_btn{
             display: inline-block;
             color: white;
             background-color: #2295FF;
@@ -88,64 +106,88 @@
         }
 
         .nav_ul {
-            list-style-type: none; /* 리스트 마커를 제거합니다. */
+            list-style-type: none;
             padding: 0;
+            display: inline-block;
+<<<<<<< HEAD
+            margin: 0px 0px 0px 40px;
+=======
+>>>>>>> main
         }
 
         .nav_li {
             margin-right: 90px;
-            display: inline-block; /* li 태그를 한 줄로 띄웁니다. */
-           /* li 태그 사이의 간격을 설정합니다. */
-            list-style: none; /* li 태그의 기본 목록 마커를 제거합니다. */
+            display: inline-block;
+            list-style: none;
             color: white;
             font-size: 16px;
             font-weight: bold;
             margin-top: 20px;
         }
 
-        a {
+
+        .menu_link{
             text-decoration: none;
             color: white;
         }
 
-        .name{
+        .user_name {
+<<<<<<< HEAD
+            margin: 0px 10px 0px 30px;
             color: white;
+            display: inline-block;
         }
 
-        .logout_btn{
-            display: inline-block;
-            color: white;
-            background-color: #2295FF;
-            border: 2px solid white;
-            border-radius: 35px;
-            height: 40px;
-            width: 100px;
-            font-size: 16px;
+        ul.nav_ul li {
+          display: inline-block;
+          margin-left: 10px;
+          margin-right: 10px;
+          padding: 5px 10px;
+        }
+
+        ul.nav_ul li:first-child {
+          margin-left: 0;
+        }
+
+        ul.nav_ul li:last-child {
+          margin-right: 0;
+        }
+
+        .menu_list{
+            display: flex;
+            flex-direction: column;
+=======
+            margin-right: 10px; /* 이름과 로그아웃 버튼 사이 간격 */
+            color: white; /* 텍스트 색상 */
+>>>>>>> main
         }
     </style>
 </head>
 <body>
     <div class="navbar">
         <div class="nav_container">
-            <a href="/"><div class="logo">Travel Plan</div></a>
+            <a href="/" class="Logo_link"><div class="logo">Travel Plan</div></a>
             <input type='text' placeholder='검색할 내용을 입력하세요' class='search_text'></input><br></br>
             <br>
 
             <div class="nav_container2">
                 <ul class="nav_ul">
                     <li class="nav_li" id="whole_menu">전체 메뉴</li>
-                    <li class="nav_li"><a href="/travel/">여행</a></li>
-                    <li class="nav_li"><a href="/planner/">여행 계획</a></li>
-                    <li class="nav_li"><a href="/hotel/">숙박</a></li>
-                    <li class="nav_li"><a href="/thesights/">관광지</a></li>
+                    <li class="nav_li">여행</li>
+                    <li class="nav_li"><a href="/planner/" class="menu_link">여행 계획</a></li>
+                    <li class="nav_li"><a href="/hotel/" class="menu_link">숙박</a></li>
+                    <li class="nav_li"><a href="/thesights/" class="menu_link">관광지</a></li>
                     <li class="nav_li">커뮤니티</li>
                     <li class="nav_li">매칭</li>
                 </ul>
-            </div>
-            {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
             <div class="logout">
-                <a href="/Accounts/mypage/"><p class="name">{{ user.username }}!</p></a>
-              <a href="{% url 'Accounts:logout' %}">
+<<<<<<< HEAD
+               <a href="/Accounts/mypage/"><p class="user_name">{{ user.username }}!</p></a>
+=======
+              <p class="user_name">{{ user.username }}!</p>
+>>>>>>> main
+              <a class="logout_click" href="{% url 'Accounts:logout' %}">
                   {% csrf_token %}
                   <button type="submit" class="logout_btn">Logout</button>
                 </a>
@@ -154,23 +196,25 @@
             {% else %}
             <a href="{% url 'Accounts:login' %}"><button class="login_btn">Login</button></a>
         {% endif %}
-        </div>
+            </div>
 
+        </div>
+    <div class="menu_container">
         <div class='menu'>
-            <ul>
+            <ul class="menu_list">
                 <li class='menu_title'>여행</li>
                 <hr class="menu_line">
                 <li>자유여행</li>
                 <li>패키지 여행</li>
             </ul>
 
-            <ul>
+            <ul class="menu_list">
                 <li class='menu_title'>여행계획</li>
                 <hr class="menu_line">
                 <li><Link to="/planner/schedule">계획 작성하기</Link></li>
             </ul>
 
-            <ul>
+            <ul class="menu_list">
                 <li class='menu_title'>숙박</li>
                 <hr class="menu_line">
                 <li>호텔</li>
@@ -179,14 +223,14 @@
                 <li>여관</li>
             </ul>
 
-            <ul>
+            <ul class="menu_list">
                 <li class='menu_title'>관광지</li>
                 <hr class="menu_line">
                 <li>내륙</li>
                 <li>제주도/섬</li>
             </ul>
 
-            <ul>
+            <ul class="menu_list">
                 <li class='menu_title'>커뮤니티</li>
                 <hr class="menu_line">
                 <li>게시판</li>
@@ -194,7 +238,7 @@
                 <li>공지사항</li>
             </ul>
 
-            <ul>
+            <ul class="menu_list">
                 <li class='menu_title'>매칭</li>
                 <hr class="menu_line">
                 <li>실시간 매칭</li>
@@ -203,11 +247,13 @@
             </ul>
         </div>
     </div>
+
+    </div>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var wholeMenu = document.getElementById('whole_menu');
-        var menu = document.querySelector('.menu');
+        var menu = document.querySelector('.menu_container');
 
         wholeMenu.addEventListener('click', function(event) {
             // 메뉴의 표시 상태를 토글합니다.

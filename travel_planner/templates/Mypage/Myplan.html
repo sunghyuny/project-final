@@ -24,7 +24,6 @@
             justify-content: center;
         }
         .mypage_content{
-            border: 1px solid;
             justify-content: center;
             width: 86rem;
             height: 680px;
@@ -69,6 +68,12 @@
             height: 500px;
         }
 
+        .detail{
+            width: 600px;
+            height: 500px;
+            overflow: auto;
+        }
+
         #showPlans{
             font-weight: bold;
         }
@@ -76,6 +81,7 @@
         .plan{
             border: 1px solid;
             width: 500px;
+            margin-bottom: 20px;
         }
 
         .plan_title{
@@ -85,6 +91,11 @@
         .save_date{
             text-align: right;
             margin: 0px 10px 10px 0px;
+        }
+
+        .detail_link{
+            text-decoration-line: none;
+            color: #2295ff;
         }
     </style>
 </head>
@@ -96,7 +107,7 @@
                 <ul class="content_list">
                     <li id="showMyInfo">내 정보</li><hr>
                     <li id="showLikes">좋아요</li><hr>
-                    <li id="showPlans"><a href="/Accounts/userplan/">계획</a></li><hr>
+                    <li id="showPlans">계획</li><hr>
                     <li id="showReservations">예약</li><hr>
                     <li id="showFriends">친구</li><hr>
                     <li id="showPosts">게시물</li>
@@ -109,19 +120,17 @@
 
             <div class="detail_page">
                 <div class="detail">
-{% for plan_info in trip_plan_info %}
-<div class="plan">
-    <div class="plan_list">
-        <p class="plan_title">{{ plan_info.destination }}</p>
-        <p class="period">{{ plan_info.period }}</p>
-        <p class="member">{{ plan_info.member }}</p>
-        <!-- 'plan_id'에 각 여행 계획의 id 값을 전달합니다. -->
-       <a href="/Accounts/userplan/{{ plan_info.id }}/">
-    상세정보
-</a>
-    </div>
-</div>
-{% endfor %}
+                    {% for plan_info in trip_plan_info %}
+                    <div class="plan">
+                        <div class="plan_list">
+                            <p class="plan_title">{{ plan_info.destination }}</p>
+                            <p class="period">{{ plan_info.period }}</p>
+                            <p class="member">{{ plan_info.member }}</p>
+                            <!-- 'plan_id'에 각 여행 계획의 id 값을 전달합니다. -->
+                           <a href="/Accounts/userplan/{{ plan_info.id }}/" class="detail_link">상세정보</a>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -17,7 +17,6 @@
             justify-content: center;
         }
         .mypage_content{
-            border: 1px solid;
             justify-content: center;
             width: 86rem;
             height: 680px;
@@ -60,7 +59,6 @@
             display: inline-block;
             width: 900px;
             height: 500px;
-            background-color: #D9D9D9;
         }
 
         #showMyInfo{
@@ -121,11 +119,9 @@
         #showPlans{
             color: black;
         }
-         a:link{
-        color:black;
-        }
-        a:visited{
-        color:black;
+        .plan_link{
+            color:black;
+            text-decoration-line: none;
         }
     </style>
 </head>
@@ -137,7 +133,7 @@
                 <ul class="content_list">
                     <li id="showMyInfo">내 정보</li><hr>
                     <li id="showLikes">좋아요</li><hr>
-                    <li id="showPlans"><a href="/Accounts/userplan/">계획</a></li><hr>
+                    <li id="showPlans"><a href="/Accounts/userplan/" class="plan_link">계획</a></li><hr>
                     <li id="showReservations">예약</li><hr>
                     <li id="showFriends">친구</li><hr>
                     <li id="showPosts">게시물</li>
