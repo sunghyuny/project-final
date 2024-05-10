@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 {% include 'Navbar.html'%}
 <html lang="en">
 <head>
@@ -471,19 +472,19 @@
             <div class="inland_content">
                 <div class="sights_list">
                     <p class="list_title">추천 패키지 여행</p>
-{% for Package in packages %}
+{% for pack in packages %}
     <div class="recommend_papckage">
         <div class="recommend_package_img">
-            <img src="{{ Package.image.url }}" alt="{{ Package.destination }}" class="package_picture"></img>
+            <img src="{{ pack.image.url}}" alt="{{ pack.destination }}" class="package_picture"></img>
         </div>
         <p class="package_text">패키지</p>
-        <p class="sights_name">[섬섬투어] {{ Package.destination }} #여행지 #추천</p>
+        <p class="sights_name">[섬섬투어] {{ pack.destination }} #여행지 #추천</p>
     </div>
 {% endfor %}
 
                     <div class="recommend_papckage">
                         <div class="recommend_package_img">
-                            <img src="/image/29O6N859LQ_1.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
+                            <img src="{% static 'image/29O6N859LQ_1.jpg' %}" alt="추천 패키지 이미지" class="package_picture"></img>
                         </div>
                         <p class="package_text">패키지</p>
                         <p class="sights_name">[다드림] 제주2일 #BEST추천여행 #제주현지인추천 #노쇼핑,노팁,노옵션</p>
@@ -491,7 +492,7 @@
 
                     <div class="recommend_papckage">
                         <div class="recommend_package_img">
-                            <img src="/image/shutterstock_692827960_12008800-1024x683.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
+                            <img src="{% static 'image/shutterstock_692827960_12008800-1024x683.jpg' %}" alt="추천 패키지 이미지" class="package_picture"></img>
                         </div>
                         <p class="package_text">패키지</p>
                         <p class="sights_name">[KTX포함][강릉항] 울릉도 3일 #대아리조트</p>
@@ -499,7 +500,7 @@
 
                     <div class="recommend_papckage">
                         <div class="recommend_package_img">
-                            <img src="/image/자수정동굴.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
+                            <img src="{% static 'image/자수정동굴.jpg' %}" alt="추천 패키지 이미지" class="package_picture"></img>
                         </div>
                         <p class="package_text">패키지</p>
                         <p class="sights_name">[내나라여행] 서부권일주 4일 #전주/광주/목포/여수 #전주한옥마을</p>
@@ -507,7 +508,7 @@
 
                     <div class="recommend_papckage">
                         <div class="recommend_package_img">
-                            <img src="/image/20221227091306_ilcqltrt.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
+                            <img src="{% static 'image/20221227091306_ilcqltrt.jpg' %}" alt="추천 패키지 이미지" class="package_picture"></img>
                         </div>
                         <p class="package_text">패키지</p>
                         <p class="sights_name">[서울출발] 태백 상장동 벽화마을 #목포해상케이블카 #강진다원</p>
@@ -515,7 +516,7 @@
 
                     <div class="recommend_papckage">
                         <div class="recommend_package_img">
-                            <img src="/image/061A4221.jpg" alt="추천 패키지 이미지" class="package_picture"></img>
+                            <img src="{% static 'image/061A4221.jpg' %}" alt="추천 패키지 이미지" class="package_picture"></img>
                         </div>
                         <p class="package_text">패키지</p>
                         <p class="sights_name">[KTX] 부산 2일 #바다별미 #해운대해변열차 #호텔숙박</p>
