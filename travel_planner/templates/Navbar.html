@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <style>
         * {
             margin: 0;
             padding: 0;
 
         }
-        .menu{
+        .menu_container{
             display: none;
             border-bottom: 1px solid black;
             background-color: white;
@@ -20,14 +19,20 @@
             z-index: 9999;
         }
 
+        .menu{
+            margin-left: 500px;
+        }
 
         .menu>ul{
             display: inline-block;
+            vertical-align: top;
+            margin-right: 30px;
         }
 
         .menu>ul>li{
               list-style: none;
               color: black;
+              margin: 10px 0px 5px 10px;
         }
 
         .navbar{
@@ -41,11 +46,7 @@
             justify-content: center;
             overflow-x: hidden;
             margin: 0 auto;
-<<<<<<< HEAD
-            width: 1200px;
-=======
             width: 1090px;
->>>>>>> 49fd3ad4eaf8eae0038fff1882753a03d854ab9b
         }
 
         .nav_container2 {
@@ -56,11 +57,7 @@
         .logout {
             width: auto;
             text-align: right;
-<<<<<<< HEAD
-            display: flex;
-=======
             display: inline-block;
->>>>>>> 49fd3ad4eaf8eae0038fff1882753a03d854ab9b
             justify-content: flex-end;
             margin-right: 30px;
         }
@@ -70,8 +67,9 @@
             font-size: 50px;
             margin-left: 9%;
             margin-right: 2rem;
-            margin-top: 3rem;
+            margin-top: 50px;
             display: inline;
+            align-items: center;
         }
 
         .Logo_link{
@@ -85,6 +83,7 @@
             height: 1rem;
             display: inline;
             padding: 1rem;
+            align-items: center;
         }
 
         .login_btn, .logout_btn{
@@ -102,11 +101,7 @@
             list-style-type: none;
             padding: 0;
             display: inline-block;
-<<<<<<< HEAD
-
-=======
             margin: 0px 0px 0px 40px;
->>>>>>> 49fd3ad4eaf8eae0038fff1882753a03d854ab9b
         }
 
         .nav_li {
@@ -125,10 +120,6 @@
         }
 
         .user_name {
-<<<<<<< HEAD
-            margin-right: 10px; /* 이름과 로그아웃 버튼 사이 간격 */
-            color: white; /* 텍스트 색상 */
-=======
             margin: 0px 10px 0px 30px;
             color: white;
             display: inline-block;
@@ -154,7 +145,6 @@
             flex-direction: column;
             margin-right: 10px;
             color: white;
->>>>>>> 49fd3ad4eaf8eae0038fff1882753a03d854ab9b
         }
     </style>
 </head>

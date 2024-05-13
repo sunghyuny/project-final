@@ -112,9 +112,9 @@
             border-radius: 21px;
         }
 
-        .review>img{
+        .review_img{
             width: 278px;
-            height: 330 px;
+            height: 330px;
             border-radius: 21px 21px 0px 0px;
         }
     </style>
@@ -143,14 +143,14 @@
 
         <p class='content_title'>지금 가면 좋은 여행 장소</p>
         <div class="content_list">
-{% for spot in tourist_spots %}
-    <div class="review">
-        <img src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/>
-        <p class="place_title">{{ spot.name }}</p>
-        <p class="review_title">{{ spot.description }}</p>
-        <p class="user_name">{{ spot.location }}</p>
-    </div>
-{% endfor %}
+            {% for spot in tourist_spots %}
+                <div class="review">
+                    <img class="review_img" src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/>
+                    <p class="place_title">{{ spot.name }}</p>
+                    <p class="review_title">{{ spot.description }}</p>
+                    <p class="user_name">{{ spot.location }}</p>
+                </div>
+            {% endfor %}
 
             <div class="review">
                 <img src="{% static 'image/266BE146585C7D782A.jpeg' %}" alt="로컬 이미지" />

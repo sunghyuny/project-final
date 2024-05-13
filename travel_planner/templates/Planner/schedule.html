@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 {% include 'Navbar.html'%}
 <html lang="en">
 <head>
@@ -706,6 +706,17 @@
                         numberField6.value = currentValue6 - 1;
                       }
                     }
+
+
+                    var inputElements = document.querySelectorAll('.input-container input[type="number"]');
+                    inputElements.forEach(function(inputElement) {
+                        inputElement.addEventListener('change', function() {
+                            if (parseInt(inputElement.value) < 0) {
+                                inputElement.value = 0;
+                            }
+                        });
+                    });
+
                   </script>
             </div>
         </div>

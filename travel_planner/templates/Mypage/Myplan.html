@@ -101,6 +101,17 @@
             color:black;
             text-decoration-line: none;
         }
+
+        .delete_button{
+            border: none;
+            background-color: white;
+            color: #2295ff;
+            font-size:16px;;
+        }
+
+        .del_btn{
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -124,17 +135,28 @@
 
             <div class="detail_page">
                 <div class="detail">
+                    {% if trip_plan_info %}
                     {% for plan_info in trip_plan_info %}
-                    <div class="plan">
-                        <div class="plan_list">
-                            <p class="plan_title">{{ plan_info.destination }}</p>
-                            <p class="period">{{ plan_info.period }}</p>
-                            <p class="member">{{ plan_info.member }}</p>
-                            <!-- 'plan_id'에 각 여행 계획의 id 값을 전달합니다. -->
-                           <a href="/Accounts/userplan/{{ plan_info.id }}/" class="detail_link">상세정보</a>
+                        <div class="plan">
+                            <div class="plan_list">
+                                <p class="plan_title">{{ plan_info.destination }}</p>
+                                <p class="period">{{ plan_info.period }}</p>
+                                <p class="member">{{ plan_info.member }}</p>
+                                <a href="/Accounts/userplan/{{ plan_info.id }}/" class="detail_link">상세정보</a>
+                                <!-- 삭제 버튼을 포함한 폼 추가 -->
+                                <form action="/Accounts/plan/delete/{{ plan_info.id }}/" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <div class="del_btn">
+                                        <button type="submit" class="delete_button">삭제</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
                     {% endfor %}
+                {% else %}
+                    <p>계획이 없습니다.</p>
+                    <p>계획을 만들러 가시겠습니까? <a href="/planner/">여기를 클릭하세요.</a></p>
+                {% endif %}
                 </div>
             </div>
         </div>
