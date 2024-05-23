@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .new_chat{
+            width: 1000px;
+            margin: 0px auto;
+        }
+
+        .title{
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .page_content {
+            display: flex;
+            flex-direction: column;
+            width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #D9D9D9;
+            margin: 0px auto;
+        }
+
+        .input_text{
+            border-radius: 30px;
+            margin-top: 10px;
+            height: 30px;
+            width: 250px;
+            padding: 5px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .btn_content{
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .create_btn{
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            font-size: 20px;
+            width: 200px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="create_page">
+        <div class="new_chat">
+            <div class="page_title">
+                <p class="title">채팅방 만들기</p>
+            </div>
+
+            <div class="page_content">
+                <input type="text" class="input_text" placeholder="채팅방 이름을 입력해주세요">
+                <input type="text" class="input_text" placeholder="기간을 입력해주세요">
+                <input type="text" class="input_text" placeholder="지역을 입력해주세요">
+                <input type="text" class="input_text" placeholder="총 인원을 입력해주세요">
+                <p class="info_title">채팅방 설명</p>
+                <textarea name="travel_info" id="" cols="100" rows="20"></textarea>
+            </div>
+            <div class="btn_content">
+                <button class="create_btn">생성하기</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .detail_page {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        .back_img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .title {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 24px;
+            background-color: white;
+            width: 1000px;
+            border: 1px solid;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .page_content {
+            display: flex;
+            justify-content: center;
+            width: 1200px;
+            margin: 0px auto;
+            margin-top: 20px;
+        }
+
+        .content_title {
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .content_detail {
+            width: 1200px;
+            margin-top: 20px;
+        }
+
+        .sub_title {
+            margin-bottom: 20px;
+            color: gray;
+        }
+
+        .companion {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .member_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content_btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        .enter_btn {
+            background-color: #2295ff;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 35px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="detail_page">
+        <img src="/image/0c0c0ffc-ffca-4fad-91a8-edfa3d125067.webp" alt="" class="back_img">
+        <div class="title">제주도 같이 가실 분</div>
+    </div>
+
+    <div class="page_content">
+        <div class="content_detail">
+            <div class="info">
+                <p class="sub_title">함께 같이 가실 분 구합니다</p>
+                <p class="content_title">자세한 여행 정보</p>
+
+                <div class="info_detail">
+                    <p class="loacation">지역 : 제주도</p>
+                    <p class="period">기간 : 05.21~05.25</p>
+                    <p class="mem_cnt">인원 수 : 1/6</p>
+                    <p class="condition">조건 : 없음</p>
+                    <p class="price">예상금액 : 미정</p>
+                    <p class="memeber"> 동행자</p>
+
+                    <div class="companion">
+                        <img src="/image/다운로드 (17).jpeg" alt="" class="member_img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_btn">
+                <button class="enter_btn">입장하기</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
