@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const roomId = "{{ chat_room.id }}";
+            const userId = "{{ request.user.username }}";
+            const chatSocket = new WebSocket(
+                'ws://' + window.location.hostname + ':8001/ws/chat/' + roomId + '/'
+            );
+
+            chatSocket.onmessage = function(e) {
+                const data = JSON.parse(e.data);
+                const messageList = document.getElementById('chat-log');
+                const newMessage = document.createElement('div');
+                newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}]: ${data.message}`;
+                messageList.appendChild(newMessage);
+            };
+
+            chatSocket.onclose = function(e) {
+                console.error('Chat socket closed unexpectedly');
+            };
+
+            document.querySelector('#chat-message-input').focus();
+            document.querySelector('#chat-message-input').onkeyup = function(e) {
+                if (e.keyCode === 13) {  // Enter key
+                    document.querySelector('#chat-message-submit').click();
+                }
+            };
+
+            document.querySelector('#chat-message-submit').onclick = function(e) {
+                const messageInputDom = document.querySelector('#chat-message-input');
+                const message = messageInputDom.value;
+                chatSocket.send(JSON.stringify({
+                    'message': message
+                }));
+                messageInputDom.value = '';
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>{{ chat_room.name }}</h1>
+    <div id="chat-log">
+        {% for message in messages %}
+        <div>
+            <strong>{{ message.sender.username }}</strong> [{{ message.timestamp|date:"Y-m-d H:i:s" }}]: {{ message.content }}
+        </div>
+        {% endfor %}
+    </div>
+    <textarea id="chat-message-input" rows="3" cols="100"></textarea><br>
+    <button id="chat-message-submit">Send</button>
+</body>
+</html>

@@ -112,9 +112,9 @@
             border-radius: 21px;
         }
 
-        .review>img{
+        .review_img{
             width: 278px;
-            height: 330 px;
+            height: 230px;
             border-radius: 21px 21px 0px 0px;
         }
     </style>
@@ -145,7 +145,7 @@
         <div class="content_list">
 {% for spot in tourist_spots %}
     <div class="review">
-        <img src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/>
+        <img class="review_img" src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/><hr>
         <p class="place_title">{{ spot.name }}</p>
         <p class="review_title">{{ spot.description }}</p>
         <p class="user_name">{{ spot.location }}</p>
@@ -153,21 +153,21 @@
 {% endfor %}
 
             <div class="review">
-                <img src="{% static 'image/266BE146585C7D782A.jpeg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/266BE146585C7D782A.jpeg' %}" alt="로컬 이미지" />
                 <p class="place_title">인제 자작나무 숲</p>
                 <p class="review_title">모든게 하얗게 뒤덮힌 자작나무 숲</p>
                 <p class="user_name">하인성님의 여행</p>
 
             </div>
             <div class="review">
-                <img src="{% static 'image/11772BB7-D64A-4864-A05A-A93C060C3D6D.jpeg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/11772BB7-D64A-4864-A05A-A93C060C3D6D.jpeg' %}" alt="로컬 이미지" />
                 <p class="place_title">강릉 안반데기</p>
                 <p class="review_title">밤하늘의 아름다운 은하수</p>
                 <p class="user_name">안기준님의 여행</p>
 
             </div>
             <div class="review">
-                <img src="{% static 'image/ZkeHUfn8vIMkFLw3xvn9GvGV5tU4U5g0PxCvZzQ-eIaVhKA57AjIGEpwdYrbRSfh_pA9endPgdUeh3OLGGJzMw.webp' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/ZkeHUfn8vIMkFLw3xvn9GvGV5tU4U5g0PxCvZzQ-eIaVhKA57AjIGEpwdYrbRSfh_pA9endPgdUeh3OLGGJzMw.webp' %}" alt="로컬 이미지" />
                 <p class="place_title">청송 얼음골</p>
                 <p class="review_title">멋진 겨울의 절경</p>
                 <p class="user_name">홍장미님의 여행</p>
@@ -179,28 +179,28 @@
         <p class='content_title'>추천여행</p>
         <div class="content_list">
             <div class="review">
-                <img src="{% static 'image/e4e76e16-ba3e-4ce6-8f97-d78d840bbc50.jpg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/e4e76e16-ba3e-4ce6-8f97-d78d840bbc50.jpg' %}" alt="로컬 이미지" />
                 <p class="place_title">여수</p>
                 <p class="review_title">낭만적인 여수 밤바다</p>
                 <p class="user_name">오연주님의 여행</p>
 
             </div>
             <div class="review">
-                <img src="{% static 'image/20191229160530047_oen.jpeg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/20191229160530047_oen.jpeg' %}" alt="로컬 이미지" />
                 <p class="place_title">광안리</p>
                 <p class="review_title">광안리의 밤은 낮보다 아름답다</p>
                 <p class="user_name">브라운님의 여행</p>
 
             </div>
             <div class="review">
-                <img src="{% static 'image/e3c18663-14e2-49e3-b9f0-bd7a029a661f.jpg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/e3c18663-14e2-49e3-b9f0-bd7a029a661f.jpg' %}" alt="로컬 이미지" />
                 <p class="place_title">경주</p>
                 <p class="review_title">1000년의 역사가 살아 숨쉬는 곳</p>
                 <p class="user_name">남건님의 여행</p>
 
             </div>
             <div class="review">
-                <img src="{% static 'image/84475_138812_3755.jpg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/84475_138812_3755.jpg' %}" alt="로컬 이미지" />
                 <p class="place_title">남이섬</p>
                 <p class="review_title">가을 단풍명소</p>
                 <p class="user_name">이하연님의 여행</p>
@@ -210,29 +210,29 @@
 
         <p class='content_title'>여행자 후기</p>
         <div class="content_list">
-            <div class="review">
-                <img src="{% static 'image/2671612_image2_1.jpg' %}" alt="로컬 이미지" />
+            <div  class="review">
+                <img class="review_img" src="{% static 'image/2671612_image2_1.jpg' %}" alt="로컬 이미지" />
                 <p class="place_title">오이도</p>
                 <p class="review_title">아름다운 낙조를 볼 수 있는 곳</p>
                 <p class="user_name">유미란님의 여행</p>
 
             </div>
-            <div class="review">
-                <img src="{% static 'image/hd6_394_i1.jpg' %}" alt="로컬 이미지" />
+            <div  class="review">
+                <img class="review_img" src="{% static 'image/hd6_394_i1.jpg' %}" alt="로컬 이미지" />
                 <p class="place_title">수원화성</p>
                 <p class="review_title">세계문화유산 화성</p>
                 <p class="user_name">님의 여행</p>
 
             </div>
             <div class="review">
-                <img src="{% static 'image/7130-11.jpg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/7130-11.jpg' %}" alt="로컬 이미지" />
                 <p class="place_title">덕수궁 돌담길</p>
                 <p class="review_title">가을철 필수 방문지</p>
                 <p class="user_name">고뭉치님의 여행</p>
 
             </div>
             <div class="review">
-                <img src="{% static 'image/2022042716150600.jpg' %}" alt="로컬 이미지" />
+                <img class="review_img" src="{% static 'image/2022042716150600.jpg' %}" alt="로컬 이미지" />
                 <p class="place_title">비둘기낭 폭포</p>
                 <p class="review_title">겸손해야 보이는 아름다움</p>
                 <p class="user_name">한아름님의 여행</p>

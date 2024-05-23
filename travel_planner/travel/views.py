@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from travel.models import *
 
 
@@ -24,12 +24,29 @@ def create_package(request):
     return render(request, 'Tour/package_create.html')
 
 
-@login_required
-def book_package(request, package_id):
-    package = Package.objects.get(id=package_id)
+def reservation_page(request, package_id):
+    package = get_object_or_404(Package, id=package_id)
+
     if request.method == 'POST':
-        number_of_people = request.POST['number_of_people']
-        booking = Booking(user=request.user, package=package, number_of_people=number_of_people)
-        booking.save()
-        return redirect('/')
-    return render(request, 'book_package.html', {'package': package})
+        adult_count = int(request.POST.get('adult_count', 0))
+        youth_count = int(request.POST.get('youth_count', 0))
+        child_count = int(request.POST.get('child_count', 0))
+
+        total_price = package.price * (adult_count + youth_count + child_count)
+
+        context = {
+            'package': package,
+            'adult_count': adult_count,
+            'youth_count': youth_count,
+            'child_count': child_count,
+            'total_price': total_price,
+        }
+        return render(request, 'reservation/package.html', context)
+
+    return render(request, 'detail/package.html', {'package': package})
+def package_detail(request, package_id):
+    package = get_object_or_404(Package, id=package_id)
+    context = {'package': package}
+    return render(request, 'detail/package.html', context)
+
+

@@ -30,7 +30,8 @@ urlpatterns = [
     path('planner/', include('planner.urls')),
     path('thesights/', include('thesights.urls')),
     path('hotel/', include('hotel.urls')),
-    path('travel/', include('travel.urls'))
+    path('travel/', include('travel.urls')),
+    path('chat/', include('match.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

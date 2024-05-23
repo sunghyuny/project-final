@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% include 'Navbar.html'%}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -196,29 +198,32 @@
     <section class="package_re">
         <div class="package_re_cont">
             <article class="main">
-                <img src="" class="main_img" alt="패키지 메인 이미지">
+                <img src="{{ package.image.url }}" class="main_img" alt="패키지 메인 이미지">
                 <div class="main_info">
-                    <h2>[김포출발] 노팁노옵션 제주도/마라도/우도 삼도투어 2박3일</h2>
+                    <h2>{{ package.destination }}</h2>
                     <p class="info_tag">#관광 #2박3일 #가족여행</p>
                     <p class="info_star">★★★★☆</p>
                     <div class="pak_price_div">
-                        <span class="pak_price">368,503</span><span class="pak_won">원~</span>
+                        {% load humanize %}
+                        <span class="pak_price">{{ package.price|floatformat:"-0"|intcomma }}</span><span class="pak_won">원~</span>
                     </div>
                 </div>
             </article>
             <hr>
             <h3>여행 정보</h3>
-            <div class="trip_main">
-                <div class="trip_left">
+            <form action="{% url 'reservation_page' package_id=package.id %}" method="POST">
+                {% csrf_token %}
+                <div class="trip_main">
+                    <div class="trip_left">
                     <div class="trip_info">
                         <div class="info_div">
                             <span class="trip_info_gray">일정</span><span class="trip_info_bla">2박3일</span><br>
                         </div>
                         <div class="info_div">
-                            <span class="trip_info_gray">출발</span><span class="trip_info_bla">2024. 05. 20(월) 17:30</span><br>
+                            <span class="trip_info_gray">출발</span><span class="trip_info_bla">{{ package.start_date }}</span><br>
                         </div>
                         <div class="info_div">
-                            <span class="trip_info_gray">도착</span><span class="trip_info_bla">2024. 05. 24(목) 06:00</span>
+                            <span class="trip_info_gray">도착</span><span class="trip_info_bla">{{ package.end_date }}</span>
                         </div>
                     </div>
                     <table>
@@ -240,19 +245,19 @@
                     <div class="trip_person">
                         <h4>인원 선택</h4>
                         <div class="person_div">
-                            <span class="person_select">성인 </span>
+                            <span class="person_select">성인</span>
                             <button class="per_button2" onclick="decreaseValue(1)">-</button>
                             <span class="value" id="person1">0</span>
                             <button class="per_button" onclick="increaseValue(1)">+</button>
                         </div>
-
+        
                         <div class="person_div">
                             <span class="person_select">청소년</span>
                             <button class="per_button" onclick="decreaseValue(2)">-</button>
                             <span class="value" id="person2">0</span>
                             <button class="per_button" onclick="increaseValue(2)">+</button>
                         </div>
-
+        
                         <div class="person_div">
                             <span class="person_select">어린이</span>
                             <button class="per_button" onclick="decreaseValue(3)">-</button>
@@ -261,8 +266,13 @@
                         </div>
                         <div class="value2" id="per_total">0</div><span class="value3">원</span>
                     </div>
-
+                </div>
+            </div>
+            <button type="submit" class="pack_buy">예약하기</button>
+        </form>
                     <script>
+                        
+                        
                         // 초기 값 설정
                         let values = [0, 0, 0]; // 세 개의 값이 담긴 배열
 
@@ -299,10 +309,6 @@
                         // 초기화
                         updateDisplay();
                     </script>
-
-                    <div class="pack_buy">
-                        <p>결제하기</p>
-                    </div>
                 </div>
             </div>
         </div>

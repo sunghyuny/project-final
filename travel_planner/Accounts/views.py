@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 from .models import CustomUser
 from django.shortcuts import render, redirect, get_object_or_404
@@ -73,3 +74,12 @@ def user_plan(request):
 def userplan_detail(request, user_plan_id):
     user_plan = get_object_or_404(TripPlan, id=user_plan_id)
     return render(request, 'Detail/plan.html', {'user_plan': user_plan})
+
+
+def plan_delete(request, plan_id):
+    plan = get_object_or_404(TripPlan, pk=plan_id)
+    if request.method == 'POST':
+        plan.delete()
+        return redirect('/Accounts/userplan/')
+    else:
+        return HttpResponse("GET 요청은 허용되지 않습니다.")

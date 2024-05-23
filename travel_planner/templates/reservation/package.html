@@ -180,7 +180,7 @@
                     <table class="product_table">
                         <tr>
                             <th>상품명</th>
-                            <td>제주도 경관투어</td>
+                            <td>{{ package.destination }}</td>
                         </tr>
 
                         <tr>
@@ -190,12 +190,12 @@
                         
                         <tr>
                             <th>여행 기간</th>
-                            <td><p>시작 : 김포 공항 2024.05.20(월)</p><p>마무리 : 김포 공항 2024.05.25(토)</p></td>
+                            <td><p>가는날{{ package.start_date }}</p><p>오는날{{ package.end_date }}</p></td>
                         </tr>
 
                         <tr>
                             <th>상품 가격</th>
-                            <td>1,000,000원(총 2명)</td>
+                            <td>{{ total_price }}원</td>
                         </tr>
                     </table>
                 </div>
@@ -205,12 +205,12 @@
                     <table class="res_table">
                         <tr>
                             <th>이름</th>
-                            <td>이승혁</td>
+                            <td>{{ user.username }}</td>
                         </tr>
 
                         <tr>
                             <th>생년월일/성별</th>
-                            <td>2003.11.09/남</td>
+                            <td>{{ user.age }}</td>
                         </tr>
 
                         <tr>
@@ -220,7 +220,7 @@
 
                         <tr>
                             <th>이메일</th>
-                            <td><input type="email" class="input_email"></td>
+                            <td><input type="email" class="input_email" placeholder="{{ user.email}}"></td>
                         </tr>
 
                         <tr>

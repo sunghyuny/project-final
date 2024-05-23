@@ -25,6 +25,7 @@ urlpatterns =[
     path('mypage/', my_page, name='mypage'),
     path('userplan/', user_plan, name='plan'),
     path('userplan/<int:user_plan_id>/', userplan_detail, name='plan_detail'),
+    path('plan/delete/<int:plan_id>/', plan_delete, name='plan_delete'),
 ]
 
 

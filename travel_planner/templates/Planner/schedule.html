@@ -436,6 +436,11 @@
             flex-direction: row;
             margin-top: -40px;
         }
+
+        .member_cnt{
+            font-size: 16px;
+            
+        }
     </style>
 </head>
 <body>
@@ -505,17 +510,17 @@
                 
                         <div class="input-container person1">
                             <p id="displayText1" class="select_text2">성인</p>
-                            <input type="number" name="adults" value="0">
+                            <input type="number" name="adults" value="0" class="member_cnt">
                         </div>
                 
                         <div class="input-container person2">
                             <p id="displayText2" class="select_text2">청소년</p>
-                            <input type="number" name="teens" value="0">
+                            <input type="number" name="teens" value="0" class="member_cnt">
                         </div>
                 
                         <div class="input-container person3">
                             <p id="displayText3" class="select_text2">어린이</p>
-                            <input type="number" name="children" value="0">
+                            <input type="number" name="children" value="0" class="member_cnt">
                         </div>
                 
                         <a href="/planner/plan1/"><button type="submit" class="next_btn">다음</button></a>
@@ -706,6 +711,14 @@
                         numberField6.value = currentValue6 - 1;
                       }
                     }
+                    var inputElements = document.querySelectorAll('.input-container input[type="number"]');
+                    inputElements.forEach(function(inputElement) {
+                        inputElement.addEventListener('change', function() {
+                            if (parseInt(inputElement.value) < 0) {
+                                inputElement.value = 0;
+                            }
+                        });
+                    })
                   </script>
             </div>
         </div>

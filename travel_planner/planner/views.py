@@ -93,6 +93,7 @@ def plan2(request):
     return render(request, 'Planner/lodging.html', {'accommodations': accommodations})
 
 def plan3(request):
+
     trip_plan_id = request.session.get('trip_plan_id')
     trip_plan = TripPlan.objects.get(id=trip_plan_id)
 
