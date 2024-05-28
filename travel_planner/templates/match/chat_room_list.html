@@ -1,9 +1,125 @@
-<h1>Chat Rooms</h1>
-<ul>
-    {% for room in chat_rooms %}
-    <li>
-        <a href="{% url 'match:join_chat_room' room.id %}">{{ room.name }}</a>
-    </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'match:create_chat_room' %}">Create a new chat room</a>
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .match_page {
+            margin-top: 30px;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .search_text {
+            border-radius: 35px;
+            width: 600px;
+            font-size: 20px;
+            border: 1px solid;
+        }
+
+        .search_text:focus {
+            outline: none;
+        }
+
+        .new_chat {
+            margin-left: 20px;
+            border: none;
+            font-weight: bold;
+            font-size: 20px;
+            background-color: #D7D7D7;
+
+        }
+
+        .match_content {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            width: 1000px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+
+        .match_list {
+            width: 400px;
+            height: 80px;
+            padding-left: 10px;
+            background-color: #D9D9D9;
+            margin: 10px auto 10px 30px;
+            flex: 0 0 auto;
+            display: flex;
+            float: left;
+        }
+
+        .profile_img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .room_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .list_content {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        .room_title {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="match_page">
+        <div class="content">
+            <div class="search">
+                <input type="text" placeholder="검색할 내용을 입력하세요." class="search_text">
+                <a href="{% url 'match:create_chat_room' %}"><button class="new_chat">새로운 채팅</button></a>
+            </div>
+            <div class="match_content">
+                {% for room in chat_rooms %}
+                <div class="match_list">
+                    <div class="profile_img">
+                        <img src="/image/216A104955CDB88A1B.png" alt="" class="room_img">
+                    </div>
+                    <div class="list_content">
+                        <p class="title"><a href="{% url 'match:join_chat_room' room.id %}" class="room_title">{{ room.name }}</a></p>
+                        <p class="period"></p>
+                        <p class="subtitle"></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
