@@ -1,19 +1,3 @@
-"""
-URL configuration for travel_planner project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""# your_app_name/urls.py
 from django.urls import path, include
 from .views import *
 from django.contrib.auth import views as auth_views
@@ -26,6 +10,12 @@ urlpatterns =[
     path('userplan/', user_plan, name='plan'),
     path('userplan/<int:user_plan_id>/', userplan_detail, name='plan_detail'),
     path('plan/delete/<int:plan_id>/', plan_delete, name='plan_delete'),
+    path('send_friend_request/<int:user_id>/', send_friend_request, name='send_friend_request'),
+    path('send_friend_request_by_email/', send_friend_request_by_email, name='send_friend_request_by_email'),
+    path('accept_friend_request/<int:request_id>/', accept_friend_request, name='accept_friend_request'),
+    path('delete_friend_request/<int:request_id>/', delete_friend_request, name='delete_friend_request'),
+    path('Myfriends/', my_friends, name='my_friends'),
+    path('userplan/<int:plan_id>/edit/', plan_edit, name='plan_edit'),
 ]
 
 

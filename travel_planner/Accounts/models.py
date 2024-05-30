@@ -29,3 +29,34 @@ class Like(models.Model):
     def __str__(self):
         return f"{self.user.username} likes {self.trip_plan.title}"
 
+
+class FriendRequest(models.Model):
+    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='to_user', on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Friend request from {self.from_user} to {self.to_user}"
+
+    class Meta:
+        unique_together = ('from_user', 'to_user')
+
+
+class Friend(models.Model):
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    current_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='owner', null=True,
+                                     on_delete=models.CASCADE)
+
+    @classmethod
+    def make_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users.add(new_friend)
+
+    @classmethod
+    def lose_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users.remove(new_friend)

@@ -1,9 +1,10 @@
+<!-- chat_room_list.html -->
 <h1>Chat Rooms</h1>
 <ul>
     {% for room in chat_rooms %}
     <li>
-        <a href="{% url 'match:join_chat_room' room.id %}">{{ room.name }}</a>
+        <a href="{% url 'match:chat_room_detail' room.id %}">{{ room.name }}</a>
     </li>
     {% endfor %}
 </ul>
-<a href="{% url 'match:create_chat_room' %}">Create a new chat room</a>
+<a href="{% url 'match:create_chat_room' %}">방 만들기</a>

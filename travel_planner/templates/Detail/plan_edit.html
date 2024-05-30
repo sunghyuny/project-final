@@ -1,0 +1,52 @@
+
+<form method="post">
+    {% csrf_token %}
+    <label for="arrival_date">도착 날짜:</label>
+<input type="date" name="arrival_date" id="arrival_date" value="{{ user_plan.arrival_date|date:'Y-m-d' }}">
+<br>
+<label for="departure_date">출발 날짜:</label>
+<input type="date" name="departure_date" id="departure_date" value="{{ user_plan.departure_date|date:'Y-m-d' }}">
+
+    <br>
+    <label for="total_people">인원수:</label><br>
+    <input type="number" id="total_people" name="total_people" value="{{ plan.total_people }}"><br>
+    <!-- 친구 추가 필드 -->
+    <h2>친구 추가</h2>
+    {% for friend in friends %}
+    <input type="checkbox" id="friend_{{ friend.id }}" name="friends" value="{{ friend.id }}"
+           {% if friend in plan.friends_set.all %} checked {% endif %}>
+    <label for="friend_{{ friend.id }}">{{ friend.username }}</label><br>
+    {% endfor %}
+    <button type="submit">수정 완료</button>
+</form>
+
+
+<div class="plan_detail">
+    <div class="plan_list">
+        <div class="member">
+            <h2>여행 인원</h2>
+            <p>인원: {{ plan.total_people }}</p>
+        </div>
+
+        <div class="location">
+            <h2>여행 지역</h2>
+            <p>{{ plan.destination }}</p>
+        </div>
+
+        <div class="lodg">
+            <h2>숙소</h2>
+            <p>{{ plan.selected_accommodation }}</p>
+            <img class="sum_img" src="{{ plan.selected_accommodation.photo.url }}" alt="{{ plan.selected_accommodation_name }}">
+        </div>
+
+        <div class="activity">
+            <h2>활동</h2>
+            <p>{{ plan.selected_activity }}</p>
+            <img class="sum_img" src="{{ plan.selected_activity.photo.url }}" alt="{{ plan.selected_activity_name }}">
+        </div>
+
+        <div class="price">
+            <h2>가격</h2>
+        </div> 
+    </div>
+</div>

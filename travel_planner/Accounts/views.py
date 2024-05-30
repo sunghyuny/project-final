@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 
-from .models import CustomUser
+from .models import *
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -52,19 +52,24 @@ def my_page(request):
         # 필요한 다른 데이터도 추가할 수 있음
     }
     return render(request, 'Mypage/myinfo.html', context)
+
+
+@login_required
 def user_plan(request):
-    user_trip_plans = TripPlan.objects.filter(user=request.user)
+    user = request.user
+    user_trip_plans = TripPlan.objects.filter(user=user) | TripPlan.objects.filter(friends=user)
 
     trip_plan_info = []
-    for trip_plan in user_trip_plans:
+    for trip_plan in user_trip_plans.distinct():
         trip_info = {
-            'id': trip_plan.id,  # 여행 계획의 id 값을 추가합니다.
+            'id': trip_plan.id,
             'period': f"기간 : {trip_plan.arrival_date.strftime('%Y.%m.%d')}~{trip_plan.departure_date.strftime('%Y.%m.%d')}",
             'member': f"인원수 : {trip_plan.total_people}명",
             'destination': trip_plan.destination,
             'transportation_method': trip_plan.transportation_method,
             'selected_accommodation': trip_plan.selected_accommodation,
             'selected_activity': trip_plan.selected_activity,
+            'friends': list(trip_plan.friends.all())  # 계획에 추가된 친구들을 명시적으로 리스트로 변환
         }
         trip_plan_info.append(trip_info)
 
@@ -73,8 +78,10 @@ def user_plan(request):
 
 def userplan_detail(request, user_plan_id):
     user_plan = get_object_or_404(TripPlan, id=user_plan_id)
-    return render(request, 'Detail/plan.html', {'user_plan': user_plan})
+    # ManyToManyField인 friends를 리스트로 변환
+    friends_list = list(user_plan.friends.all())
 
+    return render(request, 'Detail/plan.html', {'user_plan': user_plan, 'friends': friends_list})
 
 def plan_delete(request, plan_id):
     plan = get_object_or_404(TripPlan, pk=plan_id)
@@ -83,3 +90,105 @@ def plan_delete(request, plan_id):
         return redirect('/Accounts/userplan/')
     else:
         return HttpResponse("GET 요청은 허용되지 않습니다.")
+
+
+@login_required
+def plan_edit(request, plan_id):
+    plan = get_object_or_404(TripPlan, pk=plan_id)
+    user = request.user
+
+    # 계획의 소유자가 아니면 접근 금지 처리
+    if plan.user != user:
+        return HttpResponseForbidden("이 계획을 수정할 권한이 없습니다.")
+
+    # 친구 목록을 불러오는 로직
+    try:
+        friend_relationship = Friend.objects.get(current_user=user)
+        friends = friend_relationship.users.all()
+    except Friend.DoesNotExist:
+        friends = []
+
+    # POST 요청 처리: 폼 데이터로 계획 수정
+    if request.method == 'POST':
+        plan.arrival_date = request.POST.get('arrival_date', plan.arrival_date)
+        plan.departure_date = request.POST.get('departure_date', plan.departure_date)
+        total_people = int(request.POST.get('total_people'))
+
+        selected_friends_ids = request.POST.getlist('friends')
+        selected_friends = CustomUser.objects.filter(id__in=selected_friends_ids)
+
+        # 친구 선택해도 인원수에 +1 안되도록 수정
+        total_people += len(selected_friends) - plan.friends.count()
+        plan.total_people = total_people
+
+        plan.friends.set(selected_friends)
+        plan.save()
+        messages.success(request, "계획이 성공적으로 수정되었습니다.")
+        return redirect('/Accounts/userplan/')
+    else:
+        return render(request, 'Detail/plan_edit.html', {'plan': plan, 'friends': friends})
+
+
+def send_friend_request_by_email(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            to_user = CustomUser.objects.get(email=email)
+            if to_user == request.user:
+                messages.error(request, "자신에게 친구 요청을 보낼 수 없습니다.")
+                return redirect('/Accounts/Myfriends/')
+            friend_request, created = FriendRequest.objects.get_or_create(from_user=request.user, to_user=to_user)
+            if created:
+                # 친구 요청을 받은 사용자에게 알림 생성
+                notification_message = f"{request.user.username}님으로부터 친구 요청이 왔습니다."
+                FriendRequest.objects.create(from_user=request.user, to_user=to_user, notification_message=notification_message)
+                messages.success(request, f"{to_user.username}님에게 친구 요청을 보냈습니다.")
+            else:
+                messages.info(request, f"{to_user.username}님에게 이미 친구 요청을 보냈습니다.")
+            return redirect('/Accounts/Myfriends/')
+        except CustomUser.DoesNotExist:
+            messages.error(request, "입력한 이메일 주소를 가진 사용자가 없습니다.")
+            return redirect('/Accounts/Myfriends/')
+    return redirect('Mypage/Myfriend.html')
+
+@login_required
+def send_friend_request(request, user_id):
+    to_user = get_object_or_404(CustomUser, id=user_id)
+    friend_request, created = FriendRequest.objects.get_or_create(from_user=request.user, to_user=to_user)
+    if created:
+        # 친구 요청을 받은 사용자에게 알림 생성
+        notification_message = f"{request.user.username}님으로부터 친구 요청이 왔습니다."
+        FriendRequest.objects.create(from_user=request.user, to_user=to_user, notification_message=notification_message)
+        messages.success(request, f"{to_user.username}님에게 친구 요청을 보냈습니다.")
+    else:
+        messages.info(request, f"{to_user.username}님에게 이미 친구 요청을 보냈습니다.")
+    return redirect('/Accounts/Myfriends/')
+@login_required
+def accept_friend_request(request, request_id):
+    friend_request = get_object_or_404(FriendRequest, id=request_id)
+    if friend_request.to_user == request.user:
+        Friend.make_friend(request.user, friend_request.from_user)
+        Friend.make_friend(friend_request.from_user, request.user)
+        friend_request.delete()
+        return redirect('/Accounts/Myfriends/')
+    return redirect('Mypage/Myfriend.html')
+
+@login_required
+def delete_friend_request(request, request_id):
+    friend_request = get_object_or_404(FriendRequest, id=request_id)
+    if friend_request.to_user == request.user:
+        friend_request.delete()
+        return redirect('/Accounts/Myfriends/')
+    return redirect('Mypage/Myfriend.html')
+@login_required
+def my_friends(request):
+    user = request.user
+    try:
+        friend_relationship = Friend.objects.get(current_user=user)
+        friends = friend_relationship.users.all()  # 현재 사용자의 친구 목록
+    except Friend.DoesNotExist:
+        friends = []
+
+    friend_requests = FriendRequest.objects.filter(to_user=request.user)  # 현재 사용자에게 온 친구 요청 목록
+
+    return render(request, 'Mypage/Myfriend.html', {'friends': friends, 'friend_requests': friend_requests})

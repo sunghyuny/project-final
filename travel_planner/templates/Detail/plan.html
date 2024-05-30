@@ -84,51 +84,64 @@
             <div class="page_content">
                 <p>항목</p>
                 <ul class="content_list">
-                    <li id="showMyInfo">내 정보</li><hr>
+                    <li id="showMyInfo"><a href="/Accounts/mypage/" class="plan_link">내 정보</a></li><hr>
                     <li id="showLikes">좋아요</li><hr>
-                    <li id="showPlans">계획</li><hr>
+                    <li id="showPlans"><a href="/Accounts/userplan/" class="plan_link">계획</a></li><hr>
                     <li id="showReservations">예약</li><hr>
-                    <li id="showFriends">친구</li><hr>
+                    <li id="showFriends"><a href="/Accounts/Myfriends/" class="plan_link">친구</a></li><hr>
                     <li id="showPosts">게시물</li>
                 </ul>
             </div>
         <div class="content_name">
                 <p>마이페이지>계획상세</p>
             </div>
-        <div class="detail_page">
-                <div class="detail">
-                    <div class="plan_detail">
-                        <div class="plan_list">
-                            <div class="member">
-                                <h2>여행 인원</h2>
-                                <p>인원: {{ user_plan.total_people }}</p>
-                            </div>
+       <!-- Myplan.html -->
+<div class="detail_page">
+    <div class="detail">
+        <div class="plan_detail">
+            <div class="plan_list">
+                <div class="member">
+                    <h2>여행 인원</h2>
+                    <p>인원: {{ user_plan.total_people }}</p>
+                </div>
 
-                            <div class="location">
-                                <h2>여행 지역</h2>
-                                <p>{{ user_plan.destination }}</p>
-                            </div>
+                <div>
+                    <h2>참여 친구</h2>
+                    <ul>
+                        {% for friend in friends %}
+                        <li>{{ friend.username }}</li>
+                    {% empty %}
+                        <li>추가된 친구가 없습니다.</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="location">
+                    <h2>여행 지역</h2>
+                    <p>{{ user_plan.destination }}</p>
+                </div>
 
-                            <div class="lodg">
-                                <h2>숙소</h2>
-                                <p>{{ user_plan.selected_accommodation }}</p>
-                                <img class="sum_img" src="{{ user_plan.selected_accommodation.photo.url }}" alt="{{ user_plan.selected_accommodation_name }}">
-                            </div>
+                <div class="lodg">
+                    <h2>숙소</h2>
+                    <p>{{ user_plan.selected_accommodation }}</p>
+                    <img class="sum_img" src="{{ user_plan.selected_accommodation.photo.url }}" alt="{{ user_plan.selected_accommodation_name }}">
+                </div>
 
-                            <div class="activity">
-                                <h2>활동</h2>
-                                <p>{{ user_plan.selected_activity }}</p>
-                                <img class="sum_img" src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
-                            </div>
+                <div class="activity">
+                    <h2>활동</h2>
+                    <p>{{ user_plan.selected_activity }}</p>
+                    <img class="sum_img" src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
+                </div>
 
-                            <div class="price">
-                                <h2>가격</h2>
+                <div class="price">
+                    <h2>가격</h2>
+                </div>
 
-                            </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
+                <div><a href="/Accounts/userplan/{{ user_plan.id }}/edit/">계획 수정하기</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 -    </div>
 </body>
 </html>

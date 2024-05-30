@@ -1,0 +1,18 @@
+<!-- chat_room_detail.html -->
+<h1>{{ room.name }}</h1>
+<p>인원: {{ room.capacity }} ({{ room.participants.count }} currently)</p>
+<p>지역: {{ room.location }}</p>
+<p>날짜: {{ room.date }}</p>
+{% if room.image %}
+    <img src="{{ room.image.url }}" alt="Chat Room Image" style="width: 100px; height: auto;">
+{% endif %}
+
+{% if request.user in room.participants.all %}
+    <p>이미 방에 들어가있습니다</p>
+{% elif room.participants.count >= room.capacity %}
+    <p>This room is full.</p>
+{% else %}
+    <a href="{% url 'match:join_chat_room' room.id %}">참가하기</a>
+{% endif %}
+
+<a href="{% url 'match:chat_room_list' %}">뒤로 돌아가기</a>
