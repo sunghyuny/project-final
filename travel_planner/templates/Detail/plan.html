@@ -21,27 +21,35 @@
             width: 86rem;
             height: 680px;
             margin-top: 50px;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
 
         .page_content{
             float: left;
+            margin-top: 50px;
             margin-right: 60px;
             width: 300px;
             text-align: center;
             font-size: 16px;
+            display: flex;
         }
         .content_list{
-            border: 1px solid;
+            border-radius: 10px;
+            border: 3px solid;
             width: 200px;
             text-align: left;
             font-size: 16px;
             list-style: none;
-            margin-left: 50px;
-            margin-top: 20px;
+            margin-top: 40px;
+            border-color: #2295ff;
         }
 
         .content_list>li{
             margin: 25px 0px 25px 70px;
+            text-align: center;
+            padding-right: 70px;
+            color: #2295ff;
         }
 
         .content_list>hr{
@@ -76,13 +84,17 @@
             margin: 15px;
             border-radius: 4px;
         }
+
+        .content_sang {
+            font-size: 24px;
+            color:#2295FF;
+        }
     </style>
  </head>
 <body>
      <div class="mypage">
         <div class="mypage_content">
             <div class="page_content">
-                <p>항목</p>
                 <ul class="content_list">
                     <li id="showMyInfo"><a href="/Accounts/mypage/" class="plan_link">내 정보</a></li><hr>
                     <li id="showLikes">좋아요</li><hr>
@@ -93,7 +105,7 @@
                 </ul>
             </div>
         <div class="content_name">
-                <p>마이페이지>계획상세</p>
+                <p class="content_sang">마이페이지>계획상세</p>
             </div>
        <!-- Myplan.html -->
 <div class="detail_page">

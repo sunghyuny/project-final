@@ -8,4 +8,5 @@ urlpatterns = [
     path('join_chat_room/<int:room_id>/', join_chat_room, name="join_chat_room"),
     path('', chat_room_list, name="chat_room_list"),
     path('chat/detail/<int:room_id>/', chat_room_detail, name='chat_room_detail')
+
 ]

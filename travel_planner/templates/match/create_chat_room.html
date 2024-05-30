@@ -1,20 +1,98 @@
-<h1>Create a New Chat Room</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label for="room_name">방이름:</label>
-    <input type="text" id="room_name" name="room_name" required><br>
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-    <label for="room_capacity">인원:</label>
-    <input type="number" id="room_capacity" name="room_capacity" required><br>
+        .create_page{
+            margin-top: 30px;
+        }
 
-    <label for="room_location">장소:</label>
-    <input type="text" id="room_location" name="room_location" required><br>
 
-    <label for="room_date">날짜:</label>
-    <input type="date" id="room_date" name="room_date" required><br>
+        .new_chat{
+            width: 1000px;
+            margin: 0px auto;
+        }
 
-    <label for="room_image">이미지:</label>
-    <input type="file" id="room_image" name="room_image" accept="image/*"><br>
+        .title{
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
 
-    <button type="submit">만들기</button>
-</form>
+        .page_content {
+            display: flex;
+            flex-direction: column;
+            width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #D9D9D9;
+            margin: 0px auto;
+        }
+
+        .input_text{
+            border-radius: 30px;
+            margin-top: 10px;
+            height: 30px;
+            width: 250px;
+            padding: 5px;
+        }
+
+        .info_title{
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        textarea {
+            resize: none;
+            font-size: 18px;
+        }
+
+        .btn_content{
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .create_btn{
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            font-size: 20px;
+            width: 200px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="create_page">
+    <div class="new_chat">
+        <div class="page_title">
+            <h1 class="title">채팅방 생성</h1>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="page_content">
+                <input type="text" id="room_name" name="room_name" class="input_text" required placeholder="채팅방 이름을 입력해주세요">
+                <input type="text" id="room_date" name="room_date" class="input_text" required placeholder="기간을 입력해주세요">
+                <input type="text" id="room_locate" name="room_locate" class="input_text" required placeholder="지역을 입력해주세요">
+                <input type="text" id="room_cnt" name="room_cnt" class="input_text" required placeholder="총 인원을 입력해주세요">
+                <label class="info_title">설명 :</label>
+                <textarea name="travel_info" id="" cols="70" rows="10"></textarea>
+            </div>
+            <div class="btn_content">
+                <button type="submit" class="create_btn">생성하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
