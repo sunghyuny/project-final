@@ -105,15 +105,15 @@
         width: 700px;
         float: left;
         border-radius: 4px;
-    }  /*이중선 제거*/
+    }
+
     th,td{
       height: 50px;
       text-align: center;
       border: 1px solid #000;
-
-      vertical-align: top;   /* 위 */
-      vertical-align: bottom;   /* 아래 */
-      vertical-align: middle;   /* 가운데 */
+      vertical-align: top;
+      vertical-align: bottom;
+      vertical-align: middle;
     }
 
     .trip_left {
@@ -182,9 +182,10 @@
 
     .pack_buy {
         background-color: #2295FF;
-        width: 360px;
+        width: 385px;
         height: 46px;
         font-size: 16px;
+        font-weight: bold;
         border: none;
         align-content: center;
         color: white;
@@ -192,6 +193,7 @@
         margin-top: 10px;
         padding: 5px 10px;
         text-align: center;
+        margin-left: 810px;
     }
 </style>
 <body>
@@ -228,10 +230,10 @@
                     </div>
                     <table>
                         <tr>
-                          <th scope="col">구분</td>
-                          <th scope="col">성인</td>
-                          <th scope="col">청소년</td>
-                            <th scope="col">어린이</td>
+                            <td scope="col">구분</td>
+                            <td scope="col">성인</td>
+                            <td scope="col">청소년</td>
+                            <td scope="col">어린이</td>
                         </tr>
                         <tr>
                           <td>가격</td>
@@ -270,48 +272,38 @@
             </div>
             <button type="submit" class="pack_buy">예약하기</button>
         </form>
-                    <script>
-                        
-                        
-                        // 초기 값 설정
-                        let values = [0, 0, 0]; // 세 개의 값이 담긴 배열
-
-                        // 숫자 갱신 함수
-                        function updateDisplay() {
-                            document.getElementById("person1").textContent = values[0];
-                            document.getElementById("person2").textContent = values[1];
-                            document.getElementById("person3").textContent = values[2];
-
-                            // 각 display 값에 해당하는 보너스 값 계산
-                            let bonus1 = values[0] * 500000 ;
-                            let bonus2 = values[1] * 300000;
-                            let bonus3 = values[2] * 100000;
-
-                            // total 계산
-                            let total = bonus1 + bonus2 + bonus3;
-                            document.getElementById("per_total").textContent = total;
-                        }
-
-                        // + 버튼 클릭 시 호출되는 함수
-                        function increaseValue(index) {
-                            values[index - 1]++; // 해당 인덱스의 값이 1 증가
-                            updateDisplay(); // 표시 갱신
-                        }
-
-                        // - 버튼 클릭 시 호출되는 함수
-                        function decreaseValue(index) {
-                            if (values[index - 1] > 0) {
-                                values[index - 1]--; // 해당 인덱스의 값이 1 감소
-                                updateDisplay(); // 표시 갱신
-                            }
-                        }
-
-                        // 초기화
-                        updateDisplay();
-                    </script>
-                </div>
-            </div>
+        </div>
+        </div>
         </div>
     </section>
 </body>
+<script>
+    let values = [0, 0, 0];
+    function updateDisplay() {
+        document.getElementById("person1").textContent = values[0];
+        document.getElementById("person2").textContent = values[1];
+        document.getElementById("person3").textContent = values[2];
+
+        let bonus1 = values[0] * 500000 ;
+        let bonus2 = values[1] * 300000;
+        let bonus3 = values[2] * 100000;
+
+        let total = bonus1 + bonus2 + bonus3;
+        document.getElementById("per_total").textContent = total;
+    }
+
+     function increaseValue(index) {
+         alues[index - 1]++;
+         updateDisplay();
+     }
+
+     function decreaseValue(index) {
+        if (values[index - 1] > 0) {
+            values[index - 1]--;
+            updateDisplay();
+        }
+     }
+
+     updateDisplay();
+</script>
 </html>

@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-<!-- chat_room_list.html -->
-<h1>Chat Rooms</h1>
-<ul>
-    {% for room in chat_rooms %}
-    <li>
-        <a href="{% url 'match:chat_room_detail' room.id %}">{{ room.name }}</a>
-    </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'match:create_chat_room' %}">방 만들기</a>
-=======
+
 <!DOCTYPE html>
 {% include 'Navbar.html'%}
 <html lang="en">
@@ -68,7 +57,8 @@
             width: 400px;
             height: 80px;
             padding-left: 10px;
-            background-color: #D9D9D9;
+            border: 1px solid;
+            background-color: white;
             margin: 10px auto 10px 30px;
             flex: 0 0 auto;
             display: flex;
@@ -120,12 +110,12 @@
                 {% for room in chat_rooms %}
                 <div class="match_list">
                     <div class="profile_img">
-                        <img src="/image/216A104955CDB88A1B.png" alt="" class="room_img">
+                        <img src="{{ chat_room.image.url }}" alt="" class="room_img">
                     </div>
                     <div class="list_content">
                         <p class="title"><a href="{% url 'match:join_chat_room' room.id %}" class="room_title">{{ room.name }}</a></p>
-                        <p class="period"></p>
-                        <p class="subtitle"></p>
+                        <p class="period">{{room.date}}</p>
+                        <p class="subtitle">{{room.description}}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -135,4 +125,4 @@
 </body>
 
 </html>
->>>>>>> b04465efdbce91cdf429621a72182138776906d7
+

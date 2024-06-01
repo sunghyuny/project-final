@@ -268,22 +268,19 @@
 </body>
 
 <script>
-    let copyNum = 1; // 시작 번호 설정
+    let copyNum = 1;
 
     document.querySelector('.traveler_add').addEventListener('click', function() {
-        var original = document.getElementById('copy0'); // 초기 요소 선택
-        var clone = original.cloneNode(true); // 깊은 복사 실행
-        clone.id = 'copy' + copyNum++; // 새로운 아이디 할당
-        original.parentNode.appendChild(clone); // 클론 추가
+        var original = document.getElementById('copy0');
+        var clone = original.cloneNode(true);
+        clone.id = 'copy' + copyNum++;
+        original.parentNode.appendChild(clone);
 
-        // 클론의 삭제 버튼(아이콘)에 이벤트 리스너 추가
         addDeleteListener(clone);
     });
 
     function addDeleteListener(clone) {
-        // clone 내부에서 클래스가 'icon'인 요소를 찾아 리스너를 추가
         clone.querySelector('.icon').addEventListener('click', function() {
-            // 이벤트가 발생한 요소의 부모 노드(여기서는 div.traveler_info_in)를 삭제
             clone.parentNode.removeChild(clone);
         });
     }

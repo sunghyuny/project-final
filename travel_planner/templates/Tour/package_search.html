@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제주도 검색 결과 | Travel Plan</title>
     <style>
-        /* 기본 여백 및 패딩 초기화 */
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +34,7 @@
         }
 
         .top_image {
-            position: relative; /* 이미지 위치를 상대적으로 설정합니다. */
+            position: relative;
             width: 1920px;
             height: 723px;
         }
@@ -44,7 +43,7 @@
             margin: 0 auto;
             overflow-x: hidden;
             width: 1193px;
-            position: absolute; /* 상대적인 위치 지정을 위해 절대 위치로 설정합니다. */
+            position: absolute;
             align-items: center;
             padding-left: 100px;
             padding-bottom: 30px;
@@ -53,7 +52,7 @@
         .searchtext {
             height: 42px;
             width: 310px;
-            margin-right: 10px; /* 검색 텍스트와 버튼 사이의 간격을 설정합니다. */
+            margin-right: 10px;
             padding-left: 15px;
             box-shadow: 2px 2px 2px #d7d7db;
             border: none;
@@ -62,7 +61,7 @@
         .searchtext2 {
             height: 42px;
             width: 310px;
-            margin-right: 10px; /* 검색 텍스트와 버튼 사이의 간격을 설정합니다. */
+            margin-right: 10px;
             padding-left: 15px;
             box-shadow: 2px 2px 2px #d7d7db;
             border: none;
@@ -116,7 +115,6 @@
             background-color: #e2e2e2;
         }
 
-        /* 선택된 부분의 스타일 */
         .island_selected, .inland_selected {
             background-color: #2295ff;
             color: white;
@@ -141,8 +139,6 @@
             color: #2295ff;
             font-weight: bold;
         }
-
-        /*관광지*/
 
         .island_content, .inland_content {
             display: flex;
@@ -196,8 +192,8 @@
         }
 
         .content_selection>p:not(.island_selected):not(.inland_selected) {
-            background-color: #E2E2E2; /* 배경색을 회색으로 설정합니다. */
-            color: #6D6D6D; /* 글자색을 검은색으로 설정합니다. */
+            background-color: #E2E2E2;
+            color: #6D6D6D;
         }
 
         .sight_island_list {
@@ -272,9 +268,9 @@
         } /*캘린더 css*/
 
         .package_ {
-            display: inline-block; /* 각 div를 인라인 요소처럼 배치합니다. */
-            width: 1013px; /* 각 div의 너비를 설정합니다. */
-            margin-right: 10px; /* 각 div 사이의 간격을 설정합니다. */
+            display: inline-block;
+            width: 1013px;
+            margin-right: 10px;
             border: 1px solid #d7d7db;
             padding: 16px;
             margin-bottom: 20px;
@@ -285,8 +281,8 @@
         .pak_title {
             font-size: 21px;
             font-weight: bold;
-            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
-            margin: 0 ; /* 좌우 여백을 설정합니다. */
+            display: inline-block;
+            margin: 0 ;
             margin-top: 10px;
          }
 
@@ -324,7 +320,7 @@
             color: #ccc;
             display: flex;
             float: right;
-        } /*패키지 여행 검색 결과*/
+        }
     </style>
 </head>
 <body>
@@ -369,7 +365,7 @@
                 </thead>
                 <tbody id="pk_calendarBody">
                 </tbody>
-              </table> <!--캘린더 띄우기-->
+              </table>
 
             <script>
                 function toggleItems() {

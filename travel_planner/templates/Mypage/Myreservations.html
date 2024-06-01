@@ -10,12 +10,14 @@
             margin: 0;
             padding: 0;
         }
+
         .mypage{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+
         .mypage_content{
             justify-content: center;
             width: 86rem;
@@ -31,17 +33,21 @@
             font-size: 16px;
         }
         .content_list{
-            border: 1px solid;
+            border-radius: 10px;
+            border: 3px solid;
             width: 200px;
             text-align: left;
             font-size: 16px;
             list-style: none;
-            margin-left: 50px;
-            margin-top: 20px;
+            margin-top: 40px;
+            border-color: #2295ff;
         }
 
         .content_list>li{
             margin: 25px 0px 25px 70px;
+            text-align: center;
+            padding-right: 70px;
+            color: #2295ff;
         }
 
         .content_list>hr{
@@ -141,25 +147,36 @@
         .fav_icon.fav {
             color: red;
         }      
+
+        .content_sang {
+            font-size: 24px;
+            color:#2295FF;
+            margin-left: 340px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
     <div class="mypage">
         <div class="mypage_content">
             <div class="page_content">
-                <p>항목</p>
                 <ul class="content_list">
                     <li id="showMyInfo">내 정보</li><hr>
                     <li id="showLikes">좋아요</li><hr>
                     <li id="showPlans">계획</li><hr>
                     <li id="showReservations">예약</li><hr>
                     <li id="showFriends">친구</li><hr>
-                    <li id="showPosts">게시물</li>
+                    <li id="showPosts">게시물</li><hr>
+                    <li id="showchat">채팅</li>
                 </ul>
             </div>
 
             <div class="content_name">
-                <p>마이페이지</p>
+                <p class="content_sang">마이페이지</p>
             </div>
 
             <div class="detail_page">
@@ -190,7 +207,6 @@
 
 <script>    
     window.onload = function() {
-        // 페이지가 로드될 때 패키지를 선택하도록 설정
         selectTab(document.querySelector('.res_package'));
     };
 

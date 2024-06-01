@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관광지</title>
     <style>
-        /* 기본 여백 및 패딩 초기화 */
         * {
             margin: 0;
             padding: 0;
@@ -37,13 +36,13 @@
         }
 
         .top_image {
-            position: relative; /* 이미지 위치를 상대적으로 설정합니다. */
+            position: relative;
             width: 100%;
             height: 30rem;
         }
 
         .search_container {
-            position: absolute; /* 상대적인 위치 지정을 위해 절대 위치로 설정합니다. */
+            position: absolute;
             display: flex;
             align-items: center;
             padding-left: 100px;
@@ -53,7 +52,7 @@
         .searchtext {
             height: 42px;
             width: 555px;
-            margin-right: 10px; /* 검색 텍스트와 버튼 사이의 간격을 설정합니다. */
+            margin-right: 10px;
             padding-left: 15px;
             box-shadow: 2px 2px 2px #d7d7db;
             border: none;
@@ -102,7 +101,6 @@
             background-color: #e2e2e2;
         }
 
-        /* 선택된 부분의 스타일 */
         .island_selected, .inland_selected {
             background-color: #2295ff;
             color: white;
@@ -127,8 +125,6 @@
             color: #2295ff;
             font-weight: bold;
         }
-
-        /*관광지*/
 
         .island_content, .inland_content {
             display: flex;
@@ -206,8 +202,8 @@
         }
 
         .content_selection>p:not(.island_selected):not(.inland_selected) {
-            background-color: #E2E2E2; /* 배경색을 회색으로 설정합니다. */
-            color: #6D6D6D; /* 글자색을 검은색으로 설정합니다. */
+            background-color: #E2E2E2;
+            color: #6D6D6D;
         }
 
         .sight_island_list {
@@ -370,26 +366,22 @@
     </div>
 </body>
 <script>
-    // JavaScript로 탭 기능 구현
     document.addEventListener("DOMContentLoaded", function() {
             const tabs = document.querySelectorAll('.content_selection>p');
             const islandContent = document.querySelector('.island_content');
             const inlandContent = document.querySelector('.inland_content');
 
-            // 초기에 섬 여행(content)만 보이도록 설정하고 해당 탭을 클릭된 상태로 변경
             showIslandContent();
             tabs[0].classList.add('island_selected');
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // 클릭된 탭의 텍스트를 확인하여 섬 여행 또는 내륙 여행을 선택
                     if (this.textContent === "제주/섬 여행") {
                         showIslandContent();
                     } else {
                         showInlandContent();
                     }
 
-                    // 클릭된 탭에 스타일 적용
                     tabs.forEach(tab => tab.classList.remove('island_selected', 'inland_selected'));
                     this.classList.add('island_selected');
                 });

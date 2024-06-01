@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Plan | 패키지 여행</title>
     <style>
-        /* 기본 여백 및 패딩 초기화 */
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +17,7 @@
             margin: 0;
             overflow-x: hidden;
         }
-        .pachage_content{
+        .package_content{
             align-items: center;
             justify-content: center;
             width: 1193px;
@@ -36,7 +35,7 @@
         }
 
         .top_image {
-            position: relative; /* 이미지 위치를 상대적으로 설정합니다. */
+            position: relative;
             width: 1920px;
             height: 723px;
         }
@@ -45,7 +44,7 @@
             margin: 0 auto;
             overflow-x: hidden;
             width: 1193px;
-            position: absolute; /* 상대적인 위치 지정을 위해 절대 위치로 설정합니다. */
+            position: absolute;
             align-items: center;
             padding-left: 100px;
             padding-bottom: 30px;
@@ -54,7 +53,7 @@
         .searchtext {
             height: 42px;
             width: 310px;
-            margin-right: 10px; /* 검색 텍스트와 버튼 사이의 간격을 설정합니다. */
+            margin-right: 10px;
             padding-left: 15px;
             box-shadow: 2px 2px 2px #d7d7db;
             border: none;
@@ -63,7 +62,7 @@
         .searchtext2 {
             height: 42px;
             width: 310px;
-            margin-right: 10px; /* 검색 텍스트와 버튼 사이의 간격을 설정합니다. */
+            margin-right: 10px;
             padding-left: 15px;
             box-shadow: 2px 2px 2px #d7d7db;
             border: none;
@@ -117,7 +116,6 @@
             background-color: #e2e2e2;
         }
 
-        /* 선택된 부분의 스타일 */
         .island_selected, .inland_selected {
             background-color: #2295ff;
             color: white;
@@ -142,8 +140,6 @@
             color: #2295ff;
             font-weight: bold;
         }
-
-        /*관광지*/
 
         .island_content, .inland_content {
             display: flex;
@@ -221,8 +217,8 @@
         }
 
         .content_selection>p:not(.island_selected):not(.inland_selected) {
-            background-color: #E2E2E2; /* 배경색을 회색으로 설정합니다. */
-            color: #6D6D6D; /* 글자색을 검은색으로 설정합니다. */
+            background-color: #E2E2E2;
+            color: #6D6D6D;
         }
 
         .sight_island_list {
@@ -274,7 +270,7 @@
             border-radius: 5px;
             text-align: center;
             font-size: 14px;
-        } /*지역 선택 css*/
+        }
 
         .pk_table {
             border-collapse: collapse;
@@ -306,7 +302,7 @@
         .selected {
             background-color: #2295ff;
             color: #fff;
-        } /*캘린더 css*/
+        }
     </style>
 </head>
 <body>
@@ -328,17 +324,12 @@
                 <div id="text6" class="st_item" onclick="setText('text6')">충청도</div>
                 <div id="text7" class="st_item" onclick="setText('text7')">강원도</div>
                 <div id="text8" class="st_item" onclick="setText('text8')">제주도</div>
-            </div> <!--지역 선택 띄우기-->
+            </div>
 
             <script>
                 function setText(selectedText) {
-                    // 선택한 텍스트 가져오기
                     var selectedValue = document.getElementById(selectedText).innerText;
-
-                    // URL에 파라미터로 선택한 텍스트 추가
                     var url = "next_page.html?selectedText=" + encodeURIComponent(selectedValue);
-
-                    // 다음 페이지로 이동
                     window.location.href = url;
                 }
             </script>
@@ -364,7 +355,7 @@
                 </thead>
                 <tbody id="pk_calendarBody">
                 </tbody>
-              </table> <!--캘린더 띄우기-->
+              </table>
 
             <script>
                 function toggleItems() {
@@ -401,7 +392,6 @@
                     }
                 }
             </script>
-            <!--지역 눌럿을 때 항목 열림-->
 
             <script>
                 function setText(textId) {
@@ -409,7 +399,6 @@
                     document.getElementById("inputText").value = text;
                 }
             </script>
-            <!--글자 눌럿을 때 input 뜨게 함-->
 
             <script>
                 var currentDate = new Date();
@@ -466,51 +455,44 @@
 
                 showCalendar();
             </script>
-            <!--캘린더-->
         </div>
-        <div class="pachage_content">
+        <div class="package_content">
             <div class="inland_content">
                 <div class="sights_list">
                     <p class="list_title">추천 패키지 여행</p>
-{% for pack in packages %}
-    <div class="recommend_papckage">
-        <div class="recommend_package_img">
-            <a href="{% url 'package_detail' package_id=pack.id %}">
-            <img src="{{ pack.image.url}}" alt="{{ pack.destination }}" class="package_picture"></img>
-        </a>
-        </div>
-        <p class="package_text">패키지</p>
-        <a href="{% url 'package_detail' package_id=pack.id %}"><p class="sights_name">[섬섬투어] {{ pack.destination }} #여행지 #추천</p></a>
-    </div>
-{% endfor %}
-
-                    
+                    {% for pack in packages %}
+                        <div class="recommend_papckage">
+                            <div class="recommend_package_img">
+                                <a href="{% url 'package_detail' package_id=pack.id %}">
+                                <img src="{{ pack.image.url}}" alt="{{ pack.destination }}" class="package_picture"></img>
+                            </a>
+                            </div>
+                            <p class="package_text">패키지</p>
+                            <a href="{% url 'package_detail' package_id=pack.id %}"><p class="sights_name">[섬섬투어] {{ pack.destination }} #여행지 #추천</p></a>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
          </div>
     </div>
 </body>
 <script>
-    // JavaScript로 탭 기능 구현
     document.addEventListener("DOMContentLoaded", function() {
             const tabs = document.querySelectorAll('.content_selection>p');
             const islandContent = document.querySelector('.island_content');
             const inlandContent = document.querySelector('.inland_content');
 
-            // 초기에 섬 여행(content)만 보이도록 설정하고 해당 탭을 클릭된 상태로 변경
             showIslandContent();
             tabs[0].classList.add('island_selected');
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // 클릭된 탭의 텍스트를 확인하여 섬 여행 또는 내륙 여행을 선택
                     if (this.textContent === "제주/섬 여행") {
                         showIslandContent();
                     } else {
                         showInlandContent();
                     }
 
-                    // 클릭된 탭에 스타일 적용
                     tabs.forEach(tab => tab.classList.remove('island_selected', 'inland_selected'));
                     this.classList.add('island_selected');
                 });

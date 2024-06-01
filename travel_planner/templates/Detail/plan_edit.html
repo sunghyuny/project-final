@@ -10,7 +10,7 @@
     <br>
     <label for="total_people">인원수:</label><br>
     <input type="number" id="total_people" name="total_people" value="{{ plan.total_people }}"><br>
-    <!-- 친구 추가 필드 -->
+
     <h2>친구 추가</h2>
     {% for friend in friends %}
     <input type="checkbox" id="friend_{{ friend.id }}" name="friends" value="{{ friend.id }}"
