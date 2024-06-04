@@ -33,14 +33,15 @@ class Like(models.Model):
 class FriendRequest(models.Model):
     from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='from_user', on_delete=models.CASCADE)
     to_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='to_user', on_delete=models.CASCADE)
+    trip_plan = models.ForeignKey('planner.TripPlan', on_delete=models.CASCADE, null=True, blank=True)  # 여행 계획 참조
     timestamp = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('rejected', 'Rejected')], default='pending')
 
     def __str__(self):
-        return f"Friend request from {self.from_user} to {self.to_user}"
+        return f"Friend request from {self.from_user} to {self.to_user} for plan {self.trip_plan}"
 
     class Meta:
-        unique_together = ('from_user', 'to_user')
-
+        unique_together = ('from_user', 'to_user', 'trip_plan')
 
 class Friend(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL)

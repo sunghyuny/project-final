@@ -16,6 +16,9 @@ urlpatterns =[
     path('delete_friend_request/<int:request_id>/', delete_friend_request, name='delete_friend_request'),
     path('Myfriends/', my_friends, name='my_friends'),
     path('userplan/<int:plan_id>/edit/', plan_edit, name='plan_edit'),
+    path('accept_invite/<int:invite_id>/', accept_invite, name='accept_invite'),
+    path('reject_invite/<int:invite_id>/', reject_invite, name='reject_invite'),
+
 ]
 
 

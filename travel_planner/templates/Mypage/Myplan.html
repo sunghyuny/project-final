@@ -158,7 +158,19 @@
                     <p>계획을 만들러 가시겠습니까? <a href="/planner/">여기를 클릭하세요.</a></p>
                 {% endif %}
                 </div>
+            
+                <div class="left">
+                    <h2>초대 요청</h2>
+                    {% for invite in invites %}
+                        <div>
+                            <p>{{ invite.from_user.username }} 님의 초대 요청 (계획 ID: {{ invite.trip_plan.id }})</p>
+                            <a href="{% url 'accept_invite' invite.id %}">수락</a>
+                            <a href="{% url 'reject_invite' invite.id %}">거절</a>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
+            
         </div>
     </div>
 </body>

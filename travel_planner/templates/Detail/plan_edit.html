@@ -1,20 +1,18 @@
-
 <form method="post">
     {% csrf_token %}
     <label for="arrival_date">도착 날짜:</label>
-<input type="date" name="arrival_date" id="arrival_date" value="{{ user_plan.arrival_date|date:'Y-m-d' }}">
-<br>
-<label for="departure_date">출발 날짜:</label>
-<input type="date" name="departure_date" id="departure_date" value="{{ user_plan.departure_date|date:'Y-m-d' }}">
-
+    <input type="date" name="arrival_date" id="arrival_date" value="{{ user_plan.arrival_date|date:'Y-m-d' }}">
     <br>
-    <label for="total_people">인원수:</label><br>
-    <input type="number" id="total_people" name="total_people" value="{{ plan.total_people }}"><br>
-    <!-- 친구 추가 필드 -->
+    <label for="departure_date">출발 날짜:</label>
+    <input type="date" name="departure_date" id="departure_date" value="{{ user_plan.departure_date|date:'Y-m-d' }}">
+    <br>
+    <label for="total_people">인원수:</label>
+    <input type="number" id="total_people" name="total_people" value="{{ user_plan.total_people }}">
+    <br>
     <h2>친구 추가</h2>
     {% for friend in friends %}
     <input type="checkbox" id="friend_{{ friend.id }}" name="friends" value="{{ friend.id }}"
-           {% if friend in plan.friends_set.all %} checked {% endif %}>
+           {% if friend in user_plan.friends.all %} checked {% endif %}>
     <label for="friend_{{ friend.id }}">{{ friend.username }}</label><br>
     {% endfor %}
     <button type="submit">수정 완료</button>

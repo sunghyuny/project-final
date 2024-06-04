@@ -27,6 +27,7 @@ def create_chat_room(request):
         capacity = request.POST.get('room_capacity')
         location = request.POST.get('room_location')
         date = request.POST.get('room_date')
+        description = request.POST.get('description')
         image = request.FILES.get('room_image')
 
         if room_name and capacity and location and date:
@@ -35,14 +36,15 @@ def create_chat_room(request):
                 creator=request.user,
                 capacity=capacity,
                 location=location,
-                date=date
+                date=date,
+                description=description
             )
             if image:
                 chat_room.image = image
                 chat_room.save()
 
             chat_room.participants.add(request.user)
-            return HttpResponseRedirect(reverse('match:chat_room', args=[chat_room.id]))
+            return HttpResponseRedirect(reverse('match:chat_room_list'))  # 채팅방 리스트 페이지로 리다이렉트
 
     return render(request, 'match/create_chat_room.html')
 
@@ -52,11 +54,16 @@ def join_chat_room(request, room_id):
     chat_room.participants.add(request.user)
     return redirect('match:chat_room', room_id=room_id)
 
+
 @login_required
 def chat_room_list(request):
     chat_rooms = ChatRoom.objects.all()
     return render(request, 'match/chat_room_list.html', {'chat_rooms': chat_rooms})
 
+@login_required
 def chat_room_detail(request, room_id):
-    room = get_object_or_404(ChatRoom, id=room_id)
-    return render(request, 'match/chat_detail.html', {'room': room})
+    chat_room = get_object_or_404(ChatRoom, id=room_id)
+    if request.user in chat_room.participants.all():
+        return redirect('match:chat_room', room_id=room_id)
+    else:
+        return render(request, 'match/chat_detail.html', {'room': chat_room})

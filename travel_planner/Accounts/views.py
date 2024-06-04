@@ -76,12 +76,12 @@ def user_plan(request):
     return render(request, 'Mypage/Myplan.html', {'trip_plan_info': trip_plan_info})
 
 
+@login_required
 def userplan_detail(request, user_plan_id):
     user_plan = get_object_or_404(TripPlan, id=user_plan_id)
-    # ManyToManyField인 friends를 리스트로 변환
     friends_list = list(user_plan.friends.all())
-
-    return render(request, 'Detail/plan.html', {'user_plan': user_plan, 'friends': friends_list})
+    invites = FriendRequest.objects.filter(to_user=request.user, trip_plan=user_plan, status='pending')
+    return render(request, 'Detail/plan.html', {'user_plan': user_plan, 'friends': friends_list, 'invites': invites})
 
 def plan_delete(request, plan_id):
     plan = get_object_or_404(TripPlan, pk=plan_id)
@@ -94,40 +94,55 @@ def plan_delete(request, plan_id):
 
 @login_required
 def plan_edit(request, plan_id):
-    plan = get_object_or_404(TripPlan, pk=plan_id)
     user = request.user
+    plan = get_object_or_404(TripPlan, pk=plan_id)
 
-    # 계획의 소유자가 아니면 접근 금지 처리
     if plan.user != user:
         return HttpResponseForbidden("이 계획을 수정할 권한이 없습니다.")
 
-    # 친구 목록을 불러오는 로직
     try:
-        friend_relationship = Friend.objects.get(current_user=user)
-        friends = friend_relationship.users.all()
+        friends = Friend.objects.get(current_user=user).users.all()
     except Friend.DoesNotExist:
-        friends = []
+        friends = CustomUser.objects.none()
 
-    # POST 요청 처리: 폼 데이터로 계획 수정
     if request.method == 'POST':
-        plan.arrival_date = request.POST.get('arrival_date', plan.arrival_date)
-        plan.departure_date = request.POST.get('departure_date', plan.departure_date)
-        total_people = int(request.POST.get('total_people'))
+        arrival_date = request.POST.get('arrival_date')
+        departure_date = request.POST.get('departure_date')
+        total_people = request.POST.get('total_people')
+        friend_ids = request.POST.getlist('friends')
 
-        selected_friends_ids = request.POST.getlist('friends')
-        selected_friends = CustomUser.objects.filter(id__in=selected_friends_ids)
-
-        # 친구 선택해도 인원수에 +1 안되도록 수정
-        total_people += len(selected_friends) - plan.friends.count()
+        plan.arrival_date = arrival_date
+        plan.departure_date = departure_date
         plan.total_people = total_people
-
-        plan.friends.set(selected_friends)
+        plan.friends.set(friend_ids)
         plan.save()
+
+        for friend_id in friend_ids:
+            friend = CustomUser.objects.get(id=friend_id)
+            if not FriendRequest.objects.filter(from_user=user, to_user=friend, trip_plan=plan).exists():
+                FriendRequest.objects.create(from_user=user, to_user=friend, trip_plan=plan)
+
         messages.success(request, "계획이 성공적으로 수정되었습니다.")
         return redirect('/Accounts/userplan/')
-    else:
-        return render(request, 'Detail/plan_edit.html', {'plan': plan, 'friends': friends})
 
+    return render(request, 'Detail/plan_edit.html', {'user_plan': plan, 'friends': friends})
+
+@login_required
+def accept_invite(request, invite_id):
+    invite = get_object_or_404(FriendRequest, pk=invite_id, to_user=request.user)
+    invite.trip_plan.friends.add(request.user)
+    invite.status = 'accepted'
+    invite.save()
+    messages.success(request, "초대를 수락했습니다.")
+    return redirect('/Accounts/userplan/')
+
+@login_required
+def reject_invite(request, invite_id):
+    invite = get_object_or_404(FriendRequest, pk=invite_id, to_user=request.user)
+    invite.status = 'rejected'
+    invite.save()
+    messages.success(request, "초대를 거절했습니다.")
+    return redirect('/Accounts/userplan/')
 
 def send_friend_request_by_email(request):
     if request.method == 'POST':
@@ -192,3 +207,16 @@ def my_friends(request):
     friend_requests = FriendRequest.objects.filter(to_user=request.user)  # 현재 사용자에게 온 친구 요청 목록
 
     return render(request, 'Mypage/Myfriend.html', {'friends': friends, 'friend_requests': friend_requests})
+
+
+def respond_friend_request(request, request_id, response):
+    friend_request = get_object_or_404(FriendRequest, pk=request_id, to_user=request.user)
+
+    if response == 'accept':
+        friend_request.status = 'accepted'
+        friend_request.trip_plan.friends.add(friend_request.from_user)  # 요청한 사용자를 여행 계획의 친구로 추가
+    elif response == 'reject':
+        friend_request.status = 'rejected'
+
+    friend_request.save()
+    return redirect('userplan_detail', user_plan_id=friend_request.trip_plan.id)

@@ -72,27 +72,29 @@
     </style>
 </head>
 <body>
-<div class="create_page">
-    <div class="new_chat">
-        <div class="page_title">
-            <h1 class="title">채팅방 생성</h1>
+    <div class="create_page">
+        <div class="new_chat">
+            <div class="page_title">
+                <h1 class="title">채팅방 생성</h1>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="page_content">
+                    <input type="text" id="room_name" name="room_name" class="input_text" required placeholder="채팅방 이름을 입력해주세요">
+                    <input type="date" id="room_date" name="room_date" class="input_text" required placeholder="기간을 입력해주세요">
+                    <input type="text" id="room_location" name="room_location" class="input_text" required placeholder="지역을 입력해주세요">
+                    <input type="number" id="room_capacity" name="room_capacity" class="input_text" required placeholder="총 인원을 입력해주세요">
+                    <label class="info_title">설명 :</label>
+                    <textarea name="description" id="description" cols="70" rows="10"></textarea>
+                    <label for="room_image">이미지 :</label>
+                    <input type="file" id="room_image" name="room_image" class="input_text">
+                </div>
+                <div class="btn_content">
+                    <button type="submit" class="create_btn">생성하기</button>
+                </div>
+            </form>
         </div>
-        <form method="post">
-            {% csrf_token %}
-            <div class="page_content">
-                <input type="text" id="room_name" name="room_name" class="input_text" required placeholder="채팅방 이름을 입력해주세요">
-                <input type="text" id="room_date" name="room_date" class="input_text" required placeholder="기간을 입력해주세요">
-                <input type="text" id="room_locate" name="room_locate" class="input_text" required placeholder="지역을 입력해주세요">
-                <input type="text" id="room_cnt" name="room_cnt" class="input_text" required placeholder="총 인원을 입력해주세요">
-                <label class="info_title">설명 :</label>
-                <textarea name="travel_info" id="" cols="70" rows="10"></textarea>
-            </div>
-            <div class="btn_content">
-                <button type="submit" class="create_btn">생성하기</button>
-            </div>
-        </form>
     </div>
-</div>
-
+    
 </body>
 </html>
