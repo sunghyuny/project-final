@@ -122,8 +122,8 @@
             border-radius: 4px;
             float: left;
             margin-left: 200px;
-            top: 20px; /* 위쪽 여백을 설정합니다. */
-            left: 20px; /* 왼쪽 여백을 설정합니다. */
+            top: 20px;
+            left: 20px;
         }
 
         .select_filter2 {
@@ -139,15 +139,6 @@
             padding-top: -20px;
             margin-bottom: 2000px;
         }
-
-        /*
-        .lodging_list {
-
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 10px;
-            justify-content: center;
-        } */
 
         .array {
             color: #949494;
@@ -270,8 +261,8 @@
         .lodg_title {
             font-size: 21px;
             font-weight: bold;
-            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
-            margin: 0 ; /* 좌우 여백을 설정합니다. */
+            display: inline-block;
+            margin: 0 ;
             margin-top: 10px;
          }
 
@@ -285,9 +276,8 @@
 
         .lodg_star {
             color: #2295FF;
-            display: inline-block; /* 요소를 인라인 블록 요소로 설정하여 배열합니다. */
-            margin: 5px 5px
-            ; /* 좌우 여백을 설정합니다. */
+            display: inline-block;
+            margin: 5px 5px;
         }
 
         .lodg_price {
@@ -408,13 +398,11 @@
     <script>
         function changeButtonColor(button) {
             if (button.id === 'next_btn') {
-            button.classList.toggle('clicked'); // 특정 버튼의 색상을 변경합니다.
+            button.classList.toggle('clicked');
             }
         }
         document.addEventListener("DOMContentLoaded", function() {
-        // 버튼에 클릭 이벤트 리스너 추가
         document.querySelector(".drop_btn").addEventListener("click", function() {
-            // dropdown_content의 표시 상태를 변경
             var content = document.getElementById("dropdown_content");
                 if (content.style.display === "block") {
                     content.style.display = "none";
@@ -428,7 +416,6 @@
             var checkboxes = document.querySelectorAll('.star');
             checkboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
-                // 현재 체크된 체크박스를 제외하고 모든 체크박스를 해제한다.
                     checkboxes.forEach(function(other) {
                         if(other !== checkbox) other.checked = false;
                     });

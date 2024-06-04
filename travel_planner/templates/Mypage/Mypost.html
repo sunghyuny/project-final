@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물</title>
     <style>
-        /* 기본 여백 및 패딩 초기화 */
         * {
             margin: 0;
             padding: 0;
@@ -32,17 +31,21 @@
             font-size: 16px;
         }
         .content_list{
-            border: 1px solid;
+            border-radius: 10px;
+            border: 3px solid;
             width: 200px;
             text-align: left;
             font-size: 16px;
             list-style: none;
-            margin-left: 50px;
-            margin-top: 20px;
+            margin-top: 40px;
+            border-color: #2295ff;
         }
 
         .content_list>li{
             margin: 25px 0px 25px 70px;
+            text-align: center;
+            padding-right: 70px;
+            color: #2295ff;
         }
 
         .content_list>hr{
@@ -112,25 +115,40 @@
             text-align: right;
             margin: 0px 10px 10px 0px;
         }
+
+        .content_sang {
+            font-size: 24px;
+            color:#2295FF;
+            margin-left: 340px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
     <div class="mypage">
         <div class="mypage_content">
             <div class="page_content">
-                <p>항목</p>
                 <ul class="content_list">
-                    <li id="showMyInfo"><a href="/Accounts/mypage/" class="plan_link">내 정보</a></li><hr>
+                    <li id="showMyInfo">내 정보</li><hr>
                     <li id="showLikes">좋아요</li><hr>
-                    <li id="showPlans"><a href="/Accounts/userplan/" class="plan_link">계획</a></li><hr>
+                    <li id="showPlans">계획</li><hr>
                     <li id="showReservations">예약</li><hr>
+<<<<<<< HEAD
+                    <li id="showFriends">친구</li><hr>
+=======
                     <li id="showFriends"><a href="/Accounts/Myfriends/" class="plan_link">친구</a></li><hr>
-                    <li id="showPosts">게시물</li>
+>>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
+                    <li id="showPosts">게시물</li><hr>
+                    <li id="showchat">채팅</li>
                 </ul>
             </div>
 
             <div class="content_name">
-                <p>마이페이지</p>
+                <p class="content_sang">마이페이지</p>
             </div>
 
             <div class="detail_page">

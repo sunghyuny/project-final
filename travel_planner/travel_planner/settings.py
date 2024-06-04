@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!8n6&=t45j+ks45a$c$2=bsl@bmno373!lh!-%5xv*jb*ye29$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['25.17.18.230']
 # Application definition
 
 INSTALLED_APPS = [
@@ -97,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
        'NAME': 'final_project',
-        'USER': 'root',
-        'PASSWORD':'2519778400a!',
+        'USER': 'user',
+        'PASSWORD':'ranger@#23',
         'HOST':'localhost',
         'PORT': '3306'
   }

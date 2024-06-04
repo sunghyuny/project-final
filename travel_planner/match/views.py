@@ -44,7 +44,11 @@ def create_chat_room(request):
                 chat_room.save()
 
             chat_room.participants.add(request.user)
+<<<<<<< HEAD
             return HttpResponseRedirect(reverse('match:chat_room_list'))  # 채팅방 리스트 페이지로 리다이렉트
+=======
+            return HttpResponseRedirect(reverse('match:chat_room_list'))
+>>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
 
     return render(request, 'match/create_chat_room.html')
 
@@ -60,6 +64,10 @@ def chat_room_list(request):
     chat_rooms = ChatRoom.objects.all()
     return render(request, 'match/chat_room_list.html', {'chat_rooms': chat_rooms})
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
 @login_required
 def chat_room_detail(request, room_id):
     chat_room = get_object_or_404(ChatRoom, id=room_id)

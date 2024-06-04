@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% include 'Navbar.html'%}
 <html>
 <head>
     <title>Chat Room</title>
@@ -14,8 +15,34 @@
                 const data = JSON.parse(e.data);
                 const messageList = document.getElementById('chat-log');
                 const newMessage = document.createElement('div');
-                newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}]: ${data.message}`;
+<<<<<<< HEAD
+                const messageContent = document.createElement('p');
+
+                if (data.sender === userId) {
+                    newMessage.classList.add('my-message');
+                    messageContent.classList.add('my_message');
+                    messageContent.textContent = data.message;
+                    newMessage.innerHTML = `[${data.timestamp}] `;
+                    newMessage.appendChild(messageContent);
+                } else {
+                    newMessage.classList.add('other-message');
+                    messageContent.classList.add('other_message');
+                    messageContent.textContent = data.message;
+                    newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}] `;
+                    newMessage.appendChild(messageContent);
+=======
+
+                if (data.sender === userId) {
+                    newMessage.classList.add('my-message');
+                    newMessage.innerHTML = `[${data.timestamp}]: ${data.message}`;
+                } else {
+                    newMessage.classList.add('other-message');
+                    newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}]: ${data.message}`;
+>>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
+                }
+
                 messageList.appendChild(newMessage);
+                messageList.scrollTop = messageList.scrollHeight;
             };
 
             chatSocket.onclose = function(e) {
@@ -33,23 +60,125 @@
                 const messageInputDom = document.querySelector('#chat-message-input');
                 const message = messageInputDom.value;
                 chatSocket.send(JSON.stringify({
-                    'message': message
+                    'message': message,
+                    'sender': userId,
+                    'timestamp': new Date().toLocaleString()
                 }));
                 messageInputDom.value = '';
             };
         });
     </script>
+
+    <style>
+        .chat_page{
+<<<<<<< HEAD
+=======
+
+>>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
+            width:1000px;
+            margin: 10px auto;
+        }
+
+        #chat-log{
+            border: 1px solid;
+            height: 500px;
+            width: 800px;
+            margin: 0 auto;
+            overflow-y: scroll;
+<<<<<<< HEAD
+            background-color: #F0F0F0;
+=======
+>>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
+        }
+
+        .send_message{
+            display: flex;
+            justify-content: center;
+            margin-top:10px;
+        }
+
+        #chat-message-input{
+            width: 700px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #chat-message-submit{
+            background-color: #2295ff;
+            border: none;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        .my-message {
+            text-align: right;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .other-message {
+            text-align: left;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+<<<<<<< HEAD
+
+        .my_message, .other_message {
+            border: 1px solid;
+            display: inline-block;
+            padding: 5px;
+            text-align: left;
+            border-radius: 10px;
+        }
+
+        .my_message{
+            background-color: #2295ff;
+            color: white;
+        }
+
+        .other_message{
+            background-color: white;
+        }
+=======
+>>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
+    </style>
 </head>
 <body>
+<div class="chat_page">
     <h1>{{ chat_room.name }}</h1>
     <div id="chat-log">
         {% for message in messages %}
-        <div>
-            <strong>{{ message.sender.username }}</strong> [{{ message.timestamp|date:"Y-m-d H:i:s" }}]: {{ message.content }}
-        </div>
+            {% if message.sender.username == request.user.username %}
+                <div class="my-message">
+<<<<<<< HEAD
+                    {{ message.timestamp|date:"H:i" }} <p class="my_message">{{ message.content }}</P>
+                </div>
+            {% else %}
+                <div class="other-message">
+                    <strong>{{ message.sender.username }}<br></strong> <p class="other_message">{{ message.content }}</p> {{ message.timestamp|date:"H:i" }}
+=======
+                    {{ message.timestamp|date:"H:i" }} {{ message.content }}
+                </div>
+            {% else %}
+                <div class="other-message">
+                    <strong>{{ message.sender.username }}<br></strong> {{ message.content }} {{ message.timestamp|date:"H:i" }}
+>>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
-    <textarea id="chat-message-input" rows="3" cols="100"></textarea><br>
-    <button id="chat-message-submit">Send</button>
+    <div class="send_message">
+        <input type="text" id="chat-message-input">
+        <button id="chat-message-submit">전송</button>
+    </div>
+</div>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
 </body>
 </html>

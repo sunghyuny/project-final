@@ -237,15 +237,13 @@
         var menu = document.querySelector('.menu_container');
 
         wholeMenu.addEventListener('click', function(event) {
-            // 메뉴의 표시 상태를 토글합니다.
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-            event.stopPropagation(); // 이 이벤트가 상위 요소로 전파되는 것을 방지
+            event.stopPropagation();
         });
 
         document.addEventListener('click', function(event) {
-            var targetElement = event.target; // 클릭된 요소
+            var targetElement = event.target;
 
-            // 클릭된 요소가 전체 메뉴 아이템이 아니면 메뉴를 숨깁니다.
             if (targetElement !== wholeMenu) {
                 menu.style.display = 'none';
             }

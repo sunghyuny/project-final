@@ -89,6 +89,11 @@
             font-size: 24px;
             color:#2295FF;
         }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
  </head>
 <body>
@@ -107,6 +112,7 @@
         <div class="content_name">
                 <p class="content_sang">마이페이지>계획상세</p>
             </div>
+<<<<<<< HEAD
        <!-- Myplan.html -->
        <div class="detail_page">
         <div class="detail">
@@ -149,5 +155,54 @@
         </div>
     </div>
 -    </div>
+=======
+
+        <div class="detail_page">
+            <div class="detail">
+                <div class="plan_detail">
+                    <div class="plan_list">
+                        <div class="member">
+                            <h2>여행 인원</h2>
+                            <p>인원: {{ user_plan.total_people }}</p>
+                        </div>
+
+                        <div>
+                            <h2>참여 친구</h2>
+                            <ul>
+                                {% for friend in friends %}
+                                <li>{{ friend.username }}</li>
+                            {% empty %}
+                                <li>추가된 친구가 없습니다.</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="location">
+                            <h2>여행 지역</h2>
+                            <p>{{ user_plan.destination }}</p>
+                        </div>
+
+                        <div class="lodg">
+                            <h2>숙소</h2>
+                            <p>{{ user_plan.selected_accommodation }}</p>
+                            <img class="sum_img" src="{{ user_plan.selected_accommodation.photo.url }}" alt="{{ user_plan.selected_accommodation_name }}">
+                        </div>
+
+                        <div class="activity">
+                            <h2>활동</h2>
+                            <p>{{ user_plan.selected_activity }}</p>
+                            <img class="sum_img" src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
+                        </div>
+
+                        <div class="price">
+                            <h2>가격</h2>
+                        </div>
+
+                        <div><a href="/Accounts/userplan/{{ user_plan.id }}/edit/">계획 수정하기</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+>>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
 </body>
 </html>

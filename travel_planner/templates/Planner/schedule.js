@@ -3,7 +3,6 @@ const calendarDays = document.querySelectorAll(".calendar_days"),
     leftButton = document.querySelector(".left_button"),
     rightButton = document.querySelector(".right_button"),
     calendar = document.querySelector(".calendar");
-    // dateUpdate = document.querySelector(".date_update");
 
 
 class Calendar {
@@ -83,28 +82,24 @@ class Calendar {
         let lastSelectedDay = 0;
         let clickCount = 0;
 
-        // 달력 스타일 초기화
         dayButtons.forEach((element) => {
             element.classList.remove("day_selected");
             calendarDays.forEach((e) => e.classList.remove("gray"));
         })
 
 
-        // 달력 날짜들에 클릭 이벤트 추가
         dayButtons.forEach((element) => {
             element.addEventListener("click", (event) => {
                 event.target.classList.toggle("day_selected");
 
                 clickCount++;
 
-                // 선택 일자 타입 변환
                 if (firstSelectedDay === 0) {
                     firstSelectedDay = Number(event.target.innerText);
                 } else {
                     lastSelectedDay = Number(event.target.innerText);
                 }
 
-                // 클릭 횟수 2회 넘어가면 달력 스타일 초기화
                 if (clickCount > 2) {
                     dayButtons.forEach((e) => {
                         e.parentNode.classList.remove("gray");
@@ -117,7 +112,6 @@ class Calendar {
                     });
                 }
 
-                // 선택 일자 사이에 회색 배경 적용
                 if (firstSelectedDay !== 0 && lastSelectedDay !== 0) {
                     dayButtons.forEach((e) => {
                         const day = Number(e.innerText);
@@ -145,9 +139,7 @@ class Calendar {
                     });
                 }
 
-                
 
-                // 선택 일자 중 왼쪽값이 오른쪽 값보다 크면 회색 배경 삭제 
                 if (firstSelectedDay > lastSelectedDay) {
                     dayButtons.forEach((e) => {
                         e.parentNode.classList.remove("gray");
@@ -159,7 +151,6 @@ class Calendar {
         });
 
 
-        // 달력 날짜들에 호버링 이벤트 추가
         dayButtons.forEach((element) => {
             element.addEventListener("mouseenter", (event) => {
                 event.target.classList.add("day_hover")

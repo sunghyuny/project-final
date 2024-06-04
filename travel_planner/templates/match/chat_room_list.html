@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
 <!DOCTYPE html>
 {% include 'Navbar.html'%}
 <html lang="en">
@@ -56,7 +60,8 @@
             width: 400px;
             height: 80px;
             padding-left: 10px;
-            background-color: #D9D9D9;
+            border: 1px solid;
+            background-color: white;
             margin: 10px auto 10px 30px;
             flex: 0 0 auto;
             display: flex;
@@ -108,12 +113,18 @@
                 {% for room in chat_rooms %}
                 <div class="match_list">
                     <div class="profile_img">
-                        <img src="/image/216A104955CDB88A1B.png" alt="" class="room_img">
+                        <img src="{{ chat_room.image.url }}" alt="" class="room_img">
                     </div>
                     <div class="list_content">
+<<<<<<< HEAD
                         <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
                         <p class="period"></p>
                         <p class="subtitle"></p>
+=======
+                        <p class="title"><a href="{% url 'match:join_chat_room' room.id %}" class="room_title">{{ room.name }}</a></p>
+                        <p class="period">{{room.date}}</p>
+                        <p class="subtitle">{{room.description}}</p>
+>>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
                     </div>
                 </div>
                 {% endfor %}
@@ -123,3 +134,7 @@
 </body>
 
 </html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
