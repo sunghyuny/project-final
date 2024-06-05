@@ -1,18 +1,161 @@
-<!-- chat_room_detail.html -->
-<h1>{{ room.name }}</h1>
-<p>인원: {{ room.capacity }} ({{ room.participants.count }} currently)</p>
-<p>지역: {{ room.location }}</p>
-<p>날짜: {{ room.date }}</p>
-{% if room.image %}
-    <img src="{{ room.image.url }}" alt="Chat Room Image" style="width: 100px; height: auto;">
-{% endif %}
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-{% if request.user in room.participants.all %}
-    <p>이미 방에 들어가있습니다</p>
-{% elif room.participants.count >= room.capacity %}
-    <p>This room is full.</p>
-{% else %}
-    <a href="{% url 'match:join_chat_room' room.id %}">참가하기</a>
-{% endif %}
+        .detail_con {
+            align-items: center;
+            justify-content: center;
+            width: 1550px;
+            overflow-x: hidden;
+            margin: 0 auto;
+        }
 
-<a href="{% url 'match:chat_room_list' %}">뒤로 돌아가기</a>
+        .detail_page {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        .back_img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .title {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 24px;
+            background-color: white;
+            width: 1000px;
+            border: 1px solid;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .page_content {
+            display: flex;
+            justify-content: center;
+            width: 1200px;
+            margin: 0px auto;
+            margin-top: 20px;
+        }
+
+        .content_title {
+            font-weight: bold;
+            font-size: 21px;
+        }
+
+        .content_detail {
+            width: 1200px;
+            margin-top: 20px;
+        }
+
+        .sub_title {
+            margin-bottom: 20px;
+            color: gray;
+        }
+
+        .companion {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .member_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content_btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        .enter_btn {
+            background-color: #2295ff;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            width: 1050px;
+            height: 45px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .info {
+            width: 1042px;
+            margin-left: 90px;
+        }
+    </style>
+</head>
+<body>
+    <div class="detail_page">
+        {% if room.image %}
+            <img src="{{ room.image.url }}" alt="Chat Room Image" class="back_img">
+        {% endif %}
+        <div class="title"><h1>{{ room.name }}</h1></div>
+    </div>
+
+    <div class="page_content">
+        <div class="content_detail">
+            <div class="info">
+                <p class="sub_title">함께 같이 가실 분 구합니다</p>
+                <p class="content_title">자세한 여행 정보</p>
+
+                <div class="info_detail">
+                    <p class="loacation">지역: {{ room.location }}</p>
+                    <p class="period">날짜: {{ room.date }}</p>
+                    <p class="mem_cnt">인원: {{ room.capacity }}명 ({{ room.participants.count }} 명)</p>
+                    <p class="condition">조건 : 없음</p>
+                    <p class="price">예상금액 : 미정</p>
+                    <p class="memeber">동행자</p>
+
+                    <div class="companion">
+                        <img src="/image/다운로드 (17).jpeg" alt="" class="member_img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_btn">
+               {% if request.user in room.participants.all %}
+                    <p>이미 방에 들어가있습니다</p>
+                {% elif room.participants.count >= room.capacity %}
+                    <p>This room is full.</p>
+                {% else %}
+                    <a href="{% url 'match:join_chat_room' room.id %}"><button class="enter_btn">참가하기</button></a>
+                {% endif %}
+
+                <a href="{% url 'match:chat_room_list' %}">뒤로 돌아가기</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

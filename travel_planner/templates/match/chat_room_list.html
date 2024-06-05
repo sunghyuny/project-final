@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
 <!DOCTYPE html>
 {% include 'Navbar.html'%}
 <html lang="en">
@@ -116,15 +112,9 @@
                         <img src="{{ chat_room.image.url }}" alt="" class="room_img">
                     </div>
                     <div class="list_content">
-<<<<<<< HEAD
                         <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
-                        <p class="period"></p>
-                        <p class="subtitle"></p>
-=======
-                        <p class="title"><a href="{% url 'match:join_chat_room' room.id %}" class="room_title">{{ room.name }}</a></p>
                         <p class="period">{{room.date}}</p>
                         <p class="subtitle">{{room.description}}</p>
->>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
                     </div>
                 </div>
                 {% endfor %}
@@ -134,7 +124,4 @@
 </body>
 
 </html>
-<<<<<<< HEAD
-=======
 
->>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
