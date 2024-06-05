@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
+    <title>회원가입 - Travel Plan</title>
     <style>
          * {
             margin: 0;
@@ -75,20 +75,20 @@
     <form class="signup_page" method="post" action="{% url 'Accounts:signup' %}">
         {% csrf_token %}
         <div class="signup_content">
-            <h2 class="page_title">회원가입</h2><hr>
+            <h2 class="page_title">회원가입</h2>
 
             <div class="signup_input">
-                <label class="input_name" for="username">사용자 이름:</label><br>
+                <label class="input_name" for="username">사용자 이름</label><br>
                 <input class="input_text" type="text" id="username" name="username"><br>
-                <label class="input_name" for="password">비밀번호:</label><br>
+                <label class="input_name" for="password">비밀번호</label><br>
                 <input class="input_text" type="password" id="password" name="password"><br>
-                <label class="input_name" for="email">이메일:</label><br>
+                <label class="input_name" for="email">이메일</label><br>
                 <input class="input_text" type="email" id="email" name="email"><br>
-                <label class="input_name" for="age">나이:</label><br>
+                <label class="input_name" for="age">나이</label><br>
                 <input class="input_text" type="number" id="age" name="age"><br>
-                <label class="input_name" for="mbti">MBTI:</label><br>
+                <label class="input_name" for="mbti">MBTI</label><br>
                 <input class="input_text" type="text" id="mbti" name="mbti"><br>
-                <label class="input_name" for="gender">성별:</label><br>
+                <label class="input_name" for="gender">성별</label><br>
                 <select id="gender" name="gender" class="select_gender">
                     <option value="male">남자</option>
                     <option value="female">여자</option>

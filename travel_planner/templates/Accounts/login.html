@@ -1,5 +1,6 @@
 {% include 'AccountNavbar.html'%}
 <html>
+    <title>로그인 - Travel Plan</title>
     <style>
         * {
             margin: 0;
@@ -61,7 +62,7 @@
 <form method="post"  class="login_page" action="{% url 'Accounts:login' %}">
     {% csrf_token %}
     <div class="login_content">
-        <p class="page_title">로그인</p><hr>
+        <p class="page_title">로그인</p>
         <div class="login_input">
             <input class="input_text" type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>
             <input class="input_text" type="password" name="password" title="비밀번호" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
