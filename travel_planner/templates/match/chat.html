@@ -15,7 +15,6 @@
                 const data = JSON.parse(e.data);
                 const messageList = document.getElementById('chat-log');
                 const newMessage = document.createElement('div');
-<<<<<<< HEAD
                 const messageContent = document.createElement('p');
 
                 if (data.sender === userId) {
@@ -30,15 +29,6 @@
                     messageContent.textContent = data.message;
                     newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}] `;
                     newMessage.appendChild(messageContent);
-=======
-
-                if (data.sender === userId) {
-                    newMessage.classList.add('my-message');
-                    newMessage.innerHTML = `[${data.timestamp}]: ${data.message}`;
-                } else {
-                    newMessage.classList.add('other-message');
-                    newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}]: ${data.message}`;
->>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
                 }
 
                 messageList.appendChild(newMessage);
@@ -71,10 +61,6 @@
 
     <style>
         .chat_page{
-<<<<<<< HEAD
-=======
-
->>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
             width:1000px;
             margin: 10px auto;
         }
@@ -85,10 +71,6 @@
             width: 800px;
             margin: 0 auto;
             overflow-y: scroll;
-<<<<<<< HEAD
-            background-color: #F0F0F0;
-=======
->>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
         }
 
         .send_message{
@@ -124,7 +106,6 @@
             border-radius: 5px;
             margin-bottom: 5px;
         }
-<<<<<<< HEAD
 
         .my_message, .other_message {
             border: 1px solid;
@@ -142,8 +123,6 @@
         .other_message{
             background-color: white;
         }
-=======
->>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
     </style>
 </head>
 <body>
@@ -151,34 +130,23 @@
     <h1>{{ chat_room.name }}</h1>
     <div id="chat-log">
         {% for message in messages %}
-            {% if message.sender.username == request.user.username %}
-                <div class="my-message">
-<<<<<<< HEAD
-                    {{ message.timestamp|date:"H:i" }} <p class="my_message">{{ message.content }}</P>
-                </div>
-            {% else %}
-                <div class="other-message">
-                    <strong>{{ message.sender.username }}<br></strong> <p class="other_message">{{ message.content }}</p> {{ message.timestamp|date:"H:i" }}
-=======
-                    {{ message.timestamp|date:"H:i" }} {{ message.content }}
-                </div>
-            {% else %}
-                <div class="other-message">
-                    <strong>{{ message.sender.username }}<br></strong> {{ message.content }} {{ message.timestamp|date:"H:i" }}
->>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
-                </div>
-            {% endif %}
-        {% endfor %}
+        {% if message.sender.username == request.user.username %}
+            <div class="my-message">
+                {{ message.timestamp|date:"H:i" }} <p class="my_message">{{ message.content }}</p>
+            </div>
+        {% else %}
+            <div class="other-message">
+                <strong>{{ message.sender.username }}<br></strong>
+                <p class="other_message">{{ message.content }}</p>
+                {{ message.timestamp|date:"H:i" }}
+            </div>
+        {% endif %}
+    {% endfor %}
     </div>
     <div class="send_message">
         <input type="text" id="chat-message-input">
         <button id="chat-message-submit">전송</button>
     </div>
 </div>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 992f192d56449e865582adcb3d58a41fb8b276e6
 </body>
 </html>

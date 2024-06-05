@@ -119,13 +119,13 @@
             <div class="page_content">
                 <p>항목</p>
                 <ul class="content_list">
-                    <li id="showMyInfo">내 정보</li><hr>
+                    <li id="showMyInfo"><a href="/Accounts/mypage/">내 정보</a></li><hr>
                     <li id="showLikes">좋아요</li><hr>
-                    <li id="showPlans">계획</li><hr>
+                    <li id="showPlans"><a href="/Accounts/userplan/">계획</a></li><hr>
                     <li id="showReservations">예약</li><hr>
-                    <li id="showFriends">친구</li><hr>
+                    <li id="showFriends"><a href="/Accounts/Myfriends/" class="plan_link">친구</a></li><hr>
                     <li id="showPosts">게시물</li><hr>
-                    <li id="showchat">채팅</li>
+                    <li id="showchat"><a href="/Accounts/my-chats/">채팅</a></li>
                 </ul>
             </div>
 
@@ -140,19 +140,29 @@
                             <div class="chat_list">
                                 <p class="content_title">참여되어 있는 채팅방</p>
                                 <ul class="chat_room_list">
-                                    <li class="room_name">
-                                        <div class="room_content">
-                                            <div class="room_image">
-                                                <img src="" alt="" class="room_img">
+                                    {% for room in user_chat_rooms %}
+                                        <li class="room_name">
+                                            <div class="room_content">
+                                                <div class="room_image">
+                                                    <img src="{{ room.image.url }}" alt="" class="room_img">
+                                                </div>
+                                                <div class="list_content">
+                                                    <p class="room_title"><a href="{% url 'match:chat_room_detail' room.id %}">{{ room.name }}</a></p>
+                                                    <p class="date">{{ room.date }}</p>
+                                                </div>
+                                                {% if request.user == room.creator %}
+                                                <form method="post" action="{% url 'match:delete_chat_room' room.id %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="delete_btn">삭제</button>
+                                                </form>
+                                                {% endif %}
                                             </div>
-                                            <div class="list_content">
-                                                <p class="room_title">asdfaf</p>
-                                                <p class="date">1231231</p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                            
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
+                        
                         </div>
                     </div>
                 </div>

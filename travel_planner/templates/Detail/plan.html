@@ -10,86 +10,91 @@
             margin: 0;
             padding: 0;
         }
-        .mypage{
+        .mypage {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
-        .mypage_content{
-            justify-content: center;
-            width: 86rem;
-            height: 680px;
-            margin-top: 50px;
-            overflow-x: hidden;
-            overflow-y: hidden;
-        }
 
-        .page_content{
-            float: left;
-            margin-top: 50px;
-            margin-right: 60px;
-            width: 300px;
-            text-align: center;
-            font-size: 16px;
+        .mypage_content {
             display: flex;
-        }
-        .content_list{
-            border-radius: 10px;
-            border: 3px solid;
-            width: 200px;
-            text-align: left;
-            font-size: 16px;
-            list-style: none;
-            margin-top: 40px;
-            border-color: #2295ff;
+            justify-content: center;
+            width: 100%;
+            max-width: 86rem;
+            margin-top: 50px;
         }
 
-        .content_list>li{
-            margin: 25px 0px 25px 70px;
+        .page_content {
+            flex: 0 0 300px;
+            margin-right: 60px;
             text-align: center;
-            padding-right: 70px;
+        }
+
+        .content_list {
+            border-radius: 10px;
+            border: 3px solid #2295ff;
+            width: 200px;
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .content_list > li {
+            padding: 15px;
+            text-align: center;
             color: #2295ff;
         }
-
-        .content_list>hr{
+        
+        .content_list > hr {
             margin: 0;
-            padding: 0;
         }
 
-        .content_name{
+        .content_name {
             font-size: 26px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
-        .detail_page{
-            display: inline-block;
-            width: 900px;
-            height: 500px;
+        .detail_page {
+            flex: 1;
         }
 
-        .detail{
-            width: 69.9rem;
-            overflow-x: hidden;
-            margin: 0 auto;
+        .detail {
             display: flex;
+            flex-direction: column;
             align-items: center;
         }
 
-        .sum_img{
-            width: 400px;
-            height: 200px;
-            float: left;
-            margin: 15px;
+        .plan_detail {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .plan_list {
+            width: 100%;
+        }
+
+        .plan_list div {
+            margin-bottom: 20px;
+        }
+
+        .sum_img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
             border-radius: 4px;
         }
 
         .content_sang {
             font-size: 24px;
-            color:#2295FF;
+            color: #2295FF;
         }
-
+        
         a {
             text-decoration: none;
             color: inherit;
@@ -112,7 +117,6 @@
         <div class="content_name">
                 <p class="content_sang">마이페이지>계획상세</p>
             </div>
-<<<<<<< HEAD
        <!-- Myplan.html -->
        <div class="detail_page">
         <div class="detail">
@@ -155,54 +159,5 @@
         </div>
     </div>
 -    </div>
-=======
-
-        <div class="detail_page">
-            <div class="detail">
-                <div class="plan_detail">
-                    <div class="plan_list">
-                        <div class="member">
-                            <h2>여행 인원</h2>
-                            <p>인원: {{ user_plan.total_people }}</p>
-                        </div>
-
-                        <div>
-                            <h2>참여 친구</h2>
-                            <ul>
-                                {% for friend in friends %}
-                                <li>{{ friend.username }}</li>
-                            {% empty %}
-                                <li>추가된 친구가 없습니다.</li>
-                            {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="location">
-                            <h2>여행 지역</h2>
-                            <p>{{ user_plan.destination }}</p>
-                        </div>
-
-                        <div class="lodg">
-                            <h2>숙소</h2>
-                            <p>{{ user_plan.selected_accommodation }}</p>
-                            <img class="sum_img" src="{{ user_plan.selected_accommodation.photo.url }}" alt="{{ user_plan.selected_accommodation_name }}">
-                        </div>
-
-                        <div class="activity">
-                            <h2>활동</h2>
-                            <p>{{ user_plan.selected_activity }}</p>
-                            <img class="sum_img" src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
-                        </div>
-
-                        <div class="price">
-                            <h2>가격</h2>
-                        </div>
-
-                        <div><a href="/Accounts/userplan/{{ user_plan.id }}/edit/">계획 수정하기</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-     </div>
->>>>>>> 2976fe564108a6dc8c3f300b81639979fd23717f
 </body>
 </html>

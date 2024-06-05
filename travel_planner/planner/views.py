@@ -4,6 +4,8 @@ from django.contrib.sites import requests
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse,HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
+
+from Accounts.models import Friend
 from .models import *
 from hotel.models import *
 from thesights.models import *
@@ -32,24 +34,36 @@ def create_activity(request):
 
 @login_required
 def trip_plan_form(request):
+    user = request.user
+
+    try:
+        friends = Friend.objects.get(current_user=user).users.all()
+    except Friend.DoesNotExist:
+        friends = CustomUser.objects.none()
+
     if request.method == 'POST':
-        # 사용자가 제출한 폼 데이터 가져오기
         arrival_date = request.POST.get('arrival_date')
+        departure_date = request.POST.get('departure_date')  # 출발 날짜도 폼에서 가져오기
         adults = int(request.POST.get('adults'))
         teens = int(request.POST.get('teens'))
         children = int(request.POST.get('children'))
         total_people = adults + teens + children
+        friend_ids = request.POST.getlist('friends')
 
-        # 현재 로그인한 사용자를 가져와서 TripPlan을 생성할 때 user 필드에 할당
         trip_plan = TripPlan.objects.create(
             arrival_date=arrival_date,
+            departure_date=departure_date,  # 출발 날짜 저장
             total_people=total_people,
-            user=request.user  # 현재 로그인한 사용자를 할당
+            user=user
         )
-        request.session['trip_plan_id'] = trip_plan.id  # 세션에 TripPlan ID 저장
-        return redirect('/planner/plan1/')
-    return render(request, 'Planner/schedule.html')
 
+        trip_plan.friends.set(friend_ids)
+        trip_plan.save()
+
+        request.session['trip_plan_id'] = trip_plan.id
+        return redirect('/planner/plan1/')
+
+    return render(request, 'Planner/schedule.html', {'friends': friends})
 
 def location(request):
     # 세션에서 여행 계획 ID 가져오기
