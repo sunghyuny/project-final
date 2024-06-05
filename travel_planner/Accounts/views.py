@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
 
+from match.models import ChatRoom
 from .models import *
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
@@ -220,3 +221,8 @@ def respond_friend_request(request, request_id, response):
 
     friend_request.save()
     return redirect('userplan_detail', user_plan_id=friend_request.trip_plan.id)
+
+@login_required
+def my_chat_rooms(request):
+    user_chat_rooms = ChatRoom.objects.filter(participants=request.user)
+    return render(request, 'Mypage/Mychat.html', {'user_chat_rooms': user_chat_rooms})

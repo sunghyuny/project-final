@@ -109,12 +109,17 @@
                 {% for room in chat_rooms %}
                 <div class="match_list">
                     <div class="profile_img">
-                        <img src="{{ chat_room.image.url }}" alt="" class="room_img">
+                        <img src="{{ room.image.url }}" alt="" class="room_img">  <!-- 'chat_room'을 'room'으로 변경했습니다 -->
                     </div>
                     <div class="list_content">
                         <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
+<<<<<<< HEAD
                         <p class="period">{{room.date}}</p>
                         <p class="subtitle">{{room.description}}</p>
+=======
+                        <p class="period">{{ room.date }}</p>
+                        <p class="subtitle">{{ room.description }}</p>
+>>>>>>> origin/main
                     </div>
                 </div>
                 {% endfor %}
@@ -124,4 +129,7 @@
 </body>
 
 </html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main

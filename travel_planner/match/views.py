@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from Accounts.models import CustomUser
@@ -45,8 +45,11 @@ def create_chat_room(request):
 
             chat_room.participants.add(request.user)
             return HttpResponseRedirect(reverse('match:chat_room_list'))
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/main
     return render(request, 'match/create_chat_room.html')
 
 @login_required
@@ -61,7 +64,10 @@ def chat_room_list(request):
     chat_rooms = ChatRoom.objects.all()
     return render(request, 'match/chat_room_list.html', {'chat_rooms': chat_rooms})
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 @login_required
 def chat_room_detail(request, room_id):
     chat_room = get_object_or_404(ChatRoom, id=room_id)
@@ -69,3 +75,13 @@ def chat_room_detail(request, room_id):
         return redirect('match:chat_room', room_id=room_id)
     else:
         return render(request, 'match/chat_detail.html', {'room': chat_room})
+
+
+@login_required
+def delete_chat_room(request, room_id):
+    chat_room = get_object_or_404(ChatRoom, id=room_id)
+    if request.user == chat_room.creator:
+        chat_room.delete()
+        return redirect('Accounts:my_chat_rooms')
+    else:
+        return HttpResponseForbidden("You are not allowed to delete this chat room.")

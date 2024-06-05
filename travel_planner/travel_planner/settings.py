@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!8n6&=t45j+ks45a$c$2=bsl@bmno373!lh!-%5xv*jb*ye29$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 # Application definition
 
 INSTALLED_APPS = [
@@ -96,12 +96,12 @@ WSGI_APPLICATION = 'travel_planner.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'final_project',
-        'USER': 'user',
-        'PASSWORD' : 'ranger@#23',
-        'HOST': 'localhost',
+       'NAME': 'final_project',
+        'USER': 'root',
+        'PASSWORD':'2519778400a!',
+        'HOST':'localhost',
         'PORT': '3306'
-    }
+  }
 }
 
 

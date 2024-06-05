@@ -18,6 +18,7 @@ urlpatterns =[
     path('userplan/<int:plan_id>/edit/', plan_edit, name='plan_edit'),
     path('accept_invite/<int:invite_id>/', accept_invite, name='accept_invite'),
     path('reject_invite/<int:invite_id>/', reject_invite, name='reject_invite'),
+    path('my-chats/', my_chat_rooms, name='my_chat_rooms'),
 
 ]
 

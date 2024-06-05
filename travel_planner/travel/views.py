@@ -44,6 +44,7 @@ def reservation_page(request, package_id):
         return render(request, 'reservation/package.html', context)
 
     return render(request, 'detail/package.html', {'package': package})
+
 def package_detail(request, package_id):
     package = get_object_or_404(Package, id=package_id)
     context = {'package': package}

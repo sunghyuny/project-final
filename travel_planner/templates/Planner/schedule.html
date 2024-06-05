@@ -517,6 +517,12 @@
                             <input type="number" name="children" value="0" class="member_cnt">
                         </div>
                 
+<h2>친구 추가</h2>
+    {% for friend in friends %}
+        <input type="checkbox" id="friend_{{ friend.id }}" name="friends" value="{{ friend.id }}">
+        <label for="friend_{{ friend.id }}">{{ friend.username }}</label><br>
+    {% endfor %}
+      
                         <a href="/planner/plan1/"><button type="submit" class="next_btn">다음</button></a>
                     </form>
                 </div>

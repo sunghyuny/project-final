@@ -71,7 +71,10 @@
             width: 800px;
             margin: 0 auto;
             overflow-y: scroll;
+<<<<<<< HEAD
             background-color: #F0F0F0;
+=======
+>>>>>>> origin/main
         }
 
         .send_message{
@@ -94,6 +97,23 @@
             padding: 10px;
         }
 
+<<<<<<< HEAD
+=======
+        .my-message {
+            text-align: right;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .other-message {
+            text-align: left;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+>>>>>>> origin/main
         .my_message, .other_message {
             border: 1px solid;
             display: inline-block;
@@ -117,6 +137,7 @@
     <h1>{{ chat_room.name }}</h1>
     <div id="chat-log">
         {% for message in messages %}
+<<<<<<< HEAD
             {% if message.sender.username == request.user.username %}
                 <div class="my-message">
                     {{ message.timestamp|date:"H:i" }} <p class="my_message">{{ message.content }}</P>
@@ -127,12 +148,29 @@
                 </div>
             {% endif %}
         {% endfor %}
+=======
+        {% if message.sender.username == request.user.username %}
+            <div class="my-message">
+                {{ message.timestamp|date:"H:i" }} <p class="my_message">{{ message.content }}</p>
+            </div>
+        {% else %}
+            <div class="other-message">
+                <strong>{{ message.sender.username }}<br></strong>
+                <p class="other_message">{{ message.content }}</p>
+                {{ message.timestamp|date:"H:i" }}
+            </div>
+        {% endif %}
+    {% endfor %}
+>>>>>>> origin/main
     </div>
     <div class="send_message">
         <input type="text" id="chat-message-input">
         <button id="chat-message-submit">전송</button>
     </div>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 </body>
 </html>
