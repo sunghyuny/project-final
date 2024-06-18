@@ -1,341 +1,343 @@
     <!DOCTYPE html>
 {% include 'Navbar.html'%}
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Step1 기간 선택 | Travel Plan</title>
-        <style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step1 기간 선택 | Travel Plan</title>
+    <style>
 
-            * {
-                overflow-x: hidden;
-            }
-            .progress{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 1550px;
-                overflow-x: hidden;
-                margin: 0 auto;
-            }
+        * {
+            overflow-x: hidden;
+        }
+        .progress{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1550px;
+            overflow-x: hidden;
+            margin: 0 auto;
+        }
 
-            .Fill_Circle{
-                width: 100px;
-                height: 100px;
-                background: #2295FF;
-                border: 2px solid #2295FF;
-                border-radius: 50%;
-                color: white;
-                text-align: center;
-                font-size: 21px;
-                font-weight: bold;
-                display: inline-block ;
-                margin: 30px;
-                position: relative;
-                z-index: 2;
-            }
+        .Fill_Circle{
+            width: 100px;
+            height: 100px;
+            background: #2295FF;
+            border: 2px solid #2295FF;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            display: inline-block ;
+            margin: 30px;
+            position: relative;
+            z-index: 2;
+        }
 
-            .Fill_Circle>p {
-                margin-top: 35px;
-            }
+        .Fill_Circle>p {
+            margin-top: 35px;
+        }
 
-            .Fill_Circle>a{
-                text-decoration: none;
-                color: white;
-            }
+        .Fill_Circle>a{
+            text-decoration: none;
+            color: white;
+        }
 
-            .Circle{
-                width: 100px;
-                height: 100px;
-                background-color: white;
-                color:#2295FF;
-                border: 3px solid #2295FF;
-                border-radius: 50%;
-                text-align: center;
-                font-size: 21px;
-                font-weight: bold;
-                display: inline-block;
-                position: relative;
-                margin: 30px;
-                z-index: 2;
-            }
+        .Circle{
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            color:#2295FF;
+            border: 3px solid #2295FF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            display: inline-block;
+            position: relative;
+            margin: 30px;
+            z-index: 2;
+        }
 
-            .Circle>p {
-                margin-top: 35px;
-            }
+        .Circle>p {
+            margin-top: 35px;
+        }
 
-            .Circle>a{
-                text-decoration: none;
-                color: #2295ff;
-            }
+        .Circle>a{
+            text-decoration: none;
+            color: #2295ff;
+        }
 
-            .Fill_Circle> a> p {
-                margin-top: 20px;
-            }
+        .Fill_Circle> a> p {
+            margin-top: 20px;
+        }
 
-            .Circle> a> p {
-                margin-top: 30px;
-            }
+        .Circle> a> p {
+            margin-top: 30px;
+        }
 
-            .Circle_Line {
-                width: 700px;
-                color: #2295FF;
-                border: 2px solid;
-                position : absolute;
-                z-index: 1;
-            }
+        .Circle_Line {
+            width: 700px;
+            color: #2295FF;
+            border: 2px solid;
+            position : absolute;
+            z-index: 1;
+        }
 
-            .page_title{
-                text-align: center;
-                color: #2295FF;
-                font-size: 24px;
-                font-weight: bold;
-            }
+        .page_title{
+            text-align: center;
+            color: #2295FF;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-            .contents_Line{
-                width: 69.9rem;
-                margin: 0;
-                margin-left: 12rem;
-                color: #2295FF;
-                border: 2px solid;
-                margin-bottom: 20px;
-            }
+        .contents_Line{
+            width: 69.9rem;
+            margin: 0;
+            margin-left: 12rem;
+            color: #2295FF;
+            border: 2px solid;
+            margin-bottom: 20px;
+        }
 
-            .contents {
-                width: 1550px;
-                overflow-x: hidden;
-                overflow-y: hidden;
-                margin: 0 auto;
-            }
+        .contents {
+            width: 1550px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            margin: 0 auto;
+        }
 
-            .select {
-                width: 1120px;
-                height: 150px;
-                margin-top: -20px;
-                border: 1px solid #d7d7db;
-                display: flex;
-                margin-left: 12rem;
-                box-shadow: 2px 2px 2px #d7d7db;
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
+        .select {
+            width: 1120px;
+            height: 150px;
+            margin-top: -20px;
+            border: 1px solid #d7d7db;
+            display: flex;
+            margin-left: 12rem;
+            box-shadow: 2px 2px 2px #d7d7db;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
 
-            .select2 {
-                width: 1080px;
-                height: 400px;
-                margin-top: -20px;
-                border: 1px solid #d7d7db;
-                display: flex;
-                margin-left: 12rem;
-                padding: 20px;
-                box-shadow: 2px 2px 2px #d7d7db;
-                font-size: 16px;
-                margin-bottom: 20px;
-                display: none;
-                overflow-y: hidden;
-            }
+        .select2 {
+            width: 1080px;
+            height: 400px;
+            margin-top: -20px;
+            border: 1px solid #d7d7db;
+            display: flex;
+            margin-left: 12rem;
+            padding: 20px;
+            box-shadow: 2px 2px 2px #d7d7db;
+            font-size: 16px;
+            margin-bottom: 20px;
+            display: none;
+            overflow-y: hidden;
+        }
 
-            .select_text {
-                color: #949494;
-                margin-right: 100px;
-                margin-left: 100px;
+        .select_text {
+            color: #949494;
+            margin-right: 100px;
+            margin-left: 100px;
 
-            }
+        }
 
-            .select_text1 {
-                color: #949494;
-                margin: 0px 200px 0px 100px;
-            }
+        .select_text1 {
+            color: #949494;
+            margin: 0px 200px 0px 100px;
+        }
 
-            .select_text2 {
-                color: #949494;
-                margin-right: 80px;
-                margin-bottom: -4px;
-            }
+        .select_text2 {
+            color: #949494;
+            margin-right: 80px;
+            margin-bottom: -4px;
+        }
 
-            .next_btn {
-                background-color: #2295FF;
-                border: 0;
-                padding: 10px;
-                border-radius: 4px;
-                color: white;
-                width: 100px;
-                height: 55px;
-                text-align: center;
-                margin: 20px 10px 0px 0px;
-            }
+        .next_btn {
+            background-color: #2295FF;
+            border: 0;
+            padding: 10px;
+            border-radius: 4px;
+            color: white;
+            width: 100px;
+            height: 55px;
+            text-align: center;
+            margin: 20px 10px 0px 0px;
+        }
 
-            .calendar_container {
-                display: flex;
-                background-color: white;
-                margin-left: 80px;
-            }
+        .calendar_container {
+            display: flex;
+            background-color: white;
+            margin-left: 80px;
+        }
 
-            .calendar_container > button {
-                margin-top: 4%;
-                font-weight: bold;
-            }
+        .calendar_container > button {
+            margin-top: 4%;
+            font-weight: bold;
+        }
 
-            .left_button {
-                margin-left: 20px;
-                border: transparent;
-                width: 30px;
-                height: 30px;
-            }
+        .left_button {
+            margin-left: 20px;
+            border: transparent;
+            width: 30px;
+            height: 30px;
+        }
 
-            .right_button {
-                margin-right:17%;
-                border: transparent;
-                width: 30px;
-                height: 30px;
-            }
+        .right_button {
+            margin-right:17%;
+            border: transparent;
+            width: 30px;
+            height: 30px;
+        }
 
-            .calendar {
-                display:flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 15px;
-                margin-right:2.5%;
-            }
-
-
-            .calendar_days > button  {
-                width: 38px;
-                height: 37px;
-                border-radius: 100%;
-                background-color: transparent;
-                border: transparent;
-            }
-
-            table {
-                border-collapse: separate;
-                border-spacing: 0 10px;
-            }
-
-            .day {
-                text-align: center;
-                font-size:12px;
-                font-weight: bold;
-                color:rgb(189, 189, 189);
-            }
+        .calendar {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+            margin-right:2.5%;
+        }
 
 
-            .day_hover {
-                border: 1px solid #2295FF !important;
-            }
+        .calendar_days > button  {
+            width: 38px;
+            height: 37px;
+            border-radius: 100%;
+            background-color: transparent;
+            border: transparent;
+        }
 
-            .day_selected {
-                background-color: #2295FF !important;
-                color: #ffff;
-            }
+        table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
 
-            .form-container {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-
-            }
-            .form-container .input-container {
-                flex: 1;
-                margin-right: 10px;
-            }
+        .day {
+            text-align: center;
+            font-size:12px;
+            font-weight: bold;
+            color:rgb(189, 189, 189);
+        }
 
 
-            #number_field {
-                border: none;
-                outline: none;
-                width: 35px;
-                text-align: center;
-                padding-left: 10px;
-                font-size: 16px;
-                font-family: 'Malgun Gothic';
-                margin-top: -20px;
-            }
+        .day_hover {
+            border: 1px solid #2295FF !important;
+        }
 
-            #number_field2 {
-                border: none;
-                outline: none;
-                width: 30px;
-                text-align: center;
-                padding-left: 10px;
-                font-size: 16px;
-                font-family: 'Malgun Gothic';
-            }
+        .day_selected {
+            background-color: #2295FF !important;
+            color: #ffff;
+        }
 
-            #number_field3 {
-                border: none;
-                outline: none;
-                width: 35px;
-                text-align: center;
-                padding-left: 10px;
-                font-size: 16px;
-                font-family: 'Malgun Gothic';
-                margin-top: -20px;
-            }
+        .form-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
 
-            #number_field4 {
-                border: none;
-                outline: none;
-                width: 30px;
-                text-align: center;
-                padding-left: 20px;
-                font-size: 16px;
-                font-family: 'Malgun Gothic';
-            }
+        }
+        .form-container .input-container {
+            flex: 1;
+            margin-right: 10px;
+        }
 
-            #number_field5 {
-                border: none;
-                outline: none;
-                width: 35px;
-                text-align: center;
-                padding-left: 20px;
-                font-size: 16px;
-                font-family: 'Malgun Gothic';
-                margin-top: -20px;
-            }
 
-            #number_field6 {
-                border: none;
-                outline: none;
-                width: 30px;
-                text-align: center;
-                padding-left: 20px;
-                font-size: 16px;
-                font-family: 'Malgun Gothic';
-            }
+        #number_field {
+            border: none;
+            outline: none;
+            width: 35px;
+            text-align: center;
+            padding-left: 10px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+            margin-top: -20px;
+        }
 
-            .person {
-                overflow-x:visible;
-                margin: 0px 5px 0px 0px;
-            }
+        #number_field2 {
+            border: none;
+            outline: none;
+            width: 30px;
+            text-align: center;
+            padding-left: 10px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+        }
 
-            .member_cnt{
-                font-size: 18px;
-                width: 140px;
-                margin-top: 5px;
-            }
+        #number_field3 {
+            border: none;
+            outline: none;
+            width: 35px;
+            text-align: center;
+            padding-left: 10px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+            margin-top: -20px;
+        }
 
-            .friend-list {
-                margin-top: 10px;
-            }
+        #number_field4 {
+            border: none;
+            outline: none;
+            width: 30px;
+            text-align: center;
+            padding-left: 20px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+        }
 
-            .friend-item {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
+        #number_field5 {
+            border: none;
+            outline: none;
+            width: 35px;
+            text-align: center;
+            padding-left: 20px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+            margin-top: -20px;
+        }
 
-            .friend-item input,
-            .friend-item label {
-                margin: 0 5px;
-            }
+        #number_field6 {
+            border: none;
+            outline: none;
+            width: 30px;
+            text-align: center;
+            padding-left: 20px;
+            font-size: 16px;
+            font-family: 'Malgun Gothic';
+        }
 
-            .select_date{
-                margin: 0px 0px 5px 75px;
-            }
+        .person {
+            overflow-x:visible;
+            margin: 0px 5px 0px 0px;
+        }
 
-        </style>
-    </head>
+        .member_cnt{
+            font-size: 18px;
+            width: 140px;
+            margin-top: 5px;
+        }
+
+        .friend-list {
+            margin-top: 10px;
+        }
+
+        .friend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .friend-item input,
+        .friend-item label {
+            margin: 0 5px;
+        }
+
+        .select_date{
+            margin: 0px 0px 5px 75px;
+        }
+
+    </style>
+</head>
+<body>
     <div>
         <div class="progress">
             <div class='Fill_Circle'>
@@ -359,26 +361,26 @@
         <div class="contents">
             <p class="page_title">기간/인원 선택</p>
             <hr class="contents_Line"></hr>
-            <div class='select'>
-                <div class="start_day">
-                    <script>
-                        var textElement = document.getElementById('displayText');
+                <div class='select'>
+                    <div class="start_day">
+                        <script>
+                            var textElement = document.getElementById('displayText');
 
-                        textElement.addEventListener('click', function() {
-                            var hiddenDiv = document.getElementById('hiddenDiv');
+                            textElement.addEventListener('click', function() {
+                                var hiddenDiv = document.getElementById('hiddenDiv');
 
-                            if (hiddenDiv.style.display === 'none') {
-                                hiddenDiv.style.display = 'block';
-                            } else {
-                                hiddenDiv.style.display = 'none';
-                            }
+                                if (hiddenDiv.style.display === 'none') {
+                                    hiddenDiv.style.display = 'block';
+                                } else {
+                                    hiddenDiv.style.display = 'none';
+                                }
 
-                            if (hiddenDiv2.style.display === 'block') {
-                                hiddenDiv2.style.display = 'none';
-                                hiddenDiv.style.display = 'block';
-                            }
-                        });
-                    </script>
+                                if (hiddenDiv2.style.display === 'block') {
+                                    hiddenDiv2.style.display = 'none';
+                                    hiddenDiv.style.display = 'block';
+                                } 
+                            });
+                        </script>
 
                     <form method="post" class="form-container">
                         {% csrf_token %}
@@ -388,52 +390,52 @@
                                 <br>
                                 <input type="date" name="departure_date" class="select_date">
                             </div>
-
+                
                             <div class="input-container finish_day">
                                 <p class="select_text1">오는 날</p>
                                 <br>
                                 <input type="date" name="arrival_date" class="select_date">
                             </div>
                         </div>
-
+                
                         <div class="person">
                             <p id="displayText1" class="select_text2">성인</p>
                             <input type="number" name="adults" value="0" class="member_cnt">
                         </div>
-
+                
                         <div class="person">
                             <p id="displayText2" class="select_text2">청소년</p>
                             <input type="number" name="teens" value="0" class="member_cnt">
                         </div>
-
+                
                         <div class="person">
                             <p id="displayText3" class="select_text2">어린이</p>
                             <input type="number" name="children" value="0" class="member_cnt">
                         </div>
-
+                
                         <h2>친구 추가</h2>
-                        <div class="friend-list">
-                            {% for friend in friends %}
-                            <div class="friend-item">
-                                <input type="checkbox" id="friend_{{ friend.id }}" name="friends" value="{{ friend.id }}">
-                                <label for="friend_{{ friend.id }}">{{ friend.username }}</label>
+                            <div class="friend-list">
+                                {% for friend in friends %}
+                                    <div class="friend-item">
+                                        <input type="checkbox" id="friend_{{ friend.id }}" name="friends" value="{{ friend.id }}">
+                                        <label for="friend_{{ friend.id }}">{{ friend.username }}</label>
+                                    </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
-                        </div>
-
+      
                         <a href="/planner/plan1/"><button type="submit" class="next_btn">다음</button></a>
                     </form>
                 </div>
-                <div class="schedule_main">
-                    <div id="hiddenDiv" class='select2'>
+            <div class="schedule_main">
+                <div id="hiddenDiv" class='select2'>
 
-                        <div class = "calendar_container">
-
-                            <button class = "left_button"> &lt </button>
-
-                            <table class = "calendar">
-                                <th class = "title">2월</th>
-                                <tbody>
+                    <div class = "calendar_container"> 
+        
+                        <button class = "left_button"> &lt </button>
+                        
+                        <table class = "calendar">
+                            <th class = "title">2월</th>
+                            <tbody>
                                 <tr class = "week">
                                     <td class = "day">일</td>
                                     <td class = "day">월</td>
@@ -497,125 +499,127 @@
                                     <td class = "calendar_days" roll = "button"> </td>
                                     <td class = "calendar_days" roll = "button"> </td>
                                 </tr>
-                                </tbody>
-                            </table>
-
-                            <button class = "right_button"> > </button>
-                        </div>
-
-                        <script src = "schedule.js"></script>
-
-
-
-
-
-                        <script>
-                            document.getElementById("checkBtn2").addEventListener("click", function() {
-                            var hiddenDiv = document.getElementById("hiddenDiv");
-                            hiddenDiv.style.display = "none";
-                            });
-                        </script>
+                            </tbody>
+                        </table>
+                
+                        <button class = "right_button"> > </button>
                     </div>
 
+                    <script src = "schedule.js"></script>
+
+                    
+
+
+
                     <script>
-                        document.getElementById("checkBtn").addEventListener("click", function() {
-                        var hiddenDiv2 = document.getElementById("hiddenDiv2");
-                        hiddenDiv2.style.display = "none";
+                        document.getElementById("checkBtn2").addEventListener("click", function() {
+                        var hiddenDiv = document.getElementById("hiddenDiv");
+                        hiddenDiv.style.display = "none";
                         });
                     </script>
-
-                    <script>
-                        function increaseNumber() {
-                          var numberField = document.getElementById("number_field");
-                          var currentValue = parseInt(numberField.value);
-                          numberField.value = currentValue + 1;
-
-                          var numberField2 = document.getElementById("number_field2");
-                          var currentValue2 = parseInt(numberField2.value);
-                          numberField2.value = currentValue2 + 1;
-                        }
-
-                        function decreaseNumber() {
-                          var numberField = document.getElementById("number_field");
-                          var currentValue = parseInt(numberField.value);
-                          if (currentValue > 1) {
-                            numberField.value = currentValue - 1;
-                          }
-                          else {
-                                numberField.value = 1;
-                            }
-
-                          var numberField2 = document.getElementById("number_field2");
-                          var currentValue2 = parseInt(numberField2.value);
-                          if (currentValue2 > 1) {
-                            numberField2.value = currentValue2 - 1;
-                          }
-                          else {
-                                numberField.value = 1;
-                            }
-                        }
-
-                        function increaseNumber2() {
-                          var numberField3 = document.getElementById("number_field3");
-                          var currentValue3 = parseInt(numberField3.value);
-                          numberField3.value = currentValue3 + 1;
-
-                          var numberField4 = document.getElementById("number_field4");
-                          var currentValue4 = parseInt(numberField4.value);
-                          numberField4.value = currentValue4 + 1;
-                        }
-
-                        function decreaseNumber2() {
-                          var numberField3 = document.getElementById("number_field3");
-                          var currentValue3 = parseInt(numberField3.value);
-                          if (currentValue3 > 0) {
-                            numberField3.value = currentValue3 - 1;
-                          }
-
-                          var numberField4 = document.getElementById("number_field4");
-                          var currentValue4 = parseInt(numberField4.value);
-                          numberField4.value = currentValue4 + 1;
-                          if (currentValue4 > 0) {
-                            numberField4.value = currentValue4 - 1;
-                          }
-                        }
-
-                        function increaseNumber3() {
-                          var numberField5 = document.getElementById("number_field5");
-                          var currentValue5 = parseInt(numberField5.value);
-                          numberField5.value = currentValue5 + 1;
-
-                          var numberField6 = document.getElementById("number_field6");
-                          var currentValue6 = parseInt(numberField6.value);
-                          numberField6.value = currentValue6 + 1;
-                        }
-
-                        function decreaseNumber3() {
-                          var numberField5 = document.getElementById("number_field5");
-                          var currentValue5 = parseInt(numberField5.value);
-                          if (currentValue5 > 0) {
-                            numberField5.value = currentValue5 - 1;
-                          }
-
-                          var numberField6 = document.getElementById("number_field6");
-                          var currentValue6 = parseInt(numberField6.value);
-                          numberField6.value = currentValue6 + 1;
-                          if (currentValue6 > 0) {
-                            numberField6.value = currentValue6 - 1;
-                          }
-                        }
-                        var inputElements = document.querySelectorAll('.input-container input[type="number"]');
-                        inputElements.forEach(function(inputElement) {
-                            inputElement.addEventListener('change', function() {
-                                if (parseInt(inputElement.value) < 0) {
-                                    inputElement.value = 0;
-                                }
-                            });
-                        })
-                    </script>
                 </div>
+
+                <script>
+                    document.getElementById("checkBtn").addEventListener("click", function() {
+                    var hiddenDiv2 = document.getElementById("hiddenDiv2");
+                    hiddenDiv2.style.display = "none";
+                    });
+                </script>
+
+                <script>
+                    function increaseNumber() {
+                      var numberField = document.getElementById("number_field");
+                      var currentValue = parseInt(numberField.value);
+                      numberField.value = currentValue + 1;
+
+                      var numberField2 = document.getElementById("number_field2");
+                      var currentValue2 = parseInt(numberField2.value);
+                      numberField2.value = currentValue2 + 1;
+                    }
+                  
+                    function decreaseNumber() {
+                      var numberField = document.getElementById("number_field");
+                      var currentValue = parseInt(numberField.value);
+                      if (currentValue > 1) {
+                        numberField.value = currentValue - 1;
+                      }
+                      else {
+                            numberField.value = 1;
+                        }
+
+                      var numberField2 = document.getElementById("number_field2");
+                      var currentValue2 = parseInt(numberField2.value);
+                      if (currentValue2 > 1) {
+                        numberField2.value = currentValue2 - 1;
+                      }
+                      else {
+                            numberField.value = 1;
+                        }
+                    }
+
+                    function increaseNumber2() {
+                      var numberField3 = document.getElementById("number_field3");
+                      var currentValue3 = parseInt(numberField3.value);
+                      numberField3.value = currentValue3 + 1;
+
+                      var numberField4 = document.getElementById("number_field4");
+                      var currentValue4 = parseInt(numberField4.value);
+                      numberField4.value = currentValue4 + 1;
+                    }
+
+                    function decreaseNumber2() {
+                      var numberField3 = document.getElementById("number_field3");
+                      var currentValue3 = parseInt(numberField3.value);
+                      if (currentValue3 > 0) {
+                        numberField3.value = currentValue3 - 1;
+                      }
+
+                      var numberField4 = document.getElementById("number_field4");
+                      var currentValue4 = parseInt(numberField4.value);
+                      numberField4.value = currentValue4 + 1;
+                      if (currentValue4 > 0) {
+                        numberField4.value = currentValue4 - 1;
+                      }
+                    }
+
+                    function increaseNumber3() {
+                      var numberField5 = document.getElementById("number_field5");
+                      var currentValue5 = parseInt(numberField5.value);
+                      numberField5.value = currentValue5 + 1;
+
+                      var numberField6 = document.getElementById("number_field6");
+                      var currentValue6 = parseInt(numberField6.value);
+                      numberField6.value = currentValue6 + 1;
+                    }
+                  
+                    function decreaseNumber3() {
+                      var numberField5 = document.getElementById("number_field5");
+                      var currentValue5 = parseInt(numberField5.value);
+                      if (currentValue5 > 0) {
+                        numberField5.value = currentValue5 - 1;
+                      }
+
+                      var numberField6 = document.getElementById("number_field6");
+                      var currentValue6 = parseInt(numberField6.value);
+                      numberField6.value = currentValue6 + 1;
+                      if (currentValue6 > 0) {
+                        numberField6.value = currentValue6 - 1;
+                      }
+                    }
+                    var inputElements = document.querySelectorAll('.input-container input[type="number"]');
+                    inputElements.forEach(function(inputElement) {
+                        inputElement.addEventListener('change', function() {
+                            if (parseInt(inputElement.value) < 0) {
+                                inputElement.value = 0;
+                            }
+                        });
+                    })
+                  </script>
             </div>
         </div>
     </div>
-    </body>
-    </html>
+
+    </div>
+</body>
+</html>
+

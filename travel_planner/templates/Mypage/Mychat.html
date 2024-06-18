@@ -10,14 +10,15 @@
             margin: 0;
             padding: 0;
         }
+
         .mypage{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+
         .mypage_content{
-            border: 1px solid;
             justify-content: center;
             width: 86rem;
             height: 680px;
@@ -26,23 +27,28 @@
 
         .page_content{
             float: left;
-            margin-right: 60px;
+            margin-right: 0px;
             width: 300px;
             text-align: center;
             font-size: 16px;
         }
+
         .content_list{
-            border: 1px solid;
+            border-radius: 10px;
+            border: 3px solid;
             width: 200px;
             text-align: left;
             font-size: 16px;
             list-style: none;
-            margin-left: 50px;
-            margin-top: 20px;
+            margin-top: 40px;
+            border-color: #2295ff;
         }
 
         .content_list>li{
             margin: 25px 0px 25px 70px;
+            text-align: center;
+            padding-right: 70px;
+            color: #2295ff;
         }
 
         .content_list>hr{
@@ -53,7 +59,7 @@
         .content_name{
             font-size: 26px;
             font-weight: bold;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
 
         .detail_page{
@@ -62,7 +68,7 @@
             height: 500px;
         }
 
-        #showFriends{
+        #showchat{
             font-weight: bold;
         }
 
@@ -72,10 +78,9 @@
             margin-left: 20px;
         }
 
-        .friend_list{
-            width: 350px;
-            margin-right: 30px;
-
+        .room_content{
+            width: 500px;
+            height: 80px;
         }
 
         .content_title{
@@ -110,6 +115,20 @@
 
         }
 
+        .delete_btn{
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            font-size: 20px;
+            float: right;
+            margin: 25px 10px 0px 0px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
 
     </style>
 </head>
@@ -117,7 +136,6 @@
     <div class="mypage">
         <div class="mypage_content">
             <div class="page_content">
-                <p>항목</p>
                 <ul class="content_list">
                     <li id="showMyInfo"><a href="/Accounts/mypage/">내 정보</a></li><hr>
                     <li id="showLikes">좋아요</li><hr>
@@ -142,6 +160,12 @@
                                 <ul class="chat_room_list">
                                     {% for room in user_chat_rooms %}
                                         <li class="room_name">
+                                            {% if request.user == room.creator %}
+                                                <form method="post" action="{% url 'match:delete_chat_room' room.id %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="delete_btn">삭제</button>
+                                                </form>
+                                                {% endif %}
                                             <div class="room_content">
                                                 <div class="room_image">
                                                     <img src="{{ room.image.url }}" alt="" class="room_img">
@@ -150,12 +174,7 @@
                                                     <p class="room_title"><a href="{% url 'match:chat_room_detail' room.id %}">{{ room.name }}</a></p>
                                                     <p class="date">{{ room.date }}</p>
                                                 </div>
-                                                {% if request.user == room.creator %}
-                                                <form method="post" action="{% url 'match:delete_chat_room' room.id %}">
-                                                    {% csrf_token %}
-                                                    <button type="submit" class="delete_btn">삭제</button>
-                                                </form>
-                                                {% endif %}
+
                                             </div>
                                             
                                         </li>
