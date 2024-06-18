@@ -1,5 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+
 from travel.models import *
 
 
@@ -49,5 +52,22 @@ def package_detail(request, package_id):
     package = get_object_or_404(Package, id=package_id)
     context = {'package': package}
     return render(request, 'detail/package.html', context)
+
+@csrf_exempt
+def submit_reservation(request):
+    if request.method == 'POST':
+        adult = request.POST.get('adult', 0)
+        student = request.POST.get('student', 0)
+        child = request.POST.get('child', 0)
+        total_price = request.POST.get('total_price', 0)
+
+        reservation = Reservation(adult=adult, student=student, child=child, total_price=total_price)
+        reservation.save()
+
+        return redirect('/')  # 'main_page'는 메인 페이지 URL 네임입니다.
+    return JsonResponse({'message': 'Invalid request'}, status=400)
+
+def reservation_complete(request):
+    return render(request, 'reservation_complete.html')
 
 

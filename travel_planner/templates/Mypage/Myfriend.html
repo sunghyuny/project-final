@@ -82,7 +82,7 @@
             width: 350px;
             margin-right: 30px;
             border-right: 1px solid;
-            
+
         }
 
         .content_title{
@@ -125,6 +125,35 @@
             text-decoration: none;
             color: inherit;
         }
+
+        li{
+            list-style-type: none;
+        }
+
+        .request_friend{
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .request_friend_item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .agree_btn, .refuse_btn{
+            color: white;
+            background-color: #2295ff;
+            border: none;
+            font-size: 19px;
+            margin: 10px 0px 0px 10px;
+        }
+
+        .add_friend {
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -161,30 +190,36 @@
                                 </ul>
                             </div>
 
-                            <div class="add_friend">
-                                <p class="content_title">친구 관리</p>
-                                <div class="add_content">
-                                  <p>친구 아이디 입력</p>
-                                  <form action="{% url 'Accounts:send_friend_request_by_email' %}" method="post">
-                                    {% csrf_token %}
-                                    <input type="email" name="email" class="add_email" placeholder="친구 e-mail를 입력하세요"><br>
-                                    <button type="submit" class="add_btn">추가</button>
-                                  </form>
+                            <div>
+                                <div class="add_friend">
+                                    <p class="content_title">친구 관리</p>
+                                    <div class="add_content">
+                                        <p>친구 아이디 입력</p>
+                                        <form action="{% url 'Accounts:send_friend_request_by_email' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="email" name="email" class="add_email" placeholder="친구 e-mail를 입력하세요"><br>
+                                            <button type="submit" class="add_btn">추가</button>
+                                        </form>
+                                    </div>
                                 </div>
-                              </div>
 
-                              {% for request in friend_requests %}
-                              <p>{{ request.from_user.username }}님으로부터 친구 요청이 왔습니다</p>
-                              <form action="{% url 'Accounts:accept_friend_request' request.id %}" method="post">
-                                  {% csrf_token %}
-                                  <button type="submit">수락</button>
-                              </form>
-                              <form action="{% url 'Accounts:delete_friend_request' request.id %}" method="post">
-                                  {% csrf_token %}
-                                  <button type="submit">거절</button>
-                              </form>
-                              {% endfor %}
-                              
+                                <div class="request_friend">
+                                    {% for request in friend_requests %}
+                                    <div class="request_friend_item">
+                                        <p>{{ request.from_user.username }}님으로부터 친구 요청이 왔습니다</p>
+                                        <form action="{% url 'Accounts:accept_friend_request' request.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="agree_btn">수락</button>
+                                        </form>
+                                        <form action="{% url 'Accounts:delete_friend_request' request.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="refuse_btn">거절</button>
+                                        </form>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
