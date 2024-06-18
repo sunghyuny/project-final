@@ -45,11 +45,7 @@ def create_chat_room(request):
 
             chat_room.participants.add(request.user)
             return HttpResponseRedirect(reverse('match:chat_room_list'))
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/main
     return render(request, 'match/create_chat_room.html')
 
 @login_required
@@ -64,10 +60,7 @@ def chat_room_list(request):
     chat_rooms = ChatRoom.objects.all()
     return render(request, 'match/chat_room_list.html', {'chat_rooms': chat_rooms})
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
 @login_required
 def chat_room_detail(request, room_id):
     chat_room = get_object_or_404(ChatRoom, id=room_id)
