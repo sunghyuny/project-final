@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-{% include 'Navbar.html'%}
+{% include 'Navbar.html' %}
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ni4v3wc3lm"></script>
   <title>관광지 상세</title>
-  <style>
+  <style>    
     .sightdetail {
       justify-content: center;
-      width: 90rem;
-      margin-left: 2rem;
+      width: 83.9rem;
+      margin:0 auto;
+      margin-top: 30px;
     }
-
+      
     .detail_info>h2 {
       font-weight: bold;
     }
 
     .main_image {
-      width: 37rem;
-      height: 25rem;
+      width: 33rem;
+      height: 23rem;
       margin-top: 10px;
       margin-right: 10px;
       display: flex;
@@ -27,16 +28,24 @@
     }
 
     .sub_image{
-      width: 25.03rem;
-      height: 12.2rem;
+      width: 23.03rem;
+      height: 11.2rem;
       margin: 5px;
     }
-
+          
     .detail_content {
       font-size: 1rem;
       padding: 1rem;
     }
-
+        
+    .map_image {
+      position: absolute;
+      width: 1474px;
+      height: 462px;
+      left: 214px;
+      top: 1651px;
+    }
+        
     .sights_ul {
       list-style-type: none;
       padding: 0;
@@ -45,11 +54,11 @@
       flex-wrap: wrap;
       margin-left: 5rem;
     }
-
+          
     .sights_ul>li {
       list-style: disc;
       padding: 10px;
-      width: calc(50% - 2px);
+      width: calc(50% - 2px); /* 전체 너비의 절반으로 설정하고 테두리 두께를 고려하여 조정합니다 */
       box-sizing: border-box;
     } /*지도 밑에 상세 정보*/
 
@@ -57,7 +66,7 @@
       list-style: none;
       margin-left: 11rem;
     }
-
+      
     .sights_category>li {
       display: inline-block;
       margin-right: 84px;
@@ -67,42 +76,30 @@
       font-size: 1rem;
     } /*관광지 태그*/
 
-    .local_map>img{
-      margin-top: 3rem;
-      margin-left: 2rem;
-      width: 50rem;
-    }
-
-    #map{
-      width:870px;
-      height: 29.5rem;
-      margin-top: 3rem;
-    }
     .fav_icon {
-      font-size: 30px;
-      cursor: pointer;
-      color: #ccc; /* 기본색 */
-      display: flex;
-      float: right;
-    }
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc; /* 기본색 */
+            display: flex;
+            float: right;
+        }
 
-     .fav_icon.fav {
-       color: red;
-     }
-
+        .fav_icon.fav {
+            color: red; /* 선택됐을 때의 색 */
+        }
   </style>
 </head>
 <body>
     <div>
         <div class="sightdetail">
-          <h2>설악산 국립공원</h2>
           <span class="fav_icon" onclick="toggleFav(this)">♥</span>
+          <h2>설악산 국립공원</h2>
           <div class="image_layout">
-            <img class="main_image" src="/image/설악산.jpg" alt="관광 이미지1" />
-            <img class="sub_image" src="/image/20171210044338122.jpg" alt="관광 이미지2" />
-            <img class="sub_image" src="/image/다운로드 (19).jpeg" alt="관광 이미지3" />
-            <img class="sub_image" src="/image/538474_large_1600151108.jpg" alt="관광 이미지4" />
-            <img class="sub_image" src="/image/다운로드 (20).jpeg" alt="관광 이미지5" />
+            <img class="main_image" src="{% static 'image/설악산.jpg' %}" alt="관광 이미지1" />
+            <img class="sub_image" src="{% static 'image/20171210044338122.jpg' %}" alt="관광 이미지2" />
+            <img class="sub_image" src="{% static 'image/다운로드 (19).jpeg' %}" alt="관광 이미지3" />
+            <img class="sub_image" src="{% static 'image/538474_large_1600151108.jpg' %}" alt="관광 이미지4" />
+            <img class="sub_image" src="{% static 'image/다운로드 (20).jpeg' %}" alt="관광 이미지5" />
           </div>
           <div class="detail_info">
             <h2>상세 정보</h2>
@@ -111,15 +108,14 @@
             <br></br>
             남설악 지역은 옛날부터 오색약수와 온천이 유명하고 주전골 일대의 용소폭포, 십이폭포, 여신폭포 등이 대표적인 경관을 이루며 산세가 아름답다. 점봉산(1,424.2m)도 남설악구역에 속한다.남설악 지역에서는 오색-대청 코스, 한계령-끝청-대청 코스 등이 대표적 등산 코스이다. 오색 코스 길목은 그린야드호텔 위편, 국도변의 국립공원 매표소이고 한계령 코스 길목은 한계령휴게소 옆 설악루 계단이다.</p>
           </div>
-          <div class='local_map'>
-            <div id="map"></div>
-          </div>
+          
           <ul class="sights_ul">
             <li>문의 및 안내 <p>033-801-0900</p></li>
             <li>홈페이지 <p>http://seorak.knps.or.kr설악케이블카 http://www.sorakcablecar.co.kr</p></li>
             <li>주소 <p>강원특별자치도 양양군 서면 설악로 801</p></li>
             <li>주차 <p>있음(오색주차장, 용소폭포주차장, 오색영업소주차장, 오색정류장주차장)</p></li>
-            <li>접근로 <p>탐방안내소 주출입구나 전시실 간에 턱이 없어 이용이 편리함</p></li>
+            <li>접근로 <p>탐방안내소 주출입구나 전시실 간에 
+              턱이 없어 이용이 편리함</p></li>
             <li>화장실 <p>장애인전용화장실 있음_무장애 편의시설</p></li>
           </ul>
           <ul class="sights_category">
@@ -134,12 +130,7 @@
     </div>
 </body>
 <script>
-  var mapOptions = {
-        center: new naver.maps.LatLng(37.497952, 127.027619),
-        zoom: 10.4
-    };
-
-    function toggleFav(element) {
+   function toggleFav(element) {
         element.classList.toggle("fav");
     }
 </script>

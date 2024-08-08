@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import TouristSpot, RegionCategory
 
 
 def main_sight(request):
-    return render(request, 'Sightseeing/sight.html')
+    try:
+        touristspot = TouristSpot.objects.get(id=10)  # ID가 10인 객체를 불러옴
+    except TouristSpot.DoesNotExist:
+        touristspot = TouristSpot.objects.get(id=1)  # ID가 10인 객체가 없을 경우 ID가 1인 객체를 불러옴
+
+    return render(request, 'Sightseeing/sight.html', {'touristspot': touristspot})
 def add_tourist_spot(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -35,3 +40,8 @@ def add_tourist_spot(request):
     # GET 요청인 경우 모든 카테고리를 가져와서 템플릿에 전달
     region_categories = RegionCategory.objects.all()
     return render(request, 'spots/create.html', {'region_categories': region_categories})
+
+
+def detail_sight(request, id):
+    touristspot = get_object_or_404(TouristSpot, id=id)
+    return render(request, 'detail/sight_detail.html', {'touristspot': touristspot})

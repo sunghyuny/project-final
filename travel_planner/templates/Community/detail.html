@@ -1,0 +1,106 @@
+{% include 'Navbar.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .post_detail {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .post_detail h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .post_detail p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .post_detail .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post_detail .author,
+        .post_detail .date,
+        .post_detail .location,
+        .post_detail .category,
+        .post_detail .dates {
+            font-weight: bold;
+            color: #888;
+            font-size: 1.2em;
+        }
+
+        .post_detail .content {
+            margin: 20px 0;
+            line-height: 1.6;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .post_detail .image {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .post_detail .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <div class="post_detail">
+        <h1>{{ post.title }}</h1>
+        <hr>
+        <div class="meta">
+            <p class="author">작성자: {{ post.author.username }}</p>
+            <p class="date">작성일자: {{ post.created_at|date:"Y.m.d" }}</p>
+        </div>
+        <hr>
+        <p class="location">위치: {{ post.location }}</p>
+        <hr>
+        <p class="category">카테고리: {{ post.category }}</p>
+        <hr>
+        <p class="content">{{ post.content }}</p>
+        <hr>
+        <p class="dates">여행 날짜: {{ post.start_date }} ~ {{ post.end_date }}</p>
+        <hr>
+        {% if post.image %}
+            <div class="image">
+                <img src="{{ post.image.url }}" alt="Post image">
+            </div>
+            <hr>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

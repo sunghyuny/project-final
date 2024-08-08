@@ -23,7 +23,7 @@ def accommodation_create(request):
         try:
             region = RegionCategory.objects.get(name=region_name)
         except RegionCategory.DoesNotExist:
-            # 지역이 존재하지 않는 경우 처리할 코드를 여기에 추가합니다.
+               # 지역이 존재하지 않는 경우 처리할 코드를 여기에 추가합니다.
             pass
 
         # 숙소를 생성합니다.
@@ -35,7 +35,7 @@ def accommodation_create(request):
         return redirect('/')  # 숙소 등록 후 리다이렉트될 페이지를 지정합니다. (예: 홈)
     # GET 요청인 경우 숙소 등록 폼을 표시합니다.
     return render(request, 'hotel/create.html', {'regions': RegionCategory.objects.all()})
-def detail(request, hotel_id): 
-    hotel = get_object_or_404(Accommodation, id= hotel_id)
+def hotel_detail(request, hotel_id):
+    hotel = get_object_or_404(Accommodation, id=hotel_id)
     context = {'hotel': hotel}
     return render(request, 'detail/lodg_detail.html', context)

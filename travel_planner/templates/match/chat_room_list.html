@@ -6,11 +6,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.status-select').forEach(function (select) {
+                select.addEventListener('change', function () {
+                    var url = this.getAttribute('data-url');
+                    var newStatus = this.value;
+    
+                    var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrftoken
+                        },
+                        body: JSON.stringify({ status: newStatus })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('상태가 성공적으로 변경되었습니다.');
+                            // 상태 변경 후 변경된 상태를 화면에 업데이트
+                            var statusElement = this.closest('.match_list').querySelector('.status');
+                            statusElement.textContent = data.new_status_display;
+                        } else {
+                            alert('상태 변경에 실패했습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        alert('상태 변경 요청 중 오류가 발생했습니다.');
+                    });
+                });
+            });
+        });
+        
+    </script>
+    
     <style>
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
         }
 
         .match_page {
@@ -40,28 +81,26 @@
             font-weight: bold;
             font-size: 20px;
             background-color: #D7D7D7;
-
         }
 
         .match_content {
             display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            width: 1000px;
-            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
             padding: 10px 0;
         }
 
         .match_list {
-            width: 400px;
-            height: 80px;
-            padding-left: 10px;
-            border: 1px solid;
+            width: 90%;
+            max-width: 600px;
+            padding: 10px;
+            border: 1px solid #ccc;
             background-color: white;
-            margin: 10px auto 10px 30px;
-            flex: 0 0 auto;
+            margin-bottom: 20px;
             display: flex;
-            float: left;
+            flex-direction: row;
+            align-items: center;
         }
 
         .profile_img {
@@ -69,9 +108,8 @@
             height: 50px;
             border-radius: 50%;
             overflow: hidden;
-            border: 1px solid;
-            display: inline-block;
-            margin-top: 10px;
+            border: 1px solid #ccc;
+            margin-right: 20px;
         }
 
         .room_img {
@@ -81,48 +119,69 @@
         }
 
         .list_content {
-            display: inline-block;
-            margin-left: 10px;
-        }   
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
 
         .title {
             font-weight: bold;
             font-size: 20px;
-            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
         .room_title {
             text-decoration: none;
             color: black;
         }
+
+        .period, .subtitle, .status {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .status-select {
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="match_page">
-        <div class="content">
-            <div class="search">
-                <input type="text" placeholder="검색할 내용을 입력하세요." class="search_text">
-                <a href="{% url 'match:create_chat_room' %}"><button class="new_chat">새로운 채팅</button></a>
+    <div class="match_content">
+        <a href="/chat/create_chat_room/" class="new_chat">채팅방 만들기</a>
+        {% for room in chat_rooms %}
+        <div class="match_list">
+            <div class="profile_img">
+                <img src="{{ room.image.url }}" alt="" class="room_img">
             </div>
-            <div class="match_content">
-                {% for room in chat_rooms %}
-                <div class="match_list">
-                    <div class="profile_img">
-                        <img src="{{ room.image.url }}" alt="" class="room_img">  <!-- 'chat_room'을 'room'으로 변경했습니다 -->
-                    </div>
-                    <div class="list_content">
-                        <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
-                        <p class="period">{{room.date}}</p>
-                        <p class="subtitle">{{room.description}}</p>
-
-                    </div>
-                </div>
-                {% endfor %}
+            <div class="list_content">
+                <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
+                <p class="period">{{ room.departure_date }}~{{ room.arrival_date }}</p>
+                <p class="subtitle">{{ room.description }}</p>
+                <!-- 채팅방 상태를 표시할 곳 -->
+                <p class="status">{{ room.get_status_display }}</p>
+                
+                <!-- 현재 참가자 수와 최대 인원 수 표시 -->
+                <p>현재 참가자: {{ room.current_participants }} / 최대 인원: {{ room.max_participants }}</p>
+                
+                <!-- 마감 상태 표시 -->
+                {% if room.is_full %}
+                <p>마감되었습니다.</p>
+                {% else %}
+                <form method="post" action="{% url 'match:change_chat_room_status' room.id %}" id="status-form-{{ room.id }}">
+                    {% csrf_token %}
+                    <select name="status" class="status-select" data-url="{% url 'match:change_chat_room_status' room.id %}">
+                        {% for value, display in room.STATUS_CHOICES %}
+                        <option value="{{ value }}" {% if room.status == value %}selected{% endif %}>{{ display }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+                {% endif %}
             </div>
         </div>
+        {% endfor %}
     </div>
+
 </body>
 
 </html>
-

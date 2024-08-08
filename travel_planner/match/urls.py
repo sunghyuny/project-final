@@ -9,5 +9,7 @@ urlpatterns = [
     path('', chat_room_list, name="chat_room_list"),
     path('chat/detail/<int:room_id>/', chat_room_detail, name='chat_room_detail'),
     path('delete-chat-room/<int:room_id>/', delete_chat_room, name='delete_chat_room'),
+    path('invite_to_trip_plan/', invite_to_trip_plan, name='invite_to_trip_plan'),
+    path('change_chat_room_status/<int:room_id>/', change_chat_room_status, name='change_chat_room_status'),
 
 ]

@@ -87,13 +87,16 @@
                 {% csrf_token %}
                 <div class="page_content">
                     <input type="text" id="room_name" name="room_name" class="input_text" required placeholder="채팅방 이름을 입력해주세요">
-                    <input type="date" id="room_date" name="room_date" class="input_text" required placeholder="기간을 입력해주세요">
-                    <input type="text" id="room_location" name="room_location" class="input_text" required placeholder="지역을 입력해주세요">
                     <input type="number" id="room_capacity" name="room_capacity" class="input_text" required placeholder="총 인원을 입력해주세요">
+                    <input type="text" id="room_location" name="room_location" class="input_text" required placeholder="지역을 입력해주세요">
+                    <label for="departure_date">출발 날짜를 입력해주세요:</label>
+                    <input type="date" id="departure_date" name="departure_date" class="input_text" required>
+                    <label for="arrival_date">도착 날짜를 입력해주세요:</label>
+                    <input type="date" id="arrival_date" name="arrival_date" class="input_text" required>
                     <label class="info_title">설명 :</label>
                     <textarea name="description" id="description" cols="70" rows="10"></textarea>
-                    <label for="room_image">이미지 :</label>
-                    <input type="file" id="room_image" name="room_image" class="input_text">
+                    <label for="room_image">채팅방 이미지:</label>
+                    <input type="file" id="room_image" name="room_image">
                 </div>
                 <div class="btn_content">
                     <button type="submit" class="create_btn">생성하기</button>

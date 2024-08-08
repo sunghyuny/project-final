@@ -177,7 +177,7 @@
             display:inline-block;
         }
 
-        .menu_list>li{
+        .active_category{
             list-style: none;
             display: inline-block;
             border: 1px solid;
@@ -187,9 +187,21 @@
             padding-left: 35px;
             padding-right: 35px;
             margin-right: 2rem;
-            margin-top:60px;
-            margin-bottom:20px;
-            width:35px;
+            margin-top:3rem;
+            margin-bottom:10px;
+            color: black;
+        }
+
+        .activity_list_content{
+            width: 800px;
+            height: auto;
+            display: flex;
+            float: center;
+        }
+
+        .activity_list{
+            width: 900px;
+            margin: auto;
         }
 
         .activity {
@@ -244,15 +256,19 @@
             background-color: #2295FF;
             border: 0;
             padding: 10px;
-            padding-left: 60px;
-            padding-right: 60px;
             border-radius: 4px;
             color: white;
-            width: 160px;
+            align-items: center;
+            align-content: center;
+            width: 85px;
             height: 45px;
-            text-align: center;
-            margin-left: 350px;
-            margin-top: 40px;
+            margin-left: 500px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            float: right;
+            justify-content: center;
+            align-content: center;
         }
 
         .fav_icon {
@@ -308,17 +324,20 @@
                         <p id="selected_activities"></p>
                     </div>
                 </div>
-                <span class="select_location">제주도 > 서귀포시</span>
+                <span class="select_location"></span>
                 <div class='activity_menu'>
                     <ul class='menu_list'>
-                        <li>식당</li>
-                        <li>경관</li>
-                        <li>체험</li>
-                        <li>전시</li>
+                        <li class="active_category">식당</li>
+                        <li class="active_category">경관</li>
+                        <li class="active_category">체험</li>
+                        <li class="active_category">전시</li>
+                        <li class="active_category">즐겨찾기</li>
                     </ul>
+                    
                 </div>
-                <div class="activity_list">
+                <div class="activity_list_content">
 <form action="/planner/plan3/" method="post">
+    <button type="submit" class="next_btn">다음</button>
     {% csrf_token %}
     <div class="activity_list">
         {% if activities %}
@@ -327,11 +346,11 @@
                 <img class="act_img" src="{{ activity.photo.url }}" alt="{{ activity.name }}"/>
                 <input type="hidden" id="activity_{{ activity.id }}" name="selected_activity_id" value="{{ activity.id }}">
                 <label for="activity_{{ activity.id }}" class="activity_label">
-                    <p class="activity_title">{{ activity.name }}</p>
-                    <p class="activity_location">{{ activity.location }}</p>
-                    <p class="activity_time">운영시간: {{ activity.time }}</p>
-                    <p class="activity_price">대표: {{ activity.price }}원</p>
-                    <p class="activity_telephone">{{ activity.telephone }}</p>
+                    <p class="act_title">{{ activity.name }}</p>
+                    <p class="act_location">{{ activity.location }}</p>
+                    <p class="act_time">운영시간: {{ activity.time }}</p>
+                    <p class="act_price">대표: {{ activity.price }}원</p>
+                    <p class="act_num">{{ activity.telephone }}</p>
                     <input type="checkbox" name="selected_activity_id" class="act_check" value="{{ activity.id }}">
                 </label>
             </div>
@@ -340,7 +359,7 @@
             <p>활동이 없습니다</p>
         {% endif %}
     </div>
-     <button type="submit" class="next_btn">다음</button>
+    
 </form>
     </div>
             </div>

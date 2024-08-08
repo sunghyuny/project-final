@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% include 'Navbar.html'%}
+{% load humanize %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -222,7 +223,7 @@
 <body>
     <div>
         <div class="search_main">
-            <p class='page_title'>숙소 선택</p>
+            <p class='page_title'>숙박  선택</p>
             <hr class="contents_Line">
             <div class="search_filter">
                 <p id="filter_title">검색 필터</p>
@@ -258,19 +259,18 @@
             <p class="array">정렬 | 별점 평점 인기 가격 후기 거리</p>
             <div class="lodg_list">
                 {% for accommodation in accommodations %}
-            <div class="lodg">
-                <img class="hotel_img" src="{{ accommodation.photo.url }}" alt="{{ accommodation.name }}">
-                <input type="hidden" name="hotel_id" value="{{ accommodation.id }}">
-                <p class="lodg_title">{{ accommodation.name }}</p>
-                <p class="lodg_locate">{{ accommodation.amenities }}</p>
-                <p class="lodg_price">{{ accommodation.price }}/1박</p>
-
+                    <div class="lodg">
+                        <a href="/hotel/detail/{{ accommodation.id}}">
+                            <img class="hotel_img" src="{{ accommodation.photo.url }}" alt="{{ accommodation.name }}">
+                            <input type="hidden" name="hotel_id" value="{{ accommodation.id }}">
+                            <p class="lodg_title">{{ accommodation.name }}</p>
+                            <p class="lodg_locate">{{ accommodation.amenities }}</p>
+                            <p class="lodg_price">{{ accommodation.price|intcomma }}/1박</p>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-
-
-                
-
+            
 
         
             </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% include 'Navbar.html' %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +29,7 @@
             border: none;
             font-size: 15px;
             margin-top: 15px;
+            width: 100%;
         }
 
         .city_name, .title_name, textarea:focus{
@@ -74,34 +76,55 @@
 <body>
     <div class="create_page">
         <div class="page_content">
-            <div class="content">
-                <p class="city">도</p>
-                <input type="text" class="city_name" placeholder="도시를 입력해 주세요">
-            </div>
-            <hr>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="content">
+                    <p class="city">도</p>
+                    <input type="text" class="city_name" name="location" placeholder="도시를 입력해 주세요">
+                </div>
+                <hr>
 
-            <div class="content">
-                <p class="title">제목</p>
-                <input type="text" class="title_name" placeholder="제목을 입력해 주세요">
-            </div>
-            <hr>
+                <div class="content">
+                    <p class="title">제목</p>
+                    <input type="text" class="title_name" name="title" placeholder="제목을 입력해 주세요">
+                </div>
+                <hr>
 
-            <div class="content">
-                <p class="category">카테고리</p>
-                <button class="category_name">--카테고리--</button>
-            </div>
-            <hr>
+                <div class="content">
+                    <p class="category">카테고리</p>
+                    <select class="category_name" name="category">
+                        <option value="category1">카테고리1</option>
+                        <option value="category2">카테고리2</option>
+                        <option value="category3">카테고리3</option>
+                    </select>
+                </div>
+                <hr>
 
-            <div class="content">
-                <p class="detail">내용</p>
-                <textarea class="substance" cols="160" rows="20" placeholder="내용을 입력해 주세요"></textarea>
-            </div>
+                <div class="content">
+                    <p class="detail">내용</p>
+                    <textarea class="substance" name="content" cols="160" rows="10" placeholder="내용을 입력해 주세요"></textarea>
+                </div>
+                <hr>
 
-            <div class="button">
-                <button class="cancel">취소</button>
-                <button class="create">생성</button>
-            </div>
+                <div class="content">
+                    <p class="dates">여행 날짜</p>
+                    <input type="date" name="start_date" placeholder="시작 날짜를 입력해 주세요">
+                    <input type="date" name="end_date" placeholder="종료 날짜를 입력해 주세요">
+                </div>
+                <hr>
+
+                <div class="content">
+                    <p class="image">이미지</p>
+                    <input type="file" class="image_file" name="image">
+                </div>
+
+                <div class="button">
+                    <button class="cancel" type="button">취소</button>
+                    <button class="create" type="submit">생성</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
+
 </html>

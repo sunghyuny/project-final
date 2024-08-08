@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'travel',
     'match',
     'channels',
-    'post'
+    'post',
+
 ]
 
 ASGI_APPLICATION = 'travel_planner.asgi.application'

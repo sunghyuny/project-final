@@ -91,6 +91,7 @@
             margin-right: 26px;
             color: #2295ff;
             font-weight: bold;
+            height: 30px;
         } 
 
         /*후기 및 추천여행 등*/
@@ -118,6 +119,9 @@
             border-radius: 21px 21px 0px 0px;
             margin: 0;
         }
+        .no-wrap {
+        white-space: nowrap;
+    }
     </style>
 </head>
 <body>
@@ -135,22 +139,25 @@
         <p class='content_title'>인기 여행지</p>
         <div class='hotplace'>
             <ul class="destination_list">
-            {% for region_category in region_categories %}
-            <li>{{ region_category.name }}</li>
-        {% endfor %}
+                {% for region_category in region_categories %}
+                    <li class="no-wrap">{{ region_category.name }}</li>
+                {% endfor %}
             </ul>
+            
         </div>
         <hr></hr>
 
         <p class='content_title'>지금 가면 좋은 여행 장소</p>
         <div class="content_list">
             {% for spot in tourist_spots %}
+            {% if forloop.counter0 < 4 %}
                 <div class="review">
                     <img class="review_img" src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/><hr>
                     <p class="place_title">{{ spot.name }}</p>
                     <p class="review_title">{{ spot.description }}</p>
                     <p class="user_name">{{ spot.location }}</p>
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
 

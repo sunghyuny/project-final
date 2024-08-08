@@ -149,11 +149,13 @@
             font-size: 24px;
         }
 
+        .detail{
+
+        }
 
         .sum_img{
             width: 400px;
             height: 200px;
-            float: left;
             margin: 15px;
             border-radius: 4px;
         }
@@ -186,35 +188,50 @@
                 <div class="people">
                     <h2 class="sum_name">인원</h2>
                     <p class="detail">{{ trip_plan.total_people }}명</p>
+                    <hr>
                 </div>
                 <div class="date">
                     <h2 class="sum_name">출발/도착일</h2>
                     <p class="detail">{{ trip_plan.departure_date }} ~ {{ trip_plan.arrival_date }}</p>
+                    <hr>
                 </div>
                 <div class="location">
                     <h2 class="sum_name">여행 지역</h2>
                     <p class="detail">{{ trip_plan.destination }}</p>
+                    <hr>
                 </div>
 
                 <div class="lodg">
                     <h2 class="sum_name">숙소</h2>
                     <p class="detail">{{ trip_plan.selected_accommodation.name }}</p>
                     <img class="sum_img" src="{{ trip_plan.selected_accommodation.photo.url }}" alt="{{ trip_plan.selected_accommodation.name }}">
+                    <hr>
                 </div>
-
                 <div class="activity">
                     <h2 class="sum_name">활동</h2>
                     <p class="detail">{{ trip_plan.selected_activity.name }}</p>
                     <img class="sum_img" src="{{ trip_plan.selected_activity.photo.url }}" alt="{{ trip_plan.selected_activity.name }}">
+                    <hr>
                 </div>
 
             </div>
             <div class="button_group">
-                <button class="button" id='save_btn'><a href="/Accounts/userplan/">저장</a></button>
+                <button class="button" id='save_btn'>저장</button>
                 <button class="button" id='share_btn'>공유</button>
                 <button class="button" id='print_btn'>출력</button>
             </div>
         </div>
     </div>
+
+    <script>
+        // 저장 버튼 클릭 시 처리
+        document.getElementById('save_btn').addEventListener('click', function() {
+            // 여기에 저장 처리 로직을 넣으세요 (예: 저장되었습니다 알림)
+            alert('저장되었습니다.');
+
+            // 여기에 페이지 이동 처리를 넣으세요 (예: 다른 페이지로 이동)
+            window.location.href = '/';  // 이동할 페이지 URL을 여기에 입력하세요
+        });
+    </script>
 </body>
 </html>

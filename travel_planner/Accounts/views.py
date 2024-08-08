@@ -1,7 +1,11 @@
+import json
+
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 
 from match.models import ChatRoom
+from post.models import Post
+from travel.models import Reservation
 from .models import *
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
@@ -179,6 +183,7 @@ def send_friend_request(request, user_id):
     else:
         messages.info(request, f"{to_user.username}님에게 이미 친구 요청을 보냈습니다.")
     return redirect('/Accounts/Myfriends/')
+
 @login_required
 def accept_friend_request(request, request_id):
     friend_request = get_object_or_404(FriendRequest, id=request_id)
@@ -209,7 +214,6 @@ def my_friends(request):
 
     return render(request, 'Mypage/Myfriend.html', {'friends': friends, 'friend_requests': friend_requests})
 
-
 def respond_friend_request(request, request_id, response):
     friend_request = get_object_or_404(FriendRequest, pk=request_id, to_user=request.user)
 
@@ -226,3 +230,13 @@ def respond_friend_request(request, request_id, response):
 def my_chat_rooms(request):
     user_chat_rooms = ChatRoom.objects.filter(participants=request.user)
     return render(request, 'Mypage/Mychat.html', {'user_chat_rooms': user_chat_rooms})
+
+def my_reservation(request):
+    return render(request, 'Mypage/Myreservations.html')
+def my_post(request):
+    user_posts = Post.objects.filter(author=request.user)
+
+    context = {
+        'user_posts': user_posts
+    }
+    return render(request, 'Mypage/Mypost.html', context)

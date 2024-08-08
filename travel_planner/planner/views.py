@@ -35,7 +35,6 @@ def create_activity(request):
 @login_required
 def trip_plan_form(request):
     user = request.user
-
     try:
         friends = Friend.objects.get(current_user=user).users.all()
     except Friend.DoesNotExist:

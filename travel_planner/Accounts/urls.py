@@ -19,7 +19,8 @@ urlpatterns =[
     path('accept_invite/<int:invite_id>/', accept_invite, name='accept_invite'),
     path('reject_invite/<int:invite_id>/', reject_invite, name='reject_invite'),
     path('my-chats/', my_chat_rooms, name='my_chat_rooms'),
-
+    path('my_reservations/', my_reservation, name='my_reservations'),
+    path('my_post/', my_post, name='my_post'),
 ]
 
 

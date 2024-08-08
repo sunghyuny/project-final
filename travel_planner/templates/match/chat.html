@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 {% include 'Navbar.html'%}
-<html>
+
+<html lang="kr">
 <head>
     <title>Chat Room</title>
     <script>
+        var user_id = "{{ request.user.id }}"; // 따옴표를 추가하여 문자열로 처리
+        console.log(user_id); // 현재 사용자의 ID를 가져옵니다.
         document.addEventListener("DOMContentLoaded", () => {
             const roomId = "{{ chat_room.id }}";
             const userId = "{{ request.user.username }}";
@@ -16,20 +19,27 @@
                 const messageList = document.getElementById('chat-log');
                 const newMessage = document.createElement('div');
                 const messageContent = document.createElement('p');
+                const messageInfo = document.createElement('div');
+
+                messageInfo.classList.add('message-info');
+                const kstDate = new Date(new Date(data.timestamp).toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
+                messageInfo.innerHTML = `[${kstDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}] `;
+
+                messageContent.textContent = data.message;
 
                 if (data.sender === userId) {
                     newMessage.classList.add('my-message');
                     messageContent.classList.add('my_message');
-                    messageContent.textContent = data.message;
-                    newMessage.innerHTML = `[${data.timestamp}] `;
-                    newMessage.appendChild(messageContent);
                 } else {
                     newMessage.classList.add('other-message');
                     messageContent.classList.add('other_message');
-                    messageContent.textContent = data.message;
-                    newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}] `;
-                    newMessage.appendChild(messageContent);
+                    const senderInfo = document.createElement('strong');
+                    senderInfo.textContent = `${data.sender} `;
+                    messageInfo.prepend(senderInfo);
                 }
+
+                newMessage.appendChild(messageInfo);
+                newMessage.appendChild(messageContent);
 
                 messageList.appendChild(newMessage);
                 messageList.scrollTop = messageList.scrollHeight;
@@ -52,45 +62,86 @@
                 chatSocket.send(JSON.stringify({
                     'message': message,
                     'sender': userId,
-                    'timestamp': new Date().toLocaleString()
+                    'timestamp': new Date().toISOString()
                 }));
                 messageInputDom.value = '';
             };
+
+            $('#trip-plan-submit').click(function() {
+                var trip_plan_id = $('#trip-plan-select').val();  // 선택된 여행 계획의 ID를 가져옵니다.
+
+                $.ajax({
+                    url: '{% url "match:invite_to_trip_plan" %}',
+                    type: 'POST',
+                    data: {
+                        'trip_plan_id': trip_plan_id,
+                        'user_id': user_id,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('초대가 성공적으로 보내졌습니다.');
+                        } else {
+                            alert('초대에 실패했습니다: ' + response.error);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('초대 요청을 보내는 중 오류가 발생했습니다.');
+                    }
+                });
+            });
         });
     </script>
 
     <style>
-        .chat_page{
-            width:1000px;
+        .chat_page {
+            width: 1000px;
             margin: 10px auto;
         }
 
-        #chat-log{
+        #chat-log {
             border: 1px solid;
             height: 500px;
             width: 800px;
             margin: 0 auto;
             overflow-y: scroll;
+            padding: 10px;
         }
 
-        .send_message{
+        .send_message {
             display: flex;
             justify-content: center;
-            margin-top:10px;
+            margin-top: 10px;
         }
 
-        #chat-message-input{
+        #chat-message-input {
             width: 700px;
             padding: 10px;
             font-size: 16px;
         }
 
-        #chat-message-submit{
+        #chat-message-submit {
             background-color: #2295ff;
             border: none;
             color: white;
             font-size: 20px;
             padding: 10px;
+        }
+
+        .my-message, .other-message {
+            display: block;
+            margin: 10px;
+            max-width: 70%;
+        }
+
+        .my-message {
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .other-message {
+            text-align: left;
+            margin-right: auto;
         }
 
         .my_message, .other_message {
@@ -101,13 +152,18 @@
             border-radius: 10px;
         }
 
-        .my_message{
+        .my_message {
             background-color: #2295ff;
             color: white;
         }
 
-        .other_message{
+        .other_message {
             background-color: white;
+        }
+
+        .message-info {
+            font-size: 0.9em;
+            color: gray;
         }
     </style>
 </head>
@@ -118,11 +174,16 @@
         {% for message in messages %}
             {% if message.sender.username == request.user.username %}
                 <div class="my-message">
-                    {{ message.timestamp|date:"H:i" }} <p class="my_message">{{ message.content }}</P>
+                    <div class="message-info">
+                        {{ message.timestamp|date:"H:i" }}<p class="my_message">{{ message.content }}</p>
+                    </div>
                 </div>
             {% else %}
                 <div class="other-message">
-                    <strong>{{ message.sender.username }}<br></strong> <p class="other_message">{{ message.content }}</p> {{ message.timestamp|date:"H:i" }}
+                    <div class="message-info">
+                        <strong>{{ message.sender.username }}</strong>
+                        <p class="other_message">{{ message.content }}</p>{{ message.timestamp|date:"H:i" }}
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
@@ -131,6 +192,12 @@
         <input type="text" id="chat-message-input">
         <button id="chat-message-submit">전송</button>
     </div>
+    <select id="trip-plan-select">
+        {% for trip_plan in user_trip_plans %}
+            <option value="{{ trip_plan.id }}">{{ trip_plan.destination }} - {{ trip_plan.arrival_date }}</option>
+        {% endfor %}
+    </select>
+    <button id="trip-plan-submit">여행 계획 초대</button>
 </div>
 </body>
 </html>

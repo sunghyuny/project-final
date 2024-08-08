@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.nav_li').forEach(li => {
+            li.addEventListener('mouseover', () => {
+                li.classList.add('active');
+            });
+            li.addEventListener('mouseout', () => {
+                li.classList.remove('active');
+            });
+        });
+    });
+</script>
+{% endblock %}
+
     <style>
         * {
             margin: 0;
@@ -103,7 +118,9 @@
             display: inline-block;
             margin: 0px 0px 0px 40px;
         }
-
+        .nav_li.active {
+        background-color: #0c46b3; /* 원하는 배경색으로 변경 */
+    }
         .nav_li {
             margin-right: 90px;
             display: inline-block;
@@ -149,6 +166,16 @@
     </style>
 </head>
 <body>
+    <script>
+        document.querySelectorAll('.nav_li').forEach(li => {
+            li.addEventListener('mouseover', () => {
+                li.classList.add('active');
+            });
+            li.addEventListener('mouseout', () => {
+                li.classList.remove('active');
+            });
+        });
+    </script>
     <div class="navbar">
         <div class="nav_container">
             <a href="/" class="Logo_link"><div class="logo">Travel Plan</div></a>
@@ -162,7 +189,7 @@
                     <li class="nav_li"><a href="/planner/" class="menu_link">여행 계획</a></li>
                     <li class="nav_li"><a href="/hotel/" class="menu_link">숙박</a></li>
                     <li class="nav_li"><a href="/thesights/" class="menu_link">관광지</a></li>
-                    <li class="nav_li"><a href="" class="menu_link">커뮤니티</a></li>
+                    <li class="nav_li"><a href="/post/" class="menu_link">커뮤니티</a></li>
                     <li class="nav_li"><a href="/chat/" class="menu_link">매칭</a></li>
                 </ul>
                 {% if user.is_authenticated %}

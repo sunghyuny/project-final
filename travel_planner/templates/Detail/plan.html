@@ -11,12 +11,12 @@
             padding: 0;
         }
         .mypage{
-            flex:1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+
         .mypage_content{
             justify-content: center;
             width: 86rem;
@@ -28,13 +28,12 @@
 
         .page_content{
             float: left;
-            margin-top: 50px;
             margin-right: 60px;
             width: 300px;
             text-align: center;
             font-size: 16px;
-            display: flex;
         }
+
         .content_list{
             border-radius: 10px;
             border: 3px solid;
@@ -64,11 +63,15 @@
             margin-bottom: 20px;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         .detail_page{
             display: inline-block;
             width: 900px;
             height: 500px;
-            flex:2;
         }
 
         .detail{
@@ -91,72 +94,66 @@
             font-size: 24px;
             color:#2295FF;
         }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
     </style>
-
  </head>
 <body>
-    <div class="mypage">
+     <div class="mypage">
         <div class="mypage_content">
             <div class="page_content">
                 <ul class="content_list">
                     <li id="showMyInfo"><a href="/Accounts/mypage/">내 정보</a></li><hr>
                     <li id="showLikes">좋아요</li><hr>
                     <li id="showPlans"><a href="/Accounts/userplan/">계획</a></li><hr>
-                    <li id="showReservations">예약</li><hr>
-                    <li id="showFriends"><a href="/Accounts/Myfriends/" class="plan_link">친구</a></li><hr>
-                    <li id="showPosts">게시물</li><hr>
-                    <li id="showchat"><a href="/Accounts/my-chats/">채팅</a></li>
+                    <li id="showReservations"><a href="/Accounts/my_reservations">예약</a></li><hr>
+                    <li id="showFriends"><a href="/Accounts/Myfriends/">친구</a></li><hr>
+                    <li id="showPosts"><a href="/Accounts/my_post/">게시물</a></li><hr>
+                    <li id="showchat"><a href="/Accounts/my-chats/">매칭</a></li>
                 </ul>
             </div>
-        <div class="content_name">
+            <div class="content_name">
                 <p class="content_sang">마이페이지>계획상세</p>
-        </div>
-    </div>
-    <div class="detail_page">
-        <div class="detail">
-            <div class="plan_detail">
-                <div class="plan_list">
-                    <div><a href="/Accounts/userplan/{{ user_plan.id }}/edit/">계획 수정하기</a></div>
-                    <div class="member">
-                        <h2>여행 인원</h2>
-                        <p>인원: {{ user_plan.total_people }}</p>
-                    </div>
-                    <div>
-                        <h2>참여 친구</h2>
-                        <ul>
-                            <p>{{ user_plan.user.username }}</p>
-                            {% for friend in friends %}
-                            <li>{{ friend.username }}</li>
-                            {% empty %}
-                            <li>추가된 친구가 없습니다.</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="location">
-                        <h2>여행 지역</h2>
-                        <p>{{ user_plan.destination }}</p>
-                    </div>
-                    <div class="lodg">
-                        <h2>숙소</h2>
-                        <p>{{ user_plan.selected_accommodation }}</p>
-                        <img class="sum_img" src="{{ user_plan.selected_accommodation.photo.url }}" alt="{{ user_plan.selected_accommodation_name }}">
-                    </div>
-                    <div class="activity">
-                        <h2>활동</h2>
-                        <p>{{ user_plan.selected_activity }}</p>
-                        <img class="sum_img" src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
-                    </div>
-                    
+            </div>
+        
+        <div class="detail_page">
+            <div class="detail">
+                <div class="plan_detail">
+                     <div class="plan_list">
+                        <div class="member">
+                            <h2>여행 인원</h2>
+                            <p>인원: {{ user_plan.total_people }}</p>
+                        </div>
 
+                        <div class="date">
+                            <h2>여행 날짜</h2>
+                            <p>{{ user_plan.departure_date|date:"m월 d일" }} ~ {{ user_plan.arrival_date|date:"m월 d일" }}</p>
+
+                        </div>
+                        <div class="location">
+                            <h2>여행 지역</h2>
+                            <p>{{ user_plan.destination }}</p>
+                        </div>
+
+                        <div class="lodg">
+                            <h2>숙소</h2>
+                            <p>{{ user_plan.selected_accommodation }}</p>
+                            <img class="sum_img" src="{{ user_plan.selected_accommodation.photo.url }}" alt="{{ user_plan.selected_accommodation_name }}">
+                        </div>
+
+                        <div class="activity">
+                            <h2>활동</h2>
+                            <p>{{ user_plan.selected_activity.name }}</p>
+                            <img class="sum_img" src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
+                        </div>
+
+                        <div class="price">
+                            <h2>가격</h2>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    </div>
 </body>
 </html>
