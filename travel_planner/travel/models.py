@@ -21,3 +21,15 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking by {self.user.username} for {self.number_of_people} people"
+
+
+
+class Reservation(models.Model):
+    adult = models.IntegerField()
+    student = models.IntegerField()
+    child = models.IntegerField()
+    total_price = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Reservation #{self.id}'
