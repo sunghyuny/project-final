@@ -18,37 +18,43 @@
         }
 
         .mypage_content {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            max-width: 86rem;
+             justify-content: center;
+            width: 86rem;
+            height: 680px;
             margin-top: 50px;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
 
         .page_content {
-            flex: 0 0 300px;
-            margin-right: 60px;
+            float: left;
+            margin-right: 0px;
+            width: 300px;
             text-align: center;
+            font-size: 16px;
         }
 
         .content_list {
             border-radius: 10px;
-            border: 3px solid #2295ff;
+            border: 3px solid;
             width: 200px;
-            list-style: none;
-            padding: 0;
-            margin: 0 auto;
             text-align: left;
+            font-size: 16px;
+            list-style: none;
+            margin-top: 40px;
+            border-color: #2295ff;
         }
 
         .content_list > li {
-            padding: 15px;
+            margin: 25px 0px 25px 70px;
             text-align: center;
+            padding-right: 70px;
             color: #2295ff;
         }
-        
+
         .content_list > hr {
             margin: 0;
+            padding: 0;
         }
 
         .content_name {
@@ -58,22 +64,20 @@
         }
 
         .detail_page {
-            flex: 1;
+            display: inline-block;
+            width: 900px;
+            height: 500px;
         }
 
         .detail {
+             width: 69.9rem;
+            overflow-x: hidden;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
             align-items: center;
         }
 
-        .plan_detail {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+
 
         .plan_list {
             width: 100%;
@@ -94,7 +98,7 @@
             font-size: 24px;
             color: #2295FF;
         }
-        
+
         a {
             text-decoration: none;
             color: inherit;
@@ -115,10 +119,10 @@
                     <li id="showchat"><a href="/Accounts/my-chats/">채팅</a></li>
                 </ul>
             </div>
-        <div class="content_name">
-                <p class="content_sang">마이페이지>계획상세</p>
-        </div></div>
-       <div class="detail_page">
+            <div class="content_name">
+                    <p class="content_sang">마이페이지>계획상세</p>
+            </div>
+            <div class="detail_page">
         <div class="detail">
             <div class="plan_detail">
                 <div class="plan_list">
@@ -152,16 +156,12 @@
                         <p>{{ user_plan.selected_activity }}</p>
                         <img class="sum_img" src="{{ user_plan.selected_activity.photo.url }}" alt="{{ user_plan.selected_activity_name }}">
                     </div>
-                    
+
 
                 </div>
             </div>
         </div>
-    </div>
-
--</div>
-
--    </div>
+     </div>
 
 </body>
 </html>

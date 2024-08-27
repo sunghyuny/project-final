@@ -16,20 +16,26 @@
                 const messageList = document.getElementById('chat-log');
                 const newMessage = document.createElement('div');
                 const messageContent = document.createElement('p');
+                const messageInfo = document.createElement('div');
+
+                messageInfo.classList.add('message-info');
+                messageInfo.innerHTML = `[${data.timestamp}] `;
+
+                messageContent.textContent = data.message;
 
                 if (data.sender === userId) {
                     newMessage.classList.add('my-message');
                     messageContent.classList.add('my_message');
-                    messageContent.textContent = data.message;
-                    newMessage.innerHTML = `[${data.timestamp}] `;
-                    newMessage.appendChild(messageContent);
                 } else {
                     newMessage.classList.add('other-message');
                     messageContent.classList.add('other_message');
-                    messageContent.textContent = data.message;
-                    newMessage.innerHTML = `<strong>${data.sender}</strong> [${data.timestamp}] `;
-                    newMessage.appendChild(messageContent);
+                    const senderInfo = document.createElement('strong');
+                    senderInfo.textContent = `${data.sender} `;
+                    messageInfo.prepend(senderInfo);
                 }
+
+                newMessage.appendChild(messageInfo);
+                newMessage.appendChild(messageContent);
 
                 messageList.appendChild(newMessage);
                 messageList.scrollTop = messageList.scrollHeight;
@@ -60,41 +66,54 @@
     </script>
 
     <style>
-        .chat_page{
-            width:1000px;
+        .chat_page {
+            width: 1000px;
             margin: 10px auto;
         }
 
-        #chat-log{
+        #chat-log {
             border: 1px solid;
             height: 500px;
             width: 800px;
             margin: 0 auto;
             overflow-y: scroll;
-<<<<<<< HEAD
-            background-color: #F0F0F0;
-=======
->>>>>>> origin/main
+            padding: 10px;
         }
 
-        .send_message{
+        .send_message {
             display: flex;
             justify-content: center;
-            margin-top:10px;
+            margin-top: 10px;
         }
 
-        #chat-message-input{
+        #chat-message-input {
             width: 700px;
             padding: 10px;
             font-size: 16px;
         }
 
-        #chat-message-submit{
+        #chat-message-submit {
             background-color: #2295ff;
             border: none;
             color: white;
             font-size: 20px;
             padding: 10px;
+        }
+
+        .my-message, .other-message {
+            display: block;
+            margin: 10px;
+            max-width: 70%;
+        }
+
+        .my-message {
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .other-message {
+            text-align: left;
+            margin-right: auto;
         }
 
         .my_message, .other_message {
@@ -105,13 +124,18 @@
             border-radius: 10px;
         }
 
-        .my_message{
+        .my_message {
             background-color: #2295ff;
             color: white;
         }
 
-        .other_message{
+        .other_message {
             background-color: white;
+        }
+
+        .message-info {
+            font-size: 0.9em;
+            color: gray;
         }
     </style>
 </head>
@@ -122,11 +146,16 @@
         {% for message in messages %}
             {% if message.sender.username == request.user.username %}
                 <div class="my-message">
-                    {{ message.timestamp|date:"H:i" }} <p class="my_message">{{ message.content }}</P>
+                    <div class="message-info">
+                        {{ message.timestamp|date:"H:i" }}<p class="my_message">{{ message.content }}</p>
+                    </div>
                 </div>
             {% else %}
                 <div class="other-message">
-                    <strong>{{ message.sender.username }}<br></strong> <p class="other_message">{{ message.content }}</p> {{ message.timestamp|date:"H:i" }}
+                    <div class="message-info">
+                        <strong>{{ message.sender.username }}</strong>
+                        <p class="other_message">{{ message.content }}</p>{{ message.timestamp|date:"H:i" }}
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}

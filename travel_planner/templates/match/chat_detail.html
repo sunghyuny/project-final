@@ -95,12 +95,26 @@
             color: white;
             font-size: 20px;
             text-align: center;
-            width: 1050px;
+            width: 950px;
             height: 45px;
             border: none;
             margin-top: 20px;
             border-radius: 5px;
             font-weight: bold;
+        }
+
+        .back_btn{
+            background-color: #2295ff;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            height: 45px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 30px;
+            padding: 2px;
         }
 
         .info {
@@ -130,10 +144,6 @@
                     <p class="condition">조건 : 없음</p>
                     <p class="price">예상금액 : 미정</p>
                     <p class="memeber">동행자</p>
-
-                    <div class="companion">
-                        <img src="/image/다운로드 (17).jpeg" alt="" class="member_img">
-                    </div>
                 </div>
             </div>
 
@@ -146,7 +156,7 @@
                     <a href="{% url 'match:join_chat_room' room.id %}"><button class="enter_btn">참가하기</button></a>
                 {% endif %}
 
-                <a href="{% url 'match:chat_room_list' %}">뒤로 돌아가기</a>
+                <a href="{% url 'match:chat_room_list' %}"><button class="back_btn">돌아가기</button></a>
             </div>
         </div>
     </div>
