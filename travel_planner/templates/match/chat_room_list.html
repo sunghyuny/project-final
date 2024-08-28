@@ -154,6 +154,7 @@
             <div class="profile_img">
                 <img src="{{ room.image.url }}" alt="" class="room_img">
             </div>
+<<<<<<< HEAD
             <div class="list_content">
                 <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
                 <p class="period">{{ room.departure_date }}~{{ room.arrival_date }}</p>
@@ -177,6 +178,22 @@
                     </select>
                 </form>
                 {% endif %}
+=======
+            <div class="match_content">
+                {% for room in chat_rooms %}
+                <div class="match_list">
+                    <div class="profile_img">
+                        <img src="{{ room.image.url }}" alt="" class="room_img">
+                    </div>
+                    <div class="list_content">
+                        <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
+                        <p class="period">{{room.date}}</p>
+                        <p class="subtitle">{{room.description}}</p>
+
+                    </div>
+                </div>
+                {% endfor %}
+>>>>>>> 37d6d256841c4484fd2727cca5894175c599e4a9
             </div>
         </div>
         {% endfor %}
