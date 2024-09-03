@@ -13,6 +13,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout  # 추가
 from planner.models import *
 from django.contrib.auth.forms import AuthenticationForm
+
+
+
 def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -25,7 +28,9 @@ def signup(request):
         # 유효성 검사는 간단한 예시로 하였습니다.
         if username and password and email and age and mbti and gender:
             # 사용자 생성
-            user = CustomUser.objects.create_user(username=username, password=password, email=email, age=age, mbti=mbti, gender=gender)
+            user = CustomUser.objects.create_user(
+                username=username, password=password, email=email, age=age, mbti=mbti, gender=gender
+            )
             messages.success(request, '회원가입이 성공적으로 완료되었습니다.')
             return redirect('/')  # 메인 페이지로 리디렉션
         else:
@@ -51,13 +56,28 @@ def logout_view(request):
 @login_required
 def my_page(request):
     user = request.user
-    # 사용자 정보를 가져와서 처리하는 코드 작성
     context = {
         'user': user,
-        # 필요한 다른 데이터도 추가할 수 있음
     }
-    return render(request, 'Mypage/myinfo.html', context)
+    return render(request, 'Mypage/Myinfo.html', context)
 
+@login_required
+def edit_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        user.age = request.POST.get('age')
+        user.mbti = request.POST.get('mbti')
+        user.gender = request.POST.get('gender')
+        if 'profile_picture' in request.FILES:
+            user.profile_picture = request.FILES['profile_picture']
+        user.save()
+        messages.success(request, '프로필이 성공적으로 업데이트되었습니다.')
+        return redirect('/Accounts/mypage/')
+    
+    context = {
+        'user': user,
+    }
+    return render(request, 'Mypage/EditProfile.html', context)
 
 @login_required
 def user_plan(request):
@@ -88,6 +108,7 @@ def userplan_detail(request, user_plan_id):
     invites = FriendRequest.objects.filter(to_user=request.user, trip_plan=user_plan, status='pending')
     return render(request, 'Detail/plan.html', {'user_plan': user_plan, 'friends': friends_list, 'invites': invites})
 
+@login_required
 def plan_delete(request, plan_id):
     plan = get_object_or_404(TripPlan, pk=plan_id)
     if request.method == 'POST':
@@ -133,74 +154,62 @@ def plan_edit(request, plan_id):
     return render(request, 'Detail/plan_edit.html', {'user_plan': plan, 'friends': friends})
 
 @login_required
-def accept_invite(request, invite_id):
-    invite = get_object_or_404(FriendRequest, pk=invite_id, to_user=request.user)
-    invite.trip_plan.friends.add(request.user)
-    invite.status = 'accepted'
-    invite.save()
-    messages.success(request, "초대를 수락했습니다.")
-    return redirect('/Accounts/userplan/')
-
-@login_required
-def reject_invite(request, invite_id):
-    invite = get_object_or_404(FriendRequest, pk=invite_id, to_user=request.user)
-    invite.status = 'rejected'
-    invite.save()
-    messages.success(request, "초대를 거절했습니다.")
-    return redirect('/Accounts/userplan/')
-
-def send_friend_request_by_email(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        try:
-            to_user = CustomUser.objects.get(email=email)
-            if to_user == request.user:
-                messages.error(request, "자신에게 친구 요청을 보낼 수 없습니다.")
-                return redirect('/Accounts/Myfriends/')
-            friend_request, created = FriendRequest.objects.get_or_create(from_user=request.user, to_user=to_user)
-            if created:
-                # 친구 요청을 받은 사용자에게 알림 생성
-                notification_message = f"{request.user.username}님으로부터 친구 요청이 왔습니다."
-                FriendRequest.objects.create(from_user=request.user, to_user=to_user, notification_message=notification_message)
-                messages.success(request, f"{to_user.username}님에게 친구 요청을 보냈습니다.")
-            else:
-                messages.info(request, f"{to_user.username}님에게 이미 친구 요청을 보냈습니다.")
-            return redirect('/Accounts/Myfriends/')
-        except CustomUser.DoesNotExist:
-            messages.error(request, "입력한 이메일 주소를 가진 사용자가 없습니다.")
-            return redirect('/Accounts/Myfriends/')
-    return redirect('Mypage/Myfriend.html')
-
-@login_required
-def send_friend_request(request, user_id):
-    to_user = get_object_or_404(CustomUser, id=user_id)
-    friend_request, created = FriendRequest.objects.get_or_create(from_user=request.user, to_user=to_user)
-    if created:
-        # 친구 요청을 받은 사용자에게 알림 생성
-        notification_message = f"{request.user.username}님으로부터 친구 요청이 왔습니다."
-        FriendRequest.objects.create(from_user=request.user, to_user=to_user, notification_message=notification_message)
-        messages.success(request, f"{to_user.username}님에게 친구 요청을 보냈습니다.")
-    else:
-        messages.info(request, f"{to_user.username}님에게 이미 친구 요청을 보냈습니다.")
-    return redirect('/Accounts/Myfriends/')
-
-@login_required
 def accept_friend_request(request, request_id):
     friend_request = get_object_or_404(FriendRequest, id=request_id)
     if friend_request.to_user == request.user:
-        Friend.make_friend(request.user, friend_request.from_user)
-        Friend.make_friend(friend_request.from_user, request.user)
-        friend_request.delete()
-        return redirect('/Accounts/Myfriends/')
-    return redirect('Mypage/Myfriend.html')
+        friend_request.accept()
+        messages.success(request, "친구 요청을 수락했습니다.")
+    else:
+        messages.error(request, "이 친구 요청을 수락할 권한이 없습니다.")
+    return redirect('/Accounts/Myfriends/')
 
 @login_required
-def delete_friend_request(request, request_id):
+def reject_friend_request(request, request_id):
     friend_request = get_object_or_404(FriendRequest, id=request_id)
     if friend_request.to_user == request.user:
-        friend_request.delete()
+        friend_request.reject()
+        messages.success(request, "친구 요청을 거절했습니다.")
+    else:
+        messages.error(request, "이 친구 요청을 거절할 권한이 없습니다.")
+    return redirect('/Accounts/Myfriends/')
+
+@login_required
+def send_friend_request(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            try:
+                to_user = CustomUser.objects.get(email=email)
+                if to_user == request.user:
+                    messages.error(request, "자신에게 친구 요청을 보낼 수 없습니다.")
+                elif FriendRequest.objects.filter(from_user=request.user, to_user=to_user).exists():
+                    messages.warning(request, f"{to_user.username}님에게 이미 친구 요청을 보냈습니다.")
+                elif Friend.are_friends(request.user, to_user):
+                    messages.info(request, f"{to_user.username}님과 이미 친구입니다.")
+                else:
+                    friend_request = FriendRequest.objects.create(from_user=request.user, to_user=to_user)
+                    notification_message = f"{request.user.username}님으로부터 친구 요청이 왔습니다."
+                    friend_request.notification_message = notification_message
+                    friend_request.save()
+                    messages.success(request, f"{to_user.username}님에게 친구 요청을 보냈습니다.")
+            except CustomUser.DoesNotExist:
+                messages.error(request, "입력한 이메일 주소를 가진 사용자가 없습니다.")
+        else:
+            messages.error(request, "유효한 이메일을 입력하세요.")
         return redirect('/Accounts/Myfriends/')
-    return redirect('Mypage/Myfriend.html')
+    return render(request, 'Mypage/Myfriend.html')
+
+@login_required
+def delete_friend(request, friend_id):
+    user = request.user
+    friend = get_object_or_404(CustomUser, id=friend_id)
+    
+    # 친구 관계를 제거합니다.
+    Friend.lose_friends(user, friend)
+    
+    messages.success(request, f"{friend.username}님과의 친구 관계가 삭제되었습니다.")
+    return redirect('/Accounts/Myfriends/')
+
 @login_required
 def my_friends(request):
     user = request.user
@@ -213,18 +222,6 @@ def my_friends(request):
     friend_requests = FriendRequest.objects.filter(to_user=request.user)  # 현재 사용자에게 온 친구 요청 목록
 
     return render(request, 'Mypage/Myfriend.html', {'friends': friends, 'friend_requests': friend_requests})
-
-def respond_friend_request(request, request_id, response):
-    friend_request = get_object_or_404(FriendRequest, pk=request_id, to_user=request.user)
-
-    if response == 'accept':
-        friend_request.status = 'accepted'
-        friend_request.trip_plan.friends.add(friend_request.from_user)  # 요청한 사용자를 여행 계획의 친구로 추가
-    elif response == 'reject':
-        friend_request.status = 'rejected'
-
-    friend_request.save()
-    return redirect('userplan_detail', user_plan_id=friend_request.trip_plan.id)
 
 @login_required
 def my_chat_rooms(request):
@@ -240,3 +237,23 @@ def my_post(request):
         'user_posts': user_posts
     }
     return render(request, 'Mypage/Mypost.html', context)
+
+@login_required
+def accept_invite(request, invite_id):
+    invite = get_object_or_404(FriendRequest, id=invite_id)
+    if invite.to_user == request.user:
+        invite.accept()
+        messages.success(request, "초대를 수락했습니다.")
+    else:
+        messages.error(request, "이 초대를 수락할 권한이 없습니다.")
+    return redirect('/Accounts/Myfriends/')
+
+@login_required
+def reject_invite(request, invite_id):
+    invite = get_object_or_404(FriendRequest, id=invite_id)
+    if invite.to_user == request.user:
+        invite.reject()
+        messages.success(request, "초대를 거절했습니다.")
+    else:
+        messages.error(request, "이 초대를 거절할 권한이 없습니다.")
+    return redirect('/Accounts/Myfriends/')

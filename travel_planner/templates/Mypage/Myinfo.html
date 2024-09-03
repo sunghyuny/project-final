@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% include 'Navbar.html'%}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -56,6 +57,13 @@
             padding: 0;
         }
 
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
         .content_name{
             font-size: 26px;
             font-weight: bold;
@@ -138,6 +146,16 @@
             text-decoration: none;
             color: inherit;
         }
+        .edit-profile-button {
+            margin-top: 20px;
+            margin-left: 40px;
+            padding: 20px 20px;
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -162,6 +180,11 @@
             <div class="detail_page">
                 <div class="detail">
                     <div class="myinfo">
+                        {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="프로필 사진" class="profile-picture">
+                        {% else %}
+                        <img src="{% static 'profile_pictures/default.jpg' %}" alt="기본 프로필 사진" class="profile-picture">
+                        {% endif %}
                         <table class="infomation">
                             <tr>
                                 <th>아이디</th>
@@ -185,9 +208,10 @@
 
                             <tr>
                                 <th>MBTI</th>
-                                <td><input type="text" placeholder="{{ user.mbti }}"><button>변경</button></td>
+                                <td>{{ user.mbti }}</td>
                             </tr>
                         </table>
+                        <a href="{% url 'Accounts:edit_profile' %}" class="edit-profile-button">프로필 수정</a>
 
                         <div id="passwordPopup" style="display:none;">
                             <div class="popupContent">

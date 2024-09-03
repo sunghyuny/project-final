@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 수정</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .mypage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mypage_content {
+            justify-content: center;
+            width: 86rem;
+            height: 680px;
+            margin-top: 50px;
+        }
+
+        .page_content {
+            float: left;
+            margin-right: 0px;
+            width: 300px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .content_list {
+            border-radius: 10px;
+            border: 3px solid;
+            width: 200px;
+            text-align: left;
+            font-size: 16px;
+            list-style: none;
+            margin-top: 40px;
+            border-color: #2295ff;
+        }
+
+        .content_list>li {
+            margin: 25px 0px 25px 70px;
+            text-align: center;
+            padding-right: 70px;
+            color: #2295ff;
+        }
+        .content_list>li>a {
+            text-decoration: none; /* 밑줄 제거 */
+            color: inherit; /* 링크 색상 상속 */
+        }
+
+        .content_list>hr {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content_name {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .detail_page {
+            display: inline-block;
+            width: 900px;
+            height: 500px;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-form label {
+            margin-top: 10px;
+        }
+
+        .profile-form input, .profile-form select {
+            margin-top: 5px;
+        }
+
+        .profile-form button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="mypage">
+        <div class="mypage_content">
+            <div class="page_content">
+                <ul class="content_list">
+                    <li id="showMyInfo"><a href="/Accounts/mypage/">내 정보</a></li><hr>
+                    <li id="showLikes">좋아요</li><hr>
+                    <li id="showPlans"><a href="/Accounts/userplan/">계획</a></li><hr>
+                    <li id="showReservations"><a href="/Accounts/my_reservations">예약</a></li><hr>
+                    <li id="showFriends"><a href="/Accounts/Myfriends/">친구</a></li><hr>
+                    <li id="showPosts"><a href="/Accounts/my_post/">게시물</a></li><hr>
+                    <li id="showchat"><a href="/Accounts/my-chats/">매칭</a></li>
+                </ul>
+            </div>
+
+            <div class="content_name">
+                <p class="content_sang">프로필 수정</p>
+            </div>
+
+            <div class="detail_page">
+                <div class="profile-container">
+                    <h2>프로필 수정</h2>
+                    {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="프로필 사진" class="profile-picture">
+                    {% else %}
+                    <img src="{% static 'profile_pictures/default.jpg' %}" alt="기본 프로필 사진" class="profile-picture">
+                    {% endif %}
+                    <form action="{% url 'Accounts:edit_profile' %}" method="post" enctype="multipart/form-data" class="profile-form">
+                        {% csrf_token %}
+                        <label for="age">나이:</label>
+                        <input type="number" id="age" name="age" value="{{ user.age }}" required><br>
+                        <label for="mbti">MBTI:</label>
+                        <input type="text" id="mbti" name="mbti" value="{{ user.mbti }}" required><br>
+                        <label for="gender">성별:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="male" {% if user.gender == 'male' %}selected{% endif %}>남자</option>
+                            <option value="female" {% if user.gender == 'female' %}selected{% endif %}>여자</option>
+                        </select><br>
+                        <label for="profile_picture">프로필 사진:</label>
+                        <input type="file" id="profile_picture" name="profile_picture"><br>
+                        <button type="submit">업데이트</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
