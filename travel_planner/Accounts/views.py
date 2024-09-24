@@ -5,14 +5,15 @@ from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 
 from match.models import ChatRoom
 from post.models import Post
-from travel.models import Reservation
+from travel.models import Reservation as TravelReservation
+from hotel.models import HotelReservation as HotelReservation
 from .models import *
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout  # 추가
+from django.contrib.auth import authenticate, login, logout  # 추가
 from planner.models import *
 from django.contrib.auth.forms import AuthenticationForm
+
 
 
 
@@ -228,8 +229,30 @@ def my_chat_rooms(request):
     user_chat_rooms = ChatRoom.objects.filter(participants=request.user)
     return render(request, 'Mypage/Mychat.html', {'user_chat_rooms': user_chat_rooms})
 
+@login_required
 def my_reservation(request):
-    return render(request, 'Mypage/Myreservations.html')
+    hotel_reservations = HotelReservation.objects.filter(user=request.user)
+    travel_reservations = TravelReservation.objects.filter(user=request.user)
+    return render(request, 'Mypage/Myreservations.html', {
+        'hotel_reservations': hotel_reservations,
+        'travel_reservations': travel_reservations
+    })
+
+@login_required
+def reservation_detail(request, reservation_id):
+    reservation = get_object_or_404(TravelReservation, id=reservation_id)
+    return render(request, 'Mypage/ReservationDetail.html', {'reservation': reservation})
+
+@login_required
+def reservation_delete(request, reservation_id):
+    reservation = get_object_or_404(TravelReservation, id=reservation_id)
+    if request.method == 'POST' and reservation.user == request.user:
+        reservation.delete()
+        messages.success(request, "예약이 성공적으로 삭제되었습니다.")
+        return redirect('Accounts:my_reservations')
+    else:
+        return HttpResponseForbidden("이 예약을 삭제할 권한이 없습니다.")
+
 def my_post(request):
     user_posts = Post.objects.filter(author=request.user)
 
@@ -257,3 +280,23 @@ def reject_invite(request, invite_id):
     else:
         messages.error(request, "이 초대를 거절할 권한이 없습니다.")
     return redirect('/Accounts/Myfriends/')
+
+@login_required
+def reservation_page(request, package_id):
+    package = Package.objects.get(id=package_id)
+    if request.method == 'POST':
+        adult_count = int(request.POST.get('adult_count', 0))
+        youth_count = int(request.POST.get('youth_count', 0))
+        child_count = int(request.POST.get('child_count', 0))
+        total_price = (adult_count * package.adult_price) + (youth_count * package.youth_price) + (child_count * package.child_price)
+        
+        reservation = Reservation.objects.create(
+            user=request.user,
+            package=package,
+            adult_count=adult_count,
+            youth_count=youth_count,
+            child_count=child_count,
+            total_price=total_price
+        )
+        return redirect('Accounts:my_reservations')
+    return render(request, 'reservation/package.html', {'package': package})

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reservations</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Reservations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Package</th>
+                <th>Destination</th>
+                <th>Adults</th>
+                <th>Youths</th>
+                <th>Children</th>
+                <th>Total Price</th>
+                <th>Reserved At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td><img src="{{ reservation.package.image.url }}" alt="Package Image"></td>
+                <td>{{ reservation.package.destination }}</td>
+                <td>{{ reservation.package.destination }}</td>
+                <td>{{ reservation.adult_count }}</td>
+                <td>{{ reservation.youth_count }}</td>
+                <td>{{ reservation.child_count }}</td>
+                <td>{{ reservation.total_price }}</td>
+                <td>{{ reservation.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -7,7 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Plan | 나만의 여행 일정 만들기</title>
+    <script src="https://kit.fontawesome.com/9fbe582e80.js" crossorigin="anonymous"></script>
+    
     <style>
+        html {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        }
         .home_container{
             overflow-x: hidden;
         }
@@ -18,6 +23,15 @@
             width: 1193px;
             overflow-x: hidden;
             margin: 0 auto;
+        }
+
+        .main_title {
+            font-size: 21px;
+            width: 260px;
+        }
+
+        .sub_title {
+            color: #949494;
         }
 
         .main_slide2 {
@@ -34,8 +48,8 @@
             overflow-y: hidden;
         }
 
-        .slide_img{
-            border: 1px solid;
+        .slide_img {
+            border-right: 1px solid; /* 오른쪽 테두리만 */
             border-radius: 21px 0 0 21px;
             display: inline-block;
             height: 20rem;
@@ -62,6 +76,11 @@
             width: 304px;
             height: 40px;
             margin-top: 3rem;
+        }
+
+        .create_btn:hover {
+            background-color: #0083da;
+            transition: background-color 0.3s ease;
         }
 
         .content_title{
@@ -94,23 +113,33 @@
             height: 30px;
         } 
 
+        .destination_list>li:hover {
+            background-color: #2295ff; /* 배경색 변경 */
+            color: white; /* 텍스트 색 변경 */
+            transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 전환 */
+        }
+
         /*후기 및 추천여행 등*/
-        .content_list{
+        .content_list {
             display: flex;
             margin-bottom: 6rem;
             margin-top: 10px;
-            text-align: center;
             height: 365px;
-            overflow-y: hidden;
+            overflow: visible; /* 여기서 overflow를 visible로 변경 */
         }
 
-        .review{
+        .review {
             width: 278px;
             display: inline-block;
-            border: 1px solid black;
+            border: 1px solid #949494;
             height: 356px;
             margin-right: 20px;
             border-radius: 21px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .review:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
         }
 
         .review_img{
@@ -119,16 +148,37 @@
             border-radius: 21px 21px 0px 0px;
             margin: 0;
         }
+
+        .place_title {
+            color: #2295ff;
+            text-align: left;
+        }
+
+        .review_title {
+            text-align: left;
+        }
+
+        .re_user_name {
+            color: #949494;
+            text-align: left;
+        }
+
         .no-wrap {
         white-space: nowrap;
-    }
+         }
+
+         .fa-solid fa-location-dot {
+            color: #2295ff;
+         }
     </style>
 </head>
 <body>
     <div class="home_container">
         <div class="main_slide2">
             <div class='main_slide'>
-                <img src="{% static 'image/다운로드 (1).jpeg' %}" alt='슬라이드 이미지' class='slide_img'></img>
+                <img src="{% static 'image/다운로드 (1).jpeg' %}" alt='슬라이드 이미지' class='slide_img' id="slide_img_1"></img>
+                <img src="{% static 'image/e4e76e16-ba3e-4ce6-8f97-d78d840bbc50.jpg' %}" alt='슬라이드 이미지2' class='slide_img' id="slide_img_2" style="display:none"></img>
+                <img src="{% static 'image/84475_138812_3755.jpg' %}" alt='슬라이드 이미지3' class='slide_img' id="slide_img_3" style="display:none"></img>
                 <div class='main_text'>
                     <p class='main_title'>Travel Plan에서 자신만의 여행 일정을 작성해 보세요.</p>
                     <p class='sub_title'>일정을 만들고, 친구와 공유할 수 있습니다.</p>
@@ -136,6 +186,21 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide_img');
+            
+            function showNextSlide() {
+                slides[currentSlide].style.display = 'none'; // 현재 슬라이드 숨김
+                currentSlide = (currentSlide + 1) % slides.length; // 다음 슬라이드로 이동
+                slides[currentSlide].style.display = 'block'; // 다음 슬라이드 표시
+            }
+    
+            // 5초마다 showNextSlide 함수 호출
+            setInterval(showNextSlide, 6000);
+        </script>
+
         <p class='content_title'>인기 여행지</p>
         <div class='hotplace'>
             <ul class="destination_list">
@@ -152,10 +217,12 @@
             {% for spot in tourist_spots %}
             {% if forloop.counter0 < 4 %}
                 <div class="review">
-                    <img class="review_img" src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/><hr>
-                    <p class="place_title">{{ spot.name }}</p>
+                    <img class="review_img" src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/>
+                    <br><br>
+                    <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i>
+                    <span class="place_title">{{ spot.name }}</span>
                     <p class="review_title">{{ spot.description }}</p>
-                    <p class="user_name">{{ spot.location }}</p>
+                    <p class="re_user_name">{{ spot.location }}</p>
                 </div>
                 {% endif %}
             {% endfor %}
@@ -166,30 +233,34 @@
         <div class="content_list">
             <div class="review">
                 <img class="review_img" src="{% static 'image/e4e76e16-ba3e-4ce6-8f97-d78d840bbc50.jpg' %}" alt="로컬 이미지" />
-                <p class="place_title">여수</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">여수</span>
                 <p class="review_title">낭만적인 여수 밤바다</p>
-                <p class="user_name">오연주님의 여행</p>
+                <p class="re_user_name">오연주님의 여행</p>
 
             </div>
             <div class="review">
                 <img class="review_img" src="{% static 'image/20191229160530047_oen.jpeg' %}" alt="로컬 이미지" />
-                <p class="place_title">광안리</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">광안리</span>
                 <p class="review_title">광안리의 밤은 낮보다 아름답다</p>
-                <p class="user_name">브라운님의 여행</p>
+                <p class="re_user_name">브라운님의 여행</p>
 
             </div>
             <div class="review">
                 <img class="review_img" src="{% static 'image/e3c18663-14e2-49e3-b9f0-bd7a029a661f.jpg' %}" alt="로컬 이미지" />
-                <p class="place_title">경주</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">경주</span>
                 <p class="review_title">1000년의 역사가 살아 숨쉬는 곳</p>
-                <p class="user_name">남건님의 여행</p>
+                <p class="re_user_name">남건님의 여행</p>
 
             </div>
             <div class="review">
                 <img class="review_img" src="{% static 'image/84475_138812_3755.jpg' %}" alt="로컬 이미지" />
-                <p class="place_title">남이섬</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">남이섬</span>
                 <p class="review_title">가을 단풍명소</p>
-                <p class="user_name">이하연님의 여행</p>
+                <p class="re_user_name">이하연님의 여행</p>
             </div>
         </div>
 
@@ -198,30 +269,34 @@
         <div class="content_list">
             <div  class="review">
                 <img class="review_img" src="{% static 'image/2671612_image2_1.jpg' %}" alt="로컬 이미지" />
-                <p class="place_title">오이도</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">오이도</span>
                 <p class="review_title">아름다운 낙조를 볼 수 있는 곳</p>
-                <p class="user_name">유미란님의 여행</p>
+                <p class="re_user_name">유미란님의 여행</p>
 
             </div>
             <div  class="review">
                 <img class="review_img" src="{% static 'image/hd6_394_i1.jpg' %}" alt="로컬 이미지" />
-                <p class="place_title">수원화성</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">수원 화성</span>
                 <p class="review_title">세계문화유산 화성</p>
-                <p class="user_name">님의 여행</p>
+                <p class="re_user_name">하인성님의 여행</p>
 
             </div>
             <div class="review">
                 <img class="review_img" src="{% static 'image/7130-11.jpg' %}" alt="로컬 이미지" />
-                <p class="place_title">덕수궁 돌담길</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">덕수궁 돌담길</span>
                 <p class="review_title">가을철 필수 방문지</p>
-                <p class="user_name">고뭉치님의 여행</p>
+                <p class="re_user_name">고뭉치님의 여행</p>
 
             </div>
             <div class="review">
                 <img class="review_img" src="{% static 'image/2022042716150600.jpg' %}" alt="로컬 이미지" />
-                <p class="place_title">비둘기낭 폭포</p>
+                <br><br>
+                <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i><span class="place_title">비둘기낭 폭포</span>
                 <p class="review_title">겸손해야 보이는 아름다움</p>
-                <p class="user_name">한아름님의 여행</p>
+                <p class="re_user_name">한아름님의 여행</p>
 
             </div>
         </div>

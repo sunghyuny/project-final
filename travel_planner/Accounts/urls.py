@@ -17,9 +17,12 @@ urlpatterns =[
     path('accept_invite/<int:invite_id>/', accept_invite, name='accept_invite'),
     path('reject_invite/<int:invite_id>/', reject_invite, name='reject_invite'),
     path('my-chats/', my_chat_rooms, name='my_chat_rooms'),
-    path('my_reservations/', my_reservation, name='my_reservations'),
+    path('my_reservations/', my_reservation, name='my_reservations'),  # 예약 목록 URL 패턴 추가
+    path('my_reservations/<int:reservation_id>/', reservation_detail, name='reservation_detail'),  # 새로운 URL 패턴 추가
+    path('my_reservations/delete/<int:reservation_id>/', reservation_delete, name='reservation_delete'),  # 예약 삭제 URL 패턴 추가
     path('my_post/', my_post, name='my_post'),
     path('accept_friend_request/<int:request_id>/', accept_friend_request, name='accept_friend_request'),  # 새로운 URL 패턴 추가
     path('reject_friend_request/<int:request_id>/', reject_friend_request, name='reject_friend_request'),  # 새로운 URL 패턴 추가
     path('delete_friend/<int:friend_id>/', delete_friend, name='delete_friend'),  # 새로운 URL 패턴 추가
+    path('reservation/<int:package_id>/', reservation_page, name='reservation_page'),
 ]

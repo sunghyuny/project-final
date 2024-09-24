@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 완료</title>
+</head>
+<body>
+    <h1>예약 완료</h1>
+    <p>{{ reservation.user.username }}님의 예약이 성공적으로 완료되었습니다.</p>
+    <p>숙소: {{ reservation.accommodation.name }}</p>
+    <p>체크인: {{ reservation.check_in }}</p>
+    <p>체크아웃: {{ reservation.check_out }}</p>
+    <p>인원수: {{ reservation.guests }}</p>
+    <a href="{% url 'hotel:hotel_main' %}">메인 페이지로 돌아가기</a>
+</body>
+</html>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>예약</title>
+    <title>내 예약 목록</title>
     <style>
         * {
             margin: 0;
@@ -98,7 +98,6 @@
             border: 1px solid #d7d7db;
             margin-bottom: 20px;
             border-radius: 4px;
-            display: none;
         }
 
         .hotel_img {
@@ -159,6 +158,42 @@
             text-decoration: none;
             color: inherit;
         }
+
+        .package_item {
+            border: 1px solid #d7d7db;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .package_item img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            border-radius: 4px;
+        }
+
+        .package_title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .package_schedule, .package_price {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .delete-button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -185,17 +220,25 @@
                         <p class="res_package" onclick="selectTab(this)">패키지 예약</p>
                         <p class="res_lodg" onclick="selectTab(this)">숙소 예약</p>
                         <div id="package_info" class="package">
-                            <img src="{{ package.image.url }}" alt="{{ package.title }}">
-                            <p class="package_title">{{ package.title }}</p>
-                            <p class="package_schedule">{{ package.schedule }}</p>
+                            {% for reservation in travel_reservations %}
+                                <div class="package_item">
+                                    <a href="{% url 'Accounts:reservation_detail' reservation.id %}">
+                                        <img src="{{ reservation.package.image.url }}" alt="{{ reservation.package.destination }}">
+                                        <div>
+                                            <p class="package_title">{{ reservation.package.destination }}</p>
+                                            <p class="package_schedule">{{ reservation.package.start_date }} - {{ reservation.package.end_date }}</p>
+                                            <p class="package_price">총 가격: {{ reservation.total_price }}원</p>
+                                        </div>
+                                    </a>
+                                    <form method="post" action="{% url 'Accounts:reservation_delete' reservation.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="delete-button">삭제</button>
+                                    </form>
+                                </div>
+                            {% endfor %}
                         </div>
 
-                        <div id="lodg_info" class="lodg">
-                            <img src="{% static 'image/6b62ec3b444f2bb8715239afa0a0c350.webP' %}" alt="호텔 이미지5" class="hotel_img">
-                            <p class="lodg_title">서귀포 호텔</p>
-                            <p class="lodg_star">★★★★☆</p>
-                            <p class="lodg_locate">서귀포</p>
-                            <p class="lodg_price">220,000원 /1박</p>
+                  
                         </div>
                     </div>
                 </div>
@@ -203,7 +246,6 @@
         </div>
     </div>
 </body>
-
 
 <script>    
     window.onload = function() {

@@ -275,6 +275,7 @@
                 <p class="start_price">시작가</p>
                 <p class="lodg_price">110,450원</p>
                 <button class="look_btn" id="lookBtn">객실 보기</button>
+                <button class="look_btn" onclick="openReservePopup({{ hotel.id }})">예약하기</button> <!-- 예약하기 버튼 수정 -->
             </div>
 
             <div class="lodg_review">
@@ -361,7 +362,7 @@
                         <div>
                             <p class="lodg_price">110,450원</p>
                             <p>1박당 요금 시작가</p>
-                            <button class="lodg_btn reserveBtn">예약하기</button>
+                            <button class="reserveBtn" onclick="openReservePopup({{ hotel.id }})">예약하기</button> <!-- 예약하기 버튼 수정 -->
                         </div>
                     </div>
 
@@ -406,7 +407,7 @@
                         <div>
                             <p class="lodg_price">239,700원</p>
                             <p>1박당 요금 시작가</p>
-                            <button class="lodg_btn reserveBtn">예약하기</button>
+                            <button class="reserveBtn" onclick="openReservePopup({{ hotel.id }})">예약하기</button> <!-- 예약하기 버튼 수정 -->
                         </div>
                     </div>
 
@@ -423,16 +424,122 @@
     </div>
 
     <script>
+        function openReservePopup(hotelId) {
+            const url = "{% url 'hotel:reserve' accommodation_id=0 %}".replace('0', hotelId);
+            window.open(url, 'reservePopup', 'width=800,height=600,scrollbars=yes');
+        }
+
         document.getElementById("lookBtn").addEventListener("click", function() {
             document.getElementById("roomList").scrollIntoView({ behavior: 'smooth' });
         });
+    </script>
+        
+</body>
+</html>
 
-        document.querySelectorAll(".reserveBtn").forEach(btn => {
-            btn.addEventListener("click", function() {
-                alert("예약이 되었습니다.");
-            });
+            <div class="room_list" id="roomList">
+                <p class="room_name">한국식 온돌룸-전망 없음</p>
+                <div class="room_info">
+                    <ul class="room_info_list">
+                        <li class="img_area">객실/투숙 공간</li>
+                        <li>상품 안내</li>
+                        <li>최대 인원</li>
+                        <li>상세 정보</li>
+                        <li>요금 | 1박기준</li>
+                    </ul>
+                    
+                    <div class="room_explanation">
+                        <div>
+                            <ul>
+                                <li>주차, 무료 Wi-Fi, 피트니스 센터</li>
+                                <li>조식 포함</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>성인 2명</p>
+                            <p>아동 1명(3세미만) 무료 투숙 가능</p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>금연</li>
+                                <li>객실크기 : 44㎡(13평)</li>
+                                <li>전망 : 없음</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="lodg_price">110,450원</p>
+                            <p>1박당 요금 시작가</p>
+                            <button class="reserveBtn" onclick="openReservePopup({{ hotel.id }})">예약하기</button> <!-- 예약하기 버튼 수정 -->
+                        </div>
+                    </div>
+
+                    <div class="room_img">
+                        <img src="{% static 'image/340282403.jpg' %}" alt="" class="room_main"></img><br></br>
+                        <img src="{% static 'image/340282399.jpg' %}" alt="" class="room_sub"></img>
+                        <img src="{% static 'image/335670071.jpg' %}" alt="" class="room_sub"></img>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room_list" id="roomList">
+                <p class="room_name">이그제큐티브 스위트</p>
+                <div class="room_info">
+                    <ul class="room_info_list">
+                        <li class="img_area">객실/투숙 공간</li>
+                        <li>상품 안내</li>
+                        <li>최대 인원</li>
+                        <li>상세 정보</li>
+                        <li>요금 | 1박기준</li>
+                    </ul>
+                    
+                    <div class="room_explanation">
+                        <div>
+                            <ul>
+                                <li>주차, 무료 Wi-Fi, 피트니스 센터</li>
+                                <li>조식 포함</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>성인 2명</p>
+                            <p>아동 1명(3세미만) 무료 투숙 가능</p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>금연</li>
+                                <li>조식</li>
+                                <li>객실크기 : 84㎡(25평)</li>
+                                <li>전망 : 오션뷰</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="lodg_price">239,700원</p>
+                            <p>1박당 요금 시작가</p>
+                            <button class="reserveBtn" onclick="openReservePopup({{ hotel.id }})">예약하기</button> <!-- 예약하기 버튼 수정 -->
+                        </div>
+                    </div>
+
+                    <div class="room_img">
+                        <img src="{% static 'image/af9188c91a998e757784a87f8754080d.webp' %}" alt="" class="room_main"></img><br></br>
+                        <img src="{% static 'image/8a4e97cffbb78bce9ea88aade18fb790.webp' %}" alt="" class="room_sub"></img>
+                        <img src="{% static 'image/6b62ec3b444f2bb8715239afa0a0c350.webp' %}" alt="" class="room_sub"></img>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <script>
+        function openReservePopup(hotelId) {
+            const url = "{% url 'hotel:reserve' accommodation_id=0 %}".replace('0', hotelId);
+            window.open(url, 'reservePopup', 'width=800,height=600,scrollbars=yes');
+        }
+
+        document.getElementById("lookBtn").addEventListener("click", function() {
+            document.getElementById("roomList").scrollIntoView({ behavior: 'smooth' });
         });
-        </script>
+    </script>
         
 </body>
 </html>

@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Accommodation
+from .models import Accommodation, HotelReservation as HotelReservation
 from thesights.models import RegionCategory
-
+from travel.models import Reservation as TravelReservation
+from django.contrib.auth.decorators import login_required
 
 def mainhotel(request):
     accommodations = Accommodation.objects.all()
@@ -35,7 +36,43 @@ def accommodation_create(request):
         return redirect('/')  # 숙소 등록 후 리다이렉트될 페이지를 지정합니다. (예: 홈)
     # GET 요청인 경우 숙소 등록 폼을 표시합니다.
     return render(request, 'hotel/create.html', {'regions': RegionCategory.objects.all()})
+
 def hotel_detail(request, hotel_id):
     hotel = get_object_or_404(Accommodation, id=hotel_id)
     context = {'hotel': hotel}
     return render(request, 'detail/lodg_detail.html', context)
+
+@login_required
+def reserve_accommodation(request, accommodation_id):
+    accommodation = get_object_or_404(Accommodation, id=accommodation_id)
+    if request.method == 'POST':
+        check_in = request.POST.get('check_in')
+        check_out = request.POST.get('check_out')
+        guests = request.POST.get('guests')
+
+        reservation = HotelReservation.objects.create(
+            user=request.user,
+            accommodation=accommodation,
+            check_in=check_in,
+            check_out=check_out,
+            guests=guests
+        )
+        return render(request, 'hotel/reserve.html', {
+            'accommodation': accommodation,
+            'success': True
+        })
+    
+    return render(request, 'hotel/reserve.html', {'accommodation': accommodation})
+
+def reservation_success(request, reservation_id):
+    reservation = get_object_or_404(HotelReservation, id=reservation_id)
+    return render(request, 'hotel/reservation_success.html', {'reservation': reservation})
+
+@login_required
+def my_reservation(request):
+    hotel_reservations = HotelReservation.objects.filter(user=request.user)
+    travel_reservations = TravelReservation.objects.filter(user=request.user)
+    return render(request, 'Mypage/Myreservations.html', {
+        'hotel_reservations': hotel_reservations,
+        'travel_reservations': travel_reservations
+    })

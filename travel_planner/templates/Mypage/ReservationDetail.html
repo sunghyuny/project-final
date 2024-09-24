@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% include 'Navbar.html'%}
+{% load humanize %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 상세보기</title>
+    <style>
+        .reservation-detail {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .reservation-detail h2 {
+            margin-bottom: 20px;
+        }
+        .reservation-detail p {
+            margin: 10px 0;
+        }
+        .accommodation-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .traveler-info {
+            margin-top: 20px;
+        }
+        .traveler-info h3 {
+            margin-bottom: 10px;
+        }
+        .traveler-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .traveler-info li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reservation-detail">
+        <h2>{{ reservation.package.destination }} 예약 상세보기</h2>
+        <p><strong>기간:</strong> {{ reservation.package.start_date }} - {{ reservation.package.end_date }}</p>
+        <p><strong>숙소:</strong> {{ reservation.package.accommodation.name }}</p>
+        <p><strong>인원:</strong> 성인 {{ reservation.adult_count }}명, 청소년 {{ reservation.youth_count }}명, 어린이 {{ reservation.child_count }}명</p>
+        <p><strong>총 가격:</strong> {{ reservation.total_price|floatformat:"-0"|intcomma }}원</p>
+        <p><strong>예약자 이름:</strong> {{ reservation.user.username }}</p>
+        <p><strong>예약자 전화번호:</strong> {{ reservation.user.phone_number }}</p>
+        {% if reservation.package.accommodation.photo %}
+            <img src="{{ reservation.package.accommodation.photo.url }}" alt="숙소 이미지" class="accommodation-image">
+        {% endif %}
+        <div class="traveler-info">
+            <h3>여행자 명단</h3>
+            <ul>
+                {% for traveler in reservation.travelers.all %}
+                <li><strong>이름:</strong> {{ traveler.name }}, <strong>전화번호:</strong> {{ traveler.phone }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

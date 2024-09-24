@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙소 예약</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .reservation-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .reservation-content {
+            background-color: white;
+            width: 60%;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .reservation-content h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .reservation-content label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .reservation-content input[type="date"],
+        .reservation-content input[type="number"],
+        .reservation-content button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .reservation-content button {
+            background-color: #2295ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .reservation-content button:hover {
+            background-color: #1a7fcc;
+        }
+    </style>
+</head>
+<body>
+    <div class="reservation-page">
+        <div class="reservation-content">
+            <h1>{{ accommodation.name }} 예약</h1>
+            {% if success %}
+                <script>
+                    alert("예약이 성공적으로 완료되었습니다!");
+                    window.location.href = "{% url 'hotel:hotel_main' %}";
+                </script>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <label for="check_in">체크인 날짜:</label>
+                <input type="date" id="check_in" name="check_in" required><br>
+                <label for="check_out">체크아웃 날짜:</label>
+                <input type="date" id="check_out" name="check_out" required><br>
+                <label for="guests">인원수:</label>
+                <input type="number" id="guests" name="guests" required><br>
+                <button type="submit">예약하기</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

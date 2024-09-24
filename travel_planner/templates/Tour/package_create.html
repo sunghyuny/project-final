@@ -11,7 +11,20 @@
         <input type="text" name="destination" placeholder="Destination" required><br>
         <input type="date" name="start_date" required><br>
         <input type="date" name="end_date" required><br>
-        <input type="text" name="price" placeholder="Price" required><br>
+        <input type="number" name="adult_price" placeholder="Adult Price" required><br>
+        <input type="number" name="youth_price" placeholder="Youth Price" required><br>
+        <input type="number" name="child_price" placeholder="Child Price" required><br>
+        <input type="number" name="accommodation_price" placeholder="Accommodation Price" required><br>
+        <select name="accommodation_id" required>
+            {% for accommodation in accommodations %}
+                <option value="{{ accommodation.id }}">{{ accommodation.name }}</option>
+            {% endfor %}
+        </select><br>
+        <select name="region_category_id" required>
+            {% for category in region_categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select><br>
         <input type="file" name="image" accept="image/*" required><br>
         <button type="submit">Create Package</button>
     </form>

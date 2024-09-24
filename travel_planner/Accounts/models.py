@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 from travel_planner import settings
 
-
 class CustomUser(AbstractUser):
     age = models.IntegerField(null=True, blank=True)
     email = models.EmailField(unique=True)
@@ -18,7 +17,6 @@ class CustomUser(AbstractUser):
     user_permissions = models.ManyToManyField(Permission, related_name='customuser_user_permissions')
     trip_plans = models.ManyToManyField('planner.TripPlan', related_name='users_trip_plans')
 
-
 class Like(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='likes')
     trip_plan = models.ForeignKey('planner.TripPlan', on_delete=models.CASCADE, related_name='liked_by')
@@ -29,8 +27,6 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user.username} likes {self.trip_plan.title}"
-
-
 
 class FriendGroup(models.Model):
     owner = models.ForeignKey(
@@ -43,7 +39,6 @@ class FriendGroup(models.Model):
 
     def __str__(self):
         return f"{self.owner.username}'s group: {self.name}"
-
 
 class FriendRequest(models.Model):
     from_user = models.ForeignKey(

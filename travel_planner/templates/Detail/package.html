@@ -16,11 +16,11 @@
 
     .package_re {
         align-items: center;
-            justify-content: center;
-            width: 1193px;
-            overflow-x: hidden;
-            margin: 0 auto;
-            margin-top: 50px;
+        justify-content: center;
+        width: 1193px;
+        overflow-x: hidden;
+        margin: 0 auto;
+        margin-top: 50px;
     }
 
     .package_re_cont {
@@ -35,7 +35,6 @@
         position: relative;
         padding: 0;
         margin-bottom: 30px;
-
     }
 
     .main_img {
@@ -101,20 +100,20 @@
         font-weight: 500;
     }
 
-    table{
-        border-collapse : collapse;
+    table {
+        border-collapse: collapse;
         width: 700px;
         float: left;
         border-radius: 4px;
     }
 
-    th,td{
-      height: 50px;
-      text-align: center;
-      border: 1px solid #000;
-      vertical-align: top;
-      vertical-align: bottom;
-      vertical-align: middle;
+    th, td {
+        height: 50px;
+        text-align: center;
+        border: 1px solid #000;
+        vertical-align: top;
+        vertical-align: bottom;
+        vertical-align: middle;
     }
 
     .trip_left {
@@ -208,7 +207,7 @@
                     <p class="info_star">★★★★☆</p>
                     <div class="pak_price_div">
                         {% load humanize %}
-                        <span class="pak_price">{{ package.price|floatformat:"-0"|intcomma }}</span><span class="pak_won">원~</span>
+                        <span class="pak_price">{{ package.adult_price|floatformat:"-0"|intcomma }}</span><span class="pak_won">원~</span>
                     </div>
                 </div>
             </article>
@@ -218,39 +217,37 @@
                 {% csrf_token %}
                 <div class="trip_main">
                     <div class="trip_left">
-                    <div class="trip_info">
-                        <div class="info_div">
-                            <span class="trip_info_gray">일정</span><span class="trip_info_bla">2박3일</span><br>
+                        <div class="trip_info">
+                            <div class="info_div">
+                                <span class="trip_info_gray">일정</span><span class="trip_info_bla">2박3일</span><br>
+                            </div>
+                            <div class="info_div">
+                                <span class="trip_info_gray">출발</span><span class="trip_info_bla">{{ package.start_date }}</span><br>
+                            </div>
+                            <div class="info_div">
+                                <span class="trip_info_gray">도착</span><span class="trip_info_bla">{{ package.end_date }}</span>
+                            </div>
                         </div>
-                        <div class="info_div">
-                            <span class="trip_info_gray">출발</span><span class="trip_info_bla">{{ package.start_date }}</span><br>
-                        </div>
-                        <div class="info_div">
-                            <span class="trip_info_gray">도착</span><span class="trip_info_bla">{{ package.end_date }}</span>
-                        </div>
+                        <table>
+                            <tr>
+                                <td scope="col">구분</td>
+                                <td scope="col">성인</td>
+                                <td scope="col">청소년</td>
+                                <td scope="col">어린이</td>
+                            </tr>
+                            <tr>
+                                <td>가격</td>
+                                <td>{{ package.adult_price|floatformat:"-0"|intcomma }}원</td>
+                                <td>{{ package.youth_price|floatformat:"-0"|intcomma }}원</td>
+                                <td>{{ package.child_price|floatformat:"-0"|intcomma }}원</td>
+                            </tr>
+                        </table>
                     </div>
-                    <table>
-                        <tr>
-                            <td scope="col">구분</td>
-                            <td scope="col">성인</td>
-                            <td scope="col">청소년</td>
-                            <td scope="col">어린이</td>
-                        </tr>
-                        <tr>
-                          <td>가격</td>
-                          <td>500,000원</td>
-                          <td>300,000원</td>
-                          <td>100,000원</td>
-                        </tr>
-                      </table>
+                    <div class="trip_right">
+                    </div>
                 </div>
-                <div class="trip_right">
-                </div>
-            </div>
-            <button type="submit" class="pack_buy">예약하기</button>
-        </form>
-        </div>
-        </div>
+                <button type="submit" class="pack_buy">예약하기</button>
+            </form>
         </div>
     </section>
 </body>
@@ -261,26 +258,26 @@
         document.getElementById("person2").textContent = values[1];
         document.getElementById("person3").textContent = values[2];
 
-        let bonus1 = values[0] * 500000 ;
-        let bonus2 = values[1] * 300000;
-        let bonus3 = values[2] * 100000;
+        let bonus1 = values[0] * {{ package.adult_price|floatformat:"-0" }};
+        let bonus2 = values[1] * {{ package.youth_price|floatformat:"-0" }};
+        let bonus3 = values[2] * {{ package.child_price|floatformat:"-0" }};
 
         let total = bonus1 + bonus2 + bonus3;
-        document.getElementById("per_total").textContent = total;
+        document.getElementById("per_total").textContent = total.toLocaleString(); // 3자리마다 쉼표 추가
     }
 
-     function increaseValue(index) {
-         alues[index - 1]++;
-         updateDisplay();
-     }
+    function increaseValue(index) {
+        values[index - 1]++;
+        updateDisplay();
+    }
 
-     function decreaseValue(index) {
+    function decreaseValue(index) {
         if (values[index - 1] > 0) {
             values[index - 1]--;
             updateDisplay();
         }
-     }
+    }
 
-     updateDisplay();
+    updateDisplay();
 </script>
 </html>
