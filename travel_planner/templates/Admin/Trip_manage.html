@@ -163,12 +163,9 @@
                     <li id="main"><a href="/">사이트 바로가기</a></li>
                     <li id="trip"><a href="/Admin/trip/">여행 관리</a></li>
                     <li id="lodg"><a href="/Admin/lodg/">숙박 관리</a></li>
-                    <li id="rest"><a href="">식당 관리</a></li>
-                    <li id="sight"><a href="">관광지 관리</a></li>
-                    <li id="act"><a href="">체험 관리</a></li>
-                    <li id="exhibit"><a href="">전시 관리</a></li>
+                    <li id="active"><a href="/Admin/active/">활동 관리</a></li>
                     <li id="commu"><a href="">커뮤니티 관리</a></li>
-                    <li id="match"><a href="">매칭 관리</a></li>
+                    <li id="match"><a href="/Admin/match/">매칭 관리</a></li>
                     <li id="member"><a href="/Admin/member/">회원관리</a></li>
                 </ul>
             </div>
@@ -176,18 +173,33 @@
             <div class="detail_page">
                 <div class="detail">
                     <div class="trip_manage">
-                        <h4 class="page_title">패키지 추가</h4>
+                        <h4 class="page_title">여행 관리</h4>
                         <hr>
-                        <div class="add_package">
-                            <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                패키지 명 : <input type="text" name="destination" placeholder="목적지" required><br>
-                                출발일 : <input type="date" name="start_date" required><br>
-                                도착일 : <input type="date" name="end_date" required><br>
-                                가격 : <input type="text" name="price" placeholder="Price" required><br>
-                                이미지 : <input type="file" name="image" accept="image/*" required><br>
-                                <button type="submit">등록하기</button>
-                            </form>
+                        <div class="trip_detail">
+                            <button id="add_btn"><a href="/travel/create_package/" class="add_btn">추가</a></button>
+                            <table>
+                                <tr>
+                                    <th class="num">번호</th>
+                                    <th>패키지명</th>
+                                    <th>이미지</th>
+                                    <th>설명</th>
+                                    <th>가격</th>
+                                    <th>기간</th>
+                                    <th>항공편</th>
+                                    <th>관리</th>
+                                </tr>
+
+                                <tr>
+                                    <td class="num">1</td>
+                                    <td>제주 호텔</td>
+                                    <td><img class="lodg_img" src="/image/1600843915748.jpg" alt=""></td>
+                                    <td>이러지도 저러지도 못하는데 숨이 왈칵 뒤집히고</td>
+                                    <td>100,000원/박 </td>
+                                    <td>09/27~10/01</td>
+                                    <td>제주항공</td>
+                                    <td><button id="retouch_btn">수정</button><button id="del_btn">삭제</button></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

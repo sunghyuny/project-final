@@ -69,7 +69,7 @@
             flex-grow: 1;
         }
 
-        .trip_manage{
+        .active_manage{
             background-color: white;
             width: 100%;
             padding: 20px 30px 0 30px;
@@ -109,32 +109,32 @@
             margin-top: 5px;
         }
 
-        #trip{
+        #active{
             background-color: #0070D8;
         }
 
-        table{
-            margin: 0;
-        }
-
         th,td{
-            width: 140px;
+            width: 150px;
             text-align: center;
         }
 
         .lodg_img{
             width: 100px;
-            height: 70px;
+            height: 50px;
         }
 
         #add_btn{
             float: right;
-            width: 130px;
+            width: 150px;
             height: 30px;
             border: none;
             background-color: white;
             color: #2295ff;
             font-size: 20px;
+        }
+
+        .add_btn{
+            color: #2295ff;
         }
 
         #retouch_btn, #del_btn{
@@ -149,8 +149,18 @@
             width: 50px;
         }
 
-        .add_btn{
-            color:#2295ff;
+        .content_selection{
+            margin-top: 2rem;
+        }
+
+        .content_selection>p{
+            text-align: center;
+            border: 1px solid;
+            display: inline-block;
+            font-size: 1.6rem;
+            width: 7rem;
+            margin: 0 2rem 3rem 0;
+            height: 2.5rem;
         }
     </style>
 </head>
@@ -163,31 +173,62 @@
                     <li id="main"><a href="/">사이트 바로가기</a></li>
                     <li id="trip"><a href="/Admin/trip/">여행 관리</a></li>
                     <li id="lodg"><a href="/Admin/lodg/">숙박 관리</a></li>
-                    <li id="rest"><a href="">식당 관리</a></li>
-                    <li id="sight"><a href="">관광지 관리</a></li>
-                    <li id="act"><a href="">체험 관리</a></li>
-                    <li id="exhibit"><a href="">전시 관리</a></li>
+                    <li id="active"><a href="/Admin/active/">활동 관리</a></li>
                     <li id="commu"><a href="">커뮤니티 관리</a></li>
-                    <li id="match"><a href="">매칭 관리</a></li>
+                    <li id="match"><a href="/Admin/match/">매칭 관리</a></li>
                     <li id="member"><a href="/Admin/member/">회원관리</a></li>
                 </ul>
             </div>
 
             <div class="detail_page">
                 <div class="detail">
-                    <div class="trip_manage">
-                        <h4 class="page_title">패키지 추가</h4>
+                    <div class="active_manage">
+                        <h4 class="page_title">활동 관리</h4>
                         <hr>
-                        <div class="add_package">
-                            <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                패키지 명 : <input type="text" name="destination" placeholder="목적지" required><br>
-                                출발일 : <input type="date" name="start_date" required><br>
-                                도착일 : <input type="date" name="end_date" required><br>
-                                가격 : <input type="text" name="price" placeholder="Price" required><br>
-                                이미지 : <input type="file" name="image" accept="image/*" required><br>
-                                <button type="submit">등록하기</button>
-                            </form>
+                        <div class="active_detail">
+                            <button id="add_btn"><a href="/planner/activity/create/" class="add_btn">추가</a></button>
+                            <div class="content_selection">
+                                <p>식당</p>
+                                <p>체험</p>
+                                <p>전시</p>
+                                <p>관광지</p>
+                            </div>
+
+                            <table>
+                                <tr>
+                                    <th class="num">번호</th>
+                                    <th>이름</th>
+                                    <th>이미지</th>
+                                    <th>위치</th>
+                                    <th>카테고리</th>
+                                    <th>가격</th>
+                                    <th>전화번호</th>
+                                    <th>관리</th>
+                                </tr>
+
+                                <tr>
+                                    <td class="num">1</td>
+                                    <td>자매 국수</td>
+                                    <td><img class="lodg_img" src="/image/KakaoTalk_20221203_211222704.jpg" alt=""></td>
+                                    <td>제주 제주시 항골남길 46 자매국수</td>
+                                    <td>식당</td>
+                                    <td>9000원</td>
+                                    <td>064-746-2222</td>
+                                    <td><button id="retouch_btn">수정</button><button id="del_btn">삭제</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="num">2</td>
+                                    <td>9.81 파크</td>
+                                    <td><img class="lodg_img" src="/image/images.jpeg" alt=""></td>
+                                    <td>제주 제주시 애월읍 천덕로 880-24</td>
+                                    <td>체험</td>
+                                    <td>39500원</td>
+                                    <td>1833-9810</td>
+                                    <td><button id="retouch_btn">수정</button><button id="del_btn">삭제</button></td>
+                                </tr>
+                            </table>
+
                         </div>
                     </div>
                 </div>
