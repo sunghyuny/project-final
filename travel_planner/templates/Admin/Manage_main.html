@@ -69,18 +69,33 @@
             flex-grow: 1;
         }
 
-        .lodg_manage{
+        .sign_status, .post, .member, .travel {
             background-color: white;
-            width: 100%;
-            padding: 20px 30px 0 30px;
+            width: calc(50% - 20px);
+            height: calc(50% - 20px);
+            margin: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            font-size: 21px;
         }
 
-        .page_title{
-            margin-bottom: 20px;
+        .post>img {
+            width: 150px;
         }
 
-        hr{
+        .detail_title {
             margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .sign_list{
+            list-style: none;
+
+        }
+
+        .member_list {
+            list-style: number;
+            padding-left: 20px;
         }
 
         .login_profile {
@@ -95,7 +110,7 @@
             color: white;
         }
 
-        .profile_img{
+        .profile_img {
             border-radius: 100px;
             width: 150px;
             height: 150px;
@@ -108,46 +123,6 @@
             height: 20px;
             margin-top: 5px;
         }
-
-        #lodg{
-            background-color: #0070D8;
-        }
-
-        th,td{
-            width: 150px;
-            text-align: center;
-        }
-
-        .lodg_img{
-            width: 100px;
-            height: 70px;
-        }
-
-        #add_btn{
-            float: right;
-            width: 150px;
-            height: 30px;
-            border: none;
-            background-color: white;
-            color: #2295ff;
-            font-size: 20px;
-        }
-
-        #retouch_btn, #del_btn{
-            border: none;
-            margin: 5px;
-            font-size: 20px;
-            background-color: white;
-
-        }
-
-        .num{
-            width: 50px;
-        }
-
-        .add_btn{
-            color:#2295ff;
-        }
     </style>
 </head>
 <body>
@@ -159,46 +134,46 @@
                     <li id="main"><a href="/">사이트 바로가기</a></li>
                     <li id="trip"><a href="/Admin/trip/">여행 관리</a></li>
                     <li id="lodg"><a href="/Admin/lodg/">숙박 관리</a></li>
-                    <li id="rest"><a href="">식당 관리</a></li>
-                    <li id="sight"><a href="">관광지 관리</a></li>
-                    <li id="act"><a href="">체험 관리</a></li>
-                    <li id="exhibit"><a href="">전시 관리</a></li>
+                    <li id="active"><a href="/Admin/active/">활동 관리</a></li>
                     <li id="commu"><a href="">커뮤니티 관리</a></li>
-                    <li id="match"><a href="">매칭 관리</a></li>
+                    <li id="match"><a href="/Admin/match/">매칭 관리</a></li>
                     <li id="member"><a href="/Admin/member/">회원관리</a></li>
                 </ul>
             </div>
 
             <div class="detail_page">
                 <div class="detail">
-                    <div class="lodg_manage">
-                        <h4 class="page_title">숙소 등록</h4>
-                        <hr>
-                        <div class="lodg_add">
-                            <form action="{% url 'hotel:hotelcreate' %}" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <label for="name">숙소 이름:</label>
-                                <input type="text" id="name" name="name" required><br>
-                                <label for="price">가격:</label>
-                                <input type="number" id="price" name="price"><br>
-                                <label for="region_name">지역:</label>
-                                <select id="region_name" name="region_name" required>
-                                    {% for region in regions %}
-                                        <option value="{{ region.name }}">{{ region.name }}</option>
-                                    {% endfor %}
-                                </select><br>
-                                <label for="photo">사진:</label>
-                                <input type="file" id="photo" name="photo" required><br>
-                                <label for="details">상세정보:</label>
-                                <textarea id="details" name="details"></textarea><br>
-                                <label for="amenities">편의시설/서비스:</label>
-                                <textarea id="amenities" name="amenities"></textarea><br>
-                                <label for="quantity">수량:</label>
-                                <input type="number" id="quantity" name="quantity" required><br>
+                    <div class="sign_status">
+                        <p class="detail_title">가입현황</p>
+                        <ul class="sign_list">
+                            <li>총 가입자 : 10명</li>
+                            <li>오늘 : 3명</li>
+                            <li>1주일 : 3명</li>
+                            <li>1달 : 5명</li>
+                            <li>3개월 : 10명</li>
+                        </ul>
+                    </div>
 
-                                <button type="submit">등록</button>
-                            </form>
-                        </div>
+                    <div class="post">
+                        <p class="detail_title">게시물</p>
+                        <img src="/image/00501234_20171219.jpeg" alt="">
+                        <p>봄 가을 산책하기 좋은 덕수궁 돌담길</p>
+                        <hr>
+                    </div>
+
+                    <div class="member">
+                        <p class="detail_title">회원</p>
+                        <ul class="member_list">
+                            <li>이승혁</li>
+                            <li>윤성현</li>
+                        </ul>
+                    </div>
+
+                    <div class="travel">
+                        <p class="detail_title">여행지</p>
+                        <img src="" alt="">
+                        <p>봄 가을 산책하기 좋은 덕수궁 돌담길</p>
+                        <hr>
                     </div>
                 </div>
             </div>
