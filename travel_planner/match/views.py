@@ -95,7 +95,6 @@ def join_chat_room(request, room_id):
     chat_room.participants.add(request.user)
     return redirect('match:chat_room', room_id=room_id)
 
-
 @login_required
 def chat_room_list(request):
     chat_rooms = ChatRoom.objects.all()

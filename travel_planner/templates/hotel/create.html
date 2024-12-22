@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        .title_Logo{
+        .title_Logo {
             font-weight: bold;
             font-size: 40px;
         }
@@ -69,17 +69,18 @@
             flex-grow: 1;
         }
 
-        .lodg_manage{
+        .lodg_manage {
             background-color: white;
             width: 100%;
             padding: 20px 30px 0 30px;
+            position: relative;
         }
 
-        .page_title{
+        .page_title {
             margin-bottom: 20px;
         }
 
-        hr{
+        hr {
             margin-bottom: 20px;
         }
 
@@ -95,58 +96,54 @@
             color: white;
         }
 
-        .profile_img{
+        .profile_img {
             border-radius: 100px;
             width: 150px;
             height: 150px;
             margin: 50px 0 30px 0;
         }
 
-        .Logout_btn{
+        .Logout_btn {
             border: none;
             width: 100px;
             height: 20px;
             margin-top: 5px;
         }
 
-        #lodg{
+        #lodg {
             background-color: #0070D8;
         }
 
-        th,td{
-            width: 150px;
-            text-align: center;
+        th, td {
+            padding: 10px;
+            text-align: left;
         }
 
-        .lodg_img{
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .lodg_img {
             width: 100px;
             height: 70px;
         }
 
-        #add_btn{
-            float: right;
-            width: 150px;
+        #add_btn {
+            width: 100px;
             height: 30px;
             border: none;
-            background-color: white;
-            color: #2295ff;
-            font-size: 20px;
+            background-color: #2295ff;
+            color: white;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
         }
 
-        #retouch_btn, #del_btn{
-            border: none;
-            margin: 5px;
-            font-size: 20px;
-            background-color: white;
-
-        }
-
-        .num{
-            width: 50px;
-        }
-
-        .add_btn{
-            color:#2295ff;
+        th {
+            width: 150px;
         }
     </style>
 </head>
@@ -159,12 +156,9 @@
                     <li id="main"><a href="/">사이트 바로가기</a></li>
                     <li id="trip"><a href="/Admin/trip/">여행 관리</a></li>
                     <li id="lodg"><a href="/Admin/lodg/">숙박 관리</a></li>
-                    <li id="rest"><a href="">식당 관리</a></li>
-                    <li id="sight"><a href="">관광지 관리</a></li>
-                    <li id="act"><a href="">체험 관리</a></li>
-                    <li id="exhibit"><a href="">전시 관리</a></li>
+                    <li id="active"><a href="/Admin/active/">활동 관리</a></li>
                     <li id="commu"><a href="">커뮤니티 관리</a></li>
-                    <li id="match"><a href="">매칭 관리</a></li>
+                    <li id="match"><a href="/Admin/match/">매칭 관리</a></li>
                     <li id="member"><a href="/Admin/member/">회원관리</a></li>
                 </ul>
             </div>
@@ -174,31 +168,46 @@
                     <div class="lodg_manage">
                         <h4 class="page_title">숙소 등록</h4>
                         <hr>
-                        <div class="lodg_add">
-                            <form action="{% url 'hotel:hotelcreate' %}" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <label for="name">숙소 이름:</label>
-                                <input type="text" id="name" name="name" required><br>
-                                <label for="price">가격:</label>
-                                <input type="number" id="price" name="price"><br>
-                                <label for="region_name">지역:</label>
-                                <select id="region_name" name="region_name" required>
-                                    {% for region in regions %}
-                                        <option value="{{ region.name }}">{{ region.name }}</option>
-                                    {% endfor %}
-                                </select><br>
-                                <label for="photo">사진:</label>
-                                <input type="file" id="photo" name="photo" required><br>
-                                <label for="details">상세정보:</label>
-                                <textarea id="details" name="details"></textarea><br>
-                                <label for="amenities">편의시설/서비스:</label>
-                                <textarea id="amenities" name="amenities"></textarea><br>
-                                <label for="quantity">수량:</label>
-                                <input type="number" id="quantity" name="quantity" required><br>
-
-                                <button type="submit">등록</button>
-                            </form>
-                        </div>
+                        <form action="{% url 'hotel:hotelcreate' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <table class="hotel_create">
+                                <tr>
+                                    <th><label for="name">숙소 이름:</label></th>
+                                    <td><input type="text" id="name" name="name" required></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="price">가격:</label></th>
+                                    <td><input type="number" id="price" name="price"></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="region_name">지역:</label></th>
+                                    <td>
+                                        <select id="region_name" name="region_name" required>
+                                            {% for region in regions %}
+                                                <option value="{{ region.name }}">{{ region.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="photo">사진:</label></th>
+                                    <td><input type="file" id="photo" name="photo" required></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="details">상세정보:</label></th>
+                                    <td><textarea id="details" name="details"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="amenities">편의시설/서비스:</label></th>
+                                    <td><textarea id="amenities" name="amenities"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="quantity">수량:</label></th>
+                                    <td><input type="number" id="quantity" name="quantity" required></td>
+                                </tr>
+                            </table>
+                            <button id="add_btn" type="submit">등록</button>
+                        </form>
                     </div>
                 </div>
             </div>

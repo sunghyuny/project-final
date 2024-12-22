@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load humanize %}
+{% load custom_filters %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -169,12 +172,12 @@
         <div class="manage_content">
             <div class="page_content">
                 <ul class="Manage_list">
-                    <li id="Logo"><a href="/Admin/main/"><p class="title_Logo">Travel Plan</p></a></li>
+                    <li id="Logo"><a href="/Admin/main/"><p class="title_Logo">여행 계획</p></a></li>
                     <li id="main"><a href="/">사이트 바로가기</a></li>
                     <li id="trip"><a href="/Admin/trip/">여행 관리</a></li>
                     <li id="lodg"><a href="/Admin/lodg/">숙박 관리</a></li>
                     <li id="active"><a href="/Admin/active/">활동 관리</a></li>
-                    <li id="commu"><a href="">커뮤니티 관리</a></li>
+                    <li id="commu"><a href="/Admin/post/">커뮤니티 관리</a></li>
                     <li id="match"><a href="/Admin/match/">매칭 관리</a></li>
                     <li id="member"><a href="/Admin/member/">회원관리</a></li>
                 </ul>
@@ -206,27 +209,40 @@
                                     <th>관리</th>
                                 </tr>
 
-                                <tr>
-                                    <td class="num">1</td>
-                                    <td>자매 국수</td>
-                                    <td><img class="lodg_img" src="/image/KakaoTalk_20221203_211222704.jpg" alt=""></td>
-                                    <td>제주 제주시 항골남길 46 자매국수</td>
-                                    <td>식당</td>
-                                    <td>9000원</td>
-                                    <td>064-746-2222</td>
-                                    <td><button id="retouch_btn">수정</button><button id="del_btn">삭제</button></td>
-                                </tr>
+                                <table>
+                                    {% for activity in activities %}
+                                        <tr>
+                                            <td class="num">{{ forloop.counter }}</td>
+                                            <td>{{ activity.name }}</td>
+                                            <td><img class="lodg_img" src="{{ activity.photo.url }}" alt=""></td>
+                                            <td>{{ activity.location }}</td>
+                                            <td>{{ activity.category.name }}</td>
+                                            <td>{{ activity.price|intcomma }}원</td>
+                                            <td>{{ activity.telephone }}</td>
+                                            <td><button id="retouch_btn">수정</button><button id="del_btn">삭제</button></td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                                
 
-                                <tr>
-                                    <td class="num">2</td>
-                                    <td>9.81 파크</td>
-                                    <td><img class="lodg_img" src="/image/images.jpeg" alt=""></td>
-                                    <td>제주 제주시 애월읍 천덕로 880-24</td>
-                                    <td>체험</td>
-                                    <td>39500원</td>
-                                    <td>1833-9810</td>
-                                    <td><button id="retouch_btn">수정</button><button id="del_btn">삭제</button></td>
-                                </tr>
+                            <div class="pagination">
+                                {% if activities.has_other_pages %}
+                                    <a href="?page=1" style="color: black;">처음으로</a>
+                            
+                                    {% if activities.has_previous %}
+                                        <a href="?page={{ activities.previous_page_number }}" style="color: black;">이전</a>
+                                    {% endif %}
+                            
+                                    <span style="color: black;">{{ page }}/{{ total_pages }}</span>
+                            
+                                    {% if activities.has_next %}
+                                        <a href="?page={{ activities.next_page_number }}" style="color: black;">다음</a>
+                                    {% endif %}
+                            
+                                    <a href="?page={{ total_pages }}" style="color: black;">마지막으로</a>
+                                {% endif %}
+                            </div>
+                            
                             </table>
 
                         </div>
@@ -235,10 +251,9 @@
             </div>
 
             <div class="login_profile">
-                <img class="profile_img" src="/image/2023-05-27.jpg" alt="">
-                <p>관리자명</p>
-                <p>관리자 아이디</p>
-                <button class="Logout_btn">Logout</button>
+                <img class="profile_img" src="{{ user.profile_picture.url }}" alt="">
+                <p>{{ user.username }} ({{ user.email }})</p>
+                <button class="Logout_btn" onclick="location.href='/Accounts/logout/'">로그아웃</button>
             </div>
         </div>
     </div>

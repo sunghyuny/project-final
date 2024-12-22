@@ -7,48 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>숙소 상세</title>
     <style>
+        html {
+            overflow-x: hidden;
+        }
+
         .lodg_detail_page {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 1550px;
+            overflow-x: hidden;
+            margin: 0 auto;
         }
 
         .lodg_detail_content{
-            width: 85rem;
+            width: 1360px;
+            margin-left: 100px;
         }
 
         .title_name{
-            font-size: 3rem;
+            font-size: 24px;
+            font-weight: bold;
             margin-top: 30px;
             margin-bottom: 30px;
         }
 
         .info_name{
-            font-size: 3rem;
+            font-size: 21px;
+            font-weight: bold;
             margin-left: 1rem;
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
         }
 
+        .lodg_img {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
         .main_img{
-            width: 32.7rem;
-            height: 25rem;
-            margin-top: 10px;
+            width: 578px;
+            height: 350px;
+            margin-bottom: 10px;
             margin-right: 10px;
             display: flex;
             float: left;
         }
 
         .sub_img{
-            width: 25.03rem;
-            height: 12.2rem;
-            margin: 5px;
+            width: 300px;
+            height: 170px;
+            margin-bottom: 10px;
+            margin-right: 7px;
         }
-            
         .content_nav{
             border: 1px solid;
-            width: 85rem;
+            width: 1200px;
+            overflow-x: visible;
+            padding-top: 10px;
         }
 
         .content_nav>ul{
@@ -59,7 +76,7 @@
             list-style: none;
             display: inline-block;
             margin-right: 5.5rem;
-            font-size: 24px;
+            font-size: 16px;
         }
 
         .start_price{
@@ -67,11 +84,13 @@
             color: #858585;
             margin-right: 1rem;
             margin-left: 5rem;
+            margin-bottom: 20px;
         }
 
         .lodg_price{
             display: inline-block;
-            font-size: 26px;    
+            font-size: 21px;
+            font-weight: bold;
             color: #FF0000;
             margin-right: 30px;
         }
@@ -81,24 +100,26 @@
             color: white;
             border-radius: 30px;
             border: none;
-            font-size: 24px;
-            height: 50px;
-            width: 200px;
+            font-size: 16px;
+            height: 40px;
+            width: 150px;
             display: inline-block;
         }
 
         .lodg_info{
             border: 1px solid;
             margin-top: 10px;
-            width: 56rem;
-            padding-left: 10px;
-            height: 14.3rem;
+            width: 760px;
+            padding: 10px;
         }
 
         .lodg_service{
             border: 1px solid;
             margin-top: 10px;
-            width: 56.6rem;
+            width: 760px;
+            padding: 10px;
+            height: 175px;
+            overflow-y: hidden;
         }
 
         .lodg_service>ul{
@@ -110,127 +131,144 @@
             display: inline-block;
             margin-right: 3rem;
             margin-bottom: 20px;
-            font-size: 1.2rem;
+            font-size: 16px;
         }
 
         .lodg_review{
             border: 1px solid;
             display: flex;
             float: right;
-            width: 27rem;
+            width: 390px;
+            height: 356px;
             margin-top: 10px;
-            height: 28.6rem;
+            margin-right: 158px;
+            padding: 10px;
+        }
+
+        .lodg_address {
+            margin-left: 16px;
+            color: #8F8F8F;
+        }
+
+        .lodg_explanation {
+            margin-left: 16px;
         }
 
         .review_point{
-            margin-left: 20px;
+            margin: 20px;
         }
 
-        .review_point>p{
+        /* .review_point>p{
             margin-bottom: 20px;
-        }
+        } */
 
         .total{
-            font-size: 30px;
+            font-size: 21px;
+            font-weight: bold;
             margin: 0;
             margin-top: 12px;
         }
 
         .review_cont{
             color: #2295ff;
-            font-size: 20px;
+            font-size: 16px;
             margin: 0;
             margin-top: 12px;
         }
 
         .sub_detail{
             display: inline-block;
-            font-size: 20px;
+            font-size: 16px;
             margin-right: 20px;
         }
 
         .review_text{
-            margin-left: 20px;
             margin-right: 20px;
+            margin-top: 20px;
         }
 
         .review_text>p{
             border: 1px solid;
             border-radius: 20px;
             padding: 9px;
-            font-size: 20px;
+            font-size: 16px;
             margin-bottom: 20px;
         }
 
 
         .select_category{
             border: 1px solid;
-            height: 5rem;
+            width: 1200px;
         }
 
         .select_return{
             display: inline-block;
             margin-left: 10rem;
-            font-size: 1.5rem;
+            font-size: 21px;
+            text-decoration: underline;
             color: #2295ff;
+            margin-top: 30px;
         }
 
         .category{
             display: inline-block;
             border: 1px solid;
             border-radius: 35px;
-            padding: 10px;
+            padding: 10px 20px;
             margin-left: 5rem;
             margin-right: 2rem;
-            font-size: 30px;
-            margin-top: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
         }
 
         .room_list{
             border: 1px solid;
             margin-top: 3rem;
-        }
-
-        li{
+            width: 1200px;
         }
 
         .room_info{
             background-color: #D9D9D9;
-            height: 25rem;
+            /* height: 25rem;
+            overflow-y: hidden; */
         }
 
         .room_name{
-            font-size: 2.3rem;
+            font-size: 24px;
             margin-left: 2rem;
             font-weight: bolder;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .room_info_list{
             margin-left: -2rem;
+            height: 30px;
         }
 
         .room_info_list>li{
             list-style: none;
             display: inline-block;
-            margin-left: 10.2rem;
-            margin-top: 1rem;
+            margin-left: 130px;
         }
 
         .room_img{
             display: inline-block;
-            margin-left: 0.5rem;
+            margin-left: 8px;
         }
 
         .room_explanation{
             background-color: white;
             margin-top: 0;
             float: right;
-            height: 18rem;
+            height: 290px;
+            width: 900px;
         }
 
         .room_explanation>div{
             display: inline-block;
-            margin-right: 3rem;
+            /* margin-right: 3rem; */
+            margin-left: 20px;
         }
 
         .room_main{
@@ -246,10 +284,16 @@
         .reserveBtn{
             background-color: #2295ff;
             color: white;
-            border: none;
             border-radius: 30px;
-            font-size: 1.3rem;
-            width: 9rem;
+            border: none;
+            font-size: 16px;
+            height: 40px;
+            width: 150px;
+            display: inline-block;
+        }
+
+        li{
+            list-style: none;
         }
     </style>
 </head>
@@ -274,7 +318,6 @@
                 </ul>
                 <p class="start_price">시작가</p>
                 <p class="lodg_price">110,450원</p>
-                <button class="look_btn" id="lookBtn">객실 보기</button>
                 <button class="look_btn" onclick="openReservePopup({{ hotel.id }})">예약하기</button> <!-- 예약하기 버튼 수정 -->
             </div>
 
@@ -419,24 +462,6 @@
                 </div>
             </div>
 
-            
-        </div>
-    </div>
-
-    <script>
-        function openReservePopup(hotelId) {
-            const url = "{% url 'hotel:reserve' accommodation_id=0 %}".replace('0', hotelId);
-            window.open(url, 'reservePopup', 'width=800,height=600,scrollbars=yes');
-        }
-
-        document.getElementById("lookBtn").addEventListener("click", function() {
-            document.getElementById("roomList").scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
-        
-</body>
-</html>
-
             <div class="room_list" id="roomList">
                 <p class="room_name">한국식 온돌룸-전망 없음</p>
                 <div class="room_info">
@@ -525,8 +550,6 @@
                     </div>
                 </div>
             </div>
-
-            
         </div>
     </div>
 
@@ -540,6 +563,15 @@
             document.getElementById("roomList").scrollIntoView({ behavior: 'smooth' });
         });
     </script>
-        
+
+    <script>
+        function openReservePopup(hotelId) {
+            const url = "{% url 'hotel:reserve' accommodation_id=0 %}".replace('0', hotelId);
+            window.open(url, 'reservePopup', 'width=800,height=600,scrollbars=yes');
+        }
+
+        document.getElementById("lookBtn").addEventListener("click", function() {
+            document.getElementById("roomList").scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
-</html>

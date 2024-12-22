@@ -67,12 +67,3 @@ def reserve_accommodation(request, accommodation_id):
 def reservation_success(request, reservation_id):
     reservation = get_object_or_404(HotelReservation, id=reservation_id)
     return render(request, 'hotel/reservation_success.html', {'reservation': reservation})
-
-@login_required
-def my_reservation(request):
-    hotel_reservations = HotelReservation.objects.filter(user=request.user)
-    travel_reservations = TravelReservation.objects.filter(user=request.user)
-    return render(request, 'Mypage/Myreservations.html', {
-        'hotel_reservations': hotel_reservations,
-        'travel_reservations': travel_reservations
-    })

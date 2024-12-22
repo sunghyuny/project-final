@@ -254,7 +254,7 @@
                     <div class="recommend_place">
                         <a href="/thesights/spots/{{ touristspot.id }}/">
                             <img src="{{ touristspot.image.url }}" alt="관광지 이미지" class="recommend_picture">
-                            <p class="recommend_name">{{ touristspot.name }}</p>
+                            <p class="recommend_name">{{ touristspot.description }}</p>
                         </a>
                     </div>
                 </div>
@@ -333,36 +333,38 @@
 
                 <div class="sights_list">
                     <p class="list_title">관광지</p>
-
-                    <div class="sights_island">
-                        <img src="{% static 'image/설악산.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
-                        <p class="sights_name">설악산 국립공원</p>
+                    <div class="sight_island_list">
+                        <div class="sights_island">
+                            <img src="{% static 'image/설악산.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
+                            <p class="sights_name">설악산 국립공원</p>
+                        </div>
+    
+                        <div class="sights_island">
+                            <img src="{% static 'image/29O6N859LQ_1.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
+                            <p class="sights_name">행주산성</p>
+                        </div>
+    
+                        <div class="sights_island">
+                            <img src="{% static 'image/shutterstock_692827960_12008800-1024x683.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
+                            <p class="sights_name">경복궁</p>
+                        </div>
+    
+                        <div class="sights_island">
+                            <img src="{% static 'image/자수정동굴.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
+                            <p class="sights_name">울산 자수정동굴</p>
+                        </div>
+    
+                        <div class="sights_island">
+                            <img src="{% static 'image/20221227091306_ilcqltrt.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
+                            <p class="sights_name">태백 상장동 벽화마을</p>
+                        </div>
+    
+                        <div class="sights_island">
+                            <img src="{% static 'image/061A4221.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
+                            <p class="sights_name">용인 한국민속촌</p>
+                        </div>
                     </div>
-
-                    <div class="sights_island">
-                        <img src="{% static 'image/29O6N859LQ_1.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
-                        <p class="sights_name">행주산성</p>
-                    </div>
-
-                    <div class="sights_island">
-                        <img src="{% static 'image/shutterstock_692827960_12008800-1024x683.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
-                        <p class="sights_name">경복궁</p>
-                    </div>
-
-                    <div class="sights_island">
-                        <img src="{% static 'image/자수정동굴.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
-                        <p class="sights_name">울산 자수정동굴</p>
-                    </div>
-
-                    <div class="sights_island">
-                        <img src="{% static 'image/20221227091306_ilcqltrt.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
-                        <p class="sights_name">태백 상장동 벽화마을</p>
-                    </div>
-
-                    <div class="sights_island">
-                        <img src="{% static 'image/061A4221.jpg' %}" alt="관광지 이미지" class="place_picture"></img>
-                        <p class="sights_name">용인 한국민속촌</p>
-                    </div>
+                    
                 </div>
             </div>
          </div>

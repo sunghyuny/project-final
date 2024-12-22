@@ -1,20 +1,17 @@
 import json
-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
-
-from match.models import ChatRoom
-from post.models import Post
-from travel.models import Reservation as TravelReservation
-from hotel.models import HotelReservation as HotelReservation
-from .models import *
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout  # 추가
-from planner.models import *
-from django.contrib.auth.forms import AuthenticationForm
-
-
+from django.contrib.auth import authenticate, login, logout
+from django.middleware.csrf import get_token
+from .models import CustomUser, Friend, FriendRequest
+from planner.models import TripPlan
+from hotel.models import HotelReservation
+from travel.models import Reservation as TravelReservation
+from post.models import Post
+from match.models import ChatRoom
+from django.views.decorators.csrf import csrf_exempt
 
 
 def signup(request):
@@ -231,8 +228,22 @@ def my_chat_rooms(request):
 
 @login_required
 def my_reservation(request):
+    # 현재 로그인한 사용자와 관련된 예약만 가져오기
     hotel_reservations = HotelReservation.objects.filter(user=request.user)
     travel_reservations = TravelReservation.objects.filter(user=request.user)
+
+    # hotel_reservations에서 guests 필드 사용
+    for reservation in hotel_reservations:
+        reservation.total_guests = reservation.guests
+
+    # travel_reservations에서 adult_count, youth_count, child_count 필드 사용
+    for reservation in travel_reservations:
+        reservation.total_guests = (
+            reservation.adult_count + 
+            reservation.youth_count + 
+            reservation.child_count
+        )
+
     return render(request, 'Mypage/Myreservations.html', {
         'hotel_reservations': hotel_reservations,
         'travel_reservations': travel_reservations
@@ -240,10 +251,15 @@ def my_reservation(request):
 
 @login_required
 def reservation_detail(request, reservation_id):
-    reservation = get_object_or_404(TravelReservation, id=reservation_id)
+    try:
+        reservation = TravelReservation.objects.get(id=reservation_id)
+    except TravelReservation.DoesNotExist:
+        raise Http404("해당 예약을 찾을 수 없습니다.")
     return render(request, 'Mypage/ReservationDetail.html', {'reservation': reservation})
 
+
 @login_required
+@csrf_exempt
 def reservation_delete(request, reservation_id):
     reservation = get_object_or_404(TravelReservation, id=reservation_id)
     if request.method == 'POST' and reservation.user == request.user:

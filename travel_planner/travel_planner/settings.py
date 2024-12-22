@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!8n6&=t45j+ks45a$c$2=bsl@bmno373!lh!-%5xv*jb*ye29$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['25.17.18.230', '127.0.0.1']
+ALLOWED_HOSTS = ['172.16.107.98', '127.0.0.1', '25.17.18.230','*','192.168.45.229']
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'match',
     'channels',
     'post',
+    'pages',
+    'corsheaders',
+    'api',
+
 
 ]
 
@@ -62,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 AUTHENTICATION_BACKENDS = [
 'Accounts.backends.EmailBackend',
@@ -99,8 +104,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
        'NAME': 'final_project',
-        'USER': 'root',
-        'PASSWORD':'2519778400a!',
+        'USER': 'user',
+        'PASSWORD':'ranger@#23',
         'HOST':'localhost',
         'PORT': '3306'
   }
@@ -169,6 +174,21 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_Redirect_Url= '/'
 Logout_Redirect_Url='/'
-
+LOGIN_URL = '/Accounts/login/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CSRF_COOKIE_HTTPONLY = False
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 세션을 데이터베이스에 저장
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://25.17.18.230:8000'
+
+]
+# 세션 쿠키 설정
+SESSION_COOKIE_NAME = 'sessionid'
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = False  # HTTPS를 사용하는 경우 True로 설정해야 함

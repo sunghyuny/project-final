@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .title_Logo{
+            font-weight: bold;
+            font-size: 40px;
+        }
+
+        .manage_page {
+            background-color: #bababa;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .manage_content {
+            display: flex;
+            flex-grow: 1;
+            height: 100%;
+        }
+
+        .page_content {
+            background-color: #2295ff;
+            width: 15%;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .Manage_list > li {
+            list-style: none;
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .detail_page {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .detail {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .commu_manage{
+            background-color: white;
+            width: 100%;
+            padding: 20px 30px 0 30px;
+        }
+
+        .page_title{
+            margin-bottom: 20px;
+        }
+
+        hr{
+            margin-bottom: 20px;
+        }
+
+        .login_profile {
+            background-color: #2295ff;
+            width: 18%;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .profile_img{
+            border-radius: 100px;
+            width: 150px;
+            height: 150px;
+            margin: 50px 0 30px 0;
+        }
+
+        .Logout_btn{
+            border: none;
+            width: 100px;
+            height: 20px;
+            margin-top: 5px;
+        }
+
+        #commu{
+            background-color: #0070D8;
+        }
+
+        th,td{
+            width: 150px;
+            text-align: center;
+        }
+
+        .lodg_img{
+            width: 100px;
+            height: 50px;
+        }
+
+        .del_btn{
+            color: #2295ff;
+        }
+
+        #del_btn{
+            border: none;
+            margin: 5px;
+            font-size: 20px;
+            background-color: white;
+
+        }
+
+        .num{
+            width: 50px;
+        }
+
+        .content_selection{
+            margin-top: 2rem;
+        }
+
+        .content_selection>p{
+            text-align: center;
+            border: 1px solid;
+            display: inline-block;
+            font-size: 1.6rem;
+            width: 7rem;
+            margin: 0 2rem 3rem 0;
+            height: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="manage_page">
+        <div class="manage_content">
+            <div class="page_content">
+                <ul class="Manage_list">
+                    <li id="Logo"><a href="/Admin/main/"><p class="title_Logo">여행 계획</p></a></li>
+                    <li id="main"><a href="/">사이트 바로가기</a></li>
+                    <li id="trip"><a href="/Admin/trip/">여행 관리</a></li>
+                    <li id="lodg"><a href="/Admin/lodg/">숙박 관리</a></li>
+                    <li id="active"><a href="/Admin/active/">활동 관리</a></li>
+                    <li id="commu"><a href="/Admin/post/">커뮤니티 관리</a></li>
+                    <li id="match"><a href="/Admin/match/">매칭 관리</a></li>
+                    <li id="member"><a href="/Admin/member/">회원관리</a></li>
+                </ul>
+            </div>
+
+            <div class="detail_page">
+                <div class="detail">
+                    <div class="commu_manage">
+                        <h4 class="page_title">커뮤니티 관리</h4>
+                        <hr>
+                        <div class="active_detail">
+                            <table>
+                                <tr>
+                                    <th class="num">번호</th>
+                                    <th>제목</th>
+                                    <th>부재목</th>
+                                    <th>생성일</th>
+                                    <th>여행시작일</th>
+                                    <th>여행종료일</th>
+                                    <th>인원</th>
+                                    <th>이미지</th>
+                                    <th>관리</th>
+                                </tr>
+
+                                {% for post in posts %}
+                                <tr>
+                                    <td class="num">{{ forloop.counter }}</td>
+                                    <td>{{ post.title }}</td>
+                                    <td>{{ post.subtitle }}</td>
+                                    <td>{{ post.created_at|date:"Y-m-d" }}</td>
+                                    <td>{{ post.start_date }}</td>
+                                    <td>{{ post.end_date }}</td>
+                                    <td>{{ post.participants }}</td>
+                                    <td><img class="lodg_img" src="{{ post.image.url }}" alt=""></td>
+                                    <td><button id="del_btn">삭제</button></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login_profile">
+                <img class="profile_img" src="{{ user.profile_picture.url }}" alt="">
+                <p>{{ user.username }} ({{ user.email }})</p>
+                <button class="Logout_btn" onclick="location.href='/Accounts/logout/'">로그아웃</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

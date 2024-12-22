@@ -11,5 +11,3 @@ urlpatterns = [
     path('reserve/<int:accommodation_id>/', reserve_accommodation, name='reserve'),
     path('reservation_success/<int:reservation_id>/', reservation_success, name='reservation_success'),
 ]
-
-

@@ -305,11 +305,10 @@
             <hr class="Circle_Line"></hr>
         </div>
 
-
         <div class='contents'>
             <p class='page_title'>활동 선택</p>
             <hr id="contents_Line"></hr>
-                <input type="text" class='locate_list' placeholder="식당, 경관, 체험, 전시 등 가고 싶은 곳을 검색해 보세요">
+            <input type="text" class='locate_list' placeholder="식당, 경관, 체험, 전시 등 가고 싶은 곳을 검색해 보세요">
 
             <div class="content">
                 <div class="select_filter2">
@@ -333,60 +332,55 @@
                         <li class="active_category">전시</li>
                         <li class="active_category">즐겨찾기</li>
                     </ul>
-                    
                 </div>
+
                 <div class="activity_list_content">
-<form action="/planner/plan3/" method="post">
-    <button type="submit" class="next_btn">다음</button>
-    {% csrf_token %}
-    <div class="activity_list">
-        {% if activities %}
-            {% for activity in activities %}
-            <div class="activity">
-                <img class="act_img" src="{{ activity.photo.url }}" alt="{{ activity.name }}"/>
-                <input type="hidden" id="activity_{{ activity.id }}" name="selected_activity_id" value="{{ activity.id }}">
-                <label for="activity_{{ activity.id }}" class="activity_label">
-                    <p class="act_title">{{ activity.name }}</p>
-                    <p class="act_location">{{ activity.location }}</p>
-                    <p class="act_time">운영시간: {{ activity.time }}</p>
-                    <p class="act_price">대표: {{ activity.price }}원</p>
-                    <p class="act_num">{{ activity.telephone }}</p>
-                    <input type="checkbox" name="selected_activity_id" class="act_check" value="{{ activity.id }}">
-                </label>
-            </div>
-            {% endfor %}
-        {% else %}
-            <p>활동이 없습니다</p>
-        {% endif %}
-    </div>
-    
-</form>
-    </div>
+                    <!-- 폼을 감싸는 div를 추가 -->
+                    <form action="/planner/plan3/" method="post">
+                        {% csrf_token %}
+                        <div class="activity_list">
+                            {% if activities %}
+                                {% for activity in activities %}
+                                <div class="activity">
+                                    <img class="act_img" src="{{ activity.photo.url }}" alt="{{ activity.name }}"/>
+                                    <label for="activity_{{ activity.id }}" class="activity_label">
+                                        <p class="act_title">{{ activity.name }}</p>
+                                        <p class="act_location">{{ activity.location }}</p>
+                                        <p class="act_time">운영시간: {{ activity.time }}</p>
+                                        <p class="act_price">대표: {{ activity.price }}원</p>
+                                        <p class="act_num">{{ activity.telephone }}</p>
+                                        <input type="checkbox" name="selected_activity_id" class="act_check" value="{{ activity.id }}" onchange="updateActivitySelection()">
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>활동이 없습니다</p>
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="next_btn">다음</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</body>
-<script>
-    function updateActivitySelection() {
-        const checkedActivities = document.querySelectorAll('.act_check:checked');
-        let selectedActivitiesNames = [];
-        checkedActivities.forEach((checkbox) => {
-            const activityContainer = checkbox.closest('.activity');
-            const activityName = activityContainer.querySelector('.act_title').textContent;
-            selectedActivitiesNames.push(activityName);
-        });
+    <script>
+        function updateActivitySelection() {
+            const checkedActivities = document.querySelectorAll('.act_check:checked');
+            let selectedActivitiesNames = [];
+            checkedActivities.forEach((checkbox) => {
+                const activityContainer = checkbox.closest('.activity');
+                const activityName = activityContainer.querySelector('.act_title').textContent;
+                selectedActivitiesNames.push(activityName);
+            });
 
-        const activitiesDisplay = document.getElementById('selected_activities');
-        if(selectedActivitiesNames.length > 0) {
-            activitiesDisplay.innerHTML = selectedActivitiesNames.join('<br> ');
-        } else {
-            activitiesDisplay.innerHTML = '선택된 활동 없음';
+            const activitiesDisplay = document.getElementById('selected_activities');
+            if(selectedActivitiesNames.length > 0) {
+                activitiesDisplay.innerHTML = selectedActivitiesNames.join('<br>');
+            } else {
+                activitiesDisplay.innerHTML = '선택된 활동 없음';
+            }
         }
-    }
-    function toggleFav(element) {
-        element.classList.toggle("fav");
-    }
-</script>
-
-
+    </script>
+</body>
 </html>

@@ -237,8 +237,8 @@
                                     <option value="child">아동</option>
                                 </select>
                             </div>
-                            <p>이름: <input type="text" class="input_text" name="traveler_name0"></p>
-                            <p>전화번호: <input type="tel" name="traveler_phone0" class="phone"></p>
+                            <p>이름: <input type="text" class="input_text" name="traveler_name0" value="{{ user.username }}"></p>
+                            <p>전화번호: <input type="tel" name="traveler_phone0" class="phone" value="{{ user.phone_number }}"></p>
                             <button type="button" class="icon" onclick="removeTraveler(this)">삭제</button>
                         </div>
                     </div>
@@ -272,10 +272,10 @@
     <script>
         let copyNum = 1;
         const prices = {
-            adult: {{ package.adult_price }},
-            student: {{ package.youth_price }},
-            child: {{ package.child_price }}
-        };
+            adult: {{ package.adult_price|floatformat:"-0" }},
+            student: {{ package.youth_price|floatformat:"-0" }},
+            child: {{ package.child_price|floatformat:"-0" }} // ... existing code ...
+        }; // 추가된 세미콜론
 
         function updateTotalPrice() {
             const adultCount = parseInt(document.getElementById("adultCount").textContent);

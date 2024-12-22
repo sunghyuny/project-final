@@ -169,12 +169,12 @@
         <div class="manage_content">
             <div class="page_content">
                 <ul class="Manage_list">
-                    <li id="Logo"><a href="/Admin/main/"><p class="title_Logo">Travel Plan</p></a></li>
+                    <li id="Logo"><a href="/Admin/main/"><p class="title_Logo">여행 계획</p></a></li>
                     <li id="main"><a href="/">사이트 바로가기</a></li>
                     <li id="trip"><a href="/Admin/trip/">여행 관리</a></li>
                     <li id="lodg"><a href="/Admin/lodg/">숙박 관리</a></li>
                     <li id="active"><a href="/Admin/active/">활동 관리</a></li>
-                    <li id="commu"><a href="">커뮤니티 관리</a></li>
+                    <li id="commu"><a href="/Admin/post/">커뮤니티 관리</a></li>
                     <li id="match"><a href="/Admin/match/">매칭 관리</a></li>
                     <li id="member"><a href="/Admin/member/">회원관리</a></li>
                 </ul>
@@ -197,17 +197,24 @@
                                     <td>기간</td>
                                     <th>수정/삭제</th>
                                 </tr>
-
+                                {% for chat_room in chat_rooms %}
                                 <tr>
-                                    <td class="num">1</td>
-                                    <td>제주도 가실분</td>
-                                    <td><img class="lodg_img" src="/image/KakaoTalk_20221203_211222704.jpg" alt=""></td>
-                                    <td>남도일</td>
-                                    <td>2024-09-12</td>
-                                    <td>5명</td>
-                                    <td>2024년 9월 19일2024년 9월 20일</td>
+                                    <td class="num">{{ forloop.counter }}</td>
+                                    <td>{{ chat_room.name }}</td>
+                                    <td>
+                                        {% if chat_room.image %}
+                                        <img class="lodg_img" src="{{ chat_room.image.url }}" alt="">
+                                        {% else %}
+                                        <img src="/static/image/default.jpg" class="lodg_img">
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ chat_room.creator }}</td>
+                                    <td>{{ chat_room.date }}</td>
+                                    <td>{{ chat_room.participants.count }}명</td>
+                                    <td>{{ chat_room.departure_date|date:"SHORT_DATE_FORMAT" }} {{ chat_room.arrival_date|date:"SHORT_DATE_FORMAT" }}</td>
                                     <td><button id="del_btn">삭제</button></td>
                                 </tr>
+                                {% endfor %}
                             </table>
 
                         </div>
@@ -216,10 +223,9 @@
             </div>
 
             <div class="login_profile">
-                <img class="profile_img" src="/image/2023-05-27.jpg" alt="">
-                <p>관리자명</p>
-                <p>관리자 아이디</p>
-                <button class="Logout_btn">Logout</button>
+                <img class="profile_img" src="{{ user.profile_picture.url }}" alt="">
+                <p>{{ user.username }} ({{ user.email }})</p>
+                <button class="Logout_btn" onclick="location.href='/Accounts/logout/'">로그아웃</button>
             </div>
         </div>
     </div>

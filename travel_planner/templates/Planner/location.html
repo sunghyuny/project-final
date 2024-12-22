@@ -9,6 +9,11 @@
     <title>Step2 여행지 선택 | Travel Plan</title>
 
     <style>
+
+        html, body {
+            overflow-x: hidden; /* 가로 스크롤을 숨김 */
+        }
+        
         .progress{
             display: flex;
             align-items: center;
@@ -130,10 +135,13 @@
             border: 1px solid;
             display: flex;
             margin-left: 12rem;
+            padding-bottom: 10px;
+            font-weight: bold;
         }
 
         .locate_list>ul{
             margin-left: 5.5rem;
+            margin-top: 10px;
         }
 
         .locate_list>ul>li{
@@ -142,7 +150,7 @@
             font-size: 16px;
             margin-right: 2.1rem;
             margin-left: 2rem;
-            margin-top: 7px;
+            /* margin-top: 7px; */
         }
 
         .city_list{
@@ -154,7 +162,7 @@
             margin-right: 30px;
             width: 14rem;
             text-align: center;
-            font-size: 1.2rem;
+            border-radius: 5px;
         }
 
         .local_map>img{
@@ -169,6 +177,7 @@
             margin-top: 2rem;
             margin-left: 12rem;
             padding: 1rem;
+            border-radius: 5px;
         }
 
         #map{
@@ -191,9 +200,7 @@
             margin: 0 auto;
             margin-top: 40px;
             display: block;
-        }
-
-        a{
+            font-size: 16px;
             text-decoration: none;
         }
     </style>
@@ -305,7 +312,7 @@
                 <input type="submit" value="이 위치 저장" style="display:none;" id="submitLocation">
             </form>
             <div class='local_info'>
-                <p class="Seoul_info">대한민국의 수도이자 최대 도시로 한반도의 오랜 역사를 가진 도시 중 하나이다</p>
+                <p class="Seoul_info">대한민국의 수도이자 최대 도시로 한반도의 오랜 역사를 가진 도시 중 하나이다.</p>
                 <p class="Gyeonggi_info">대한민국에서 가장 인구가 많은 도이자 광역자치단체이다. 지리적으로 서울특별시·인천광역시와 접하고 있으며, 이들과 함께 대한민국의 수도권을 이루고 있다.</p>
                 <p class="Incheon_info">한반도 중서부에 위치하고 있고 부산광역시에 이은 제2의 항구도시이며, 수도권 최대 해안도시이자 3번째 지자체다. 인천국제공항과 인천항국제여객터미널이 있어서 대한민국을 찾는 외국인 여행객 대부분이 가장 먼저 발을 딛는 곳이다. 인천국제공항은 아시아, 미주, 유럽, 오세아니아, 아프리카 등 세계 주요 대륙의 국가들과 이어져 있다.</p>
                 <p class="Jeolla_info">한반도 서남부에 위치한 지역으로 광주광역시, 전북특별자치도, 전라남도가 포함된다. 호남이라고도 부른다. 또한 북쪽으로는 충청도, 섬진강을 경계로 동쪽으로는 경상도와 접해 있으며, 남쪽으로는 남해가 있고, 서쪽으로는 황해가 있다.</p>
@@ -322,6 +329,53 @@
         center: new naver.maps.LatLng(37.5759, 126.9769),
         zoom: 12
     });
+
+    var cityCoordinates = {
+    '서울': { lat: 37.5665, lng: 126.9780 },
+    '경기도': { lat: 37.4138, lng: 127.5183 },
+    '인천': { lat: 37.4563, lng: 126.7052 },
+    '전라도': { lat: 35.7167, lng: 127.1442 },
+    '경상도': { lat: 36.3504, lng: 127.3845 },
+    '충청도': { lat: 36.8000, lng: 127.7000 },
+    '강원도': { lat: 37.8228, lng: 128.1555 },
+    '제주도': { lat: 33.3617, lng: 126.5292 }
+};
+
+// 마커 초기 설정
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.5759, 126.9769), // 초기 마커 위치
+    map: map
+});
+
+// 지역 클릭 시 마커 이동 및 지도 중심 이동
+document.querySelectorAll('.locate_list li').forEach(function(item) {
+    item.addEventListener('click', function() {
+        var locationName = item.textContent.trim();
+        var coordinates = cityCoordinates[locationName];
+
+        if (coordinates) {
+            var newLatLng = new naver.maps.LatLng(coordinates.lat, coordinates.lng);
+            
+            // 지도 중심 이동
+            map.setCenter(newLatLng);
+            map.setZoom(11);
+
+            // 마커 위치 이동
+            marker.setPosition(newLatLng);
+
+            // 숨겨진 폼에 좌표 저장
+            document.getElementById('latitude').value = newLatLng.lat();
+            document.getElementById('longitude').value = newLatLng.lng();
+        }
+    });
+});;
+
+    naver.maps.Event.addListener(map, 'click', function(e) {
+    marker.setPosition(e.latlng);
+    });
+
+    
+
 
     naver.maps.Event.addListener(map, 'click', function(e) {
         document.getElementById('latitude').value = e.coord.y;
@@ -384,6 +438,215 @@
             document.getElementById('longitude').value = latLng.lng();
             document.getElementById('destination').style.display = 'none';
         });
+
+        var mapOptions = {
+        center: new naver.maps.LatLng(37.5665, 126.9780), // 서울 중심 좌표
+        zoom: 12
+    };
+
+    var map = new naver.maps.Map('map', mapOptions);
+    var marker = null;
+
+    // 마커를 지도에 추가하는 함수
+    function placeMarker(lat, lng) {
+        var latlng = new naver.maps.LatLng(lat, lng);
+
+        if (marker) {
+            marker.setMap(null); // 기존 마커 제거
+        }
+
+        marker = new naver.maps.Marker({
+            position: latlng,
+            map: map
+        });
+
+        // 지도 중심을 새로운 마커 위치로 설정
+        map.setCenter(latlng);
+    }
+
+        document.getElementById('Seoul').onclick = function() {
+        placeMarker(37.5665, 126.9780); // 서울 좌표
+    };
+
+        document.getElementById('Jam-sil').onclick = function() {
+        placeMarker(37.5139, 127.1025); // 잠실 좌표
+    };
+
+    document.getElementById('Yeouido').onclick = function() {
+        placeMarker(37.5215, 126.9241); // 여의도 좌표
+    };
+
+    document.getElementById('Myeongdong').onclick = function() {
+        placeMarker(37.5636, 126.9862);
+    };
+
+    document.getElementById('Insadong').onclick = function() {
+        placeMarker(37.5740, 126.9855);
+    };
+
+    document.getElementById('Jongro').onclick = function() {
+        placeMarker(37.5729, 126.9768);
+    };
+
+    document.getElementById('Sinchon').onclick = function() {
+        placeMarker(37.5598, 126.9425);
+    };
+
+    document.getElementById('Gyeonggi').onclick = function() {
+        placeMarker(37.4138, 127.5183); // 경기도 좌표
+    };
+
+    document.getElementById('Yongin').onclick = function() {
+        placeMarker(37.2411, 127.1776);
+    };
+
+    document.getElementById('Suwon').onclick = function() {
+        placeMarker(37.2636, 127.0286);
+    };
+
+    document.getElementById('Bucheon').onclick = function() {
+        placeMarker(37.5036, 126.7660);
+    };
+
+    document.getElementById('Gapyeong').onclick = function() {
+        placeMarker(37.8315, 127.5101);
+    };
+
+    document.getElementById('Gwangmyeong').onclick = function() {
+        placeMarker(37.4772, 126.8664);
+    };
+
+    document.getElementById('Incheon').onclick = function() {
+        placeMarker(37.4563, 126.7052); // 인천 좌표
+    };
+
+    document.getElementById('Namdonggu').onclick = function() {
+        placeMarker(37.4489, 126.7310);
+    };
+
+    document.getElementById('Michuholgu').onclick = function() {
+        placeMarker(37.4574, 126.7022);
+    };
+
+    document.getElementById('Yeonsugu').onclick = function() {
+        placeMarker(37.4099, 126.6787);
+    };
+
+    document.getElementById('Junggu').onclick = function() {
+        placeMarker(37.4736, 126.6219);
+    };
+
+    document.getElementById('Seogu').onclick = function() {
+        placeMarker(37.5504, 126.6756);
+    };
+
+    document.getElementById('Jeolla').onclick = function() {
+        placeMarker(35.7167, 127.1442);
+    }; // 전라도 좌표
+
+    document.getElementById('Jeonju').onclick = function() {
+        placeMarker(35.8242, 127.1480);
+    };
+
+    document.getElementById('Mokpo').onclick = function() {
+        placeMarker(34.8118, 126.3922);
+    };
+
+    document.getElementById('Damyang').onclick = function() {
+        placeMarker(35.3214, 126.9882);
+    };
+
+    document.getElementById('Suncheon').onclick = function() {
+        placeMarker(34.9506, 127.4874);
+    };
+
+    document.getElementById('Gunsan').onclick = function() {
+        placeMarker(35.9674, 126.7364);
+    };
+
+    document.getElementById('Gyeongsang').onclick = function() {
+        placeMarker(36.3504, 127.3845);
+    }; // 경상도 좌표
+
+    document.getElementById('Busan').onclick = function() {
+        placeMarker(35.1796, 129.0756);
+    };
+
+    document.getElementById('Gyeongju').onclick = function() {
+        placeMarker(35.8562, 129.2247);
+    };
+
+    document.getElementById('Pohang').onclick = function() {
+        placeMarker(36.0190, 129.3435);
+    };
+
+    document.getElementById('Daegu').onclick = function() {
+        placeMarker(35.8714, 128.6014);
+    };
+
+    document.getElementById('Andong').onclick = function() {
+        placeMarker(36.5660, 128.7227);
+    };
+
+    document.getElementById('Chungcheong').onclick = function() {
+        placeMarker(36.8000, 127.7000);
+    }; // 충청도 좌표
+
+    document.getElementById('Danyang').onclick = function() {
+        placeMarker(36.9797, 128.3658);
+    };
+
+    document.getElementById('Cheongju').onclick = function() {
+        placeMarker(36.6424, 127.4890);
+    };
+
+    document.getElementById('Chungju').onclick = function() {
+        placeMarker(36.9910, 127.9260);
+    };
+
+    document.getElementById('Boryeong').onclick = function() {
+        placeMarker(36.3337, 126.6131);
+    };
+
+    document.getElementById('Taean').onclick = function() {
+        placeMarker(36.7453, 126.2971);
+    };
+
+    document.getElementById('Gangwon').onclick = function() {
+        placeMarker(36.7453, 128.1555);
+    };
+
+    document.getElementById('Sokcho').onclick = function() {
+        placeMarker(38.2070, 128.5911);
+    };
+
+    document.getElementById('Hoengseong').onclick = function() {
+        placeMarker(37.4917, 127.8030);
+    };
+
+    document.getElementById('Gangneung').onclick = function() {
+        placeMarker(37.7519, 128.8761);
+    };
+
+    document.getElementById('Chuncheon').onclick = function() {
+        placeMarker(37.8813, 127.7298);
+    };
+
+    document.getElementById('Cheorwon').onclick = function() {
+        placeMarker(38.1460, 127.3135);
+    };
+
+    document.getElementById('Jeju').onclick = function() {
+        placeMarker(33.3617, 126.5292);
+    };
+
+    document.getElementById('jejusi').onclick = function() {
+        placeMarker(33.4996213, 126.5311884);
+    };
+
+    document.getElementById('seogwiposi').onclick = function() {
+        placeMarker(33.2530844, 126.5618075);
+    };
     });
 
     // 도시 선택시 부속 지역 출력 및 좌표 이동
@@ -443,6 +706,64 @@
             });
         });
     });
+
+    $(document).ready(function () {
+  var x = JSON.parse(sessionStorage.getItem("park_info"))
+  appendParkHtml(
+    x["park_name"],
+    x["addr"],
+    x["check_count"],
+    x["image"],
+    x["list_content"],
+    x["admintel"],
+    x["main_equip"],
+    x["template_url"],
+    x["updated_at"],
+    x["id"],
+    x["bookmark"],
+    x["username"],
+    x["comments"]
+  )
+    
+
+  var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),
+    map = new naver.maps.Map('map', {
+      center: park.destinationPoint(0, 500),
+      zoom: 15
+    }),
+    marker = new naver.maps.Marker({
+      map: map,
+      position: park
+    });
+
+  var contentString = [
+    '<div class="iw_inner">',
+    '   <h5 style="color: green;">' + x["park_name"] + '</h5>',
+    '   <a href="https://map.naver.com/v5/search/' + x["park_name"] +
+    '?c=14134663.0407597,4519566.6272867,15,0,0,0,dh" style="text-decoration: none; color: green;">길찾기</a>',
+    '</div>'
+  ].join('');
+
+  var infowindow = new naver.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 350,
+    backgroundColor: "#eee",
+    borderColor: "#2db400",
+    borderWidth: 3,
+    anchorSize: new naver.maps.Size(30, 30),
+    anchorSkew: true,
+    anchorColor: "#eee",
+    pixelOffset: new naver.maps.Point(20, -20)
+  });
+
+  naver.maps.Event.addListener(marker, "click", function (e) {
+    if (infowindow.getMap()) {
+      infowindow.close();
+    } else {
+      infowindow.open(map, marker);
+    }
+  });
+});
 </script>
 
 

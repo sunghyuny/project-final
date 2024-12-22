@@ -313,8 +313,6 @@
             <hr class="Circle_Line">
         </div>
 
-        
-
         <div class="search_main">
             <p class='page_title'>숙소 선택</p>
             <hr class="contents_Line"></hr>
@@ -331,7 +329,7 @@
                 </div>
                 <p class="filter_butitle">등급</p>
                 <div class="filter_star">
-                    <input type="checkbox" class="star" name="star_rating" ><span class="star_span">★★★★★</span>
+                    <input type="checkbox" class="star" name="star_rating"><span class="star_span">★★★★★</span>
                     <br>
                     <input type="checkbox" class="star" name="star_rating"><span class="star_span">★★★★☆</span>
                     <br>
@@ -346,7 +344,6 @@
                     <input type="text" class="price_text">
                     <p class="price_wave">~</p>
                     <input type="text" class="price_text">
-
                 </div>
             </div>
 
@@ -366,48 +363,39 @@
 
             <p class="array">정렬 | 별점 평점 인기 가격 후기 거리</p>
 
-<!-- Planner/lodging.html -->
-<form action="" method="post">
-    {% csrf_token %}
-            <div class="lodging_list">
-                {% if accommodations %}
-                    {% for accommodation in accommodations %}
-                    <div class="lodg">
-                    <form id="" method="post">
-                        {% csrf_token %}
-                        <img class="hotel_img" src="{{ accommodation.photo.url }}" alt="{{ accommodation.name }}"/>
-                        <input type="hidden" name="accommodation_id" value="{{ accommodation.id }}">
-                        <!-- 숙소 선택을 위한 폼 요소들을 추가합니다. -->
+            <!-- 숙소 선택 폼 -->
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="lodging_list">
+                    {% if accommodations %}
+                        {% for accommodation in accommodations %}
+                        <div class="lodg">
+                            <img class="hotel_img" src="{{ accommodation.photo.url }}" alt="{{ accommodation.name }}"/>
+                            <input type="hidden" name="accommodation_id" value="{{ accommodation.id }}">
                             <p class="lodg_title">{{ accommodation.name }}</p>
                             <p class="lodg_locate">{{ accommodation.amenities }}</p>
                             <p class="lodg_price">{{ accommodation.price }}</p>
-                            <input type="checkbox" name="region_name" class="lodg_check" value="{{ accommodation.name }}">
-
-                    </form>
-                </div>
-                    {% endfor %}
+                            <input type="checkbox" name="selected_accommodations" class="lodg_check" value="{{ accommodation.id }}">
+                        </div>
+                        {% endfor %}
                     {% else %}
-                    <p>상품이 없습니다</p>
+                        <p>상품이 없습니다</p>
                     {% endif %}
+                    <button type="submit" class="next_btn">다음</button>
+                </div>
+            </form>
 
-                <a href="/planner/plan3/"><button onclick="changeButtonColor(this)" class="next_btn">다음</button></a>
-            </div>
-</form>
-
+        </div>
+    </div>
 
     <script>
-        function changeButtonColor(button) {
-            if (button.id === 'next_btn') {
-            button.classList.toggle('clicked');
-            }
-        }
         document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector(".drop_btn").addEventListener("click", function() {
-            var content = document.getElementById("dropdown_content");
+            document.querySelector(".drop_btn").addEventListener("click", function() {
+                var content = document.getElementById("dropdown_content");
                 if (content.style.display === "block") {
                     content.style.display = "none";
                 } else {
-                content.style.display = "block";
+                    content.style.display = "block";
                 }
             });
         });
@@ -417,12 +405,11 @@
             checkboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
                     checkboxes.forEach(function(other) {
-                        if(other !== checkbox) other.checked = false;
+                        if (other !== checkbox) other.checked = false;
                     });
                 });
             });
         });
     </script>
-
 </body>
 </html>

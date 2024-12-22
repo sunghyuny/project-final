@@ -22,12 +22,8 @@
                 const messageInfo = document.createElement('div');
 
                 messageInfo.classList.add('message-info');
-<<<<<<< HEAD
                 const kstDate = new Date(new Date(data.timestamp).toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
                 messageInfo.innerHTML = `[${kstDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}] `;
-=======
-                messageInfo.innerHTML = `[${data.timestamp}] `;
->>>>>>> 37d6d256841c4484fd2727cca5894175c599e4a9
 
                 messageContent.textContent = data.message;
 
@@ -109,14 +105,7 @@
             width: 800px;
             margin: 0 auto;
             overflow-y: scroll;
-<<<<<<< HEAD
             padding: 10px;
-=======
-<<<<<<< HEAD
-            padding: 10px;
-=======
->>>>>>> origin/main
->>>>>>> 37d6d256841c4484fd2727cca5894175c599e4a9
         }
 
         .send_message {

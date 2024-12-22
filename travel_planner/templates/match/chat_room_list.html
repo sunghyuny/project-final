@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 {% include 'Navbar.html'%}
 <html lang="en">
@@ -77,10 +78,13 @@
 
         .new_chat {
             margin-left: 20px;
+            padding: 10px;
             border: none;
             font-weight: bold;
             font-size: 20px;
-            background-color: #D7D7D7;
+            background-color: #2295ff;
+            text-decoration: none;
+            color: white;
         }
 
         .match_content {
@@ -151,9 +155,13 @@
         <a href="/chat/create_chat_room/" class="new_chat">채팅방 만들기</a>
         {% for room in chat_rooms %}
         <div class="match_list">
-            <div class="profile_img">
-                <img src="{{ room.image.url }}" alt="" class="room_img">
-            </div>
+<div class="profile_img">
+    {% if room.image %}
+        <img src="{{ room.image.url }}" alt="" class="room_img">
+    {% else %}
+        <img src="/static/default.jpg" alt="" class="room_img">  <!-- 기본 이미지 경로 설정 -->
+    {% endif %}
+</div>
             <div class="list_content">
                 <p class="title"><a href="{% url 'match:chat_room_detail' room.id %}" class="room_title">{{ room.name }}</a></p>
                 <p class="period">{{ room.departure_date }}~{{ room.arrival_date }}</p>
@@ -177,10 +185,6 @@
                     </select>
                 </form>
                 {% endif %}
-            <div class="match_content">
-                {% for room in chat_rooms %}
-
-                {% endfor %}
             </div>
         </div>
         {% endfor %}

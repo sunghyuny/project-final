@@ -5,35 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* 기존 스타일 유지 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+    
         body, html {
             height: 100%;
             margin: 0;
         }
-
-        .title_Logo{
+    
+        .title_Logo {
             font-weight: bold;
             font-size: 40px;
         }
-
+    
         .manage_page {
             background-color: #bababa;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
-
+    
         .manage_content {
             display: flex;
             flex-grow: 1;
             height: 100%;
         }
-
+    
         .page_content {
             background-color: #2295ff;
             width: 15%;
@@ -41,19 +42,19 @@
             text-align: center;
             box-sizing: border-box;
         }
-
+    
         .Manage_list > li {
             list-style: none;
             color: white;
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-
+    
         a {
             text-decoration: none;
             color: white;
         }
-
+    
         .detail_page {
             flex-grow: 1;
             display: flex;
@@ -61,28 +62,29 @@
             padding: 20px;
             box-sizing: border-box;
         }
-
+    
         .detail {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             flex-grow: 1;
         }
-
-        .trip_manage{
+    
+        .trip_manage {
             background-color: white;
             width: 100%;
             padding: 20px 30px 0 30px;
+            position: relative;
         }
-
-        .page_title{
+    
+        .page_title {
             margin-bottom: 20px;
         }
-
-        hr{
+    
+        hr {
             margin-bottom: 20px;
         }
-
+    
         .login_profile {
             background-color: #2295ff;
             width: 18%;
@@ -94,40 +96,41 @@
             align-items: center;
             color: white;
         }
-
-        .profile_img{
+    
+        .profile_img {
             border-radius: 100px;
             width: 150px;
             height: 150px;
             margin: 50px 0 30px 0;
         }
-
-        .Logout_btn{
+    
+        .Logout_btn {
             border: none;
             width: 100px;
             height: 20px;
             margin-top: 5px;
         }
-
-        #trip{
+    
+        #trip {
             background-color: #0070D8;
         }
-
-        table{
+    
+        table {
             margin: 0;
         }
-
-        th,td{
+    
+        th, td {
             width: 140px;
-            text-align: center;
+            text-align: left;
+            padding: 5px;
         }
-
-        .lodg_img{
+    
+        .lodg_img {
             width: 100px;
             height: 70px;
         }
-
-        #add_btn{
+    
+        #add_btn {
             float: right;
             width: 130px;
             height: 30px;
@@ -136,50 +139,39 @@
             color: #2295ff;
             font-size: 20px;
         }
-
-        #retouch_btn, #del_btn{
+    
+        #retouch_btn, #del_btn {
             border: none;
             margin: 5px;
             font-size: 20px;
             background-color: white;
-
         }
-
-        .num{
+    
+        .num {
             width: 50px;
         }
-
-        .add_btn{
+    
+        .add_btn {
             color:#2295ff;
         }
+    
+        .submit_btn {
+            width: 100px;
+            height: 30px;
+            border: none;
+            background-color: #2295ff;
+            color: white;
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
+    
+    
 </head>
 <body>
-<<<<<<< HEAD
-    <h1>Create a new travel package</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="destination" placeholder="Destination" required><br>
-        <input type="date" name="start_date" required><br>
-        <input type="date" name="end_date" required><br>
-        <input type="number" name="adult_price" placeholder="Adult Price" required><br>
-        <input type="number" name="youth_price" placeholder="Youth Price" required><br>
-        <input type="number" name="child_price" placeholder="Child Price" required><br>
-        <input type="number" name="accommodation_price" placeholder="Accommodation Price" required><br>
-        <select name="accommodation_id" required>
-            {% for accommodation in accommodations %}
-                <option value="{{ accommodation.id }}">{{ accommodation.name }}</option>
-            {% endfor %}
-        </select><br>
-        <select name="region_category_id" required>
-            {% for category in region_categories %}
-                <option value="{{ category.id }}">{{ category.name }}</option>
-            {% endfor %}
-        </select><br>
-        <input type="file" name="image" accept="image/*" required><br>
-        <button type="submit">Create Package</button>
-    </form>
-=======
     <div class="manage_page">
         <div class="manage_content">
             <div class="page_content">
@@ -206,15 +198,65 @@
                         <div class="add_package">
                             <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                패키지 명 : <input type="text" name="destination" placeholder="목적지" required><br>
-                                출발일 : <input type="date" name="start_date" required><br>
-                                도착일 : <input type="date" name="end_date" required><br>
-                                가격 : <input type="text" name="price" placeholder="Price" required><br>
-                                이미지 : <input type="file" name="image" accept="image/*" required><br>
-                                <button type="submit">등록하기</button>
+                                <table>
+                                    <tr>
+                                        <th>목적지 :</th>
+                                        <td><input type="text" name="destination" placeholder="목적지" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th>출발일 :</th>
+                                        <td><input type="date" name="start_date" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th>도착일 :</th>
+                                        <td><input type="date" name="end_date" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th>성인 가격 :</th>
+                                        <td><input type="number" name="adult_price" placeholder="성인 가격" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th>청소년 가격 :</th>
+                                        <td><input type="number" name="youth_price" placeholder="청소년 가격" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th>어린이 가격 :</th>
+                                        <td><input type="number" name="child_price" placeholder="어린이 가격" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th>숙박 가격 :</th>
+                                        <td><input type="number" name="accommodation_price" placeholder="숙박 가격" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th>숙박 선택 :</th>
+                                        <td>
+                                            <select name="accommodation_id" required>
+                                                {% for accommodation in accommodations %}
+                                                    <option value="{{ accommodation.id }}">{{ accommodation.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>지역 카테고리 :</th>
+                                        <td>
+                                            <select name="region_category_id" required>
+                                                {% for category in region_categories %}
+                                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>이미지 :</th>
+                                        <td><input type="file" name="image" accept="image/*" required></td>
+                                    </tr>
+                                </table>
+                                <button type="submit" class="submit_btn">패키지 생성</button>
                             </form>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -226,6 +268,8 @@
             </div>
         </div>
     </div>
->>>>>>> fa5ddbc353aeb98eab92f52b86828c0c0345aaed
 </body>
 </html>
+
+
+

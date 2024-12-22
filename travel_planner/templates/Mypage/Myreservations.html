@@ -72,7 +72,7 @@
             font-weight: bold;
         }
 
-        .res_package, .res_lodg{
+        .res_package, .res_lodg, .lodging_title, .package_title{
             border: 1px solid;
             display: inline-block;
             text-align: center;
@@ -159,7 +159,7 @@
             color: inherit;
         }
 
-        .package_item {
+        .package_item, .lodging_item {
             border: 1px solid #d7d7db;
             border-radius: 4px;
             margin-bottom: 20px;
@@ -169,19 +169,19 @@
             justify-content: space-between;
         }
 
-        .package_item img {
+        .package_item img, .lodging_item img {
             width: 100px;
             height: 100px;
             margin-right: 20px;
             border-radius: 4px;
         }
 
-        .package_title {
+        .package_title, .lodging_title {
             font-size: 18px;
             font-weight: bold;
         }
 
-        .package_schedule, .package_price {
+        .package_schedule, .package_price, .lodging_schedule, .lodging_price {
             font-size: 16px;
             color: #555;
         }
@@ -219,6 +219,24 @@
                     <div class="reservation">
                         <p class="res_package" onclick="selectTab(this)">패키지 예약</p>
                         <p class="res_lodg" onclick="selectTab(this)">숙소 예약</p>
+                        <div id="lodg_info" class="lodging" style="display: none;">
+                            {% for reservation in hotel_reservations %}
+                                <div class="lodging_item">
+                                    <a href="{% url 'Accounts:reservation_detail' reservation.id %}">
+                                        <img src="{{ reservation.accommodation.photo.url }}" alt="{{ reservation.accommodation.name }}">
+                                        <div>
+                                            <p class="lodging_title">{{ reservation.accommodation.name }}</p>
+                                            <p class="lodging_schedule">{{ reservation.check_in }} - {{ reservation.check_out }}</p>
+                                            <p class="lodging_price">총 가격: {{ reservation.total_price }}원</p>
+                                        </div>
+                                    </a>
+                                    <form method="post" action="{% url 'Accounts:reservation_delete' reservation.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="delete-button">삭제</button>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                        </div>
                         <div id="package_info" class="package">
                             {% for reservation in travel_reservations %}
                                 <div class="package_item">

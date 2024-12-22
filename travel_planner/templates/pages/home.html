@@ -7,9 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Plan | 나만의 여행 일정 만들기</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Playfair+Display:ital,wght@1,400..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9fbe582e80.js" crossorigin="anonymous"></script>
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Playfair+Display:ital,wght@1,400..900&display=swap');
+
         html {
             font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
         }
@@ -85,7 +88,7 @@
 
         .content_title{
             font-weight: bold;
-            font-size: 21px;
+            font-size: 28px;
             margin-top: 4rem;
             text-align: left;
             margin-bottom: 5px;
@@ -105,7 +108,7 @@
             border-radius: 30px;
             font-size: 16px;
             padding: 10px 20px;
-            width: 50px;
+            /* width: 50px; */
             margin-top: 10px;
             margin-right: 26px;
             color: #2295ff;
@@ -217,15 +220,17 @@
             {% for spot in tourist_spots %}
             {% if forloop.counter0 < 4 %}
                 <div class="review">
-                    <img class="review_img" src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/>
+                    {% if spot.image %}
+                        <img class="review_img" src="{{ spot.image.url }}" alt="{{ spot.name }} 이미지"/>
+                    {% else %}
+                        <img class="review_img" src="{% static 'image/default_image.jpg' %}" alt="기본 이미지"/>  <!-- 기본 이미지 제공 -->
+                    {% endif %}
                     <br><br>
-                    <i class="fa-solid fa-location-dot" style="color: #2295ff;"></i>
-                    <span class="place_title">{{ spot.name }}</span>
                     <p class="review_title">{{ spot.description }}</p>
-                    <p class="re_user_name">{{ spot.location }}</p>
                 </div>
-                {% endif %}
-            {% endfor %}
+            {% endif %}
+        {% endfor %}
+        
         </div>
 
 
