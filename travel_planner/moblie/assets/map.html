@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Naver Maps</title>
+    <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8rmgkdfw2q"></script>
+    <script>
+      function initMap() {
+        var map = new naver.maps.Map('map', {
+          center: new naver.maps.LatLng(37.7749, -122.4194),
+          zoom: 10
+        });
+
+        naver.maps.Event.addListener(map, 'click', function(e) {
+          var lat = e.coord.lat();
+          var lng = e.coord.lng();
+          document.getElementById('selectedLocation').value = lat + ',' + lng;
+        });
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <div id="map" style="height: 100%; width: 100%;"></div>
+    <input type="hidden" id="selectedLocation" />
+  </body>
+</html>
